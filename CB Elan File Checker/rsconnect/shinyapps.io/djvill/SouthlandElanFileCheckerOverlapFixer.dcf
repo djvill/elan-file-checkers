@@ -1,0 +1,12 @@
+name: SouthlandElanFileCheckerOverlapFixer
+title: SouthlandElanFileCheckerOverlapFixer
+username:
+account: djvill
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 383591
+bundleId: 1489307
+url: https://djvill.shinyapps.io/SouthlandElanFileCheckerOverlapFixer/
+when: 1532010439.28125
+asMultiple: FALSE
+asStatic: FALSE
