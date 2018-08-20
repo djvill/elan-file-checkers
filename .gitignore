@@ -4,3 +4,6 @@
 .Ruserdata
 Celex English
 Elan File Checkers.Rproj
+CB Elan File Checker/dict
+JH Elan File Checker/dict
+.gitignore
