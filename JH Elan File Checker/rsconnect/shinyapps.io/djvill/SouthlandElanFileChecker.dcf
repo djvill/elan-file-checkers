@@ -1,0 +1,12 @@
+name: SouthlandElanFileChecker
+title: SouthlandElanFileChecker
+username:
+account: djvill
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 381691
+bundleId: 1521921
+url: https://djvill.shinyapps.io/SouthlandElanFileChecker/
+when: 1533610803.99345
+asMultiple: FALSE
+asStatic: FALSE
