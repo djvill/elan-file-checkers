@@ -5,8 +5,8 @@ account: djvill
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 381691
-bundleId: 1543349
+bundleId: 1555272
 url: https://djvill.shinyapps.io/SouthlandElanFileChecker/
-when: 1534725088.76742
+when: 1535336191.97129
 asMultiple: FALSE
 asStatic: FALSE
