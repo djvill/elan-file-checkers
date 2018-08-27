@@ -160,7 +160,11 @@ server <- function(input, output) {
       cat("Step 2: Checking for out-of-dictionary words...")
     }
   })
-  dict <- readLines("dict/dict.txt")
+  if (file.exists("dict/userDict.txt")) {
+    dict <- readLines("dict/userDict.txt")
+  } else {
+    dict <- readLines("dict/defaultDict.txt")
+  }
   dictIssues <- reactive({
     if (length(tierIssues())==0) {
       issues <- lapply(names(eaflist()), function (x) {

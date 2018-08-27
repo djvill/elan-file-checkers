@@ -1,8 +1,5 @@
 #### UpdateElanCheckerDict.R
-####
 #### Dan Villarreal
-#### Version 1.0.2
-#### 20 August 2018
 ####
 #### Combines dictionaries from Celex and LaBB-CAT for Southland Elan File Checker.
 ####
@@ -41,7 +38,7 @@ dict <- unique(c(as.character(celex), as.character(added), tildeCodes))
 suppressWarnings(dict <- c(dict[is.na(as.numeric(dict))], "infinity"))
 dict <- tolower(dict)
 dict <- dict[!duplicated(dict)]
-writeLines(dict, "CB Elan File Checker/dict/dict.txt")
-writeLines(dict, "JH Elan File Checker/dict/dict.txt")
+writeLines(dict, "CB Elan File Checker/dict/userDict.txt")
+writeLines(dict, "JH Elan File Checker/dict/userDict.txt")
 setwd(oldWD)
 rm(downloadDir, celex, added, vLetters, cLetters, goodDigraphs, plusV, tildeCodes, oldWD)
