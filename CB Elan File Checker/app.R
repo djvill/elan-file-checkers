@@ -10,7 +10,7 @@ ui <- fluidPage(
   ),
   titlePanel("Southland-CB Elan File Checker"),
   p("Created by Dan Villarreal (New Zealand Institute of Language, Brain, and Behaviour)"),
-  p(paste("Updated", "5 September 2018")),
+  p(paste("Updated", "9 September 2018")),
   sidebarLayout(
     sidebarPanel(
       fileInput("files",
@@ -176,7 +176,8 @@ server <- function(input, output) {
           words <- words[!(words %in% c(".", "?", "-", "--"))] ##Ignore standalone valid punctuation
           words <- gsub("[.?-]$", "", words) ##Strip attached valid punctuation
           words <- words[!grepl("\\[.+\\]", words) | grepl("\\(.*\\)\\[.*\\]", words) | grepl("\\[.*\\]\\(.*\\)", words)] ##Ignore words with valid bracket pronounce codes (sui generis words)
-          words <- words[!grepl("^\\{.+\\}$", words)] ##Ignore words in curly braces ("behaviour of speech")
+          # words <- words[!grepl("^\\{.+\\}$", words)] ##Ignore words in curly braces ("behaviour of speech")
+          words <- words %>% gsub("^\\{", "", .) %>% gsub("\\}$", "", .) ##Strip curly braces ("behaviour of speech")
           words <- gsub("[][]", "", words) ##Strip brackets
           checkWords <- tolower(gsub("(.+)\\((.+)\\)", "\\2", words)) ##For words with paren codes, use the paren code for checking
           checkWords %>% ##Use a clitic-stripped version of the word for checking
