@@ -10,7 +10,7 @@ ui <- fluidPage(
   ),
   titlePanel("Southland-JH Elan File Checker"),
   p("Created by Dan Villarreal (New Zealand Institute of Language, Brain, and Behaviour)"),
-  p(paste("Updated", "9 September 2018")),
+  p(paste("Updated", "11 September 2018")),
   sidebarLayout(
     sidebarPanel(
       fileInput("files",
@@ -113,13 +113,18 @@ server <- function(input, output) {
     issues <- lapply(names(eaflist()), function (x) {
       eaf <- eaflist()[[x]]
       message <- character(0)
-      mainSpkrName <- strsplit(x, "-")[[1]][1]
+      # mainSpkrName <- strsplit(x, "-")[[1]][1]
+      mainSpkrNames <- strsplit(x, "-")[[1]] %>% as.numeric() %>% na.omit()
       if (any(is.na(sapply(xml_find_all(eaf, "//TIER[@LINGUISTIC_TYPE_REF='default-lt' or @LINGUISTIC_TYPE_REF='UtteranceType']"), xml_attr, "ANNOTATOR")))) {
         message <- c(message, "One or more tiers is missing an Annotator attribute")
       }
-      if (length(xml_find_all(eaf, paste0("//TIER[@TIER_ID='", mainSpkrName, "']")))==0) {
-        message <- c(message, paste0("There are no tiers with Tier Name '", mainSpkrName, "'"))
-      } 
+      for (mSN in mainSpkrNames) {
+        # if (length(xml_find_all(eaf, paste0("//TIER[@TIER_ID='", mainSpkrName, "']")))==0) {
+        #   message <- c(message, paste0("There are no tiers with Tier Name '", mainSpkrName, "'"))
+        if (length(xml_find_all(eaf, paste0("//TIER[@TIER_ID='JH", mSN, "']")))==0) {
+          message <- c(message, paste0("There are no tiers with Tier Name 'JH", mSN, "'"))
+        }
+      }
       if (length(xml_find_all(eaf, paste0("//TIER[@TIER_ID='Jen Hay']")))==0) {
         message <- c(message, paste0("There are no tiers with Tier Name 'Jen Hay'"))
       }
