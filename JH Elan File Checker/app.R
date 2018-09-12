@@ -179,8 +179,6 @@ server <- function(input, output) {
       issues <- lapply(names(eaflist()), function (x) {
         eaf <- eaflist()[[x]]
         badWords <- llply(spkrTiersNoReading()[[x]], function(spkr) {
-          # words <- unique(unlist(strsplit(
-          #   xml_text(xml_find_all(spkr, "./ANNOTATION/ALIGNABLE_ANNOTATION/ANNOTATION_VALUE")), " ")))
           wordChunk <- xml_text(xml_find_all(spkr, "./ANNOTATION/ALIGNABLE_ANNOTATION/ANNOTATION_VALUE"))
           wordChunk <- gsub("([[:alpha:]]) ([?.-])>", "\\1\\2>", wordChunk) ##Unstrand valid punctuation within angle brackets
           words <- strsplit(wordChunk, " ") %>% unlist() %>% unique()
@@ -188,12 +186,12 @@ server <- function(input, output) {
           words <- words[!(words %in% c(".", "?", "-", "--"))] ##Ignore standalone valid punctuation
           permitAngleBrackets <- TRUE ##Set to TRUE to relax restrictions on angle brackets (allow single words in angle brackets)
           if (permitAngleBrackets) words <- gsub("^<(.+)>$", "\\1", words) ##Strip matched angle brackets
-          words <- gsub("[.?-]$", "", words) ##Strip attached valid punctuation
-          words <- words[!grepl("\\[.+\\]", words) | grepl("\\(.*\\)\\[.*\\]", words) | grepl("\\[.*\\]\\(.*\\)", words)] ##Ignore words with valid bracket pronounce codes (sui generis words)
-          # words <- words[!grepl("^\\{.+\\}$", words)] ##Ignore words in curly braces ("behaviour of speech")
+          words <- words[!grepl("\\[.+\\]$", words) | grepl("\\[.*\\]\\(.*\\)$", words)] ##Ignore words with valid bracket pronounce codes (sui generis words)
           words <- words %>% gsub("^\\{", "", .) %>% gsub("\\}$", "", .) ##Strip curly braces ("behaviour of speech")
-          words <- gsub("[][]", "", words) ##Strip brackets
-          checkWords <- tolower(gsub("(.+)\\((.+)\\)", "\\2", words)) ##For words with paren codes, use the paren code for checking
+          # words <- gsub("[][]", "", words) ##Strip brackets
+          checkWords <- gsub("\\[", "", words) %>% gsub("\\]$", "", .) ##Strip brackets
+          checkWords <- gsub("[.?-]$", "", checkWords) ##Strip attached valid punctuation
+          checkWords <- tolower(gsub("(.+)\\((.+)\\)", "\\2", checkWords)) ##For words with paren codes, use the paren code for checking
           checkWords <- checkWords %>% ##Use a clitic-stripped version of the word for checking
             gsub("'s$", "", .) %>% gsub("s'$", "s", .) %>% gsub("'ve$", "", .) %>% gsub("'d$", "", .)
           bw <- words[!(checkWords %in% dict)]
