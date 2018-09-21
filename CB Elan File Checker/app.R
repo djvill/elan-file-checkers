@@ -10,7 +10,7 @@ ui <- fluidPage(
   ),
   titlePanel("Southland-CB Elan File Checker"),
   p("Created by Dan Villarreal (New Zealand Institute of Language, Brain, and Behaviour)"),
-  p(paste("Updated", "9 September 2018")),
+  p(paste("Updated", "21 September 2018")),
   sidebarLayout(
     sidebarPanel(
       fileInput("files",
@@ -40,6 +40,9 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   # Set up file structures --------------------------------------------------
+  unzipnames <- eventReactive(input$files$datapath, {
+    unzip(input$files$datapath)
+  }, ignoreNULL=FALSE)
   fileExtValid <- eventReactive(input$files$name, {
     if (!is.null(input$files$name)) {
       all(substr(input$files$name, nchar(input$files$name)-2, nchar(input$files$name))=="eaf")
@@ -50,9 +53,9 @@ server <- function(input, output) {
   files <- reactive({
     if (fileExtValid()) { 
       interviewers <- substr(input$files$name, 1, 2)
-      speakerNums <- as.numeric(sapply(strsplit(as.character(input$files$name), "-"), 
+      speakerNums <- as.numeric(sapply(strsplit(as.character(input$files$name), "-"),
                                        function(x) substr(x[1], 3, nchar(x[1]))))
-      fileNums <- as.numeric(sapply(as.character(input$files$name), 
+      fileNums <- as.numeric(sapply(as.character(input$files$name),
                                     function(x) substr(x, nchar(x)-5, nchar(x)-4)))
       files <- input$files[order(interviewers, speakerNums, fileNums),]
       files
@@ -172,13 +175,14 @@ server <- function(input, output) {
         badWords <- llply(spkrTiersNoReading()[[x]], function(spkr) {
           wordChunk <- xml_text(xml_find_all(spkr, "./ANNOTATION/ALIGNABLE_ANNOTATION/ANNOTATION_VALUE"))
           wordChunk <- gsub("([[:alpha:]]) ([?.-])>", "\\1\\2>", wordChunk) ##Unstrand valid punctuation within angle brackets
+          wordChunk <- gsub("\\{.*?\\}", "", wordChunk) ##Ignore text within curly braces ("behaviour of speech")
           words <- strsplit(wordChunk, " ") %>% unlist() %>% unique()
           words <- words[words != ""] ##Ignore line-leading/line-trailing whitespace
           words <- words[!(words %in% c(".", "?", "-", "--"))] ##Ignore standalone valid punctuation
           permitAngleBrackets <- TRUE ##Set to TRUE to relax restrictions on angle brackets (allow single words in angle brackets)
           if (permitAngleBrackets) words <- gsub("^<(.+)>$", "\\1", words) ##Strip matched angle brackets
           words <- words[!grepl("\\[.+\\]$", words) | grepl("\\[.*\\]\\(.*\\)$", words)] ##Ignore words with valid bracket pronounce codes (sui generis words)
-          words <- words %>% gsub("^\\{", "", .) %>% gsub("\\}$", "", .) ##Strip curly braces ("behaviour of speech")
+          # words <- words %>% gsub("^\\{", "", .) %>% gsub("\\}$", "", .) ##Strip curly braces ("behaviour of speech")
           # words <- gsub("[][]", "", words) ##Strip brackets
           checkWords <- gsub("\\[", "", words) %>% gsub("\\]$", "", .) ##Strip brackets
           checkWords <- gsub("[.?-]$", "", checkWords) ##Strip attached valid punctuation

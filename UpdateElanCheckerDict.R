@@ -40,5 +40,6 @@ dict <- tolower(dict)
 dict <- dict[!duplicated(dict)]
 writeLines(dict, "CB Elan File Checker/dict/userDict.txt")
 writeLines(dict, "JH Elan File Checker/dict/userDict.txt")
+writeLines(dict, "SouthlandCBElanFileCheckerZIP/dict/userDict.txt")
 setwd(oldWD)
 rm(downloadDir, celex, added, vLetters, cLetters, goodDigraphs, plusV, tildeCodes, oldWD)

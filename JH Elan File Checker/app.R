@@ -181,13 +181,14 @@ server <- function(input, output) {
         badWords <- llply(spkrTiersNoReading()[[x]], function(spkr) {
           wordChunk <- xml_text(xml_find_all(spkr, "./ANNOTATION/ALIGNABLE_ANNOTATION/ANNOTATION_VALUE"))
           wordChunk <- gsub("([[:alpha:]]) ([?.-])>", "\\1\\2>", wordChunk) ##Unstrand valid punctuation within angle brackets
+          wordChunk <- gsub("\\{.*?\\}", "", wordChunk) ##Ignore text within curly braces ("behaviour of speech")
           words <- strsplit(wordChunk, " ") %>% unlist() %>% unique()
           words <- words[words != ""] ##Ignore line-leading/line-trailing whitespace
           words <- words[!(words %in% c(".", "?", "-", "--"))] ##Ignore standalone valid punctuation
           permitAngleBrackets <- TRUE ##Set to TRUE to relax restrictions on angle brackets (allow single words in angle brackets)
           if (permitAngleBrackets) words <- gsub("^<(.+)>$", "\\1", words) ##Strip matched angle brackets
           words <- words[!grepl("\\[.+\\]$", words) | grepl("\\[.*\\]\\(.*\\)$", words)] ##Ignore words with valid bracket pronounce codes (sui generis words)
-          words <- words %>% gsub("^\\{", "", .) %>% gsub("\\}$", "", .) ##Strip curly braces ("behaviour of speech")
+          # words <- words %>% gsub("^\\{", "", .) %>% gsub("\\}$", "", .) ##Strip curly braces ("behaviour of speech")
           # words <- gsub("[][]", "", words) ##Strip brackets
           checkWords <- gsub("\\[", "", words) %>% gsub("\\]$", "", .) ##Strip brackets
           checkWords <- gsub("[.?-]$", "", checkWords) ##Strip attached valid punctuation
