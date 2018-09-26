@@ -10,7 +10,7 @@ ui <- fluidPage(
   ),
   titlePanel("Southland-JH Elan File Checker"),
   p("Created by Dan Villarreal (New Zealand Institute of Language, Brain, and Behaviour)"),
-  p(paste("Updated", "11 September 2018")),
+  p(paste("Updated", "26 September 2018")),
   sidebarLayout(
     sidebarPanel(
       fileInput("files",
@@ -247,7 +247,8 @@ server <- function(input, output) {
         tmStamps <- as.numeric(xml_attr(xml_children(xml_find_first(eaf, "TIME_ORDER")), "TIME_VALUE"))
         names(tmStamps) <- xml_attr(xml_children(xml_find_first(eaf, "TIME_ORDER")), "TIME_SLOT_ID")
         tmStamps <- sort(tmStamps)
-        spkrTiersNonempty <- spkrTiers()[[x]][sapply(spkrTiers()[[x]], function(spkr) length(xml_children(spkr)))>0]
+        # spkrTiersNonempty <- spkrTiers()[[x]][sapply(spkrTiers()[[x]], function(spkr) length(xml_children(spkr)))>0]
+        spkrTiersNonempty <- spkrTiersNoReading()[[x]][sapply(spkrTiersNoReading()[[x]], function(spkr) length(xml_children(spkr)))>0]
         names(spkrTiersNonempty) <- sapply(spkrTiersNonempty, xml_attr, attr="TIER_ID")
         ##Construct by-tier list of data.frames of turn IDs, start times, end times,
         spkrTimesAll <- llply(spkrTiersNonempty, function(tier) {
