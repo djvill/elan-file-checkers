@@ -13,17 +13,14 @@ ui <- fluidPage(
   ),
   titlePanel("Elan File Checker for APLS"),
   p("Created by Dan Villarreal"),
-  p(paste("Updated", "26 September 2018")),
+  p("Updated 24 October 2021"),
   sidebarLayout(
     sidebarPanel(
       fileInput("files",
                 label="Drag and drop Elan files in the box below",
                 buttonLabel="Browse...",
                 placeholder="Box outline must turn green",
-                multiple = TRUE),
-      p("Issues using this tool? Questions or suggestions?", 
-        a("Email Dan", href="mailto:daniel.villarreal@canterbury.ac.nz?subject=Southland%20Elan%20File%20Checker"))
-    ),
+                multiple = TRUE)),
     
     mainPanel(
       h1(textOutput("checkHead")),
@@ -43,13 +40,12 @@ ui <- fluidPage(
 
 
 # Server ------------------------------------------------------------------
-
-
 server <- function(input, output) {
   # Set up file structures --------------------------------------------------
   unzipnames <- eventReactive(input$files$datapath, {
     unzip(input$files$datapath)
   }, ignoreNULL=FALSE)
+  # observeEvent(input$files, message(glue::glue("file path: {unzipnames}")))
   fileExtValid <- eventReactive(input$files$name, {
     if (!is.null(input$files$name)) {
       all(substr(input$files$name, nchar(input$files$name)-2, nchar(input$files$name))=="eaf")
@@ -57,6 +53,7 @@ server <- function(input, output) {
       TRUE
     }
   }, ignoreNULL=FALSE)
+  
   files <- reactive({
     if (fileExtValid()) { 
       interviewers <- substr(input$files$name, 1, 2)
@@ -65,9 +62,11 @@ server <- function(input, output) {
       fileNums <- as.numeric(sapply(as.character(input$files$name),
                                     function(x) substr(x, nchar(x)-5, nchar(x)-4)))
       files <- input$files[order(interviewers, speakerNums, fileNums),]
+      print(glue::glue("files: {(files)}"))
       files
     }
   })
+  
   eaflist <- reactive({
     req(files())
     if (fileExtValid()) {
@@ -179,7 +178,7 @@ server <- function(input, output) {
     if (length(tierIssues())==0) {
       issues <- lapply(names(eaflist()), function (x) {
         eaf <- eaflist()[[x]]
-        badWords <- llply(spkrTiersNoReading()[[x]], function(spkr) {
+        badWords <- map(spkrTiersNoReading()[[x]], function(spkr) {
           wordChunk <- xml_text(xml_find_all(spkr, "./ANNOTATION/ALIGNABLE_ANNOTATION/ANNOTATION_VALUE"))
           wordChunk <- gsub("([[:alpha:]]) ([?.-])>", "\\1\\2>", wordChunk) ##Unstrand valid punctuation within angle brackets
           wordChunk <- gsub("\\{.*?\\}", "", wordChunk) ##Ignore text within curly braces ("behaviour of speech")
@@ -252,7 +251,7 @@ server <- function(input, output) {
         spkrTiersNonempty <- spkrTiersNoReading()[[x]][sapply(spkrTiersNoReading()[[x]], function(spkr) length(xml_children(spkr)))>0]
         names(spkrTiersNonempty) <- sapply(spkrTiersNonempty, xml_attr, attr="TIER_ID")
         ##Construct by-tier list of data.frames of turn IDs, start times, end times,
-        spkrTimesAll <- llply(spkrTiersNonempty, function(tier) {
+        spkrTimesAll <- map(spkrTiersNonempty, function(tier) {
           spkrTimes <- data.frame(AnnID=xml_attr(xml_find_all(tier, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "ANNOTATION_ID"),
                                   Start=tmStamps[xml_attr(xml_find_all(tier, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "TIME_SLOT_REF1")],
                                   End=tmStamps[xml_attr(xml_find_all(tier, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "TIME_SLOT_REF2")])
@@ -405,6 +404,3 @@ server <- function(input, output) {
 }
 
 shinyApp(ui = ui, server = server)
-
-
-# TODO --------------------------------------------------------------------
