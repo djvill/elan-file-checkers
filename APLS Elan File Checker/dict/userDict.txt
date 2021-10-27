@@ -1,5 +1,49 @@
+##APLS custom dictionary
+
+##Pittsburgh/SWPA place names
 Wilkinsburg
 Carnegie
 Mellon
 Duquesne
 Mon
+
+##Allowable colloquial spellings
+gonna
+sorta
+'cause
+kinda
+gotta
+dunno
+wanna
+tryna
+lotta	
+
+##Allowable interjections
+yup
+yeah
+okay
+mmm
+eh
+uh
+nah
+mmm
+hmm
+um
+uh 
+aw
+oh
+oo
+ahh
+gee
+jeez
+whoops
+ow
+ha
+huh
+yuck
+damn
+hey
+till
+blah
+woohoo
+oof

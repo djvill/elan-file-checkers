@@ -4,6 +4,7 @@ library(xml2)
 library(stringr)
 library(purrr)
 library(magrittr)
+library(here)
 
 
 # UI ----------------------------------------------------------------------
@@ -45,7 +46,6 @@ server <- function(input, output) {
   unzipnames <- eventReactive(input$files$datapath, {
     unzip(input$files$datapath)
   }, ignoreNULL=FALSE)
-  # observeEvent(input$files, message(glue::glue("file path: {unzipnames}")))
   fileExtValid <- eventReactive(input$files$name, {
     if (!is.null(input$files$name)) {
       all(substr(input$files$name, nchar(input$files$name)-2, nchar(input$files$name))=="eaf")
@@ -55,14 +55,13 @@ server <- function(input, output) {
   }, ignoreNULL=FALSE)
   
   files <- reactive({
-    if (fileExtValid()) { 
+    if (fileExtValid()) {
       interviewers <- substr(input$files$name, 1, 2)
       speakerNums <- as.numeric(sapply(strsplit(as.character(input$files$name), "-"),
                                        function(x) substr(x[1], 3, nchar(x[1]))))
       fileNums <- as.numeric(sapply(as.character(input$files$name),
                                     function(x) substr(x, nchar(x)-5, nchar(x)-4)))
       files <- input$files[order(interviewers, speakerNums, fileNums),]
-      print(glue::glue("files: {(files)}"))
       files
     }
   })
@@ -169,11 +168,25 @@ server <- function(input, output) {
       cat("Step 2: Checking for out-of-dictionary words...")
     }
   })
-  if (file.exists("dict/userDict.txt")) {
-    dict <- readLines("dict/userDict.txt")
-  } else {
-    dict <- readLines("dict/defaultDict.txt")
-  }
+  
+  ##Generate dictionary
+  dict <-
+    ##Read dictionary file(s)
+    # list.files(here("dict/"), pattern="\\.txt", full.names=TRUE) %>% 
+    list.files("dict/", pattern="\\.txt", full.names=TRUE) %>% 
+    map(readLines) %>% 
+    ##As single character vector
+    reduce(c) %>% 
+    ##Ignore lines starting with "#" or empty lines
+    str_subset("^(#.*|)$", negate=TRUE) %>% 
+    ##Unique
+    unique()
+    
+  # if (file.exists("dict/userDict.txt")) {
+  #   dict <- readLines("dict/userDict.txt")
+  # } else {
+  #   dict <- readLines("dict/defaultDict.txt")
+  # }
   dictIssues <- reactive({
     if (length(tierIssues())==0) {
       issues <- lapply(names(eaflist()), function (x) {
@@ -192,7 +205,8 @@ server <- function(input, output) {
           # words <- gsub("[][]", "", words) ##Strip brackets
           checkWords <- gsub("\\[", "", words) %>% gsub("\\]$", "", .) ##Strip brackets
           checkWords <- gsub("[.?-]$", "", checkWords) ##Strip attached valid punctuation
-          checkWords <- tolower(gsub("(.+)\\((.+)\\)", "\\2", checkWords)) ##For words with paren codes, use the paren code for checking
+          # checkWords <- tolower(gsub("(.+)\\((.+)\\)", "\\2", checkWords)) ##For words with paren codes, use the paren code for checking
+          checkWords <- gsub("(.+)\\((.+)\\)", "\\2", checkWords) ##For words with paren codes, use the paren code for checking
           checkWords <- checkWords %>% ##Use a clitic-stripped version of the word for checking
             gsub("'s$", "", .) %>% gsub("s'$", "s", .) %>% gsub("'ve$", "", .) %>% gsub("'d$", "", .)
           bw <- words[!(checkWords %in% dict)]
@@ -346,6 +360,7 @@ server <- function(input, output) {
     }
   })
   output$overlapsTop <- renderPrint({
+    req(files())
     if (length(tierIssues())==0 & length(dictIssues())==0) {
       overlapsFixed <- sum(sapply(eaflistNew(), attr, "NumOverlapsFixed"))
       if (length(overlapIssues())==0) {
