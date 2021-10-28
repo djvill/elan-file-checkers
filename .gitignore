@@ -7,7 +7,7 @@ Elan File Checkers.Rproj
 CB Elan File Checker/dict/userDict.txt
 JH Elan File Checker/dict/userDict.txt
 .gitignore
-Test Files.lnk
+*.lnk
 SouthlandCBElanFileCheckerZIP/
 UnzipTest/
 Test/
