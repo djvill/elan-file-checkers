@@ -3,6 +3,8 @@ library(shiny)
 library(xml2)
 library(stringr)
 library(purrr)
+library(tidyr)
+library(dplyr)
 library(magrittr)
 library(here)
 
@@ -10,7 +12,10 @@ library(here)
 # UI ----------------------------------------------------------------------
 ui <- fluidPage(
   tags$head(
-    tags$link(rel = "stylesheet", type = "text/css", href = "dndbox.css")
+    tags$style(HTML("
+      .btn-file , .form-control {
+        height: 300px;
+      }"))
   ),
   titlePanel("Elan File Checker for APLS"),
   p("Created by Dan Villarreal"),
@@ -23,19 +28,21 @@ ui <- fluidPage(
                 placeholder="Box outline must turn green",
                 multiple = TRUE)),
     
-    mainPanel(
-      h1(textOutput("checkHead")),
-      h2(textOutput("tiersHead")),
-      textOutput("tiersTop"),
-      verbatimTextOutput("tiers"),
-      h2(textOutput("dictHead")),
-      textOutput("dictTop"),
-      verbatimTextOutput("dict"),
-      h2(textOutput("overlapsHead")),
-      textOutput("overlapsTop"),
-      verbatimTextOutput("overlaps"),
-      uiOutput("download")
-    )
+    mainPanel(verbatimTextOutput("debug"))
+    
+    # mainPanel(
+    #   h1(textOutput("checkHead")),
+    #   h2(textOutput("tiersHead")),
+    #   textOutput("tiersTop"),
+    #   verbatimTextOutput("tiers"),
+    #   h2(textOutput("dictHead")),
+    #   textOutput("dictTop"),
+    #   verbatimTextOutput("dict"),
+    #   h2(textOutput("overlapsHead")),
+    #   textOutput("overlapsTop"),
+    #   verbatimTextOutput("overlaps"),
+    #   uiOutput("download")
+    # )
   )
 )
 
@@ -43,36 +50,66 @@ ui <- fluidPage(
 # Server ------------------------------------------------------------------
 server <- function(input, output) {
   # Set up file structures --------------------------------------------------
-  unzipnames <- eventReactive(input$files$datapath, {
-    unzip(input$files$datapath)
-  }, ignoreNULL=FALSE)
-  fileExtValid <- eventReactive(input$files$name, {
-    if (!is.null(input$files$name)) {
-      all(substr(input$files$name, nchar(input$files$name)-2, nchar(input$files$name))=="eaf")
-    } else {
-      TRUE
-    }
-  }, ignoreNULL=FALSE)
   
-  files <- reactive({
-    if (fileExtValid()) {
-      interviewers <- substr(input$files$name, 1, 2)
-      speakerNums <- as.numeric(sapply(strsplit(as.character(input$files$name), "-"),
-                                       function(x) substr(x[1], 3, nchar(x[1]))))
-      fileNums <- as.numeric(sapply(as.character(input$files$name),
-                                    function(x) substr(x, nchar(x)-5, nchar(x)-4)))
-      files <- input$files[order(interviewers, speakerNums, fileNums),]
-      files
-    }
+  ##Dataframe of files
+  files <- eventReactive(input$files, {
+    ##Start with input files dataframe
+    input$files %>% 
+      ##Add neighborhood, speaker number, and file number
+      ##Will need to be extended to multiple speakers, non-interview tasks, etc.
+      tidyr::extract(name, c("Neighborhood", "SpeakerNum", "FileNum"), 
+                     "(CB|FH|HD|LV)(\\d+)-(\\d+).+", FALSE, TRUE) %>% 
+      rename(File = name) %>% 
+      ##Sort
+      arrange(Neighborhood, SpeakerNum, FileNum, File)
   })
   
+  
+  ##Are all files .eaf?
+  fileExtValid <- reactive({
+    is.null(input$files) || all(endsWith(input$files$name, ".eaf"))
+  })
+  fileExtValidOverride <- TRUE
+  
+  ##From here on out, things only run nicely if fileExtValid() or fileExtValidOverride
+  
+  ##Read files: Get a list that's nrow(files()) long, each element an xml_document
   eaflist <- reactive({
-    req(files())
-    if (fileExtValid()) {
-      setNames(lapply(files()$name, function(eaf) read_xml(files()$datapath[files()$name==eaf])),
-               files()$name)
-    }
+    # req(files())
+    # if (fileExtValid() || fileExtValidOverride) {
+      # setNames(lapply(files()$name, function(eaf) read_xml(files()$datapath[files()$name==eaf])),
+      #          files()$name)
+    # }
+    req(fileExtValid() || fileExtValidOverride)
+    files() %>% 
+      pull(datapath, name=File) %>% 
+      map(read_xml)
   })
+  
+  ##Number of files
+  numFiles <- reactive({
+    req(eaflist())
+    length(eaflist())
+  })
+  
+  ##Extract tiers: Get a list that's nrow(files()) long, each element an xml_nodeset with one node per tier
+  tiers <- reactive({
+    req(eaflist())
+    map(eaflist(), xml_find_all, "//TIER")
+  })
+  
+  ##Get tier info as a single dataframe
+  tierInfo <- reactive({
+    req(tiers())
+    tiers() %>% 
+      ##One row per tier, with file info
+      map_dfr(~ map_dfr(.x, xml_attrs), .id="File") %>% 
+      ##Add SpkrTier (is the tier a speaker tier?)
+      mutate(SpkrTier = str_detect(tolower(PARTICIPANT), "comments|noise|redact", negate=TRUE)) %>% 
+      ##Add info from files()
+      left_join(files(), by="File")
+  })
+  
   spkrTiers <- reactive({
     setNames(lapply(eaflist(), function(eaf) {
       xml_find_all(eaf, paste("//TIER[@TIER_ID!='comment' and @TIER_ID!='comments' and",
@@ -82,20 +119,93 @@ server <- function(input, output) {
                               "(@LINGUISTIC_TYPE_REF='default-lt' or @LINGUISTIC_TYPE_REF='UtteranceType')]"))
     }), names(eaflist()))
   })
-  spkrTiersNoReading <- reactive({
-    setNames(lapply(eaflist(), function(eaf) {
-      tiers <- xml_find_all(eaf, 
-                            paste("//TIER[@TIER_ID!='comment' and @TIER_ID!='comments' and",
-                                  "@TIER_ID!='Comment' and @TIER_ID!='Comments' and", 
-                                  "@TIER_ID!='noise' and @TIER_ID!='noises' and",
-                                  "@TIER_ID!='Noise' and @TIER_ID!='Noises' and",
-                                  "@TIER_ID!='Reading Task' and",
-                                  "(@LINGUISTIC_TYPE_REF='default-lt' or @LINGUISTIC_TYPE_REF='UtteranceType')]"))
-      names(tiers) <- sapply(tiers, xml_attr, "TIER_ID")
-      tiers
-    }), names(eaflist()))
-  })
   ##Could also make a list of objects that includes file name, eaf, and speaker tiers, so I don't have to do things like lapply(names(eaflist()), function(x) {spkrTiers()[[x]] ... })
+  
+  # Debugging output --------------------------------------------------------
+  output$debug <- renderPrint({
+    
+    # ##Initialize empty tier issues character vector
+    # tierIssues <- character(0L)
+    # ##Handle missing annotator
+    # if (is.null(tierInfo()$ANNOTATOR)) {
+    #   tierIssues <- c(tierIssues,
+    #                   paste0("All tiers are missing an Annotator attribute",
+    #                         if (numFiles()>1) " in all files"))
+    # }
+    
+    
+    ##Function that takes a tier df as input and outputs tier issues
+    # tierIssues <- function(df) {
+    tierIssues <- function(df, filename) {
+      ##Initialize empty issues character vector
+      issues <- character(0L)
+      
+      ##Handle missing annotator
+      # if (is.null(df$ANNOTATOR)) {
+      #   issues <- c(issues, "All tiers are missing an Annotator attribute")
+      # } else if (any(is.na(df$ANNOTATOR))) {
+      #   noAnn <- df %>% filter(is.na(ANNOTATOR)) %>% pull(TIER_ID)
+      #   issues <- c(issues, paste("Tier missing an Annotator attribute:", noAnn))
+      # }
+      ##Add tier number (as backup for IDing tiers w/o TIER_ID attr)
+      df <- df %>% mutate(tierNum = paste("Tier", row_number()))
+      
+      ##Handle missing attributes
+      checkAttrs <- c("ANNOTATOR", "PARTICIPANT", "TIER_ID")
+      
+      missingAttr <- function(x) {
+        attrTitle <- str_to_title(x)
+        attrArticle <- if_else(str_detect(tolower(x), "^[aeiou]"), "an", "a")
+        
+        tryCatch({
+          attrCol <- df[,x]
+          if (any(is.na(attrCol))) {
+            # noAttr <- df$TIER_ID[is.na(attrCol)]
+            noAttrDF <- df[is.na(attrCol), ]
+            noAttr <-
+              noAttrDF %>% 
+              mutate(tierName = if_else(is.na(TIER_ID), tierNum, TIER_ID)) %>% 
+              pull(tierName)
+            paste("Tier missing", attrArticle, attrTitle, "attribute:", noAttr)
+          }
+        }, error = function(e) {
+            paste("All tiers missing", attrArticle, attrTitle, "attribute")
+        })
+        
+      }
+      
+      issues <- c(issues,
+                  checkAttrs %>% 
+                    map(missingAttr) %>% 
+                    reduce(c))
+      
+      issues
+      
+    }
+    
+    
+    # list(files = files(),
+    #      fileExtValid = fileExtValid(),
+    #      fileExtValidOverride = fileExtValidOverride,
+    #      eaflist = eaflist(),
+    #      tiers = tiers(),
+    #      tierInfo = tierInfo())
+    
+    tierMsg <- 
+      tierInfo() %>% 
+      ##Look for tier issues for each file
+      tidyr::nest(data = -File) %>% 
+      mutate(issues = map(data, tierIssues)) %>% 
+      ##Turn into list with one element for each file
+      pull(issues, name=File) %>% 
+      ##Only keep files with issues
+      keep(~ length(.x) > 0)
+    
+    list(tierInfo = tierInfo(),
+         tierMsg = tierMsg
+         )
+    
+  })
   
   
   # Output: header ----------------------------------------------------------
@@ -112,8 +222,10 @@ server <- function(input, output) {
       cat("ERROR: The checker only works on files with an .eaf file extension")
     }
   })
+  
   tierIssues <- reactive({
-    req(files())
+    req(tiers())
+    
     issues <- lapply(names(eaflist()), function (x) {
       eaf <- eaflist()[[x]]
       message <- character(0)
@@ -124,8 +236,8 @@ server <- function(input, output) {
       if (length(xml_find_all(eaf, paste0("//TIER[@TIER_ID='", mainSpkrName, "']")))==0) {
         message <- c(message, paste0("There are no tiers with Tier Name '", mainSpkrName, "'"))
       } 
-      if (length(xml_find_all(eaf, paste0("//TIER[@TIER_ID='Interviewer ", substr(mainSpkrName,1,2), "']")))==0) {
-        message <- c(message, paste0("There are no tiers with Tier Name 'Interviewer ", substr(mainSpkrName,1,2), "'"))
+      if (length(xml_find_all(eaf, paste0("//TIER[@TIER_ID='Interviewer ", mainSpkrName, "']")))==0) {
+        message <- c(message, paste0("There are no tiers with Tier Name 'Interviewer ", mainSpkrName, "'"))
       }
       if (length(spkrTiers()[[x]]) > 0) {
         message <- c(message, unlist(sapply(spkrTiers()[[x]], function(spkr) {
@@ -134,7 +246,7 @@ server <- function(input, output) {
           if (is.na(participant)) {
             paste0("The tier with name '", tierID, "' is missing a Participant attribute")
           } else if (participant != tierID) {
-            paste0("The tier with name '", tierID, "' has a Participant attribute that's not named '", tierID, "'")
+            str_glue("Mismatched tier name ({tierID}) & Participant attribute ({participant})")
           }
         })))
       }
@@ -145,6 +257,7 @@ server <- function(input, output) {
     issues <- issues[lapply(issues, length)>0] ##Only show files with issues/if no issues in any file, return 0-length list
     issues
   })
+  
   output$tiersTop <- renderPrint({
     if (fileExtValid()) {
       if (length(tierIssues())==0) {
@@ -182,16 +295,11 @@ server <- function(input, output) {
     ##Unique
     unique()
     
-  # if (file.exists("dict/userDict.txt")) {
-  #   dict <- readLines("dict/userDict.txt")
-  # } else {
-  #   dict <- readLines("dict/defaultDict.txt")
-  # }
   dictIssues <- reactive({
     if (length(tierIssues())==0) {
       issues <- lapply(names(eaflist()), function (x) {
         eaf <- eaflist()[[x]]
-        badWords <- map(spkrTiersNoReading()[[x]], function(spkr) {
+        badWords <- map(spkrTiers()[[x]], function(spkr) {
           wordChunk <- xml_text(xml_find_all(spkr, "./ANNOTATION/ALIGNABLE_ANNOTATION/ANNOTATION_VALUE"))
           wordChunk <- gsub("([[:alpha:]]) ([?.-])>", "\\1\\2>", wordChunk) ##Unstrand valid punctuation within angle brackets
           wordChunk <- gsub("\\{.*?\\}", "", wordChunk) ##Ignore text within curly braces ("behaviour of speech")
@@ -261,8 +369,7 @@ server <- function(input, output) {
         tmStamps <- as.numeric(xml_attr(xml_children(xml_find_first(eaf, "TIME_ORDER")), "TIME_VALUE"))
         names(tmStamps) <- xml_attr(xml_children(xml_find_first(eaf, "TIME_ORDER")), "TIME_SLOT_ID")
         tmStamps <- sort(tmStamps)
-        # spkrTiersNonempty <- spkrTiers()[[x]][sapply(spkrTiers()[[x]], function(spkr) length(xml_children(spkr)))>0]
-        spkrTiersNonempty <- spkrTiersNoReading()[[x]][sapply(spkrTiersNoReading()[[x]], function(spkr) length(xml_children(spkr)))>0]
+        spkrTiersNonempty <- spkrTiers()[[x]][sapply(spkrTiers()[[x]], function(spkr) length(xml_children(spkr)))>0]
         names(spkrTiersNonempty) <- sapply(spkrTiersNonempty, xml_attr, attr="TIER_ID")
         ##Construct by-tier list of data.frames of turn IDs, start times, end times,
         spkrTimesAll <- map(spkrTiersNonempty, function(tier) {
@@ -319,7 +426,7 @@ server <- function(input, output) {
         tmStamps <- as.numeric(xml_attr(xml_children(xml_find_first(eaf, "TIME_ORDER")), "TIME_VALUE"))
         names(tmStamps) <- xml_attr(xml_children(xml_find_first(eaf, "TIME_ORDER")), "TIME_SLOT_ID")
         tmStamps <- sort(tmStamps)
-        spkrTiersNonempty <- spkrTiersNoReading()[[x]][sapply(spkrTiersNoReading()[[x]], function(spkr) length(xml_children(spkr)))>0]
+        spkrTiersNonempty <- spkrTiers()[[x]][sapply(spkrTiers()[[x]], function(spkr) length(xml_children(spkr)))>0]
         spkrTimesAll <- lapply(spkrTiersNonempty, function(spkr) {
           data.frame(AnnID=xml_attr(xml_find_all(spkr, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "ANNOTATION_ID"),
                      Start=tmStamps[xml_attr(xml_find_all(spkr, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "TIME_SLOT_REF1")],
