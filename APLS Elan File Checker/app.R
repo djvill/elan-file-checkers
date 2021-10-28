@@ -57,8 +57,10 @@ server <- function(input, output) {
     input$files %>% 
       ##Add neighborhood, speaker number, and file number
       ##Will need to be extended to multiple speakers, non-interview tasks, etc.
-      tidyr::extract(name, c("Neighborhood", "SpeakerNum", "FileNum"), 
-                     "(CB|FH|HD|LV)(\\d+)-(\\d+).+", FALSE, TRUE) %>% 
+      tidyr::extract(name, c("SpkrCode", "FileNum"), 
+                     "((?:CB|FH|HD|LV)\\d+)-(\\d+).+", FALSE, TRUE) %>% 
+      tidyr::extract(SpkrCode, c("Neighborhood", "SpeakerNum"),
+                     "([A-Z]{2})(\\d+)", FALSE, TRUE) %>% 
       rename(File = name) %>% 
       ##Sort
       arrange(Neighborhood, SpeakerNum, FileNum, File)
@@ -75,11 +77,6 @@ server <- function(input, output) {
   
   ##Read files: Get a list that's nrow(files()) long, each element an xml_document
   eaflist <- reactive({
-    # req(files())
-    # if (fileExtValid() || fileExtValidOverride) {
-      # setNames(lapply(files()$name, function(eaf) read_xml(files()$datapath[files()$name==eaf])),
-      #          files()$name)
-    # }
     req(fileExtValid() || fileExtValidOverride)
     files() %>% 
       pull(datapath, name=File) %>% 
@@ -124,35 +121,31 @@ server <- function(input, output) {
   # Debugging output --------------------------------------------------------
   output$debug <- renderPrint({
     
-    # ##Initialize empty tier issues character vector
-    # tierIssues <- character(0L)
-    # ##Handle missing annotator
-    # if (is.null(tierInfo()$ANNOTATOR)) {
-    #   tierIssues <- c(tierIssues,
-    #                   paste0("All tiers are missing an Annotator attribute",
-    #                         if (numFiles()>1) " in all files"))
-    # }
-    
-    
     ##Function that takes a tier df as input and outputs tier issues
     # tierIssues <- function(df) {
     tierIssues <- function(df, filename) {
       ##Initialize empty issues character vector
       issues <- character(0L)
       
-      ##Handle missing annotator
-      # if (is.null(df$ANNOTATOR)) {
-      #   issues <- c(issues, "All tiers are missing an Annotator attribute")
-      # } else if (any(is.na(df$ANNOTATOR))) {
-      #   noAnn <- df %>% filter(is.na(ANNOTATOR)) %>% pull(TIER_ID)
-      #   issues <- c(issues, paste("Tier missing an Annotator attribute:", noAnn))
-      # }
       ##Add tier number (as backup for IDing tiers w/o TIER_ID attr)
-      df <- df %>% mutate(tierNum = paste("Tier", row_number()))
+      df <- df %>% 
+        mutate(tierNum = paste("Tier", row_number()))
+      
+      ##Handle missing tiers
+      checkTiers <- c(paste0(c("", "Interviewer "), unique(df$SpkrCode)),
+        "Comments", "Noise", "Redact")
+      issues <- c(issues,
+                  checkTiers %>% 
+                    map(
+                      ~ if(!(.x %in% df$TIER_ID)) {
+                        paste("There are no tiers with tier name", .x)
+                    }) %>% 
+                    reduce(c))
+      
+      
       
       ##Handle missing attributes
       checkAttrs <- c("ANNOTATOR", "PARTICIPANT", "TIER_ID")
-      
       missingAttr <- function(x) {
         attrTitle <- str_to_title(x)
         attrArticle <- if_else(str_detect(tolower(x), "^[aeiou]"), "an", "a")
@@ -160,7 +153,6 @@ server <- function(input, output) {
         tryCatch({
           attrCol <- df[,x]
           if (any(is.na(attrCol))) {
-            # noAttr <- df$TIER_ID[is.na(attrCol)]
             noAttrDF <- df[is.na(attrCol), ]
             noAttr <-
               noAttrDF %>% 
@@ -173,37 +165,38 @@ server <- function(input, output) {
         })
         
       }
-      
       issues <- c(issues,
                   checkAttrs %>% 
                     map(missingAttr) %>% 
                     reduce(c))
       
+      ##Handle mismatched tier ID & participant attrs
+      if (!is.null(df$PARTICIPANT) && !is.null(df$TIER_ID) &&
+          !identical(df$TIER_ID, df$PARTICIPANT)) {
+        issues <- c(issues,
+                    df %>% 
+                      filter(TIER_ID != PARTICIPANT) %>% 
+                      mutate(msg = paste0("Mismatched tier name (", TIER_ID,
+                                         ") & Participant attribute (",
+                                         PARTICIPANT, ")")) %>% 
+                      pull(msg))
+      }
+      
       issues
       
     }
     
-    
-    # list(files = files(),
-    #      fileExtValid = fileExtValid(),
-    #      fileExtValidOverride = fileExtValidOverride,
-    #      eaflist = eaflist(),
-    #      tiers = tiers(),
-    #      tierInfo = tierInfo())
-    
     tierMsg <- 
       tierInfo() %>% 
       ##Look for tier issues for each file
-      tidyr::nest(data = -File) %>% 
+      nest(data = -File) %>% 
       mutate(issues = map(data, tierIssues)) %>% 
       ##Turn into list with one element for each file
       pull(issues, name=File) %>% 
       ##Only keep files with issues
       keep(~ length(.x) > 0)
     
-    list(tierInfo = tierInfo(),
-         tierMsg = tierMsg
-         )
+    list(tierMsg = tierMsg)
     
   })
   

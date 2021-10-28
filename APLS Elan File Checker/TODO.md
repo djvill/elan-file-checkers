@@ -2,8 +2,6 @@
 
 ## Basic functionality
 
-- Allow multiple dictionaries
-- Enforce comment tier being called "Comment" (case insensitive), not "Comments"
 - Tidy up text
 
 
@@ -11,8 +9,6 @@
 
 - Tidyverse
 - Wrap main panel in `uiOutput()` to make it all easier to deal with
-- Better data structures for uploaded files
-- (Low priority) Deal with the NAs introduced by coercion in speakerNums and fileNums definitions
 
 
 ## Extensions
