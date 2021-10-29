@@ -1,0 +1,32 @@
+/* Make input button/drag-n-drop larger */
+.btn-file , .form-control {
+  height: 300px;
+}
+
+/* Do/don't display */
+.display {
+  display: inherit;
+}
+.dont-display {
+  display: none;
+}
+
+/* Good & bad */
+.good {
+  font-weight: bold;
+  color: forestgreen;
+}
+.bad {
+  font-weight: bold;
+  color: red;
+}
+
+/* Gray-out */
+.grayout {
+  color: lightgray;
+}
+
+/* Override color styling for bullets */
+li:marker {
+  color: black;
+}

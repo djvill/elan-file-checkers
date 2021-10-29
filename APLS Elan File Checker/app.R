@@ -12,10 +12,7 @@ library(here)
 # UI ----------------------------------------------------------------------
 ui <- fluidPage(
   tags$head(
-    tags$style(HTML("
-      .btn-file , .form-control {
-        height: 300px;
-      }"))
+    tags$link(rel = "stylesheet", type = "text/css", href = "file-checker.css")
   ),
   titlePanel("Elan File Checker for APLS"),
   p("Created by Dan Villarreal"),
@@ -28,7 +25,8 @@ ui <- fluidPage(
                 placeholder="Box outline must turn green",
                 multiple = TRUE)),
     
-    mainPanel(verbatimTextOutput("debug"))
+    mainPanel(verbatimTextOutput("debug"),
+              uiOutput("out"))
     
     # mainPanel(
     #   h1(textOutput("checkHead")),
@@ -55,29 +53,34 @@ server <- function(input, output) {
   files <- eventReactive(input$files, {
     ##Start with input files dataframe
     input$files %>% 
+      ##More informative column name
+      rename(File = name) %>% 
       ##Add neighborhood, speaker number, and file number
       ##Will need to be extended to multiple speakers, non-interview tasks, etc.
-      tidyr::extract(name, c("SpkrCode", "FileNum"), 
+      tidyr::extract(File, c("SpkrCode", "FileNum"), 
                      "((?:CB|FH|HD|LV)\\d+)-(\\d+).+", FALSE, TRUE) %>% 
       tidyr::extract(SpkrCode, c("Neighborhood", "SpeakerNum"),
                      "([A-Z]{2})(\\d+)", FALSE, TRUE) %>% 
-      rename(File = name) %>% 
+      ##Add file extension
+      mutate(FileExt = str_extract(File, "[^\\.]+$"),
+             FileExtValid = FileExt=="eaf",
+             .after=File) %>% 
       ##Sort
       arrange(Neighborhood, SpeakerNum, FileNum, File)
   })
   
-  
   ##Are all files .eaf?
-  fileExtValid <- reactive({
-    is.null(input$files) || all(endsWith(input$files$name, ".eaf"))
-  })
+  # fileExtValid <- reactive({
+  #   is.null(input$files) || all(input$files$FileExt == "eaf")
+  # })
   fileExtValidOverride <- TRUE
   
   ##From here on out, things only run nicely if fileExtValid() or fileExtValidOverride
   
   ##Read files: Get a list that's nrow(files()) long, each element an xml_document
   eaflist <- reactive({
-    req(fileExtValid() || fileExtValidOverride)
+    # req(fileExtValid() || fileExtValidOverride)
+    req(all(files()$FileExtValid) || fileExtValidOverride)
     files() %>% 
       pull(datapath, name=File) %>% 
       map(read_xml)
@@ -133,13 +136,13 @@ server <- function(input, output) {
       
       ##Handle missing tiers
       checkTiers <- c(paste0(c("", "Interviewer "), unique(df$SpkrCode)),
-        "Comments", "Noise", "Redact")
+                      "Comments", "Noise", "Redact")
       issues <- c(issues,
                   checkTiers %>% 
                     map(
                       ~ if(!(.x %in% df$TIER_ID)) {
                         paste("There are no tiers with tier name", .x)
-                    }) %>% 
+                      }) %>% 
                     reduce(c))
       
       
@@ -161,7 +164,7 @@ server <- function(input, output) {
             paste("Tier missing", attrArticle, attrTitle, "attribute:", noAttr)
           }
         }, error = function(e) {
-            paste("All tiers missing", attrArticle, attrTitle, "attribute")
+          paste("All tiers missing", attrArticle, attrTitle, "attribute")
         })
         
       }
@@ -177,8 +180,8 @@ server <- function(input, output) {
                     df %>% 
                       filter(TIER_ID != PARTICIPANT) %>% 
                       mutate(msg = paste0("Mismatched tier name (", TIER_ID,
-                                         ") & Participant attribute (",
-                                         PARTICIPANT, ")")) %>% 
+                                          ") & Participant attribute (",
+                                          PARTICIPANT, ")")) %>% 
                       pull(msg))
       }
       
@@ -196,24 +199,51 @@ server <- function(input, output) {
       ##Only keep files with issues
       keep(~ length(.x) > 0)
     
-    list(tierMsg = tierMsg)
+    # list(tierMsg = tierMsg)
+    list(fileExtValid = fileExtValid())
+  })
+  
+  output$debug <- renderPrint({
+    list(endsWithEaf = is.null(files()) || all(endsWith(files()$File, "eaf")))
+  })
+  
+  
+  # Output: UI --------------------------------------------------------------
+  output$out <- renderUI({
+    req(files())
     
-  })
-  
-  
-  # Output: header ----------------------------------------------------------
-  output$checkHead <- renderText({
-    paste("Checking",
-          paste(files()$name, collapse=", "))
-  })
-  
-  # Output: tier issues -----------------------------------------------------
-  output$tiersHead <- renderPrint({
-    if (fileExtValid()) {
-      cat("Step 1: Validating tier names and attributes...")
+    ##Set up headings
+    noEafHead <- h2("ERROR: The checker only works on files with an .eaf file extension",
+                    class="bad", id="noEafHead")
+    stepHeads <- list(tiers = h2("Step 1: Validating tier names and attributes..."),
+                      dict = h2("Step 2: Checking for out-of-dictionary words..."),
+                      overlap = h2("Step 3: Checking for overlaps..."))
+    
+    ##Style headings based on whether file extensions are valid
+    fileExtValid <- all(files()$FileExtValid)
+    if (fileExtValid) {
+      noEafHead <- tagAppendAttributes(noEafHead, class="dont-display")
     } else {
-      cat("ERROR: The checker only works on files with an .eaf file extension")
+      noEafHead <- tagAppendAttributes(noEafHead, class="display")
+      stepHeads <- stepHeads %>%
+        map(tagAppendAttributes, class="grayout")
     }
+    
+    tagList(
+      ##Checking head: display bullet-list of files, marking non-eaf as bad
+      h1("Checking..."),
+      ##Bullet-list
+      tags$ul(
+        map_if(files()$File,
+               ~ !endsWith(.x, "eaf"),
+               ~ tags$li(.x, class="bad"),
+               .else=tags$li),
+      ),
+      ##Display message if there are non-eaf files
+      noEafHead,
+      stepHeads
+    )
+
   })
   
   tierIssues <- reactive({
