@@ -45,6 +45,118 @@ ui <- fluidPage(
 )
 
 
+# Functions for server-side processing ------------------------------------
+
+##Function that takes a one-file tier df as input and outputs tier issues
+tierIssuesOneFile <- function(df, filename) {
+  ##Initialize empty issues character vector
+  issues <- character(0L)
+  
+  ##Add tier number (as backup for IDing tiers w/o TIER_ID attr)
+  df <- df %>% 
+    mutate(tierNum = paste("Tier", row_number()))
+  
+  ##Handle missing tiers
+  checkTiers <- c(paste0(c("", "Interviewer "), unique(df$SpkrCode)),
+                  "Comments", "Noise", "Redact")
+  issues <- c(issues,
+              checkTiers %>% 
+                map(
+                  ~ if(!(.x %in% df$TIER_ID)) {
+                    paste("There are no tiers with tier name", .x)
+                  }) %>% 
+                reduce(c))
+  
+  ##Handle missing attributes
+  checkAttrs <- c("ANNOTATOR", "PARTICIPANT", "TIER_ID")
+  missingAttr <- function(x) {
+    attrTitle <- str_to_title(x)
+    attrArticle <- if_else(str_detect(tolower(x), "^[aeiou]"), "an", "a")
+    
+    tryCatch({
+      attrCol <- df[,x]
+      if (any(is.na(attrCol))) {
+        noAttrDF <- df[is.na(attrCol), ]
+        noAttr <-
+          noAttrDF %>% 
+          mutate(tierName = if_else(is.na(TIER_ID), tierNum, TIER_ID)) %>% 
+          pull(tierName)
+        paste("Tier missing", attrArticle, attrTitle, "attribute:", noAttr)
+      }
+    }, error = function(e) {
+      paste("All tiers missing", attrArticle, attrTitle, "attribute")
+    })
+    
+  }
+  issues <- c(issues,
+              checkAttrs %>% 
+                map(missingAttr) %>% 
+                reduce(c))
+  
+  ##Handle mismatched tier ID & participant attrs
+  if (!is.null(df$PARTICIPANT) && !is.null(df$TIER_ID) &&
+      !identical(df$TIER_ID, df$PARTICIPANT)) {
+    issues <- c(issues,
+                df %>% 
+                  filter(TIER_ID != PARTICIPANT) %>% 
+                  mutate(msg = paste0("Mismatched tier name (", TIER_ID,
+                                      ") & Participant attribute (",
+                                      PARTICIPANT, ")")) %>% 
+                  pull(msg))
+  }
+  
+  issues
+  
+}
+
+##Wrapper function around tierIssuesOneFile() that takes a multi-file tier df as
+##  input (meant to be used with tierInfo() reactive) and outputs tier issues if
+##  any; if no issues, outputs an empty list
+tierIssues <- function(df) {
+  df %>%
+    ##Look for tier issues for each file
+    nest(data = -File) %>% 
+    mutate(issues = map(data, tierIssuesOneFile)) %>% 
+    ##Turn into list with one element for each file
+    pull(issues, name=File) %>% 
+    ##Only keep files with issues
+    keep(~ length(.x) > 0)
+}
+
+##Convenience functions to display/undisplay HTML elements
+display <- function(x) {
+  if (!("shiny.tag" %in% class(x))) {
+    stop("display() only works with shiny.tag objects, not ", 
+         paste(class(x), collapse="/"), " objects.")
+  }
+  
+  if (is.null(x$attribs$style)) {
+    x$attribs$style <- "display: inherit;"
+  } else {
+    x$attribs$style <- x$attribs$style %>% 
+      str_remove("display: \\w+;") %>%
+      paste0("display: inherit;")
+  }
+  
+  x
+}
+undisplay <- function(x) {
+  if (!("shiny.tag" %in% class(x))) {
+    stop("undisplay() only works with shiny.tag objects, not ", 
+         paste(class(x), collapse="/"), " objects.")
+  }
+  
+  if (is.null(x$attribs$style)) {
+    x$attribs$style <- "display: none;"
+  } else {
+    x$attribs$style <- x$attribs$style %>% 
+      str_remove("display: \\w+;") %>%
+      paste0("display: none;")
+  }
+  
+  x
+}
+
 # Server ------------------------------------------------------------------
 server <- function(input, output) {
   # Set up file structures --------------------------------------------------
@@ -79,7 +191,6 @@ server <- function(input, output) {
   
   ##Read files: Get a list that's nrow(files()) long, each element an xml_document
   eaflist <- reactive({
-    # req(fileExtValid() || fileExtValidOverride)
     req(all(files()$FileExtValid) || fileExtValidOverride)
     files() %>% 
       pull(datapath, name=File) %>% 
@@ -123,179 +234,140 @@ server <- function(input, output) {
   
   # Debugging output --------------------------------------------------------
   output$debug <- renderPrint({
-    
-    ##Function that takes a tier df as input and outputs tier issues
-    # tierIssues <- function(df) {
-    tierIssues <- function(df, filename) {
-      ##Initialize empty issues character vector
-      issues <- character(0L)
-      
-      ##Add tier number (as backup for IDing tiers w/o TIER_ID attr)
-      df <- df %>% 
-        mutate(tierNum = paste("Tier", row_number()))
-      
-      ##Handle missing tiers
-      checkTiers <- c(paste0(c("", "Interviewer "), unique(df$SpkrCode)),
-                      "Comments", "Noise", "Redact")
-      issues <- c(issues,
-                  checkTiers %>% 
-                    map(
-                      ~ if(!(.x %in% df$TIER_ID)) {
-                        paste("There are no tiers with tier name", .x)
-                      }) %>% 
-                    reduce(c))
-      
-      
-      
-      ##Handle missing attributes
-      checkAttrs <- c("ANNOTATOR", "PARTICIPANT", "TIER_ID")
-      missingAttr <- function(x) {
-        attrTitle <- str_to_title(x)
-        attrArticle <- if_else(str_detect(tolower(x), "^[aeiou]"), "an", "a")
-        
-        tryCatch({
-          attrCol <- df[,x]
-          if (any(is.na(attrCol))) {
-            noAttrDF <- df[is.na(attrCol), ]
-            noAttr <-
-              noAttrDF %>% 
-              mutate(tierName = if_else(is.na(TIER_ID), tierNum, TIER_ID)) %>% 
-              pull(tierName)
-            paste("Tier missing", attrArticle, attrTitle, "attribute:", noAttr)
-          }
-        }, error = function(e) {
-          paste("All tiers missing", attrArticle, attrTitle, "attribute")
-        })
-        
-      }
-      issues <- c(issues,
-                  checkAttrs %>% 
-                    map(missingAttr) %>% 
-                    reduce(c))
-      
-      ##Handle mismatched tier ID & participant attrs
-      if (!is.null(df$PARTICIPANT) && !is.null(df$TIER_ID) &&
-          !identical(df$TIER_ID, df$PARTICIPANT)) {
-        issues <- c(issues,
-                    df %>% 
-                      filter(TIER_ID != PARTICIPANT) %>% 
-                      mutate(msg = paste0("Mismatched tier name (", TIER_ID,
-                                          ") & Participant attribute (",
-                                          PARTICIPANT, ")")) %>% 
-                      pull(msg))
-      }
-      
-      issues
-      
-    }
-    
-    tierMsg <- 
-      tierInfo() %>% 
-      ##Look for tier issues for each file
-      nest(data = -File) %>% 
-      mutate(issues = map(data, tierIssues)) %>% 
-      ##Turn into list with one element for each file
-      pull(issues, name=File) %>% 
-      ##Only keep files with issues
-      keep(~ length(.x) > 0)
-    
-    # list(tierMsg = tierMsg)
-    list(fileExtValid = fileExtValid())
-  })
-  
-  output$debug <- renderPrint({
-    list(endsWithEaf = is.null(files()) || all(endsWith(files()$File, "eaf")))
+    # req(tierInfo())
+    # list(tierIssues = length(flatten(tierIssues(tierInfo()))))
   })
   
   
   # Output: UI --------------------------------------------------------------
   output$out <- renderUI({
-    req(files())
-    
-    ##Set up headings
-    noEafHead <- h2("ERROR: The checker only works on files with an .eaf file extension",
-                    class="bad", id="noEafHead")
+    ##Always-displayed headings
     stepHeads <- list(tiers = h2("Step 1: Validating tier names and attributes..."),
                       dict = h2("Step 2: Checking for out-of-dictionary words..."),
-                      overlap = h2("Step 3: Checking for overlaps..."))
+                      overlaps = h2("Step 3: Checking for overlaps..."))
+    
+    ##If no uploaded files, just display headings
+    if (!isTruthy(input$files)) {
+      return(tagList(
+        h1("Waiting for uploaded files..."), 
+        stepHeads))
+    }
+    
+    ##If uploaded files, initialize exitEarly sentinel & proceed to checking steps
+    exitEarly <- FALSE
+    
+    
+    
+    # Step 0: File extension check --------------------------------------------
+    checkHead <- h1("Checking the following files...",
+                    id="checkHead")
+    
+    ##Get bullet-list of filenames (styling bad ones in red)
+    checkDetails <- tags$ul(
+      map_if(files()$File,
+             ~ !endsWith(.x, "eaf"),
+             ~ tags$li(.x, class="bad"),
+             .else=tags$li),
+    )
     
     ##Style headings based on whether file extensions are valid
+    noEafHead <- h2("The checker only works on files with an .eaf file extension",
+                    id="noEafHead", class="bad")
     fileExtValid <- all(files()$FileExtValid)
     if (fileExtValid) {
-      noEafHead <- tagAppendAttributes(noEafHead, class="dont-display")
+      noEafHead <- undisplay(noEafHead)
     } else {
-      noEafHead <- tagAppendAttributes(noEafHead, class="display")
+      noEafHead <- display(noEafHead)
       stepHeads <- stepHeads %>%
         map(tagAppendAttributes, class="grayout")
+      
+      ##Exit early
+      exitEarly <- TRUE
     }
     
+    
+    
+    # Step 1: Tier check ------------------------------------------------------
+    ##Heading
+    tierSubhead <- h3(paste("The tier checker returned the following issue(s),",
+                            "which can be resolved using Change Tier Attributes in Elan:"),
+                      id="tierSubhead")
+    tierDetails <- tags$ul("")
+    
+    ##If not exiting early yet, check for tier issues
+    if (!exitEarly) {
+      ##Get tier issues
+      tierIss <- tierIssues(tierInfo())
+      ##If no tier issues, don't display anything & make step heading green
+      if (length(tierIss)==0) {
+        tierSubhead <- undisplay(tierSubhead)
+        tierDetails <- undisplay(tierDetails)
+        stepHeads$tiers <- stepHeads$tiers %>% 
+          tagAppendAttributes(class="good")
+      } else {
+        ##If tier issues, display issues in nested list
+        tierSubhead <- display(tierSubhead)
+        tierDetails <- tierDetails %>%
+          display() %>% 
+          tagAppendChild(
+            ##For each element in tierIss (each file with an issue), create a
+            ##  bullet-list headed by name of file
+            tierIss %>% 
+              imap(
+                ~ tags$li(
+                  paste0("In file ", .y, ":"),
+                  tags$ul(
+                    map(.x, tags$li)
+                  )))
+          )
+        
+        ##Style headers
+        stepHeads$tiers <- stepHeads$tiers %>% 
+          tagAppendAttributes(class="bad")
+        stepHeads[2:3] <- stepHeads[2:3] %>% 
+          map(tagAppendAttributes, class="grayout")
+        
+        ##Exit early
+        exitEarly <- TRUE
+      }
+    }
+    
+
+    # Step 2: Dictionary check ------------------------------------------------
+    
+
+    # Step 3: Overlaps check --------------------------------------------------
+    
+    
+
+    # UI output ---------------------------------------------------------------
+    ##Reupload heading
+    reuploadHead <- h1("Please fix issues and re-upload.", 
+                       id="reuploadHead") %>% 
+      undisplay()
+    ##Style reupload heading
+    if (exitEarly) {
+      reuploadHead <- display(reuploadHead)
+    } else {
+      reuploadHead <- undisplay(reuploadHead)
+    }
+    
+    ##Construct tag list
     tagList(
       ##Checking head: display bullet-list of files, marking non-eaf as bad
-      h1("Checking..."),
+      checkHead,
       ##Bullet-list
-      tags$ul(
-        map_if(files()$File,
-               ~ !endsWith(.x, "eaf"),
-               ~ tags$li(.x, class="bad"),
-               .else=tags$li),
-      ),
+      checkDetails,
       ##Display message if there are non-eaf files
       noEafHead,
-      stepHeads
+      stepHeads$tiers,
+      tierSubhead,
+      tierDetails,
+      stepHeads$dict,
+      stepHeads$overlaps,
+      reuploadHead
     )
 
-  })
-  
-  tierIssues <- reactive({
-    req(tiers())
-    
-    issues <- lapply(names(eaflist()), function (x) {
-      eaf <- eaflist()[[x]]
-      message <- character(0)
-      mainSpkrName <- strsplit(x, "-")[[1]][1]
-      if (any(is.na(sapply(xml_find_all(eaf, "//TIER[@LINGUISTIC_TYPE_REF='default-lt' or @LINGUISTIC_TYPE_REF='UtteranceType']"), xml_attr, "ANNOTATOR")))) {
-        message <- c(message, "One or more tiers is missing an Annotator attribute")
-      }
-      if (length(xml_find_all(eaf, paste0("//TIER[@TIER_ID='", mainSpkrName, "']")))==0) {
-        message <- c(message, paste0("There are no tiers with Tier Name '", mainSpkrName, "'"))
-      } 
-      if (length(xml_find_all(eaf, paste0("//TIER[@TIER_ID='Interviewer ", mainSpkrName, "']")))==0) {
-        message <- c(message, paste0("There are no tiers with Tier Name 'Interviewer ", mainSpkrName, "'"))
-      }
-      if (length(spkrTiers()[[x]]) > 0) {
-        message <- c(message, unlist(sapply(spkrTiers()[[x]], function(spkr) {
-          tierID <- xml_attr(spkr, "TIER_ID")
-          participant <- xml_attr(spkr, "PARTICIPANT")
-          if (is.na(participant)) {
-            paste0("The tier with name '", tierID, "' is missing a Participant attribute")
-          } else if (participant != tierID) {
-            str_glue("Mismatched tier name ({tierID}) & Participant attribute ({participant})")
-          }
-        })))
-      }
-      message
-    })
-    names(issues) <- names(eaflist())
-    if (length(issues)==1) issues <- issues[[1]] #Don't show file name if only one file uploaded
-    issues <- issues[lapply(issues, length)>0] ##Only show files with issues/if no issues in any file, return 0-length list
-    issues
-  })
-  
-  output$tiersTop <- renderPrint({
-    if (fileExtValid()) {
-      if (length(tierIssues())==0) {
-        cat("All good!")
-      } else {
-        cat("The tier checker returned the following issue(s), which can be resolved using Change Tier Attributes in Elan:")
-      }
-    }
-  })
-  output$tiers <- renderPrint({
-    if (fileExtValid()) {
-      if (length(tierIssues())>0) {
-        tierIssues()
-      }
-    }
   })
   
   # Output: dictionary checker ----------------------------------------------

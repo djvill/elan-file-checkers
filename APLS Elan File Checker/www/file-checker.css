@@ -3,13 +3,14 @@
   height: 300px;
 }
 
-/* Do/don't display */
+/* Do/don't display
 .display {
   display: inherit;
 }
 .dont-display {
   display: none;
 }
+*/
 
 /* Good & bad */
 .good {
@@ -21,12 +22,18 @@
   color: red;
 }
 
+
 /* Gray-out */
 .grayout {
   color: lightgray;
 }
 
-/* Override color styling for bullets */
-li:marker {
-  color: black;
+/* Reupload heading */
+h1#reuploadHead {
+  font-weight: bold;
+}
+
+/* Subheads: Not too big */
+h3 {
+  font-size: 16px;
 }

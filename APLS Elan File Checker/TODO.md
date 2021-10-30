@@ -8,7 +8,7 @@
 ## Refactoring code
 
 - Tidyverse
-- Wrap main panel in `uiOutput()` to make it all easier to deal with
+
 
 
 ## Extensions
