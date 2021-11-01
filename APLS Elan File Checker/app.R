@@ -9,6 +9,16 @@ library(magrittr)
 library(here)
 
 
+# Parameters --------------------------------------------------------------
+
+##Dictionary checking
+##Permit angle brackets for single-word interruptions?
+permitAngleBrackets <- FALSE
+##Characters to accept in pronounce codes
+pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE\\{VQU@i$u312456]"
+##Case-sensitive?
+caseSens <- FALSE
+
 # UI ----------------------------------------------------------------------
 ui <- fluidPage(
   tags$head(
@@ -123,6 +133,100 @@ tierIssues <- function(df) {
     keep(~ length(.x) > 0)
 }
 
+##Function that takes a tier name and eaf file as input and outputs
+##  non-dictionary words
+dictCheckTier <- function(tierName, eaf) {
+  ##Get all lines in tier
+  tierLines <- str_glue("//TIER[@TIER_ID='{tierName}']//ANNOTATION_VALUE") %>%
+    xml_find_all(eaf, .) %>%
+    xml_text()
+  
+  ##Get all unique words 
+  tierWords <- 
+    tierLines %>% 
+    ##Unstrand valid punctuation within angle brackets
+    str_replace_all("([[:alpha:]]~?) ([?.-])>", "\\1\\2>") %>% 
+    ##Ignore text within curly braces (comments about speech or behavior)
+    str_subset("\\{.*?\\}", negate=TRUE) %>% 
+    ##Strip matched brackets
+    str_replace_all("(?<![\\w~])\\[(.+?)\\](?!\\w)", "\\1") %>%
+    ##Remove extra whitespace
+    str_trim("both") %>% 
+    str_squish() %>% 
+    ##Separate into words (as a vector)
+    str_split(" ") %>% 
+    flatten_chr() %>% 
+    ##Unique words only
+    unique()
+  
+  ##Optionally strip matched angle brackets (single-word interruptions)
+  if (permitAngleBrackets) {
+    tierWords <- tierWords %>% 
+      str_replace("^<(.+)>$", "\\1") %>% 
+      unique()
+  }
+  
+  ##Single-word ignores
+  tierWords <- tierWords %>% 
+    ##Ignore words with valid bracket pronounce codes (sui generis words)
+    str_subset(paste0("^[[:alpha:]']+~?\\[", pronChars, "+\\]$"),
+               negate=TRUE) %>% 
+    ##Ignore standalone valid punctuation
+    str_subset("[.?-]|--", negate=TRUE)
+  
+  ##Get forms of words for checking
+  wordDF <- tibble(
+    Word = tierWords,
+    ##First checking form
+    CheckWord1 = Word %>%
+      ##Strip attached valid punctuation
+      str_remove("([.?-]|--)$") %>%
+      ##For words with paren codes, use the paren code for checking
+      str_replace(".+\\((.+)\\)$", "\\1") %>%
+      ##Strip clitics for checking
+      str_remove_all("'(d|ve|s)") %>%
+      str_replace("s'$", "s"),
+    ##Second form (without final -s)
+    CheckWord2 = CheckWord1 %>%
+      str_remove("s$")
+  )
+  
+  ##Optionally convert checking forms to lowercase
+  if (!caseSens) {
+    wordDF <- wordDF %>% 
+      mutate(across(-Word, str_to_lower))
+    dict <- str_to_lower(dict)
+  }
+  
+  ##Return words that aren't in the dictionary in either form
+  wordDF %>%
+    filter(!if_any(-Word, ~ .x %in% dict)) %>% 
+    pull(Word)
+}
+
+##Wrapper function around dictCheckTier() that takes a multi-file tier df
+##  and a list of EAF files as input (meant to be used with tierInfo() &
+##  eaflist() reactives) and outputs non-dictionary words if any (in a
+##  nested list); if no issues, outputs an empty list
+dictCheck <- function(df, x) {
+  ##Get nested list of speaker tier names
+  spkrTierNames <- 
+    df %>% 
+    filter(SpkrTier) %>% 
+    group_by(File) %>% 
+    summarise(across(TIER_ID, list)) %>% 
+    pull(TIER_ID, name=File) %>% 
+    map(~ set_names(.x, .x))
+  
+  ##Loop over files & speaker tiers for dictionary-checking
+  map2(spkrTierNames, x, 
+       ~ map(.x, dictCheckTier, .y) %>% 
+         ##Only keep tiers with issues
+         keep(~ length(.x) > 0)) %>% 
+    ##Only keep files with issues
+    keep(~ length(.x) > 0)
+}
+
 ##Convenience functions to display/undisplay HTML elements
 display <- function(x) {
   if (!("shiny.tag" %in% class(x))) {
@@ -156,6 +260,20 @@ undisplay <- function(x) {
   
   x
 }
+
+
+##Generate dictionary
+dict <-
+  ##Read dictionary file(s)
+  # list.files(here("dict/"), pattern="\\.txt", full.names=TRUE) %>% 
+  list.files("dict/", pattern="\\.txt", full.names=TRUE) %>% 
+  map(readLines) %>% 
+  ##As single character vector
+  reduce(c) %>% 
+  ##Ignore lines starting with "#" or empty lines
+  str_subset("^(#.*|)$", negate=TRUE) %>% 
+  ##Unique
+  unique()
 
 # Server ------------------------------------------------------------------
 server <- function(input, output) {
@@ -221,21 +339,9 @@ server <- function(input, output) {
       left_join(files(), by="File")
   })
   
-  spkrTiers <- reactive({
-    setNames(lapply(eaflist(), function(eaf) {
-      xml_find_all(eaf, paste("//TIER[@TIER_ID!='comment' and @TIER_ID!='comments' and",
-                              "@TIER_ID!='Comment' and @TIER_ID!='Comments' and", 
-                              "@TIER_ID!='noise' and @TIER_ID!='noises' and",
-                              "@TIER_ID!='Noise' and @TIER_ID!='Noises' and",
-                              "(@LINGUISTIC_TYPE_REF='default-lt' or @LINGUISTIC_TYPE_REF='UtteranceType')]"))
-    }), names(eaflist()))
-  })
-  ##Could also make a list of objects that includes file name, eaf, and speaker tiers, so I don't have to do things like lapply(names(eaflist()), function(x) {spkrTiers()[[x]] ... })
-  
   # Debugging output --------------------------------------------------------
   output$debug <- renderPrint({
-    # req(tierInfo())
-    # list(tierIssues = length(flatten(tierIssues(tierInfo()))))
+    list(dictCheck = dictCheck(tierInfo(), eaflist()))
   })
   
   
@@ -267,7 +373,7 @@ server <- function(input, output) {
       map_if(files()$File,
              ~ !endsWith(.x, "eaf"),
              ~ tags$li(.x, class="bad"),
-             .else=tags$li),
+             .else=tags$li)
     )
     
     ##Style headings based on whether file extensions are valid
@@ -288,7 +394,7 @@ server <- function(input, output) {
     
     
     # Step 1: Tier check ------------------------------------------------------
-    ##Heading
+    ##Content
     tierSubhead <- h3(paste("The tier checker returned the following issue(s),",
                             "which can be resolved using Change Tier Attributes in Elan:"),
                       id="tierSubhead")
@@ -334,8 +440,59 @@ server <- function(input, output) {
     
 
     # Step 2: Dictionary check ------------------------------------------------
+    ##Content
+    dictSubhead <- h3(paste("The following word(s) are not currently in the dictionary.",
+                            "Please correct misspellings, fix punctuation, and/or add pronunciation codes.",
+                            "Notify Dan of any words that should be added to the dictionary."),
+                      id="dictSubhead")
+    dictDetails <- tags$ul("", is="dictDetails")
     
-
+    ##If not exiting early yet, check for dictionary issues
+    if (!exitEarly) {
+      ##Get dictionary check
+      dictIss <- dictCheck(tierInfo(), eaflist())
+      ##If no dictionary issues, don't display anything & make step heading green
+      if (length(dictIss)==0) {
+        dictSubhead <- undisplay(dictSubhead)
+        dictDetails <- undisplay(dictDetails)
+        stepHeads$dict <- stepHeads$dict %>% 
+          tagAppendAttributes(class="good")
+      } else {
+        ##If dict issues, display issues in nested list
+        dictSubhead <- display(dictSubhead)
+        dictDetails <- dictDetails %>%
+          display() %>% 
+          tagAppendChild(
+            ##For each element in dictIss (each file with an issue), create a
+            ##  bullet-list headed by name of file, with a nested bullet-list
+            ##  headed by name of tier
+            dictIss %>%
+              imap(
+                ~ tags$li(
+                  paste0("In file ", .y, ":"),
+                  tags$ul(
+                    imap(.x,
+                         ~ tags$li(
+                           paste0("On tier ", .y, ":"),
+                           tags$ul(
+                             map(.x, tags$li)
+                           )
+                         ))
+                  )))
+          )
+        
+        ##Style headers
+        stepHeads$dict <- stepHeads$dict %>% 
+          tagAppendAttributes(class="bad")
+        stepHeads[3] <- stepHeads[3] %>% 
+          map(tagAppendAttributes, class="grayout")
+        
+        ##Exit early
+        exitEarly <- TRUE
+      }
+    }
+    
+    
     # Step 3: Overlaps check --------------------------------------------------
     
     
@@ -364,6 +521,8 @@ server <- function(input, output) {
       tierSubhead,
       tierDetails,
       stepHeads$dict,
+      dictSubhead,
+      dictDetails,
       stepHeads$overlaps,
       reuploadHead
     )
@@ -374,72 +533,6 @@ server <- function(input, output) {
   output$dictHead <- renderPrint({
     if (fileExtValid()) {
       cat("Step 2: Checking for out-of-dictionary words...")
-    }
-  })
-  
-  ##Generate dictionary
-  dict <-
-    ##Read dictionary file(s)
-    # list.files(here("dict/"), pattern="\\.txt", full.names=TRUE) %>% 
-    list.files("dict/", pattern="\\.txt", full.names=TRUE) %>% 
-    map(readLines) %>% 
-    ##As single character vector
-    reduce(c) %>% 
-    ##Ignore lines starting with "#" or empty lines
-    str_subset("^(#.*|)$", negate=TRUE) %>% 
-    ##Unique
-    unique()
-    
-  dictIssues <- reactive({
-    if (length(tierIssues())==0) {
-      issues <- lapply(names(eaflist()), function (x) {
-        eaf <- eaflist()[[x]]
-        badWords <- map(spkrTiers()[[x]], function(spkr) {
-          wordChunk <- xml_text(xml_find_all(spkr, "./ANNOTATION/ALIGNABLE_ANNOTATION/ANNOTATION_VALUE"))
-          wordChunk <- gsub("([[:alpha:]]) ([?.-])>", "\\1\\2>", wordChunk) ##Unstrand valid punctuation within angle brackets
-          wordChunk <- gsub("\\{.*?\\}", "", wordChunk) ##Ignore text within curly braces ("behaviour of speech")
-          words <- strsplit(wordChunk, " ") %>% unlist() %>% unique()
-          words <- words[words != ""] ##Ignore line-leading/line-trailing whitespace
-          words <- words[!(words %in% c(".", "?", "-", "--"))] ##Ignore standalone valid punctuation
-          permitAngleBrackets <- TRUE ##Set to TRUE to relax restrictions on angle brackets (allow single words in angle brackets)
-          if (permitAngleBrackets) words <- gsub("^<(.+)>$", "\\1", words) ##Strip matched angle brackets
-          words <- words[!grepl("\\[.+\\]$", words) | grepl("\\[.*\\]\\(.*\\)$", words)] ##Ignore words with valid bracket pronounce codes (sui generis words)
-          # words <- words %>% gsub("^\\{", "", .) %>% gsub("\\}$", "", .) ##Strip curly braces ("behaviour of speech")
-          # words <- gsub("[][]", "", words) ##Strip brackets
-          checkWords <- gsub("\\[", "", words) %>% gsub("\\]$", "", .) ##Strip brackets
-          checkWords <- gsub("[.?-]$", "", checkWords) ##Strip attached valid punctuation
-          # checkWords <- tolower(gsub("(.+)\\((.+)\\)", "\\2", checkWords)) ##For words with paren codes, use the paren code for checking
-          checkWords <- gsub("(.+)\\((.+)\\)", "\\2", checkWords) ##For words with paren codes, use the paren code for checking
-          checkWords <- checkWords %>% ##Use a clitic-stripped version of the word for checking
-            gsub("'s$", "", .) %>% gsub("s'$", "s", .) %>% gsub("'ve$", "", .) %>% gsub("'d$", "", .)
-          bw <- words[!(checkWords %in% dict)]
-          checkBW <- gsub("s$", "", bw) %>% tolower() ##For words ending in -s not in the dictionary, recheck based on version w/o -s 
-          ##(See https://sourceforge.net/p/labbcat/code/HEAD/tree/WEB-INF/classes/nz/ac/canterbury/ling/celex/english/CelexEnglishDictionary.java#l846 [r2458])
-          bw <- bw[!(checkBW %in% dict)]
-        })
-        badWords <- badWords[sapply(badWords, length)>0]
-        badWords
-      })
-      names(issues) <- names(eaflist())
-      if (length(issues)==1) issues <- issues[[1]] #Don't show file name if only one file uploaded
-      issues <- issues[sapply(issues, length)>0]
-      issues
-    }
-  })
-  output$dictTop <- renderPrint({
-    if (length(tierIssues())==0) {
-      if (length(dictIssues())==0) {
-        cat("No out-of-dictionary words.")
-      } else {
-        cat(paste("The dictionary checker returned the following word(s).",
-                  "Please correct misspellings, fix punctuation, and/or add pronunciation codes;",
-                  "Email Dan with any words that should be added to the dictionary."))
-      }
-    }
-  })
-  output$dict <- renderPrint({
-    if (length(dictIssues()) > 0) {
-      dictIssues()
     }
   })
   
@@ -597,7 +690,7 @@ server <- function(input, output) {
       if (length(eaflistNew())==1) {
         write_xml(eaflistNew()[[1]], file)
       } else {
-        sapply(names(eaflistNew()), function(eafname) write_xml(eaflistNew()[[eafname]], eafname))
+        sapply(names(eaflistNew(), function(eafname) write_xml(eaflistNew()[[eafname]], eafname)))
         zip(file, names(eaflistNew()))
       }
     }
