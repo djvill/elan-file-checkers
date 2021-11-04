@@ -19,6 +19,15 @@ pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE\\{VQU@i$u312456]"
 ##Case-sensitive?
 caseSens <- FALSE
 
+##Overlap fixing
+##Maximum cross-tier misalignment (in ms) to 'snap together'. Set lower to be
+##  more conservative about what counts as an intended cross-tier alignment
+overlapThresh <- 500
+
+
+##Exit-early overrides, for debugging
+overrideExit <- list(fileExt = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
+
 # UI ----------------------------------------------------------------------
 ui <- fluidPage(
   tags$head(
@@ -299,17 +308,9 @@ server <- function(input, output) {
       arrange(Neighborhood, SpeakerNum, FileNum, File)
   })
   
-  ##Are all files .eaf?
-  # fileExtValid <- reactive({
-  #   is.null(input$files) || all(input$files$FileExt == "eaf")
-  # })
-  fileExtValidOverride <- TRUE
-  
-  ##From here on out, things only run nicely if fileExtValid() or fileExtValidOverride
-  
   ##Read files: Get a list that's nrow(files()) long, each element an xml_document
   eaflist <- reactive({
-    req(all(files()$FileExtValid) || fileExtValidOverride)
+    req(all(files()$FileExtValid) || overrideExit$fileExt)
     files() %>% 
       pull(datapath, name=File) %>% 
       map(read_xml)
@@ -341,7 +342,50 @@ server <- function(input, output) {
   
   # Debugging output --------------------------------------------------------
   output$debug <- renderPrint({
-    list(dictCheck = dictCheck(tierInfo(), eaflist()))
+    getTimesTier <- function(tierName, eaf, timeSlots) {
+      ##Get all ALIGNABLE_ANNOTATION tags
+      str_glue("//TIER[@TIER_ID='{tierName}']//ALIGNABLE_ANNOTATION") %>%
+        xml_find_all(eaf, .) %>% 
+        ##Get attributes as a dataframe
+        xml_attrs() %>% 
+        bind_rows() %>% 
+        ##Add actual times
+        left_join(timeSlots %>%
+                    rename(TIME_SLOT_REF1 = TIME_SLOT_ID,
+                           Start = TIME_VALUE)) %>%
+        left_join(timeSlots %>%
+                    rename(TIME_SLOT_REF2 = TIME_SLOT_ID,
+                           End = TIME_VALUE))
+    }
+    
+    getTimes <- function(eaf, eafName) {
+      ##Timeslots (maps time slot ID to actual time, in milliseconds)
+      timeSlots <- 
+        ##Get TIME_SLOT nodes
+        eaf %>% 
+        xml_find_all("//TIME_SLOT") %>% 
+        ##Get attributes as a dataframe
+        xml_attrs() %>% 
+        bind_rows() %>% 
+        ##Make actual time numeric
+        mutate(across(TIME_VALUE, as.numeric))
+      
+      ##Get speaker tier names
+      spkrTierNames <- 
+        tierInfo() %>% 
+        filter(File==eafName, SpkrTier) %>% 
+        pull(TIER_ID)
+      
+      ##Get times for speaker tiers (list of dataframes)
+      spkrTimes <- 
+        spkrTierNames %>% 
+        set_names(., .) %>% 
+        map(getTimesTier, eaf, timeSlots) %>% 
+        ##Only nonempty tiers
+        keep(~ nrow(.x) > 0)
+    }
+    
+    list(getTimes = eaflist()[1] %>% imap(getTimes))
   })
   
   
@@ -401,7 +445,7 @@ server <- function(input, output) {
     tierDetails <- tags$ul("")
     
     ##If not exiting early yet, check for tier issues
-    if (!exitEarly) {
+    if (!exitEarly && !overrideExit$fileExt) {
       ##Get tier issues
       tierIss <- tierIssues(tierInfo())
       ##If no tier issues, don't display anything & make step heading green
@@ -448,7 +492,7 @@ server <- function(input, output) {
     dictDetails <- tags$ul("", is="dictDetails")
     
     ##If not exiting early yet, check for dictionary issues
-    if (!exitEarly) {
+    if (!exitEarly && !overrideExit$tiers) {
       ##Get dictionary check
       dictIss <- dictCheck(tierInfo(), eaflist())
       ##If no dictionary issues, don't display anything & make step heading green
@@ -494,7 +538,60 @@ server <- function(input, output) {
     
     
     # Step 3: Overlaps check --------------------------------------------------
+    ##Content
+    overlapsSubhead <- h3(paste("The overlap checker could not resolve the following overlaps.",
+                                "Please fix these overlaps; remember to make overlaps a",
+                                "separate turn on each speaker's tier."),
+                      id="dictSubhead")
+    overlapsDetails <- tags$ul("", is="overlapsDetails")
     
+    ##If not exiting early yet, check for dictionary issues
+    if (!exitEarly && !overrideExit$dict) {
+      ##Get overlaps issues
+      overlapsIss <- dictCheck(tierInfo(), eaflist())
+      ##If no dictionary issues, don't display anything & make step heading green
+      if (length(dictIss)==0) {
+        overlapsSubhead <- undisplay(overlapsSubhead)
+        overlapsDetails <- undisplay(overlapsDetails)
+        stepHeads$overlaps <- stepHeads$overlaps %>% 
+          tagAppendAttributes(class="good")
+      } else {
+        ##If overlaps issues, display issues in nested list
+        overlapsSubhead <- display(overlapsSubhead)
+        overlapsDetails <- overlapsDetails %>%
+          display() # %>% 
+        # tagAppendChild(
+        #   ##For each element in dictIss (each file with an issue), create a
+        #   ##  bullet-list headed by name of file, with a nested bullet-list
+        #   ##  headed by name of tier
+        #   dictIss %>%
+        #     imap(
+        #       ~ tags$li(
+        #         paste0("In file ", .y, ":"),
+        #         tags$ul(
+        #           imap(.x,
+        #                ~ tags$li(
+        #                  paste0("On tier ", .y, ":"),
+        #                  tags$ul(
+        #                    map(.x, tags$li)
+        #                  )
+        #                ))
+        #         )))
+        # )
+        
+        ##Style headers
+        stepHeads$overlaps <- stepHeads$overlaps %>% 
+          tagAppendAttributes(class="bad")
+        stepHeads[3] <- stepHeads[3] %>% 
+          map(tagAppendAttributes, class="grayout")
+        
+        ##Exit early
+        exitEarly <- TRUE
+      }
+    }
+    
+    
+    # Download button ---------------------------------------------------------
     
 
     # UI output ---------------------------------------------------------------
@@ -524,16 +621,11 @@ server <- function(input, output) {
       dictSubhead,
       dictDetails,
       stepHeads$overlaps,
+      overlapsSubhead,
+      overlapsDetails,
       reuploadHead
     )
 
-  })
-  
-  # Output: dictionary checker ----------------------------------------------
-  output$dictHead <- renderPrint({
-    if (fileExtValid()) {
-      cat("Step 2: Checking for out-of-dictionary words...")
-    }
   })
   
   # Output: overlap checker/fixer -------------------------------------------
@@ -548,7 +640,7 @@ server <- function(input, output) {
               (time/1000) %% 60)
     paste(sprintf("%02i", time[1]), sprintf("%02i", time[2]), sprintf("%06.3f", time[3]), sep=":")
   }
-  closeEnough <- 500
+  
   eaflistNew <- reactive({
     if (length(tierIssues())==0 & length(dictIssues())==0) {
       setNames(lapply(names(eaflist()), function(x) {
@@ -573,7 +665,7 @@ server <- function(input, output) {
           for (turn in seq_len(nrow(spkrTimes))) {
             if (any(spkrTimes$Start[turn] > otherSpkrs$Start & spkrTimes$Start[turn] < otherSpkrs$End)) {
               numOverlaps <- numOverlaps + 1
-              if (min(abs(spkrTimes$Start[turn] - c(otherSpkrs$Start, otherSpkrs$End))) <= closeEnough) {
+              if (min(abs(spkrTimes$Start[turn] - c(otherSpkrs$Start, otherSpkrs$End))) <= overlapThresh) {
                 numOverlapsFixed <- numOverlapsFixed + 1
                 nearest <- which.min(abs(spkrTimes$Start[turn] - c(otherSpkrs$Start, otherSpkrs$End)))
                 nearest <- c(otherSpkrs$Start, otherSpkrs$End)[nearest]
@@ -586,7 +678,7 @@ server <- function(input, output) {
             }
             if (any(spkrTimes$End[turn] > otherSpkrs$Start & spkrTimes$End[turn] < otherSpkrs$End)) {
               numOverlaps <- numOverlaps + 1
-              if (min(abs(spkrTimes$End[turn] - c(otherSpkrs$Start, otherSpkrs$End))) <= closeEnough) {
+              if (min(abs(spkrTimes$End[turn] - c(otherSpkrs$Start, otherSpkrs$End))) <= overlapThresh) {
                 numOverlapsFixed <- numOverlapsFixed + 1
                 nearest <- which.min(abs(spkrTimes$End[turn] - c(otherSpkrs$Start, otherSpkrs$End)))
                 nearest <- c(otherSpkrs$Start, otherSpkrs$End)[nearest]
