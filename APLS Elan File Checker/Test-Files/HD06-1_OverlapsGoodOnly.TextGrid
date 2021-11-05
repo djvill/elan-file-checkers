@@ -1,0 +1,5662 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0.0
+xmax = 2417.148
+tiers? <exists>
+size = 5
+item []:
+    item[1]:
+        class = "IntervalTier"
+        name = "HD06"
+        xmin = 0.0
+        xmax = 2417.148
+        intervals: size = 825
+        intervals [1]
+            xmin = 0.0
+            xmax = 8.305
+            text = ""
+        intervals [2]
+            xmin = 8.305
+            xmax = 9.362
+            text = "um Pittsburgh"
+        intervals [3]
+            xmin = 9.362
+            xmax = 9.897
+            text = ""
+        intervals [4]
+            xmin = 9.897
+            xmax = 10.242
+            text = "mmm hmm"
+        intervals [5]
+            xmin = 10.242
+            xmax = 11.251
+            text = ""
+        intervals [6]
+            xmin = 11.251
+            xmax = 12.422
+            text = "I grew up in"
+        intervals [7]
+            xmin = 12.422
+            xmax = 12.627
+            text = ""
+        intervals [8]
+            xmin = 12.627
+            xmax = 13.58
+            text = "S'Liberty[slIb3di]"
+        intervals [9]
+            xmin = 13.58
+            xmax = 13.619
+            text = ""
+        intervals [10]
+            xmin = 13.619
+            xmax = 14.335
+            text = "mmm"
+        intervals [11]
+            xmin = 14.335
+            xmax = 14.345
+            text = ""
+        intervals [12]
+            xmin = 14.345
+            xmax = 15.311
+            text = "that's East Liberty"
+        intervals [13]
+            xmin = 15.311
+            xmax = 20.668
+            text = ""
+        intervals [14]
+            xmin = 20.668
+            xmax = 21.932
+            text = "when was I what year?"
+        intervals [15]
+            xmin = 21.932
+            xmax = 22.403
+            text = ""
+        intervals [16]
+            xmin = 22.403
+            xmax = 24.053
+            text = "god [breath] nineteen sixty"
+        intervals [17]
+            xmin = 24.053
+            xmax = 31.379
+            text = ""
+        intervals [18]
+            xmin = 31.379
+            xmax = 31.808
+            text = "mmm hmm"
+        intervals [19]
+            xmin = 31.808
+            xmax = 32.596
+            text = ""
+        intervals [20]
+            xmin = 32.596
+            xmax = 35.864
+            text = "I've lived in East Liberty - until nineteen eighty seven"
+        intervals [21]
+            xmin = 35.864
+            xmax = 37.084
+            text = ""
+        intervals [22]
+            xmin = 37.084
+            xmax = 37.392
+            text = "mmm hmm"
+        intervals [23]
+            xmin = 37.392
+            xmax = 38.169
+            text = ""
+        intervals [24]
+            xmin = 38.169
+            xmax = 38.917
+            text = "Wilkinsburg"
+        intervals [25]
+            xmin = 38.917
+            xmax = 39.653
+            text = ""
+        intervals [26]
+            xmin = 39.653
+            xmax = 40.182
+            text = "mmm hmm"
+        intervals [27]
+            xmin = 40.182
+            xmax = 44.881
+            text = ""
+        intervals [28]
+            xmin = 44.881
+            xmax = 45.429
+            text = "mmm hmm"
+        intervals [29]
+            xmin = 45.429
+            xmax = 46.899
+            text = ""
+        intervals [30]
+            xmin = 46.899
+            xmax = 47.378
+            text = "[laughs]"
+        intervals [31]
+            xmin = 47.378
+            xmax = 50.223
+            text = ""
+        intervals [32]
+            xmin = 50.223
+            xmax = 50.775
+            text = "uh"
+        intervals [33]
+            xmin = 50.775
+            xmax = 53.43
+            text = ""
+        intervals [34]
+            xmin = 53.43
+            xmax = 56.603
+            text = "I've been . in the United States I've been to Denver"
+        intervals [35]
+            xmin = 56.603
+            xmax = 57.432
+            text = ""
+        intervals [36]
+            xmin = 57.432
+            xmax = 64.095
+            text = "New Orleans . Boston - New Hampshire [breath] um . Chicago"
+        intervals [37]
+            xmin = 64.095
+            xmax = 64.812
+            text = ""
+        intervals [38]
+            xmin = 64.812
+            xmax = 67.715
+            text = "Denver - San Francisco"
+        intervals [39]
+            xmin = 67.715
+            xmax = 69.964
+            text = ""
+        intervals [40]
+            xmin = 69.964
+            xmax = 70.578
+            text = "Seattle"
+        intervals [41]
+            xmin = 70.578
+            xmax = 72.054
+            text = ""
+        intervals [42]
+            xmin = 72.054
+            xmax = 72.924
+            text = "and outside"
+        intervals [43]
+            xmin = 72.924
+            xmax = 72.933
+            text = ""
+        intervals [44]
+            xmin = 72.933
+            xmax = 78.431
+            text = "of the country . I've been to Puerto Rico [breath] I've been to . England Scotland and France"
+        intervals [45]
+            xmin = 78.431
+            xmax = 79.384
+            text = ""
+        intervals [46]
+            xmin = 79.384
+            xmax = 80.448
+            text = "[noise]"
+        intervals [47]
+            xmin = 80.448
+            xmax = 83.852
+            text = ""
+        intervals [48]
+            xmin = 83.852
+            xmax = 90.261
+            text = "nobody will believe this - but all of the travelling I've done has been worked re~[ri] work related"
+        intervals [49]
+            xmin = 90.261
+            xmax = 91.012
+            text = ""
+        intervals [50]
+            xmin = 91.012
+            xmax = 91.554
+            text = "mmm hmm"
+        intervals [51]
+            xmin = 91.554
+            xmax = 97.315
+            text = ""
+        intervals [52]
+            xmin = 97.315
+            xmax = 106.899
+            text = "most of uh . I take that back [breath] I did do - one -- major vacation and that was to take [breath] a train trip across the country"
+        intervals [53]
+            xmin = 106.899
+            xmax = 106.948
+            text = ""
+        intervals [54]
+            xmin = 106.948
+            xmax = 107.782
+            text = "so"
+        intervals [55]
+            xmin = 107.782
+            xmax = 110.284
+            text = "I went from Pittsburgh to Chicago"
+        intervals [56]
+            xmin = 110.284
+            xmax = 110.703
+            text = ""
+        intervals [57]
+            xmin = 110.703
+            xmax = 114.555
+            text = "Denver - San Francisco . Seattle and back"
+        intervals [58]
+            xmin = 114.555
+            xmax = 115.097
+            text = ""
+        intervals [59]
+            xmin = 115.097
+            xmax = 122.849
+            text = "and um -- uh it was always a fantasy 'cause I always - had this romantic notion about trains"
+        intervals [60]
+            xmin = 122.849
+            xmax = 123.441
+            text = ""
+        intervals [61]
+            xmin = 123.441
+            xmax = 128.272
+            text = "and then I realized . sometimes romantic notions and reality are two different"
+        intervals [62]
+            xmin = 128.272
+            xmax = 129.174
+            text = "things"
+        intervals [63]
+            xmin = 129.174
+            xmax = 129.211
+            text = ""
+        intervals [64]
+            xmin = 129.211
+            xmax = 130.506
+            text = "Amtrak sucks"
+        intervals [65]
+            xmin = 130.506
+            xmax = 130.556
+            text = ""
+        intervals [66]
+            xmin = 130.556
+            xmax = 131.249
+            text = "oh"
+        intervals [67]
+            xmin = 131.249
+            xmax = 133.804
+            text = "my god it's the pits [breath] um"
+        intervals [68]
+            xmin = 133.804
+            xmax = 134.467
+            text = ""
+        intervals [69]
+            xmin = 134.467
+            xmax = 142.157
+            text = "it's . it's like you get - m~ people who hate their jobs and so got these y~ you got really snotty staff [breath]"
+        intervals [70]
+            xmin = 142.157
+            xmax = 142.166
+            text = ""
+        intervals [71]
+            xmin = 142.166
+            xmax = 148.036
+            text = "um . if you can't afford to stay like in a s~ a little a private space [breath]"
+        intervals [72]
+            xmin = 148.036
+            xmax = 148.047
+            text = ""
+        intervals [73]
+            xmin = 148.047
+            xmax = 153.781
+            text = "it's just . constant noise and conversation [breath] and I liked it at first"
+        intervals [74]
+            xmin = 153.781
+            xmax = 154.369
+            text = ""
+        intervals [75]
+            xmin = 154.369
+            xmax = 156.723
+            text = "and I kept a journal on the train ride"
+        intervals [76]
+            xmin = 156.723
+            xmax = 157.505
+            text = "and mostly"
+        intervals [77]
+            xmin = 157.505
+            xmax = 157.531
+            text = ""
+        intervals [78]
+            xmin = 157.531
+            xmax = 166.032
+            text = "I was listening to other people's conversations [breath] and I thought that was really it was fascinating [breath] but after a certain point it started to get really nerve-racking"
+        intervals [79]
+            xmin = 166.032
+            xmax = 166.484
+            text = ""
+        intervals [80]
+            xmin = 166.484
+            xmax = 168.792
+            text = "[clicks tongue] and um [breath] uh"
+        intervals [81]
+            xmin = 168.792
+            xmax = 173.489
+            text = ""
+        intervals [82]
+            xmin = 173.489
+            xmax = 174.463
+            text = "train and plane"
+        intervals [83]
+            xmin = 174.463
+            xmax = 174.478
+            text = ""
+        intervals [84]
+            xmin = 174.478
+            xmax = 175.146
+            text = "um I've been to"
+        intervals [85]
+            xmin = 175.146
+            xmax = 175.149
+            text = ""
+        intervals [86]
+            xmin = 175.149
+            xmax = 181.263
+            text = "Chicago and that wasn't wor~[w3] I went to Chicago and that was [breath] for pleasure as well and I travelled by plane"
+        intervals [87]
+            xmin = 181.263
+            xmax = 181.943
+            text = ""
+        intervals [88]
+            xmin = 181.943
+            xmax = 182.613
+            text = "but um"
+        intervals [89]
+            xmin = 182.613
+            xmax = 183.287
+            text = ""
+        intervals [90]
+            xmin = 183.287
+            xmax = 183.932
+            text = "yeah"
+        intervals [91]
+            xmin = 183.932
+            xmax = 183.94
+            text = ""
+        intervals [92]
+            xmin = 183.94
+            xmax = 185.133
+            text = "but I like travelling"
+        intervals [93]
+            xmin = 185.133
+            xmax = 185.159
+            text = ""
+        intervals [94]
+            xmin = 185.159
+            xmax = 185.841
+            text = "mmm hmm"
+        intervals [95]
+            xmin = 185.841
+            xmax = 189.286
+            text = ""
+        intervals [96]
+            xmin = 189.286
+            xmax = 190.929
+            text = "um my dad is"
+        intervals [97]
+            xmin = 190.929
+            xmax = 190.941
+            text = ""
+        intervals [98]
+            xmin = 190.941
+            xmax = 191.522
+            text = "um"
+        intervals [99]
+            xmin = 191.522
+            xmax = 191.546
+            text = ""
+        intervals [100]
+            xmin = 191.546
+            xmax = 194.788
+            text = "my mom died in nineteen ninety six"
+        intervals [101]
+            xmin = 194.788
+            xmax = 195.46
+            text = ""
+        intervals [102]
+            xmin = 195.46
+            xmax = 197.297
+            text = "and at the time she was retired"
+        intervals [103]
+            xmin = 197.297
+            xmax = 201.786
+            text = ""
+        intervals [104]
+            xmin = 201.786
+            xmax = 203.144
+            text = "um both work"
+        intervals [105]
+            xmin = 203.144
+            xmax = 204.312
+            text = ""
+        intervals [106]
+            xmin = 204.312
+            xmax = 206.643
+            text = "mmm hmm both my parents worked in the city [breath]"
+        intervals [107]
+            xmin = 206.643
+            xmax = 206.644
+            text = ""
+        intervals [108]
+            xmin = 206.644
+            xmax = 211.865
+            text = "uh my dad was a laborer at Ups[Vps] and my mom was a h~ yeah in housekeeping at the Hilton"
+        intervals [109]
+            xmin = 211.865
+            xmax = 218.586
+            text = ""
+        intervals [110]
+            xmin = 218.586
+            xmax = 219.948
+            text = "definitely working class"
+        intervals [111]
+            xmin = 219.948
+            xmax = 220.423
+            text = ""
+        intervals [112]
+            xmin = 220.423
+            xmax = 220.862
+            text = "[unclear]"
+        intervals [113]
+            xmin = 220.862
+            xmax = 226.05
+            text = ""
+        intervals [114]
+            xmin = 226.05
+            xmax = 228.385
+            text = "[laughs] um"
+        intervals [115]
+            xmin = 228.385
+            xmax = 228.669
+            text = ""
+        intervals [116]
+            xmin = 228.669
+            xmax = 234.319
+            text = "I went to elementary school in my neighborhood I went to Lincoln school um which I really loved"
+        intervals [117]
+            xmin = 234.319
+            xmax = 238.376
+            text = "[breath] it was one of those old neighborhood schools and everybody walked and [breath]"
+        intervals [118]
+            xmin = 238.376
+            xmax = 244.247
+            text = "the funny thing is . that was the school my mom went to [breath] it was the school my grandmother went to"
+        intervals [119]
+            xmin = 244.247
+            xmax = 244.251
+            text = ""
+        intervals [120]
+            xmin = 244.251
+            xmax = 252.478
+            text = "[breath] and so it was l~ some of the teacher w~ there remembered -- my mom they remembered my aunts they remembered my cousins"
+        intervals [121]
+            xmin = 252.478
+            xmax = 252.494
+            text = ""
+        intervals [122]
+            xmin = 252.494
+            xmax = 257.152
+            text = "[breath] and I re~[ri] it it just felt like -- everybody knew everybody"
+        intervals [123]
+            xmin = 257.152
+            xmax = 257.193
+            text = ""
+        intervals [124]
+            xmin = 257.193
+            xmax = 263.095
+            text = "[breath] and then for a while I left public school [clicks tongue] and I went to a Muslim school for    "
+        intervals [125]
+            xmin = 263.095
+            xmax = 263.918
+            text = ""
+        intervals [126]
+            xmin = 263.918
+            xmax = 266.765
+            text = "three years -- girl it was awful"
+        intervals [127]
+            xmin = 266.765
+            xmax = 266.811
+            text = ""
+        intervals [128]
+            xmin = 266.811
+            xmax = 268.821
+            text = "[clicks tongue] and then um"
+        intervals [129]
+            xmin = 268.821
+            xmax = 269.956
+            text = ""
+        intervals [130]
+            xmin = 269.956
+            xmax = 275.499
+            text = "it was just so isolated and [breath] we didn't do any we didn't read any literature"
+        intervals [131]
+            xmin = 275.499
+            xmax = 276.044
+            text = "we didn't have any"
+        intervals [132]
+            xmin = 276.044
+            xmax = 276.066
+            text = ""
+        intervals [133]
+            xmin = 276.066
+            xmax = 278.886
+            text = "music we didn't have anything that felt like [breath]"
+        intervals [134]
+            xmin = 278.886
+            xmax = 279.829
+            text = ""
+        intervals [135]
+            xmin = 279.829
+            xmax = 285.412
+            text = "you know the fine things in life and the sweet things in life [breath] and so I complained all the time"
+        intervals [136]
+            xmin = 285.412
+            xmax = 286.19
+            text = ""
+        intervals [137]
+            xmin = 286.19
+            xmax = 287.336
+            text = "[unclear]"
+        intervals [138]
+            xmin = 287.336
+            xmax = 288.252
+            text = ""
+        intervals [139]
+            xmin = 288.252
+            xmax = 288.697
+            text = "they made"
+        intervals [140]
+            xmin = 288.697
+            xmax = 288.719
+            text = ""
+        intervals [141]
+            xmin = 288.719
+            xmax = 289.516
+            text = "me go yeah"
+        intervals [142]
+            xmin = 289.516
+            xmax = 294.916
+            text = ""
+        intervals [143]
+            xmin = 294.916
+            xmax = 295.672
+            text = "yes we did"
+        intervals [144]
+            xmin = 295.672
+            xmax = 296.314
+            text = ""
+        intervals [145]
+            xmin = 296.314
+            xmax = 305.869
+            text = "and um it was just uh it really was a awful place aside from not [breath] having any music and literature and any cultural - life"
+        intervals [146]
+            xmin = 305.869
+            xmax = 305.879
+            text = ""
+        intervals [147]
+            xmin = 305.879
+            xmax = 311.017
+            text = "[breath] there was this really strict idea [breath] about [noise] gender [noise] - roles"
+        intervals [148]
+            xmin = 311.017
+            xmax = 311.164
+            text = ""
+        intervals [149]
+            xmin = 311.164
+            xmax = 311.785
+            text = "and if"
+        intervals [150]
+            xmin = 311.785
+            xmax = 311.798
+            text = ""
+        intervals [151]
+            xmin = 311.798
+            xmax = 319.726
+            text = "you were a woman you had t~ you had limited choices you were gonna be somebody's daughter - sister . mother . wife that was it"
+        intervals [152]
+            xmin = 319.726
+            xmax = 319.747
+            text = ""
+        intervals [153]
+            xmin = 319.747
+            xmax = 323.089
+            text = "[breath] and I always wanted to write and um"
+        intervals [154]
+            xmin = 323.089
+            xmax = 323.097
+            text = ""
+        intervals [155]
+            xmin = 323.097
+            xmax = 331.169
+            text = "[breath] I remember thinking there's gotta be so many books out there to read and [breath] what we were reading was just so - narrow and"
+        intervals [156]
+            xmin = 331.169
+            xmax = 331.853
+            text = ""
+        intervals [157]
+            xmin = 331.853
+            xmax = 333.773
+            text = "[clicks tongue] closed"
+        intervals [158]
+            xmin = 333.773
+            xmax = 334.509
+            text = ""
+        intervals [159]
+            xmin = 334.509
+            xmax = 341.578
+            text = "and so I complained and complained and complained until one point . uh the headmaster said you know you can always go to public school"
+        intervals [160]
+            xmin = 341.578
+            xmax = 343.354
+            text = "so I did"
+        intervals [161]
+            xmin = 343.354
+            xmax = 343.367
+            text = ""
+        intervals [162]
+            xmin = 343.367
+            xmax = 347.074
+            text = "[laughs] I did and it was great um it was culture shock"
+        intervals [163]
+            xmin = 347.074
+            xmax = 347.744
+            text = ""
+        intervals [164]
+            xmin = 347.744
+            xmax = 357.183
+            text = "from going - to a school that was [breath] you know . boys went in one part of the building girls went in the other [breath] to going to Westinghouse high school in Homewood"
+        intervals [165]
+            xmin = 357.183
+            xmax = 357.205
+            text = ""
+        intervals [166]
+            xmin = 357.205
+            xmax = 361.696
+            text = "there was just culture shock [breath] but when I got there it was . it was a great experience"
+        intervals [167]
+            xmin = 361.696
+            xmax = 362.396
+            text = ""
+        intervals [168]
+            xmin = 362.396
+            xmax = 364.752
+            text = "got to be the editor of the newspaper and"
+        intervals [169]
+            xmin = 364.752
+            xmax = 374.593
+            text = "[breath] you know got to hang out at C M U I re~(really) you know I was in Upward Bound [breath] and it just almost felt like [breath] the minute I left the Muslim school I got f~ I felt free"
+        intervals [170]
+            xmin = 374.593
+            xmax = 380.894
+            text = ""
+        intervals [171]
+            xmin = 380.894
+            xmax = 381.363
+            text = "it was the"
+        intervals [172]
+            xmin = 381.363
+            xmax = 381.376
+            text = ""
+        intervals [173]
+            xmin = 381.376
+            xmax = 382.295
+            text = "Nation of Islam"
+        intervals [174]
+            xmin = 382.295
+            xmax = 382.923
+            text = "so it was"
+        intervals [175]
+            xmin = 382.923
+            xmax = 391.884
+            text = "it was . um - you know the folks that believed what Elijah Muhammad taught about [breath] you know . white people were the Devil and"
+        intervals [176]
+            xmin = 391.884
+            xmax = 392.7
+            text = "black man"
+        intervals [177]
+            xmin = 392.7
+            xmax = 394.044
+            text = "was God and"
+        intervals [178]
+            xmin = 394.044
+            xmax = 402.98
+            text = "you know i~[I] i~[I] and at a certain point in history it makes sense that [breath] when Black people didn't have any sense of self - that somebody was gonna come along and"
+        intervals [179]
+            xmin = 402.98
+            xmax = 402.982
+            text = ""
+        intervals [180]
+            xmin = 402.982
+            xmax = 403.884
+            text = "give people the sense"
+        intervals [181]
+            xmin = 403.884
+            xmax = 403.899
+            text = ""
+        intervals [182]
+            xmin = 403.899
+            xmax = 404.618
+            text = "of power"
+        intervals [183]
+            xmin = 404.618
+            xmax = 405.058
+            text = ""
+        intervals [184]
+            xmin = 405.058
+            xmax = 409.388
+            text = "and pride [breath] - but after a while - that wasn't enough"
+        intervals [185]
+            xmin = 409.388
+            xmax = 409.757
+            text = "and you"
+        intervals [186]
+            xmin = 409.757
+            xmax = 410.851
+            text = "needed more than that"
+        intervals [187]
+            xmin = 410.851
+            xmax = 411.261
+            text = ""
+        intervals [188]
+            xmin = 411.261
+            xmax = 413.141
+            text = "um . I needed more than that"
+        intervals [189]
+            xmin = 413.141
+            xmax = 413.145
+            text = ""
+        intervals [190]
+            xmin = 413.145
+            xmax = 413.604
+            text = "and"
+        intervals [191]
+            xmin = 413.604
+            xmax = 413.628
+            text = ""
+        intervals [192]
+            xmin = 413.628
+            xmax = 422.39
+            text = "um . you know when I decided to leave my parents were like you know you're old enough to make the decision if this is what you want [breath] you know they didn't pressure me um"
+        intervals [193]
+            xmin = 422.39
+            xmax = 422.962
+            text = ""
+        intervals [194]
+            xmin = 422.962
+            xmax = 429.062
+            text = "took a little while for me to get used to being in class with boys and [breath] you know not wearing my school uniform"
+        intervals [195]
+            xmin = 429.062
+            xmax = 429.653
+            text = "and stuff like"
+        intervals [196]
+            xmin = 429.653
+            xmax = 429.978
+            text = "that"
+        intervals [197]
+            xmin = 429.978
+            xmax = 430.397
+            text = "but"
+        intervals [198]
+            xmin = 430.397
+            xmax = 430.88
+            text = ""
+        intervals [199]
+            xmin = 430.88
+            xmax = 439.441
+            text = "once I once I got comfortable it just felt like [breath] -- I slipped into a place that made me feel like I belonged"
+        intervals [200]
+            xmin = 439.441
+            xmax = 440.872
+            text = ""
+        intervals [201]
+            xmin = 440.872
+            xmax = 448.682
+            text = "and at the same time I also felt like I was always - trying to catch up it was like [breath] I would go into school"
+        intervals [202]
+            xmin = 448.682
+            xmax = 448.899
+            text = ""
+        intervals [203]
+            xmin = 448.899
+            xmax = 451.874
+            text = "or in Upward Bound the way it was set up at that time"
+        intervals [204]
+            xmin = 451.874
+            xmax = 452.522
+            text = ""
+        intervals [205]
+            xmin = 452.522
+            xmax = 460.316
+            text = "[clicks tongue] I went to Upward Bound in at um Carnegie Mellon which meant I spent my mornings at C M U and then I went back to my high school in the afternoon"
+        intervals [206]
+            xmin = 460.316
+            xmax = 467.703
+            text = "[breath] and I just felt surrounded by all these kids who had like read all these books and [breath] so I constantly felt like I was catching up"
+        intervals [207]
+            xmin = 467.703
+            xmax = 468.002
+            text = ""
+        intervals [208]
+            xmin = 468.002
+            xmax = 471.156
+            text = "I still don't feel[fEl] like feel like I've caught up but it just"
+        intervals [209]
+            xmin = 471.156
+            xmax = 483.346
+            text = ""
+        intervals [210]
+            xmin = 483.346
+            xmax = 484.057
+            text = "mmm hmm"
+        intervals [211]
+            xmin = 484.057
+            xmax = 488.657
+            text = ""
+        intervals [212]
+            xmin = 488.657
+            xmax = 490.212
+            text = "mmm hmm mmm hmm"
+        intervals [213]
+            xmin = 490.212
+            xmax = 491.218
+            text = ""
+        intervals [214]
+            xmin = 491.218
+            xmax = 492.103
+            text = "mmm mmm hmm"
+        intervals [215]
+            xmin = 492.103
+            xmax = 493.049
+            text = ""
+        intervals [216]
+            xmin = 493.049
+            xmax = 494.079
+            text = "oh god"
+        intervals [217]
+            xmin = 494.079
+            xmax = 495.611
+            text = ""
+        intervals [218]
+            xmin = 495.611
+            xmax = 504.53
+            text = "yeah . it was - um -- it was refreshing [breath] 'cause mostly I won't say they were nerds it was this combination of like [breath]"
+        intervals [219]
+            xmin = 504.53
+            xmax = 505.705
+            text = ""
+        intervals [220]
+            xmin = 505.705
+            xmax = 513.576
+            text = "the cool smart kids and the nerdy smart kids and [breath] um . you know being on the campus was just like another world"
+        intervals [221]
+            xmin = 513.576
+            xmax = 513.581
+            text = ""
+        intervals [222]
+            xmin = 513.581
+            xmax = 514.28
+            text = "um"
+        intervals [223]
+            xmin = 514.28
+            xmax = 514.282
+            text = ""
+        intervals [224]
+            xmin = 514.282
+            xmax = 521.177
+            text = "because you s~ you saw all not only people from all these different cultures [breath] but for me it was the first I'm I'd ever"
+        intervals [225]
+            xmin = 521.177
+            xmax = 521.246
+            text = ""
+        intervals [226]
+            xmin = 521.246
+            xmax = 526.318
+            text = "[breath] had this sense - of - a class system in America"
+        intervals [227]
+            xmin = 526.318
+            xmax = 527.219
+            text = ""
+        intervals [228]
+            xmin = 527.219
+            xmax = 529.073
+            text = "'cause I was always around black people"
+        intervals [229]
+            xmin = 529.073
+            xmax = 529.085
+            text = ""
+        intervals [230]
+            xmin = 529.085
+            xmax = 529.538
+            text = "and they were"
+        intervals [231]
+            xmin = 529.538
+            xmax = 529.54
+            text = ""
+        intervals [232]
+            xmin = 529.54
+            xmax = 534.467
+            text = "always people who lived like I lived they lived in the community I lived in"
+        intervals [233]
+            xmin = 534.467
+            xmax = 542.553
+            text = "[breath] and I remember the first - time I walked on the campus and I saw kids like playing lacrosse and stuff and I was like - what is that ?"
+        intervals [234]
+            xmin = 542.553
+            xmax = 543.532
+            text = ""
+        intervals [235]
+            xmin = 543.532
+            xmax = 543.921
+            text = "[laughs]"
+        intervals [236]
+            xmin = 543.921
+            xmax = 544.645
+            text = ""
+        intervals [237]
+            xmin = 544.645
+            xmax = 545.564
+            text = "and then I gotta"
+        intervals [238]
+            xmin = 545.564
+            xmax = 545.583
+            text = ""
+        intervals [239]
+            xmin = 545.583
+            xmax = 554.162
+            text = "and then as we g~ we're on the campus more it was almost like there was this stigma because it was like well if we were on the campus and we were travelling"
+        intervals [240]
+            xmin = 554.162
+            xmax = 562.551
+            text = "[breath] around together [breath] it was because we were there because somebody [breath] . um [clicks tongue] gave us something as opposed to us"
+        intervals [241]
+            xmin = 562.551
+            xmax = 563.423
+            text = "earning it"
+        intervals [242]
+            xmin = 563.423
+            xmax = 563.765
+            text = ""
+        intervals [243]
+            xmin = 563.765
+            xmax = 567.782
+            text = "and - n~ the university in some ways reinforced that in the summer"
+        intervals [244]
+            xmin = 567.782
+            xmax = 574.577
+            text = "[breath] because when we were on campus they had all these kids [breath] from all over the country you know whose parents paid"
+        intervals [245]
+            xmin = 574.577
+            xmax = 575.104
+            text = ""
+        intervals [246]
+            xmin = 575.104
+            xmax = 576.842
+            text = "a lot a lot of money for them to"
+        intervals [247]
+            xmin = 576.842
+            xmax = 576.852
+            text = ""
+        intervals [248]
+            xmin = 576.852
+            xmax = 578.476
+            text = "be exposed to the arts"
+        intervals [249]
+            xmin = 578.476
+            xmax = 578.484
+            text = ""
+        intervals [250]
+            xmin = 578.484
+            xmax = 579.175
+            text = "and"
+        intervals [251]
+            xmin = 579.175
+            xmax = 579.182
+            text = ""
+        intervals [252]
+            xmin = 579.182
+            xmax = 581.297
+            text = "architecture and all that other kind of stuff"
+        intervals [253]
+            xmin = 581.297
+            xmax = 581.705
+            text = ""
+        intervals [254]
+            xmin = 581.705
+            xmax = 586.469
+            text = "and we would have these meetings before [breath] the summer session and it was like you know"
+        intervals [255]
+            xmin = 586.469
+            xmax = 591.739
+            text = "y~ you're you're lucky you're here 'cause everybody else is paying for this and"
+        intervals [256]
+            xmin = 591.739
+            xmax = 591.756
+            text = ""
+        intervals [257]
+            xmin = 591.756
+            xmax = 596.06
+            text = "[breath] if you screw up once you're out of you know you're off the campus and"
+        intervals [258]
+            xmin = 596.06
+            xmax = 604.01
+            text = "[breath] so it was really the first time I had this sense [breath] that - I came from - a poor background"
+        intervals [259]
+            xmin = 604.01
+            xmax = 604.642
+            text = ""
+        intervals [260]
+            xmin = 604.642
+            xmax = 610.904
+            text = "I mean it was ch~ it it just was am~(amazing) it was amazing . [breath] and"
+        intervals [261]
+            xmin = 610.904
+            xmax = 613.646
+            text = ""
+        intervals [262]
+            xmin = 613.646
+            xmax = 618.052
+            text = "i~(it) it was hard it was really hard to kinda like walk around the campus and then realize"
+        intervals [263]
+            xmin = 618.052
+            xmax = 625.647
+            text = "[breath] that I really was there because somebody else was paying the bill [breath] and that my parents couldn't never afford to do that"
+        intervals [264]
+            xmin = 625.647
+            xmax = 625.84
+            text = ""
+        intervals [265]
+            xmin = 625.84
+            xmax = 627.476
+            text = "and so that was really hard"
+        intervals [266]
+            xmin = 627.476
+            xmax = 627.479
+            text = ""
+        intervals [267]
+            xmin = 627.479
+            xmax = 627.752
+            text = "[unclear]"
+        intervals [268]
+            xmin = 627.752
+            xmax = 628.719
+            text = ""
+        intervals [269]
+            xmin = 628.719
+            xmax = 629.76
+            text = "that was high school"
+        intervals [270]
+            xmin = 629.76
+            xmax = 635.292
+            text = ""
+        intervals [271]
+            xmin = 635.292
+            xmax = 635.685
+            text = "[laughs]"
+        intervals [272]
+            xmin = 635.685
+            xmax = 636.66
+            text = ""
+        intervals [273]
+            xmin = 636.66
+            xmax = 638.56
+            text = "I went to Duquesne University"
+        intervals [274]
+            xmin = 638.56
+            xmax = 638.619
+            text = ""
+        intervals [275]
+            xmin = 638.619
+            xmax = 639.193
+            text = "a"
+        intervals [276]
+            xmin = 639.193
+            xmax = 641.386
+            text = "small -- Catholic"
+        intervals [277]
+            xmin = 641.386
+            xmax = 644.545
+            text = "university [laughs] you'd have about"
+        intervals [278]
+            xmin = 644.545
+            xmax = 644.552
+            text = ""
+        intervals [279]
+            xmin = 644.552
+            xmax = 645.425
+            text = "twelve black people"
+        intervals [280]
+            xmin = 645.425
+            xmax = 647.653
+            text = "know [laughs] and"
+        intervals [281]
+            xmin = 647.653
+            xmax = 651.614
+            text = "again it was [breath] [sighs]"
+        intervals [282]
+            xmin = 651.614
+            xmax = 654.718
+            text = ""
+        intervals [283]
+            xmin = 654.718
+            xmax = 660.317
+            text = "it was the same sense of - being immersed in a different place"
+        intervals [284]
+            xmin = 660.317
+            xmax = 660.921
+            text = "and having"
+        intervals [285]
+            xmin = 660.921
+            xmax = 660.965
+            text = ""
+        intervals [286]
+            xmin = 660.965
+            xmax = 661.933
+            text = "culture shock"
+        intervals [287]
+            xmin = 661.933
+            xmax = 662.676
+            text = ""
+        intervals [288]
+            xmin = 662.676
+            xmax = 663.812
+            text = "and um"
+        intervals [289]
+            xmin = 663.812
+            xmax = 664.79
+            text = ""
+        intervals [290]
+            xmin = 664.79
+            xmax = 670.786
+            text = "I I need to step back for a minute -- part of the reason it was difficult for me at C M U"
+        intervals [291]
+            xmin = 670.786
+            xmax = 671.219
+            text = ""
+        intervals [292]
+            xmin = 671.219
+            xmax = 677.109
+            text = "part of the reason for me was for m~ because it was diff~(difficult) mmm part of the reason it was difficult for me at Duquesne"
+        intervals [293]
+            xmin = 677.109
+            xmax = 677.555
+            text = ""
+        intervals [294]
+            xmin = 677.555
+            xmax = 680.94
+            text = "is because -- I was always blessed"
+        intervals [295]
+            xmin = 680.94
+            xmax = 681.398
+            text = ""
+        intervals [296]
+            xmin = 681.398
+            xmax = 689.089
+            text = "they took me in at C M U - at Carnegie Mellon in the middle of the school year which they hardly ever do"
+        intervals [297]
+            xmin = 689.089
+            xmax = 695.678
+            text = "[breath] and . I got in because I had to write this essay and somebody read it and said this is great"
+        intervals [298]
+            xmin = 695.678
+            xmax = 700.471
+            text = "[breath] you've got the skills you got the grades and we're gonna make an exception [breath]"
+        intervals [299]
+            xmin = 700.471
+            xmax = 700.592
+            text = ""
+        intervals [300]
+            xmin = 700.592
+            xmax = 706.638
+            text = "and so - I had to get . I had to get back I had to get in the mix of things and that was really hard 'cause "
+        intervals [301]
+            xmin = 706.638
+            xmax = 715.25
+            text = "[breath] lot of the students had known each other they had started together [breath] and so there I was this kid out of nowhere coming - in the middle of the semester and"
+        intervals [302]
+            xmin = 715.25
+            xmax = 715.783
+            text = ""
+        intervals [303]
+            xmin = 715.783
+            xmax = 718.94
+            text = "I felt like - I was just lucky"
+        intervals [304]
+            xmin = 718.94
+            xmax = 719.028
+            text = ""
+        intervals [305]
+            xmin = 719.028
+            xmax = 726.19
+            text = "[clicks tongue] when I got to Duquesne University it was the same thing [breath] I had gone to something called the - urban journalism workshop"
+        intervals [306]
+            xmin = 726.19
+            xmax = 726.209
+            text = ""
+        intervals [307]
+            xmin = 726.209
+            xmax = 729.891
+            text = "because I was again in the right place at the right time"
+        intervals [308]
+            xmin = 729.891
+            xmax = 737.324
+            text = "and from being in that program at the Urban League [breath] - I met people who were professional journalists"
+        intervals [309]
+            xmin = 737.324
+            xmax = 737.734
+            text = ""
+        intervals [310]
+            xmin = 737.734
+            xmax = 745.764
+            text = "who I found out -- much later had actually m~ m~ made phone calls on my behalf to the University"
+        intervals [311]
+            xmin = 745.764
+            xmax = 746.511
+            text = ""
+        intervals [312]
+            xmin = 746.511
+            xmax = 753.553
+            text = "and um because I di~(didn't) - I didn't think I was smart enough to go to college I graduated high school when I was sixteen"
+        intervals [313]
+            xmin = 753.553
+            xmax = 753.577
+            text = ""
+        intervals [314]
+            xmin = 753.577
+            xmax = 758.221
+            text = "[breath] and I waited 'til the absolute last minute to apply "
+        intervals [315]
+            xmin = 758.221
+            xmax = 765.627
+            text = ""
+        intervals [316]
+            xmin = 765.627
+            xmax = 767.712
+            text = "yeah . I guess so [laughs]"
+        intervals [317]
+            xmin = 767.712
+            xmax = 768.693
+            text = ""
+        intervals [318]
+            xmin = 768.693
+            xmax = 769.593
+            text = "it was just like I just "
+        intervals [319]
+            xmin = 769.593
+            xmax = 769.603
+            text = ""
+        intervals [320]
+            xmin = 769.603
+            xmax = 779.582
+            text = "it was just really weird 'cause it when I graduated from high school [breath] I didn't know what I was gonna do didn't feel smart enough to go to college [breath] didn't feel mature enough to go to college"
+        intervals [321]
+            xmin = 779.582
+            xmax = 779.583
+            text = ""
+        intervals [322]
+            xmin = 779.583
+            xmax = 783.35
+            text = "[breath] I was gonna take a year off and didn't have a clue what I was gonna do"
+        intervals [323]
+            xmin = 783.35
+            xmax = 783.352
+            text = ""
+        intervals [324]
+            xmin = 783.352
+            xmax = 792.193
+            text = "my friend's mom heard about this program called the [breath] urban journalis~(journalism) I mean the um community media center which was a program of the Urban League"
+        intervals [325]
+            xmin = 792.193
+            xmax = 792.209
+            text = ""
+        intervals [326]
+            xmin = 792.209
+            xmax = 795.554
+            text = "she said you should call - you should you should check it out"
+        intervals [327]
+            xmin = 795.554
+            xmax = 805.383
+            text = "it's the end of the school year [breath] they've already selected the students [breath] I come in I do an interview . and they accept me - at the last last minute"
+        intervals [328]
+            xmin = 805.383
+            xmax = 805.446
+            text = ""
+        intervals [329]
+            xmin = 805.446
+            xmax = 811.176
+            text = "[clicks tongue] [breath] the irony is - that place was in this building"
+        intervals [330]
+            xmin = 811.176
+            xmax = 812.719
+            text = ""
+        intervals [331]
+            xmin = 812.719
+            xmax = 815.918
+            text = "not only was it my first experience on the Hill"
+        intervals [332]
+            xmin = 815.918
+            xmax = 816.809
+            text = ""
+        intervals [333]
+            xmin = 816.809
+            xmax = 824.251
+            text = "but when I came to work in the Hill . the office where they were located . was the office where my program was located [breath]"
+        intervals [334]
+            xmin = 824.251
+            xmax = 825.587
+            text = "so it's"
+        intervals [335]
+            xmin = 825.587
+            xmax = 825.625
+            text = ""
+        intervals [336]
+            xmin = 825.625
+            xmax = 831.358
+            text = "like - all these little things that happen - and . like I said I always felt lucky"
+        intervals [337]
+            xmin = 831.358
+            xmax = 831.376
+            text = ""
+        intervals [338]
+            xmin = 831.376
+            xmax = 841.047
+            text = "[breath] and because of the . m~ m~ because of the media center [breath] and because of the things I did with them . I had folks that made calls on my behalf at Duquesne University"
+        intervals [339]
+            xmin = 841.047
+            xmax = 841.063
+            text = ""
+        intervals [340]
+            xmin = 841.063
+            xmax = 849.705
+            text = "[breath] and so when I got to Duquesne I just looked around I was like oh lord [laughs] it was major culture shock"
+        intervals [341]
+            xmin = 849.705
+            xmax = 853.154
+            text = "'cause it was a small university and that's what I wanted"
+        intervals [342]
+            xmin = 853.154
+            xmax = 853.624
+            text = ""
+        intervals [343]
+            xmin = 853.624
+            xmax = 857.503
+            text = "um -- there weren't a lot of black students"
+        intervals [344]
+            xmin = 857.503
+            xmax = 858.188
+            text = ""
+        intervals [345]
+            xmin = 858.188
+            xmax = 859.918
+            text = "no [sighs] no"
+        intervals [346]
+            xmin = 859.918
+            xmax = 860.256
+            text = ""
+        intervals [347]
+            xmin = 860.256
+            xmax = 869.799
+            text = "and the there were two classes of black students [breath] there were those of us who either got scholarships [breath] - l~ loans worked or"
+        intervals [348]
+            xmin = 869.799
+            xmax = 870.558
+            text = "whatever and"
+        intervals [349]
+            xmin = 870.558
+            xmax = 872.271
+            text = "came from working class families"
+        intervals [350]
+            xmin = 872.271
+            xmax = 872.873
+            text = ""
+        intervals [351]
+            xmin = 872.873
+            xmax = 874.633
+            text = "and then there were the legacies"
+        intervals [352]
+            xmin = 874.633
+            xmax = 875.66
+            text = ""
+        intervals [353]
+            xmin = 875.66
+            xmax = 878.589
+            text = "and they didn't talk to us at all it was just like"
+        intervals [354]
+            xmin = 878.589
+            xmax = 879.436
+            text = ""
+        intervals [355]
+            xmin = 879.436
+            xmax = 885.614
+            text = "we were invisible to the white students . and we were invisible [breath] to the black students who were legacies"
+        intervals [356]
+            xmin = 885.614
+            xmax = 885.72
+            text = ""
+        intervals [357]
+            xmin = 885.72
+            xmax = 886.444
+            text = "and um"
+        intervals [358]
+            xmin = 886.444
+            xmax = 887.776
+            text = ""
+        intervals [359]
+            xmin = 887.776
+            xmax = 888.374
+            text = "[unclear]"
+        intervals [360]
+            xmin = 888.374
+            xmax = 896.384
+            text = "that was just . just crazy too - because it was like okay now [breath] -- I have this experience of"
+        intervals [361]
+            xmin = 896.384
+            xmax = 901.173
+            text = "class being overlaid by black people who look just like me"
+        intervals [362]
+            xmin = 901.173
+            xmax = 902.313
+            text = ""
+        intervals [363]
+            xmin = 902.313
+            xmax = 905.778
+            text = "but who looked right through me as though I weren't even there"
+        intervals [364]
+            xmin = 905.778
+            xmax = 906.226
+            text = ""
+        intervals [365]
+            xmin = 906.226
+            xmax = 911.853
+            text = "and um - you know the legacies were treated with respect and the rest of us were treated like [breath]"
+        intervals [366]
+            xmin = 911.853
+            xmax = 917.723
+            text = "you're here on somebody else's dime you guys really aren't smart enough to have earned your way into Duquesne University"
+        intervals [367]
+            xmin = 917.723
+            xmax = 918.43
+            text = ""
+        intervals [368]
+            xmin = 918.43
+            xmax = 919.385
+            text = "so"
+        intervals [369]
+            xmin = 919.385
+            xmax = 927.679
+            text = ""
+        intervals [370]
+            xmin = 927.679
+            xmax = 929.772
+            text = "most of us stayed"
+        intervals [371]
+            xmin = 929.772
+            xmax = 938.711
+            text = "uh at Duquesne and we all stayed together it was this - small clique of black students and we were mostly . connected to the stud~(student) black student union"
+        intervals [372]
+            xmin = 938.711
+            xmax = 938.721
+            text = ""
+        intervals [373]
+            xmin = 938.721
+            xmax = 941.579
+            text = "and that was everybody's lifeline it was"
+        intervals [374]
+            xmin = 941.579
+            xmax = 941.961
+            text = "like the"
+        intervals [375]
+            xmin = 941.961
+            xmax = 942.806
+            text = ""
+        intervals [376]
+            xmin = 942.806
+            xmax = 950.668
+            text = "place you could go . you could shut the door you could scream you could yell . somebody could look at you and you could tell them what it's like"
+        intervals [377]
+            xmin = 950.668
+            xmax = 956.433
+            text = "[breath] you know that day to look up and be the only person in your class of color"
+        intervals [378]
+            xmin = 956.433
+            xmax = 956.436
+            text = ""
+        intervals [379]
+            xmin = 956.436
+            xmax = 964.103
+            text = "and to know when you walked in that door everybody had these assumptions [breath] that they ticked off in their head about who you are what you knew"
+        intervals [380]
+            xmin = 964.103
+            xmax = 964.105
+            text = ""
+        intervals [381]
+            xmin = 964.105
+            xmax = 971.576
+            text = "[breath] and at Duquesne University they created this [breath] - this study of philosophy called existential[EkstIstEnSP] phenomenology"
+        intervals [382]
+            xmin = 971.576
+            xmax = 972.709
+            text = ""
+        intervals [383]
+            xmin = 972.709
+            xmax = 979.472
+            text = "I remember being in a class -- [breath] and getting like an A in existential phenomenology"
+        intervals [384]
+            xmin = 979.472
+            xmax = 980.32
+            text = ""
+        intervals [385]
+            xmin = 980.32
+            xmax = 989.19
+            text = "and being around students [breath] who looked at me and didn't think I~ I could . n~ didn't deserve to be there [breath] they couldn't spell existential"
+        intervals [386]
+            xmin = 989.19
+            xmax = 993.793
+            text = "phenomenology let alone . understand it -- and so there was a"
+        intervals [387]
+            xmin = 993.793
+            xmax = 993.804
+            text = ""
+        intervals [388]
+            xmin = 993.804
+            xmax = 995.183
+            text = "sense of pride in that"
+        intervals [389]
+            xmin = 995.183
+            xmax = 995.789
+            text = "and you"
+        intervals [390]
+            xmin = 995.789
+            xmax = 995.802
+            text = ""
+        intervals [391]
+            xmin = 995.802
+            xmax = 999.17
+            text = "know it was a sense of [breath] I'm gonna make it to the end"
+        intervals [392]
+            xmin = 999.17
+            xmax = 999.756
+            text = ""
+        intervals [393]
+            xmin = 999.756
+            xmax = 1004.789
+            text = "um I was gonna make it to the end because a lot of some students didn't make it - [breath] and I"
+        intervals [394]
+            xmin = 1004.789
+            xmax = 1005.254
+            text = "was gonna make"
+        intervals [395]
+            xmin = 1005.254
+            xmax = 1005.266
+            text = ""
+        intervals [396]
+            xmin = 1005.266
+            xmax = 1007.365
+            text = "it to the end because I was the first"
+        intervals [397]
+            xmin = 1007.365
+            xmax = 1007.376
+            text = ""
+        intervals [398]
+            xmin = 1007.376
+            xmax = 1008.039
+            text = "in my family"
+        intervals [399]
+            xmin = 1008.039
+            xmax = 1008.052
+            text = ""
+        intervals [400]
+            xmin = 1008.052
+            xmax = 1011.608
+            text = "I was the first person [breath] on either side of my family"
+        intervals [401]
+            xmin = 1011.608
+            xmax = 1011.62
+            text = ""
+        intervals [402]
+            xmin = 1011.62
+            xmax = 1012.65
+            text = "you know to go to"
+        intervals [403]
+            xmin = 1012.65
+            xmax = 1016.157
+            text = "college . and to get a degree - and I was like"
+        intervals [404]
+            xmin = 1016.157
+            xmax = 1022.922
+            text = "you know at one point I was really tired like the l~ next to the last semester [breath] I was like I can't do this"
+        intervals [405]
+            xmin = 1022.922
+            xmax = 1027.068
+            text = "this [sobs] I can't do this I remember like"
+        intervals [406]
+            xmin = 1027.068
+            xmax = 1027.073
+            text = ""
+        intervals [407]
+            xmin = 1027.073
+            xmax = 1036.677
+            text = "muh~[m@] um just telling my mom one night [breath] I just can't go . I~ I~ I can't get up and I can't do this - and she just s~ - she completely ignored me"
+        intervals [408]
+            xmin = 1036.677
+            xmax = 1043.228
+            text = "[breath] picked up my book put it back on the desk and walked away from me like oh . hell no [laughs]"
+        intervals [409]
+            xmin = 1043.228
+            xmax = 1045.062
+            text = "listen you're too close you"
+        intervals [410]
+            xmin = 1045.062
+            xmax = 1045.066
+            text = ""
+        intervals [411]
+            xmin = 1045.066
+            xmax = 1046.499
+            text = "cannot do this now"
+        intervals [412]
+            xmin = 1046.499
+            xmax = 1046.93
+            text = ""
+        intervals [413]
+            xmin = 1046.93
+            xmax = 1053.998
+            text = "and there were days I cried and carried on and [breath] she let me cry and carry on but she made me get up the next day and go"
+        intervals [414]
+            xmin = 1053.998
+            xmax = 1055.905
+            text = ""
+        intervals [415]
+            xmin = 1055.905
+            xmax = 1056.112
+            text = "oh"
+        intervals [416]
+            xmin = 1056.112
+            xmax = 1063.154
+            text = "yes it did . yes it did - because um -- in my lifetime"
+        intervals [417]
+            xmin = 1063.154
+            xmax = 1063.995
+            text = ""
+        intervals [418]
+            xmin = 1063.995
+            xmax = 1068.68
+            text = "I've had an experience of being a first and an only"
+        intervals [419]
+            xmin = 1068.68
+            xmax = 1069.071
+            text = ""
+        intervals [420]
+            xmin = 1069.071
+            xmax = 1077.686
+            text = "and if it hadn't been for [breath] the experiences at . Upward Bound and if it hadn't been for being at s~ at Duquesne University"
+        intervals [421]
+            xmin = 1077.686
+            xmax = 1081.82
+            text = "[breath] I don't know if I would've been able to to stomach the job from hell"
+        intervals [422]
+            xmin = 1081.82
+            xmax = 1081.822
+            text = ""
+        intervals [423]
+            xmin = 1081.822
+            xmax = 1090.004
+            text = "and you know at one point I was employed at an agency [breath] that worked in seventeen communities in one valley"
+        intervals [424]
+            xmin = 1090.004
+            xmax = 1090.412
+            text = ""
+        intervals [425]
+            xmin = 1090.412
+            xmax = 1099.088
+            text = "a lot of them had large African American populations [breath] this was a place where pre~[pri] people thought they were hip cool liberal open-minded"
+        intervals [426]
+            xmin = 1099.088
+            xmax = 1099.107
+            text = ""
+        intervals [427]
+            xmin = 1099.107
+            xmax = 1107.501
+            text = "and in nineteen eighty nine -- I was the first -- and only black employee in that place"
+        intervals [428]
+            xmin = 1107.501
+            xmax = 1107.577
+            text = ""
+        intervals [429]
+            xmin = 1107.577
+            xmax = 1110.802
+            text = "and if tho~(those) if I hadn't had those experiences"
+        intervals [430]
+            xmin = 1110.802
+            xmax = 1111.844
+            text = ""
+        intervals [431]
+            xmin = 1111.844
+            xmax = 1119.625
+            text = "I wouldn't have made it - as long as I did . and if I didn't have people in the Hill [breath] I seriously wouldn't have made it"
+        intervals [432]
+            xmin = 1119.625
+            xmax = 1120.041
+            text = "'cause"
+        intervals [433]
+            xmin = 1120.041
+            xmax = 1121.498
+            text = "I would leave that job"
+        intervals [434]
+            xmin = 1121.498
+            xmax = 1121.879
+            text = "and I would"
+        intervals [435]
+            xmin = 1121.879
+            xmax = 1121.886
+            text = ""
+        intervals [436]
+            xmin = 1121.886
+            xmax = 1128.223
+            text = "come [breath] to the Hill and not be~ I'd go to meetings [breath] . just so somebody could look at my face"
+        intervals [437]
+            xmin = 1128.223
+            xmax = 1128.656
+            text = "and see"
+        intervals [438]
+            xmin = 1128.656
+            xmax = 1129.063
+            text = "me"
+        intervals [439]
+            xmin = 1129.063
+            xmax = 1129.431
+            text = ""
+        intervals [440]
+            xmin = 1129.431
+            xmax = 1132.469
+            text = "and not go oh she's just the little token we got here"
+        intervals [441]
+            xmin = 1132.469
+            xmax = 1133.113
+            text = ""
+        intervals [442]
+            xmin = 1133.113
+            xmax = 1140.345
+            text = "but . could see me and [breath] understood - understood me [breath] and we had a common"
+        intervals [443]
+            xmin = 1140.345
+            xmax = 1150.51
+            text = "experience and a common language and a common [breath] culture . that made -- made us comfortable [breath] 'cause in the place I worked at"
+        intervals [444]
+            xmin = 1150.51
+            xmax = 1151.352
+            text = ""
+        intervals [445]
+            xmin = 1151.352
+            xmax = 1153.428
+            text = "they had this ritual every Friday"
+        intervals [446]
+            xmin = 1153.428
+            xmax = 1153.797
+            text = ""
+        intervals [447]
+            xmin = 1153.797
+            xmax = 1162.168
+            text = "they would literally you would people would yell from cubicle to cubicle [breath] are you going to the bar after w~(work) I mean it went all the way around"
+        intervals [448]
+            xmin = 1162.168
+            xmax = 1163.74
+            text = ""
+        intervals [449]
+            xmin = 1163.74
+            xmax = 1165.092
+            text = "I never went"
+        intervals [450]
+            xmin = 1165.092
+            xmax = 1166.02
+            text = ""
+        intervals [451]
+            xmin = 1166.02
+            xmax = 1166.506
+            text = "and"
+        intervals [452]
+            xmin = 1166.506
+            xmax = 1168.189
+            text = ""
+        intervals [453]
+            xmin = 1168.189
+            xmax = 1175.504
+            text = "this is the k~ this is the interesting thing I grew up - with parents who said [breath] if people wanted you to come they'd ask you"
+        intervals [454]
+            xmin = 1175.504
+            xmax = 1176.67
+            text = ""
+        intervals [455]
+            xmin = 1176.67
+            xmax = 1179.787
+            text = "they never asked me . so I never went"
+        intervals [456]
+            xmin = 1179.787
+            xmax = 1180.158
+            text = ""
+        intervals [457]
+            xmin = 1180.158
+            xmax = 1189.213
+            text = "their perspective of my behavior was [clicks tongue] pff[pf] - who are you to get an engraved invitation if you wanted to come you should've just showed up"
+        intervals [458]
+            xmin = 1189.213
+            xmax = 1189.823
+            text = ""
+        intervals [459]
+            xmin = 1189.823
+            xmax = 1194.921
+            text = "and in that moment was that sense of -- w~ we're speaking . two different"
+        intervals [460]
+            xmin = 1194.921
+            xmax = 1195.684
+            text = "languages"
+        intervals [461]
+            xmin = 1195.684
+            xmax = 1195.703
+            text = ""
+        intervals [462]
+            xmin = 1195.703
+            xmax = 1202.232
+            text = "we havring[h{vrIN] two different life experiences I grew up - not with a sense of entitlement"
+        intervals [463]
+            xmin = 1202.232
+            xmax = 1202.594
+            text = ""
+        intervals [464]
+            xmin = 1202.594
+            xmax = 1209.564
+            text = "or not with the sense that [breath] I'm supposed to have [breath] or be . just because I am"
+        intervals [465]
+            xmin = 1209.564
+            xmax = 1210.113
+            text = ""
+        intervals [466]
+            xmin = 1210.113
+            xmax = 1212.473
+            text = "I move through the world in a really different way"
+        intervals [467]
+            xmin = 1212.473
+            xmax = 1212.966
+            text = ""
+        intervals [468]
+            xmin = 1212.966
+            xmax = 1217.836
+            text = "and the way I move through the world isolated me in that place - and"
+        intervals [469]
+            xmin = 1217.836
+            xmax = 1218.328
+            text = "it wasn't"
+        intervals [470]
+            xmin = 1218.328
+            xmax = 1218.344
+            text = ""
+        intervals [471]
+            xmin = 1218.344
+            xmax = 1224.506
+            text = "a conversation it wasn't [breath] you know the ice never got broken until the day I decided to leave"
+        intervals [472]
+            xmin = 1224.506
+            xmax = 1225.322
+            text = ""
+        intervals [473]
+            xmin = 1225.322
+            xmax = 1232.655
+            text = "and that's when everybody wanted to sit and talk and - in part it was n~ on them and then part was on me too"
+        intervals [474]
+            xmin = 1232.655
+            xmax = 1242.206
+            text = "but it was just an amazing experience [breath] that I~ I n~ just never in my life imagined - ever being a first and an only ever"
+        intervals [475]
+            xmin = 1242.206
+            xmax = 1246.854
+            text = ""
+        intervals [476]
+            xmin = 1246.854
+            xmax = 1247.242
+            text = "mmm hmm"
+        intervals [477]
+            xmin = 1247.242
+            xmax = 1247.954
+            text = ""
+        intervals [478]
+            xmin = 1247.954
+            xmax = 1248.696
+            text = "mmm hmm"
+        intervals [479]
+            xmin = 1248.696
+            xmax = 1254.137
+            text = ""
+        intervals [480]
+            xmin = 1254.137
+            xmax = 1255.022
+            text = "journalism"
+        intervals [481]
+            xmin = 1255.022
+            xmax = 1255.109
+            text = ""
+        intervals [482]
+            xmin = 1255.109
+            xmax = 1257.141
+            text = "[laughs]"
+        intervals [483]
+            xmin = 1257.141
+            xmax = 1257.194
+            text = ""
+        intervals [484]
+            xmin = 1257.194
+            xmax = 1266.129
+            text = "and except for a very brief stint of about a year and a half [breath] at a neighbor~(neighborhood) at a community paper I've never really . made my living as a journalist"
+        intervals [485]
+            xmin = 1266.129
+            xmax = 1267.099
+            text = ""
+        intervals [486]
+            xmin = 1267.099
+            xmax = 1268.004
+            text = "never wanted to"
+        intervals [487]
+            xmin = 1268.004
+            xmax = 1268.042
+            text = ""
+        intervals [488]
+            xmin = 1268.042
+            xmax = 1268.505
+            text = "I ended"
+        intervals [489]
+            xmin = 1268.505
+            xmax = 1272.154
+            text = "up getting it and becoming a community organizer 'cause I'm so nebby"
+        intervals [490]
+            xmin = 1272.154
+            xmax = 1273.425
+            text = ""
+        intervals [491]
+            xmin = 1273.425
+            xmax = 1274.099
+            text = "[unclear]"
+        intervals [492]
+            xmin = 1274.099
+            xmax = 1283.159
+            text = ""
+        intervals [493]
+            xmin = 1283.159
+            xmax = 1284.295
+            text = "organizer mmm hmm"
+        intervals [494]
+            xmin = 1284.295
+            xmax = 1284.816
+            text = "mmm hmm"
+        intervals [495]
+            xmin = 1284.816
+            xmax = 1285.743
+            text = ""
+        intervals [496]
+            xmin = 1285.743
+            xmax = 1291.638
+            text = "yeah - [clicks tongue] and I . my parents [scoffs] [unclear]"
+        intervals [497]
+            xmin = 1291.638
+            xmax = 1291.643
+            text = ""
+        intervals [498]
+            xmin = 1291.643
+            xmax = 1300.123
+            text = "still don't have a clue what I do I mean it's like [breath] at least being at Hill House it's g~ they like oh we know Hill House [breath] we understand that part but the organizing part"
+        intervals [499]
+            xmin = 1300.123
+            xmax = 1300.261
+            text = ""
+        intervals [500]
+            xmin = 1300.261
+            xmax = 1305.626
+            text = "never got it . y~ you know my mom was always worried I was gonna . starve on the street"
+        intervals [501]
+            xmin = 1305.626
+            xmax = 1305.636
+            text = ""
+        intervals [502]
+            xmin = 1305.636
+            xmax = 1307.067
+            text = "or"
+        intervals [503]
+            xmin = 1307.067
+            xmax = 1307.681
+            text = "because I"
+        intervals [504]
+            xmin = 1307.681
+            xmax = 1308.436
+            text = "was a neighborhood"
+        intervals [505]
+            xmin = 1308.436
+            xmax = 1308.447
+            text = ""
+        intervals [506]
+            xmin = 1308.447
+            xmax = 1316.276
+            text = "organizer and I knocked on people's doors and I had meetings in the living rooms of strangers [breath] that they were gonna find me on Larimer Avenue"
+        intervals [507]
+            xmin = 1316.276
+            xmax = 1321.034
+            text = "somewhere 'cause [breath] I was in somebody's house having a meeting [laughs] - I would freak"
+        intervals [508]
+            xmin = 1321.034
+            xmax = 1321.06
+            text = ""
+        intervals [509]
+            xmin = 1321.06
+            xmax = 1322.941
+            text = "my mom out completely"
+        intervals [510]
+            xmin = 1322.941
+            xmax = 1323.441
+            text = ""
+        intervals [511]
+            xmin = 1323.441
+            xmax = 1329.754
+            text = "because [breath] their image of me going to college was I was gonna get this really you know office job"
+        intervals [512]
+            xmin = 1329.754
+            xmax = 1331.641
+            text = ""
+        intervals [513]
+            xmin = 1331.641
+            xmax = 1336.145
+            text = "and - the job that I got was in the neighborhood where I worked"
+        intervals [514]
+            xmin = 1336.145
+            xmax = 1336.742
+            text = ""
+        intervals [515]
+            xmin = 1336.742
+            xmax = 1339.438
+            text = "and I got this job 'cause I was nebby 'cause"
+        intervals [516]
+            xmin = 1339.438
+            xmax = 1349.466
+            text = "I met these two women who were knocking on doors one day and I w~ [breath] and I saw them and I saw the sign in their office that said people watching out for people I was like what's that ?"
+        intervals [517]
+            xmin = 1349.466
+            xmax = 1349.722
+            text = ""
+        intervals [518]
+            xmin = 1349.722
+            xmax = 1357.924
+            text = "and they said we're organizers um what's that ? and they let me follow them around and I was like this is cool [breath] it's in my neighborhood"
+        intervals [519]
+            xmin = 1357.924
+            xmax = 1365.487
+            text = "it was empowering people to make choices about [breath] the places that they lived it felt right [breath] it made sense"
+        intervals [520]
+            xmin = 1365.487
+            xmax = 1375.401
+            text = "you know it was like I could change some aspects of the place where I lived [breath] I loved it . my mom hated that job [laughs]"
+        intervals [521]
+            xmin = 1375.401
+            xmax = 1375.441
+            text = ""
+        intervals [522]
+            xmin = 1375.441
+            xmax = 1382.981
+            text = "she hated that job 'cause I would knock on doors and [breath] you know I think their image of me when I got up you know left college"
+        intervals [523]
+            xmin = 1382.981
+            xmax = 1383.423
+            text = ""
+        intervals [524]
+            xmin = 1383.423
+            xmax = 1390.56
+            text = "was that I was gonna wear a suit everyday and I was gonna have a nice office [breath] and I was gonna go there at nine and leave at five"
+        intervals [525]
+            xmin = 1390.56
+            xmax = 1399.12
+            text = "and what they weren't prepared for was that I wore jeans and sneakers [breath] and that part of my job was to literally knock on doors and talk to people and"
+        intervals [526]
+            xmin = 1399.12
+            xmax = 1404.463
+            text = "convince them to let me come in their house and convince me to let them . let their neighbors come"
+        intervals [527]
+            xmin = 1404.463
+            xmax = 1405.051
+            text = "in their hou~(house)"
+        intervals [528]
+            xmin = 1405.051
+            xmax = 1407.411
+            text = "they were like what the hell kinda job is "
+        intervals [529]
+            xmin = 1407.411
+            xmax = 1407.421
+            text = ""
+        intervals [530]
+            xmin = 1407.421
+            xmax = 1409.862
+            text = "that is that a job ? [laughs]"
+        intervals [531]
+            xmin = 1409.862
+            xmax = 1411.526
+            text = "[breath] I think they thought it was a passing"
+        intervals [532]
+            xmin = 1411.526
+            xmax = 1414.235
+            text = "phase and I think"
+        intervals [533]
+            xmin = 1414.235
+            xmax = 1420.715
+            text = "they thought I was never gonna [laughs] ever - you know make a divin~[divin] a a decent living or"
+        intervals [534]
+            xmin = 1420.715
+            xmax = 1421.21
+            text = "anything"
+        intervals [535]
+            xmin = 1421.21
+            xmax = 1424.441
+            text = "they probably thought I was gonna live at home the rest of my life 'til I was like eighty - k~"
+        intervals [536]
+            xmin = 1424.441
+            xmax = 1431.616
+            text = ""
+        intervals [537]
+            xmin = 1431.616
+            xmax = 1432.145
+            text = "mmm hmm"
+        intervals [538]
+            xmin = 1432.145
+            xmax = 1446.963
+            text = ""
+        intervals [539]
+            xmin = 1446.963
+            xmax = 1448.078
+            text = "mmm hmm"
+        intervals [540]
+            xmin = 1448.078
+            xmax = 1449.838
+            text = ""
+        intervals [541]
+            xmin = 1449.838
+            xmax = 1451.123
+            text = "mmm hmm"
+        intervals [542]
+            xmin = 1451.123
+            xmax = 1451.125
+            text = ""
+        intervals [543]
+            xmin = 1451.125
+            xmax = 1461.08
+            text = "I think because - you know my parents both were laborers um . you know um - [clicks tongue] and I think because you know I came from"
+        intervals [544]
+            xmin = 1461.08
+            xmax = 1461.51
+            text = ""
+        intervals [545]
+            xmin = 1461.51
+            xmax = 1471.225
+            text = "most of the women of in my family -- up until me - they either - were . maids or or they worked in housekeeping"
+        intervals [546]
+            xmin = 1471.225
+            xmax = 1471.736
+            text = ""
+        intervals [547]
+            xmin = 1471.736
+            xmax = 1480.717
+            text = "that was it [breath] um - they all had dreams . and I would listen to them talk about them [breath] but nobody ever got them"
+        intervals [548]
+            xmin = 1480.717
+            xmax = 1481.201
+            text = ""
+        intervals [549]
+            xmin = 1481.201
+            xmax = 1491.114
+            text = "you know [breath] you would listen to people and it they weren't like [breath] let me go out and make a million dollars it was like you know [breath] I wanna learn how to do hair"
+        intervals [550]
+            xmin = 1491.114
+            xmax = 1491.969
+            text = "but yet"
+        intervals [551]
+            xmin = 1491.969
+            xmax = 1492.044
+            text = ""
+        intervals [552]
+            xmin = 1492.044
+            xmax = 1498.863
+            text = "y~ you're ending up at a um you know a home for the aged[1_Id]"
+        intervals [553]
+            xmin = 1498.863
+            xmax = 1499.83
+            text = "cleaning"
+        intervals [554]
+            xmin = 1499.83
+            xmax = 1499.846
+            text = ""
+        intervals [555]
+            xmin = 1499.846
+            xmax = 1501.195
+            text = "bedpans and stuff"
+        intervals [556]
+            xmin = 1501.195
+            xmax = 1511.611
+            text = "[breath] so part of [breath] you know the pressure that I felt was they they wanted me to to do better and better . from their perspective was different than better from mine"
+        intervals [557]
+            xmin = 1511.611
+            xmax = 1512.032
+            text = ""
+        intervals [558]
+            xmin = 1512.032
+            xmax = 1518.297
+            text = "um . and it took a real long time for - I think for my life to make sense for them"
+        intervals [559]
+            xmin = 1518.297
+            xmax = 1518.935
+            text = ""
+        intervals [560]
+            xmin = 1518.935
+            xmax = 1526.378
+            text = "um and I think um -- that they were my inspiration for wanting . to live my life my way"
+        intervals [561]
+            xmin = 1526.378
+            xmax = 1527.157
+            text = ""
+        intervals [562]
+            xmin = 1527.157
+            xmax = 1527.866
+            text = "you know it was"
+        intervals [563]
+            xmin = 1527.866
+            xmax = 1527.879
+            text = ""
+        intervals [564]
+            xmin = 1527.879
+            xmax = 1528.252
+            text = "like"
+        intervals [565]
+            xmin = 1528.252
+            xmax = 1529.067
+            text = ""
+        intervals [566]
+            xmin = 1529.067
+            xmax = 1536.922
+            text = "I didn't wanna be eighty and think [breath] you know I could've gone to Paris or whatever [breath] all my life I wanted to go to Paris"
+        intervals [567]
+            xmin = 1536.922
+            xmax = 1537.493
+            text = ""
+        intervals [568]
+            xmin = 1537.493
+            xmax = 1541.468
+            text = "and all h~ her life there were things my mom wanted to do"
+        intervals [569]
+            xmin = 1541.468
+            xmax = 1542.181
+            text = ""
+        intervals [570]
+            xmin = 1542.181
+            xmax = 1545.7
+            text = "well she dropped dead of a heart attack at fifty five years old"
+        intervals [571]
+            xmin = 1545.7
+            xmax = 1546.604
+            text = ""
+        intervals [572]
+            xmin = 1546.604
+            xmax = 1551.46
+            text = "so many things that she w~ wanted to do she never did"
+        intervals [573]
+            xmin = 1551.46
+            xmax = 1551.858
+            text = ""
+        intervals [574]
+            xmin = 1551.858
+            xmax = 1561.687
+            text = "and so my whole life has . my work life has been about [breath] what gives me joy what makes me feel good [breath] and where do and how do I get some of my dreams"
+        intervals [575]
+            xmin = 1561.687
+            xmax = 1568.886
+            text = "and now you know - I got to Paris and mmm . it was through work but I got to go to Paris"
+        intervals [576]
+            xmin = 1568.886
+            xmax = 1569.705
+            text = ""
+        intervals [577]
+            xmin = 1569.705
+            xmax = 1573.388
+            text = "you know I got to look around I had fun . a lot of fun"
+        intervals [578]
+            xmin = 1573.388
+            xmax = 1573.398
+            text = ""
+        intervals [579]
+            xmin = 1573.398
+            xmax = 1575.189
+            text = "[laughs]"
+        intervals [580]
+            xmin = 1575.189
+            xmax = 1575.198
+            text = ""
+        intervals [581]
+            xmin = 1575.198
+            xmax = 1584.221
+            text = "uh but you know being a first generation . college graduate was uh really hard - because - you make these shifts in your life"
+        intervals [582]
+            xmin = 1584.221
+            xmax = 1584.761
+            text = ""
+        intervals [583]
+            xmin = 1584.761
+            xmax = 1586.921
+            text = "and it it was really weird"
+        intervals [584]
+            xmin = 1586.921
+            xmax = 1595.393
+            text = "[clicks tongue] I would k~ g~ go home and I'd be one way and I'd have [breath] you know there were things I would say and things I would do"
+        intervals [585]
+            xmin = 1595.393
+            xmax = 1604.255
+            text = "[breath] and it was like when I got off the bu~(bus) bus [breath] and walked on campus [breath] it was like this thing clicked in my head and my"
+        intervals [586]
+            xmin = 1604.255
+            xmax = 1605.035
+            text = ""
+        intervals [587]
+            xmin = 1605.035
+            xmax = 1610.267
+            text = "language was different [breath] - the cadence was different um"
+        intervals [588]
+            xmin = 1610.267
+            xmax = 1617.934
+            text = "[breath] you know the way I tried to carry myself was really different [breath] and it was just - like these shifts"
+        intervals [589]
+            xmin = 1617.934
+            xmax = 1618.674
+            text = ""
+        intervals [590]
+            xmin = 1618.674
+            xmax = 1622.28
+            text = "and I had this psychology class that was taught by a nun"
+        intervals [591]
+            xmin = 1622.28
+            xmax = 1622.752
+            text = ""
+        intervals [592]
+            xmin = 1622.752
+            xmax = 1631.796
+            text = "and I remember at one point telling her [breath] you know . black people make these [breath] unconscious shifts everyday [breath] to survive"
+        intervals [593]
+            xmin = 1631.796
+            xmax = 1632.691
+            text = ""
+        intervals [594]
+            xmin = 1632.691
+            xmax = 1641.938
+            text = "and she was just like what ? I was like yeah . I can't be . who I am with you and be who I need to be with my family"
+        intervals [595]
+            xmin = 1641.938
+            xmax = 1642.446
+            text = ""
+        intervals [596]
+            xmin = 1642.446
+            xmax = 1649.429
+            text = "and my family was really clear like we really love you and we want you to do better [breath] but when you come back here"
+        intervals [597]
+            xmin = 1649.429
+            xmax = 1649.528
+            text = ""
+        intervals [598]
+            xmin = 1649.528
+            xmax = 1656.259
+            text = "you can't flaunt that education you can't [breath] use those big words to impress anybody or embarrass anybody"
+        intervals [599]
+            xmin = 1656.259
+            xmax = 1664.671
+            text = "so it was like constantly making those shifts and i~[I] it was hard it wa~(was) it was hard being first generation -- it was real hard"
+        intervals [600]
+            xmin = 1664.671
+            xmax = 1677.063
+            text = ""
+        intervals [601]
+            xmin = 1677.063
+            xmax = 1677.655
+            text = "[laughs]"
+        intervals [602]
+            xmin = 1677.655
+            xmax = 1678.285
+            text = ""
+        intervals [603]
+            xmin = 1678.285
+            xmax = 1679.032
+            text = "[laughs]"
+        intervals [604]
+            xmin = 1679.032
+            xmax = 1685.441
+            text = ""
+        intervals [605]
+            xmin = 1685.441
+            xmax = 1690.143
+            text = "that's what I . I think all my jobs have been organizing jobs the job titles"
+        intervals [606]
+            xmin = 1690.143
+            xmax = 1696.681
+            text = "are different but [breath] I think essentially whenever you're working in a community and you need to [breath] build consensus"
+        intervals [607]
+            xmin = 1696.681
+            xmax = 1696.691
+            text = ""
+        intervals [608]
+            xmin = 1696.691
+            xmax = 1697.12
+            text = "and you need"
+        intervals [609]
+            xmin = 1697.12
+            xmax = 1697.149
+            text = ""
+        intervals [610]
+            xmin = 1697.149
+            xmax = 1706.049
+            text = "to find [breath] direction uh y~ you need to be an organizer you . sometimes need to . think you have answers or sometimes need to go to meetings"
+        intervals [611]
+            xmin = 1706.049
+            xmax = 1708.952
+            text = "and say I don't have a clue what should we do"
+        intervals [612]
+            xmin = 1708.952
+            xmax = 1709.093
+            text = ""
+        intervals [613]
+            xmin = 1709.093
+            xmax = 1709.401
+            text = "so"
+        intervals [614]
+            xmin = 1709.401
+            xmax = 1710.358
+            text = ""
+        intervals [615]
+            xmin = 1710.358
+            xmax = 1711.103
+            text = "[laughs]"
+        intervals [616]
+            xmin = 1711.103
+            xmax = 1715.014
+            text = "[breath] I am the director of arts and neighborhood development at Hill House"
+        intervals [617]
+            xmin = 1715.014
+            xmax = 1716.129
+            text = "um"
+        intervals [618]
+            xmin = 1716.129
+            xmax = 1719.465
+            text = "[clicks tongue] and I still think of it as a community organizing gig"
+        intervals [619]
+            xmin = 1719.465
+            xmax = 1727.911
+            text = "um [sniffs] you know to get artists who've never worked in the Hill to come in the Hill - requires a set of skills that organizers need you"
+        intervals [620]
+            xmin = 1727.911
+            xmax = 1728.447
+            text = "know"
+        intervals [621]
+            xmin = 1728.447
+            xmax = 1733.408
+            text = "to be able to um - [clicks tongue] to communicate effectively [breath]"
+        intervals [622]
+            xmin = 1733.408
+            xmax = 1739.449
+            text = "to be able to give people this sense of [breath] of urgency um connectedness"
+        intervals [623]
+            xmin = 1739.449
+            xmax = 1739.882
+            text = ""
+        intervals [624]
+            xmin = 1739.882
+            xmax = 1747.893
+            text = "um those are all the skills that it takes to get artists to come into the community [breath] same skills to get [breath] adults and kids"
+        intervals [625]
+            xmin = 1747.893
+            xmax = 1757.761
+            text = "to interact with folks they've never seen before [breath] um and so I~ I~ I've thought of every job I've ever had as as community organizing"
+        intervals [626]
+            xmin = 1757.761
+            xmax = 1763.944
+            text = ""
+        intervals [627]
+            xmin = 1763.944
+            xmax = 1764.601
+            text = "mmm hmm"
+        intervals [628]
+            xmin = 1764.601
+            xmax = 1767.311
+            text = ""
+        intervals [629]
+            xmin = 1767.311
+            xmax = 1768.291
+            text = "mmm hmm"
+        intervals [630]
+            xmin = 1768.291
+            xmax = 1769.434
+            text = ""
+        intervals [631]
+            xmin = 1769.434
+            xmax = 1778.737
+            text = "it's amazing uh -- you know I~ I sometimes think [scoffs] how did I end up with this job - I think that's the story of my life"
+        intervals [632]
+            xmin = 1778.737
+            xmax = 1783.19
+            text = "I just like [breath] I just under a lucky star and just like end up in"
+        intervals [633]
+            xmin = 1783.19
+            xmax = 1784.229
+            text = "these different places"
+        intervals [634]
+            xmin = 1784.229
+            xmax = 1784.689
+            text = ""
+        intervals [635]
+            xmin = 1784.689
+            xmax = 1790.344
+            text = "a year ago . h~ Hill House had an opportunity [breath] to do a summer arts program"
+        intervals [636]
+            xmin = 1790.344
+            xmax = 1790.35
+            text = ""
+        intervals [637]
+            xmin = 1790.35
+            xmax = 1797.367
+            text = "and the boss said [breath] - you know some artists [laughs] you can organize this camp . and [breath]"
+        intervals [638]
+            xmin = 1797.367
+            xmax = 1797.854
+            text = ""
+        intervals [639]
+            xmin = 1797.854
+            xmax = 1802.892
+            text = "it turned into like this -- couldn't be simple [breath]"
+        intervals [640]
+            xmin = 1802.892
+            xmax = 1811.371
+            text = "[unclear] all these artists doing all these classes and some of them went really well and [breath] you know some of some of them didn't go as well as I expected"
+        intervals [641]
+            xmin = 1811.371
+            xmax = 1811.405
+            text = ""
+        intervals [642]
+            xmin = 1811.405
+            xmax = 1811.949
+            text = "but"
+        intervals [643]
+            xmin = 1811.949
+            xmax = 1818.003
+            text = "the whole idea was that these artists had such a good time - working in the Hill they wanna come back"
+        intervals [644]
+            xmin = 1818.003
+            xmax = 1818.047
+            text = ""
+        intervals [645]
+            xmin = 1818.047
+            xmax = 1823.699
+            text = "[breath] because I think this is the coolest neighborhood [breath] and I~ when you get people to come in"
+        intervals [646]
+            xmin = 1823.699
+            xmax = 1824.041
+            text = ""
+        intervals [647]
+            xmin = 1824.041
+            xmax = 1826.55
+            text = "and look around and meet people and"
+        intervals [648]
+            xmin = 1826.55
+            xmax = 1835.02
+            text = "you know have that Pittsburgh experience of [breath] you're a complete stranger and somebody walks up to you and says what are you doing in my neighborhood and why are you looking at that building"
+        intervals [649]
+            xmin = 1835.02
+            xmax = 1835.047
+            text = ""
+        intervals [650]
+            xmin = 1835.047
+            xmax = 1835.929
+            text = "people get"
+        intervals [651]
+            xmin = 1835.929
+            xmax = 1835.934
+            text = ""
+        intervals [652]
+            xmin = 1835.934
+            xmax = 1837.75
+            text = "the sense that this is a cool place"
+        intervals [653]
+            xmin = 1837.75
+            xmax = 1837.781
+            text = ""
+        intervals [654]
+            xmin = 1837.781
+            xmax = 1838.423
+            text = "and um"
+        intervals [655]
+            xmin = 1838.423
+            xmax = 1839.584
+            text = ""
+        intervals [656]
+            xmin = 1839.584
+            xmax = 1848.054
+            text = "so you know I ended up in doing the arts program and -- I was running the program that served women in recovery from drugs and alcohol"
+        intervals [657]
+            xmin = 1848.054
+            xmax = 1848.481
+            text = ""
+        intervals [658]
+            xmin = 1848.481
+            xmax = 1851.156
+            text = "this time last year when I was asked to do the arts programs"
+        intervals [659]
+            xmin = 1851.156
+            xmax = 1852.357
+            text = ""
+        intervals [660]
+            xmin = 1852.357
+            xmax = 1857.517
+            text = "uh just end up ended up here and [breath] it's a nice fit it's a it's a it's a very cool fit"
+        intervals [661]
+            xmin = 1857.517
+            xmax = 1862.9
+            text = ""
+        intervals [662]
+            xmin = 1862.9
+            xmax = 1867.17
+            text = "mmm hmm mmm hmm -- I think um"
+        intervals [663]
+            xmin = 1867.17
+            xmax = 1868.038
+            text = ""
+        intervals [664]
+            xmin = 1868.038
+            xmax = 1868.891
+            text = "[laughs]"
+        intervals [665]
+            xmin = 1868.891
+            xmax = 1869.893
+            text = ""
+        intervals [666]
+            xmin = 1869.893
+            xmax = 1874.921
+            text = "I think sometimes um - I~ I~ i~[I] i~[I] [sighs] uh"
+        intervals [667]
+            xmin = 1874.921
+            xmax = 1875.05
+            text = ""
+        intervals [668]
+            xmin = 1875.05
+            xmax = 1880.525
+            text = "it's like carrying the same concerns that my parents had . [breath] you know do I have enough"
+        intervals [669]
+            xmin = 1880.525
+            xmax = 1881.738
+            text = "money"
+        intervals [670]
+            xmin = 1881.738
+            xmax = 1881.739
+            text = ""
+        intervals [671]
+            xmin = 1881.739
+            xmax = 1882.825
+            text = "is there enough stuff in the"
+        intervals [672]
+            xmin = 1882.825
+            xmax = 1883.968
+            text = "house you"
+        intervals [673]
+            xmin = 1883.968
+            xmax = 1887.939
+            text = "know [breath] um am I gonna make it to be able to pay the bills can"
+        intervals [674]
+            xmin = 1887.939
+            xmax = 1888.496
+            text = "I [breath]"
+        intervals [675]
+            xmin = 1888.496
+            xmax = 1888.539
+            text = ""
+        intervals [676]
+            xmin = 1888.539
+            xmax = 1897.107
+            text = "i~[I] all the same worries that they had I still have 'cause I don't -- think I've ever - looked at myself as anything but working class"
+        intervals [677]
+            xmin = 1897.107
+            xmax = 1897.115
+            text = ""
+        intervals [678]
+            xmin = 1897.115
+            xmax = 1901.23
+            text = "um -- I~ I live in a working class neighborhood"
+        intervals [679]
+            xmin = 1901.23
+            xmax = 1901.695
+            text = ""
+        intervals [680]
+            xmin = 1901.695
+            xmax = 1906.171
+            text = "and I have a lot of friends who like -- live in Shadyside and stuff"
+        intervals [681]
+            xmin = 1906.171
+            xmax = 1906.644
+            text = ""
+        intervals [682]
+            xmin = 1906.644
+            xmax = 1908.58
+            text = "can barely make it"
+        intervals [683]
+            xmin = 1908.58
+            xmax = 1908.843
+            text = ""
+        intervals [684]
+            xmin = 1908.843
+            xmax = 1911.99
+            text = "but it's like [breath] they got the right address"
+        intervals [685]
+            xmin = 1911.99
+            xmax = 1914.348
+            text = ""
+        intervals [686]
+            xmin = 1914.348
+            xmax = 1921.267
+            text = "I got the right neighbors so I'm g~ I'm good I love the building I live in I [breath] I l~ you know I hate great neighbors"
+        intervals [687]
+            xmin = 1921.267
+            xmax = 1921.278
+            text = ""
+        intervals [688]
+            xmin = 1921.278
+            xmax = 1921.826
+            text = "and"
+        intervals [689]
+            xmin = 1921.826
+            xmax = 1923.279
+            text = ""
+        intervals [690]
+            xmin = 1923.279
+            xmax = 1927.304
+            text = "it's convenient I'm not embarrassed about where I live"
+        intervals [691]
+            xmin = 1927.304
+            xmax = 1930.226
+            text = ""
+        intervals [692]
+            xmin = 1930.226
+            xmax = 1930.941
+            text = "so"
+        intervals [693]
+            xmin = 1930.941
+            xmax = 1964.685
+            text = ""
+        intervals [694]
+            xmin = 1964.685
+            xmax = 1967.87
+            text = "I think in terms of history"
+        intervals [695]
+            xmin = 1967.87
+            xmax = 1968.509
+            text = ""
+        intervals [696]
+            xmin = 1968.509
+            xmax = 1974.614
+            text = "I feel real connected I mean [breath] you know I grew up when people ts~[ts] told stories"
+        intervals [697]
+            xmin = 1974.614
+            xmax = 1980.295
+            text = "so I have . I learned community stories I learned family stories um"
+        intervals [698]
+            xmin = 1980.295
+            xmax = 1988.229
+            text = "[breath] when I grew up it wasn't just that I had to understand - the folks who lived in my block on Paulson Avenue"
+        intervals [699]
+            xmin = 1988.229
+            xmax = 1989.146
+            text = ""
+        intervals [700]
+            xmin = 1989.146
+            xmax = 1996.908
+            text = "but I understood -- you know -- I understood the world through my grandmother's experience through my"
+        intervals [701]
+            xmin = 1996.908
+            xmax = 1997.66
+            text = "great grandmother's"
+        intervals [702]
+            xmin = 1997.66
+            xmax = 1997.662
+            text = ""
+        intervals [703]
+            xmin = 1997.662
+            xmax = 1998.464
+            text = "experience"
+        intervals [704]
+            xmin = 1998.464
+            xmax = 1999.092
+            text = "so"
+        intervals [705]
+            xmin = 1999.092
+            xmax = 2006.603
+            text = "I grew up -- listening to a Victrola[vIkJr5l@] and thinking everybody had a Victrola[vIkJr5l@] in their house"
+        intervals [706]
+            xmin = 2006.603
+            xmax = 2007.177
+            text = ""
+        intervals [707]
+            xmin = 2007.177
+            xmax = 2010.619
+            text = "I thought everybody said Victrola[vIkJr5l@]"
+        intervals [708]
+            xmin = 2010.619
+            xmax = 2019.7
+            text = "'cause my grandmother - had an old one that wound up and then even when they got like a little stereo thing [breath] everybody said Victrola[vIkJr5l@]"
+        intervals [709]
+            xmin = 2019.7
+            xmax = 2025.133
+            text = "and so it's like in my mind [breath] - because I grew up with generations"
+        intervals [710]
+            xmin = 2025.133
+            xmax = 2025.61
+            text = ""
+        intervals [711]
+            xmin = 2025.61
+            xmax = 2032.522
+            text = "my grandmother's experience and what the depression was like and [breath] what she had to do and what the world was like [breath]"
+        intervals [712]
+            xmin = 2032.522
+            xmax = 2037.982
+            text = "it's part of my experience -- same for my grandmother [breath] same for my mom"
+        intervals [713]
+            xmin = 2037.982
+            xmax = 2039.017
+            text = ""
+        intervals [714]
+            xmin = 2039.017
+            xmax = 2042.564
+            text = "and so I have a I have this great sense of connection"
+        intervals [715]
+            xmin = 2042.564
+            xmax = 2042.936
+            text = ""
+        intervals [716]
+            xmin = 2042.936
+            xmax = 2048.029
+            text = "to history - I don't feel like I'm real connected to young people"
+        intervals [717]
+            xmin = 2048.029
+            xmax = 2055.748
+            text = "I feel like it's a completely different world and [breath] sometimes I feel so old like [breath] I'm not even sure if what"
+        intervals [718]
+            xmin = 2055.748
+            xmax = 2056.463
+            text = ""
+        intervals [719]
+            xmin = 2056.463
+            xmax = 2062.778
+            text = "if my view of the world wo~[w@] it would be relevant to them 'cause I grew up with different sensibilities and"
+        intervals [720]
+            xmin = 2062.778
+            xmax = 2063.429
+            text = ""
+        intervals [721]
+            xmin = 2063.429
+            xmax = 2068.073
+            text = "I feel myself getting old 'cause I'm saying things I heard my mom and my grandmother say"
+        intervals [722]
+            xmin = 2068.073
+            xmax = 2068.084
+            text = ""
+        intervals [723]
+            xmin = 2068.084
+            xmax = 2069.162
+            text = "like"
+        intervals [724]
+            xmin = 2069.162
+            xmax = 2069.179
+            text = ""
+        intervals [725]
+            xmin = 2069.179
+            xmax = 2073.765
+            text = "if her mother made her wear her pants down around her butt she wouldn't want to wear them out"
+        intervals [726]
+            xmin = 2073.765
+            xmax = 2074.334
+            text = "you know ? you"
+        intervals [727]
+            xmin = 2074.334
+            xmax = 2074.344
+            text = ""
+        intervals [728]
+            xmin = 2074.344
+            xmax = 2078.62
+            text = "know I'm looking at young people and so [breath] I'm real clear"
+        intervals [729]
+            xmin = 2078.62
+            xmax = 2088.823
+            text = "that they're that I'm getting older - that I'm old-fashioned that I have a whole different worldview [breath] and I'm all right that they have theirs I just think that"
+        intervals [730]
+            xmin = 2088.823
+            xmax = 2097.689
+            text = "[breath] there are other people [breath] who um - can work better with young people 'cause they got a different sense [breath] of how they relate to young people"
+        intervals [731]
+            xmin = 2097.689
+            xmax = 2097.719
+            text = ""
+        intervals [732]
+            xmin = 2097.719
+            xmax = 2098.424
+            text = "I'm just"
+        intervals [733]
+            xmin = 2098.424
+            xmax = 2098.428
+            text = ""
+        intervals [734]
+            xmin = 2098.428
+            xmax = 2099.149
+            text = "old"
+        intervals [735]
+            xmin = 2099.149
+            xmax = 2099.698
+            text = "I've always"
+        intervals [736]
+            xmin = 2099.698
+            xmax = 2108.509
+            text = "been old for my age so I feel like [breath] you know there are people who um . understand the language - can be real open to all of that and"
+        intervals [737]
+            xmin = 2108.509
+            xmax = 2109.134
+            text = ""
+        intervals [738]
+            xmin = 2109.134
+            xmax = 2110.487
+            text = "can do it better than I do"
+        intervals [739]
+            xmin = 2110.487
+            xmax = 2110.956
+            text = "I mean I"
+        intervals [740]
+            xmin = 2110.956
+            xmax = 2110.968
+            text = ""
+        intervals [741]
+            xmin = 2110.968
+            xmax = 2119.48
+            text = "listen to the music and all that kinds of stuff [breath] but I don't I'm not gonna kid myself and say I can sit down and talk to a seventeen year old girl -- 'cause I don't feel like I could"
+        intervals [742]
+            xmin = 2119.48
+            xmax = 2119.482
+            text = ""
+        intervals [743]
+            xmin = 2119.482
+            xmax = 2119.882
+            text = "there's"
+        intervals [744]
+            xmin = 2119.882
+            xmax = 2122.123
+            text = "just many other people - who can"
+        intervals [745]
+            xmin = 2122.123
+            xmax = 2130.697
+            text = "[clicks tongue] so so I try to - keep the continuity going by [breath] -- connecting young people to elders who"
+        intervals [746]
+            xmin = 2130.697
+            xmax = 2131.62
+            text = "tell stories"
+        intervals [747]
+            xmin = 2131.62
+            xmax = 2140.37
+            text = ""
+        intervals [748]
+            xmin = 2140.37
+            xmax = 2141.047
+            text = "mmm hmm"
+        intervals [749]
+            xmin = 2141.047
+            xmax = 2142.293
+            text = ""
+        intervals [750]
+            xmin = 2142.293
+            xmax = 2143.37
+            text = "mmm hmm"
+        intervals [751]
+            xmin = 2143.37
+            xmax = 2145.657
+            text = ""
+        intervals [752]
+            xmin = 2145.657
+            xmax = 2146.327
+            text = "mmm hmm"
+        intervals [753]
+            xmin = 2146.327
+            xmax = 2155.056
+            text = ""
+        intervals [754]
+            xmin = 2155.056
+            xmax = 2155.657
+            text = "mmm"
+        intervals [755]
+            xmin = 2155.657
+            xmax = 2156.361
+            text = "mmm hmm"
+        intervals [756]
+            xmin = 2156.361
+            xmax = 2159.04
+            text = ""
+        intervals [757]
+            xmin = 2159.04
+            xmax = 2159.673
+            text = "[unclear]"
+        intervals [758]
+            xmin = 2159.673
+            xmax = 2160.716
+            text = ""
+        intervals [759]
+            xmin = 2160.716
+            xmax = 2161.057
+            text = "it's"
+        intervals [760]
+            xmin = 2161.057
+            xmax = 2162.078
+            text = "gone"
+        intervals [761]
+            xmin = 2162.078
+            xmax = 2162.106
+            text = ""
+        intervals [762]
+            xmin = 2162.106
+            xmax = 2172.508
+            text = "yeah 'cause it's . you know . it's funny [scoffs] when I bring - students into the Hill and . and introduce them to elders"
+        intervals [763]
+            xmin = 2172.508
+            xmax = 2179.917
+            text = "it's . it's almost like most of the white students that come here [breath] understand the importance of reading history"
+        intervals [764]
+            xmin = 2179.917
+            xmax = 2180.571
+            text = ""
+        intervals [765]
+            xmin = 2180.571
+            xmax = 2187.959
+            text = "experiencing it through somebody else's life [breath] hearing the stories and doing it with a a great degree of respect "
+        intervals [766]
+            xmin = 2187.959
+            xmax = 2188.593
+            text = ""
+        intervals [767]
+            xmin = 2188.593
+            xmax = 2194.542
+            text = "and it's really hard sometimes when young black people [breath] you try to hook them up with the elders it's like [clicks tongue] [breath]"
+        intervals [768]
+            xmin = 2194.542
+            xmax = 2203.188
+            text = "they're old and [breath] I don't know how you bridge the yeah they're old [breath] but s~ in something that they're saying [breath] is"
+        intervals [769]
+            xmin = 2203.188
+            xmax = 2204.032
+            text = ""
+        intervals [770]
+            xmin = 2204.032
+            xmax = 2204.942
+            text = "a kernel of"
+        intervals [771]
+            xmin = 2204.942
+            xmax = 2205.688
+            text = "truth"
+        intervals [772]
+            xmin = 2205.688
+            xmax = 2206.161
+            text = "or"
+        intervals [773]
+            xmin = 2206.161
+            xmax = 2206.188
+            text = ""
+        intervals [774]
+            xmin = 2206.188
+            xmax = 2211.06
+            text = "[breath] something to hold onto or [breath] some different way to think about the world and"
+        intervals [775]
+            xmin = 2211.06
+            xmax = 2211.66
+            text = "I think"
+        intervals [776]
+            xmin = 2211.66
+            xmax = 2211.718
+            text = ""
+        intervals [777]
+            xmin = 2211.718
+            xmax = 2218.387
+            text = "for me that is just the hardest thing [breath] and I think it's because I grew up at a time where"
+        intervals [778]
+            xmin = 2218.387
+            xmax = 2219.175
+            text = ""
+        intervals [779]
+            xmin = 2219.175
+            xmax = 2225.887
+            text = "literally the block I grew up in - it was us it was my grandmother my great grandmother"
+        intervals [780]
+            xmin = 2225.887
+            xmax = 2233.685
+            text = "my grandmother's sister [breath] all the neighbors who stayed there all the time and so [breath] . it was almost like"
+        intervals [781]
+            xmin = 2233.685
+            xmax = 2234.11
+            text = ""
+        intervals [782]
+            xmin = 2234.11
+            xmax = 2240.278
+            text = "you couldn't live in that existence . and not be touched by somebody's story"
+        intervals [783]
+            xmin = 2240.278
+            xmax = 2241.332
+            text = "and it's not like"
+        intervals [784]
+            xmin = 2241.332
+            xmax = 2241.393
+            text = ""
+        intervals [785]
+            xmin = 2241.393
+            xmax = 2247.014
+            text = "they would sit down and say I'm gonna tell you a story but [breath] like I would stay at my grandmother's house"
+        intervals [786]
+            xmin = 2247.014
+            xmax = 2255.968
+            text = "and . she would tell me things . or she would show me a picture or - we had this ritual I stayed with my grandmother when I was little"
+        intervals [787]
+            xmin = 2255.968
+            xmax = 2265.439
+            text = "and - up until I graduated from college and she passed away [breath] I stayed there every weekend - we slept in the same bed . and we had these rituals"
+        intervals [788]
+            xmin = 2265.439
+            xmax = 2272.279
+            text = "[clicks tongue] and um - you know we'd eat dinner together and then we'd watch the news and she had this ritual about"
+        intervals [789]
+            xmin = 2272.279
+            xmax = 2279.799
+            text = "[breath] turning off certain lights turning on certain lights locking doors at a certain time pulling down the shades she had this whole ritual [breath]"
+        intervals [790]
+            xmin = 2279.799
+            xmax = 2285.499
+            text = "we'd watch the news turn off the l~ the lights and the T V at eleven thirty"
+        intervals [791]
+            xmin = 2285.499
+            xmax = 2285.719
+            text = ""
+        intervals [792]
+            xmin = 2285.719
+            xmax = 2294.679
+            text = "[clicks tongue] she'd ask me about my day she'd tell me about her day [breath] she'd te~[tE] may tell me some other family stuff [breath] and then I would listen to her say her prayers"
+        intervals [793]
+            xmin = 2294.679
+            xmax = 2303.163
+            text = "and I learned a lot about my grandmother's life -- from - the things that she prayed for and the things that she prayed about"
+        intervals [794]
+            xmin = 2303.163
+            xmax = 2304.02
+            text = ""
+        intervals [795]
+            xmin = 2304.02
+            xmax = 2310.719
+            text = "and it's you know kids don't do that [breath] and they don't sleep with their grandmother and . and listen or they don't"
+        intervals [796]
+            xmin = 2310.719
+            xmax = 2319.46
+            text = "you know she would make food and [breath] my grandmother . never measured anything . and she was one of those just a pinch what's that ?"
+        intervals [797]
+            xmin = 2319.46
+            xmax = 2319.48
+            text = ""
+        intervals [798]
+            xmin = 2319.48
+            xmax = 2322.18
+            text = "it's a pinch"
+        intervals [799]
+            xmin = 2322.18
+            xmax = 2322.86
+            text = "you know and"
+        intervals [800]
+            xmin = 2322.86
+            xmax = 2323.96
+            text = "like"
+        intervals [801]
+            xmin = 2323.96
+            xmax = 2324.012
+            text = ""
+        intervals [802]
+            xmin = 2324.012
+            xmax = 2329.079
+            text = "m~ m~ being with my grandmother while she was cooking at the time I was like [breath]"
+        intervals [803]
+            xmin = 2329.079
+            xmax = 2334.599
+            text = "sometimes it was boring . but looking back I thought [breath] we spent hours in that kitchen"
+        intervals [804]
+            xmin = 2334.599
+            xmax = 2342.579
+            text = "and she put love in that food and [breath] you know she was teaching me that [breath] nothing is exact life isn't exact"
+        intervals [805]
+            xmin = 2342.579
+            xmax = 2348.849
+            text = "[breath] it's a little bit of this and i~[I] it's an experiment - you try this it doesn't work you try something else"
+        intervals [806]
+            xmin = 2348.849
+            xmax = 2358.444
+            text = "and I'm thinking all the lessons that she taught me [breath] just by saying . you gotta feel it [breath] you just gotta look at it it's gotta fit in your hand . you gotta figure it out"
+        intervals [807]
+            xmin = 2358.444
+            xmax = 2359.055
+            text = ""
+        intervals [808]
+            xmin = 2359.055
+            xmax = 2366.119
+            text = "kids don't do that they play games they watch . T V you know you know what I mean ? [breath] so they don't sit and have"
+        intervals [809]
+            xmin = 2366.119
+            xmax = 2376.195
+            text = "those moments where they just absorb something [breath] and it doesn't make sense until  - thirty years later - you see they don't have that sense of"
+        intervals [810]
+            xmin = 2376.195
+            xmax = 2376.201
+            text = ""
+        intervals [811]
+            xmin = 2376.201
+            xmax = 2377.521
+            text = "I'm connected"
+        intervals [812]
+            xmin = 2377.521
+            xmax = 2377.541
+            text = ""
+        intervals [813]
+            xmin = 2377.541
+            xmax = 2378.282
+            text = "to the world"
+        intervals [814]
+            xmin = 2378.282
+            xmax = 2378.741
+            text = ""
+        intervals [815]
+            xmin = 2378.741
+            xmax = 2386.461
+            text = "'cause I'm connected to somebody who was here before [breath] and everything that happened to her - shaped her - shapes me"
+        intervals [816]
+            xmin = 2386.461
+            xmax = 2386.668
+            text = ""
+        intervals [817]
+            xmin = 2386.668
+            xmax = 2390.577
+            text = "so i~[I] you know - I don't know how you bridge that"
+        intervals [818]
+            xmin = 2390.577
+            xmax = 2399.455
+            text = "I know uh I'm hoping that there's somebody out there that can help [breath] bridge that 'cause I meet young people [breath] and it's like their sense of of the world"
+        intervals [819]
+            xmin = 2399.455
+            xmax = 2404.374
+            text = "started in . nineteen -- ninety two"
+        intervals [820]
+            xmin = 2404.374
+            xmax = 2404.86
+            text = ""
+        intervals [821]
+            xmin = 2404.86
+            xmax = 2411.718
+            text = "like they you know [breath] everything before that was old  well yeah mmm old is relative but yes old"
+        intervals [822]
+            xmin = 2411.718
+            xmax = 2414.993
+            text = "and we still need to know it"
+        intervals [823]
+            xmin = 2414.993
+            xmax = 2416.193
+            text = ""
+        intervals [824]
+            xmin = 2416.193
+            xmax = 2416.949
+            text = "[unclear]"
+        intervals [825]
+            xmin = 2416.949
+            xmax = 2417.148
+            text = ""
+    item[2]:
+        class = "IntervalTier"
+        name = "Interviewer HD06"
+        xmin = 0.0
+        xmax = 2417.148
+        intervals: size = 536
+        intervals [1]
+            xmin = 0.0
+            xmax = 3.523
+            text = ""
+        intervals [2]
+            xmin = 3.523
+            xmax = 5.499
+            text = "okay NAME uh [clears throat]"
+        intervals [3]
+            xmin = 5.499
+            xmax = 6.037
+            text = ""
+        intervals [4]
+            xmin = 6.037
+            xmax = 7.436
+            text = "where were you born at ?"
+        intervals [5]
+            xmin = 7.436
+            xmax = 9.3
+            text = ""
+        intervals [6]
+            xmin = 9.3
+            xmax = 9.897
+            text = "Pittsburgh"
+        intervals [7]
+            xmin = 9.897
+            xmax = 10.305
+            text = ""
+        intervals [8]
+            xmin = 10.305
+            xmax = 11.184
+            text = "what neighborhood ?"
+        intervals [9]
+            xmin = 11.184
+            xmax = 11.251
+            text = ""
+        intervals [10]
+            xmin = 11.251
+            xmax = 12.422
+            text = "did you grow up in ?"
+        intervals [11]
+            xmin = 12.422
+            xmax = 13.619
+            text = ""
+        intervals [12]
+            xmin = 13.619
+            xmax = 14.335
+            text = "S'Liberty[slIv3di]"
+        intervals [13]
+            xmin = 14.335
+            xmax = 15.31
+            text = ""
+        intervals [14]
+            xmin = 15.31
+            xmax = 17.812
+            text = "[laughs] [breath]"
+        intervals [15]
+            xmin = 17.812
+            xmax = 17.832
+            text = ""
+        intervals [16]
+            xmin = 17.832
+            xmax = 20.717
+            text = "okay . when was that like. when were you"
+        intervals [17]
+            xmin = 20.717
+            xmax = 22.009
+            text = ""
+        intervals [18]
+            xmin = 22.009
+            xmax = 22.391
+            text = "yeah"
+        intervals [19]
+            xmin = 22.391
+            xmax = 24.072
+            text = ""
+        intervals [20]
+            xmin = 24.072
+            xmax = 31.365
+            text = "okay - so you've . have you lived . did you live in East Liberty . basically a majority of your adolescence and s~ and"
+        intervals [21]
+            xmin = 31.365
+            xmax = 31.847
+            text = ""
+        intervals [22]
+            xmin = 31.847
+            xmax = 32.562
+            text = "childhood ?"
+        intervals [23]
+            xmin = 32.562
+            xmax = 35.889
+            text = ""
+        intervals [24]
+            xmin = 35.889
+            xmax = 37.082
+            text = "okay - and"
+        intervals [25]
+            xmin = 37.082
+            xmax = 37.084
+            text = ""
+        intervals [26]
+            xmin = 37.084
+            xmax = 37.394
+            text = "then you"
+        intervals [27]
+            xmin = 37.394
+            xmax = 37.416
+            text = ""
+        intervals [28]
+            xmin = 37.416
+            xmax = 38.164
+            text = "moved to"
+        intervals [29]
+            xmin = 38.164
+            xmax = 39.024
+            text = ""
+        intervals [30]
+            xmin = 39.024
+            xmax = 39.652
+            text = "Wilkinsburg ?"
+        intervals [31]
+            xmin = 39.652
+            xmax = 40.192
+            text = ""
+        intervals [32]
+            xmin = 40.192
+            xmax = 44.879
+            text = "okay - um - have you travelled ou~[6] . much outside of Pittsburgh ?"
+        intervals [33]
+            xmin = 44.879
+            xmax = 45.504
+            text = ""
+        intervals [34]
+            xmin = 45.504
+            xmax = 46.896
+            text = "where you been I know"
+        intervals [35]
+            xmin = 46.896
+            xmax = 46.899
+            text = ""
+        intervals [36]
+            xmin = 46.899
+            xmax = 47.401
+            text = "you and I"
+        intervals [37]
+            xmin = 47.401
+            xmax = 47.406
+            text = ""
+        intervals [38]
+            xmin = 47.406
+            xmax = 50.221
+            text = "talked [breath] plethora about [laughs]"
+        intervals [39]
+            xmin = 50.221
+            xmax = 50.223
+            text = ""
+        intervals [40]
+            xmin = 50.223
+            xmax = 50.775
+            text = "all of"
+        intervals [41]
+            xmin = 50.775
+            xmax = 53.398
+            text = "the the [breath] the places you've been"
+        intervals [42]
+            xmin = 53.398
+            xmax = 64.096
+            text = ""
+        intervals [43]
+            xmin = 64.096
+            xmax = 64.802
+            text = "wow"
+        intervals [44]
+            xmin = 64.802
+            xmax = 70.73
+            text = ""
+        intervals [45]
+            xmin = 70.73
+            xmax = 71.513
+            text = "okay"
+        intervals [46]
+            xmin = 71.513
+            xmax = 72.054
+            text = ""
+        intervals [47]
+            xmin = 72.054
+            xmax = 72.927
+            text = "okay"
+        intervals [48]
+            xmin = 72.927
+            xmax = 78.433
+            text = ""
+        intervals [49]
+            xmin = 78.433
+            xmax = 79.383
+            text = "mmm [breath]"
+        intervals [50]
+            xmin = 79.383
+            xmax = 80.448
+            text = "wow"
+        intervals [51]
+            xmin = 80.448
+            xmax = 80.507
+            text = ""
+        intervals [52]
+            xmin = 80.507
+            xmax = 83.374
+            text = "you have . you are a well travelled woman"
+        intervals [53]
+            xmin = 83.374
+            xmax = 90.327
+            text = ""
+        intervals [54]
+            xmin = 90.327
+            xmax = 90.973
+            text = "really ?"
+        intervals [55]
+            xmin = 90.973
+            xmax = 91.567
+            text = ""
+        intervals [56]
+            xmin = 91.567
+            xmax = 96.704
+            text = "so have you - you've never actually just gone on a vacation and and just"
+        intervals [57]
+            xmin = 96.704
+            xmax = 106.949
+            text = ""
+        intervals [58]
+            xmin = 106.949
+            xmax = 107.784
+            text = "okay"
+        intervals [59]
+            xmin = 107.784
+            xmax = 110.309
+            text = ""
+        intervals [60]
+            xmin = 110.309
+            xmax = 110.679
+            text = "mmm hmm"
+        intervals [61]
+            xmin = 110.679
+            xmax = 114.567
+            text = ""
+        intervals [62]
+            xmin = 114.567
+            xmax = 115.085
+            text = "mmm"
+        intervals [63]
+            xmin = 115.085
+            xmax = 122.861
+            text = ""
+        intervals [64]
+            xmin = 122.861
+            xmax = 123.441
+            text = "mmm hmm"
+        intervals [65]
+            xmin = 123.441
+            xmax = 128.276
+            text = ""
+        intervals [66]
+            xmin = 128.276
+            xmax = 129.174
+            text = "mmm hmm"
+        intervals [67]
+            xmin = 129.174
+            xmax = 130.557
+            text = ""
+        intervals [68]
+            xmin = 130.557
+            xmax = 131.249
+            text = "really ?"
+        intervals [69]
+            xmin = 131.249
+            xmax = 153.779
+            text = ""
+        intervals [70]
+            xmin = 153.779
+            xmax = 154.357
+            text = "okay"
+        intervals [71]
+            xmin = 154.357
+            xmax = 156.723
+            text = ""
+        intervals [72]
+            xmin = 156.723
+            xmax = 157.505
+            text = "really ?"
+        intervals [73]
+            xmin = 157.505
+            xmax = 169.472
+            text = ""
+        intervals [74]
+            xmin = 169.472
+            xmax = 173.485
+            text = "so you hadn't travelled in the other way except through trains before"
+        intervals [75]
+            xmin = 173.485
+            xmax = 174.478
+            text = ""
+        intervals [76]
+            xmin = 174.478
+            xmax = 175.149
+            text = "okay"
+        intervals [77]
+            xmin = 175.149
+            xmax = 181.271
+            text = ""
+        intervals [78]
+            xmin = 181.271
+            xmax = 181.941
+            text = "mmm hmm"
+        intervals [79]
+            xmin = 181.941
+            xmax = 182.627
+            text = ""
+        intervals [80]
+            xmin = 182.627
+            xmax = 183.287
+            text = "wow"
+        intervals [81]
+            xmin = 183.287
+            xmax = 183.936
+            text = ""
+        intervals [82]
+            xmin = 183.936
+            xmax = 185.133
+            text = "that's interesting"
+        intervals [83]
+            xmin = 185.133
+            xmax = 185.856
+            text = ""
+        intervals [84]
+            xmin = 185.856
+            xmax = 189.074
+            text = "[clears throat] so [clears throat] are your parents retired ?"
+        intervals [85]
+            xmin = 189.074
+            xmax = 190.941
+            text = ""
+        intervals [86]
+            xmin = 190.941
+            xmax = 191.523
+            text = "okay"
+        intervals [87]
+            xmin = 191.523
+            xmax = 194.788
+            text = ""
+        intervals [88]
+            xmin = 194.788
+            xmax = 195.442
+            text = "okay"
+        intervals [89]
+            xmin = 195.442
+            xmax = 197.323
+            text = ""
+        intervals [90]
+            xmin = 197.323
+            xmax = 201.786
+            text = "so when you were growing up then what did your parents do for a living did they"
+        intervals [91]
+            xmin = 201.786
+            xmax = 203.133
+            text = "um work in"
+        intervals [92]
+            xmin = 203.133
+            xmax = 203.15
+            text = ""
+        intervals [93]
+            xmin = 203.15
+            xmax = 204.312
+            text = "the city or ?"
+        intervals [94]
+            xmin = 204.312
+            xmax = 211.922
+            text = ""
+        intervals [95]
+            xmin = 211.922
+            xmax = 218.586
+            text = "okay - and you guys did you feel that you probably were a part of the working class or the middle class coming up ?"
+        intervals [96]
+            xmin = 218.586
+            xmax = 219.948
+            text = ""
+        intervals [97]
+            xmin = 219.948
+            xmax = 220.421
+            text = "mmm hmm"
+        intervals [98]
+            xmin = 220.421
+            xmax = 220.861
+            text = ""
+        intervals [99]
+            xmin = 220.861
+            xmax = 222.981
+            text = "mmm hmm . and um"
+        intervals [100]
+            xmin = 222.981
+            xmax = 223.895
+            text = ""
+        intervals [101]
+            xmin = 223.895
+            xmax = 226.053
+            text = "so what school did you go to in what"
+        intervals [102]
+            xmin = 226.053
+            xmax = 226.057
+            text = ""
+        intervals [103]
+            xmin = 226.057
+            xmax = 228.381
+            text = "neighborhood ? [laughs]"
+        intervals [104]
+            xmin = 228.381
+            xmax = 263.119
+            text = ""
+        intervals [105]
+            xmin = 263.119
+            xmax = 263.918
+            text = "hmm"
+        intervals [106]
+            xmin = 263.918
+            xmax = 275.499
+            text = ""
+        intervals [107]
+            xmin = 275.499
+            xmax = 276.046
+            text = "mmm hmm"
+        intervals [108]
+            xmin = 276.046
+            xmax = 285.412
+            text = ""
+        intervals [109]
+            xmin = 285.412
+            xmax = 286.196
+            text = "[laughs]"
+        intervals [110]
+            xmin = 286.196
+            xmax = 287.335
+            text = "but your parents"
+        intervals [111]
+            xmin = 287.335
+            xmax = 288.254
+            text = "made you go there"
+        intervals [112]
+            xmin = 288.254
+            xmax = 288.71
+            text = "though ?"
+        intervals [113]
+            xmin = 288.71
+            xmax = 289.507
+            text = ""
+        intervals [114]
+            xmin = 289.507
+            xmax = 294.907
+            text = "are you guys . are you um - you you practiced Muslim religion when you were coming up ?"
+        intervals [115]
+            xmin = 294.907
+            xmax = 295.681
+            text = ""
+        intervals [116]
+            xmin = 295.681
+            xmax = 296.313
+            text = "okay"
+        intervals [117]
+            xmin = 296.313
+            xmax = 311.164
+            text = ""
+        intervals [118]
+            xmin = 311.164
+            xmax = 311.769
+            text = "mmm hmm"
+        intervals [119]
+            xmin = 311.769
+            xmax = 333.791
+            text = ""
+        intervals [120]
+            xmin = 333.791
+            xmax = 334.399
+            text = "mmm hmm"
+        intervals [121]
+            xmin = 334.399
+            xmax = 341.578
+            text = ""
+        intervals [122]
+            xmin = 341.578
+            xmax = 343.354
+            text = "[laughs]"
+        intervals [123]
+            xmin = 343.354
+            xmax = 347.088
+            text = ""
+        intervals [124]
+            xmin = 347.088
+            xmax = 347.674
+            text = "right"
+        intervals [125]
+            xmin = 347.674
+            xmax = 361.696
+            text = ""
+        intervals [126]
+            xmin = 361.696
+            xmax = 362.374
+            text = "wow"
+        intervals [127]
+            xmin = 362.374
+            xmax = 375.13
+            text = ""
+        intervals [128]
+            xmin = 375.13
+            xmax = 380.881
+            text = "so the the school that you went to then um was what sect of Islam was that ?"
+        intervals [129]
+            xmin = 380.881
+            xmax = 381.363
+            text = "then"
+        intervals [130]
+            xmin = 381.363
+            xmax = 382.295
+            text = ""
+        intervals [131]
+            xmin = 382.295
+            xmax = 382.929
+            text = "okay"
+        intervals [132]
+            xmin = 382.929
+            xmax = 391.884
+            text = ""
+        intervals [133]
+            xmin = 391.884
+            xmax = 392.7
+            text = "wow"
+        intervals [134]
+            xmin = 392.7
+            xmax = 402.971
+            text = ""
+        intervals [135]
+            xmin = 402.971
+            xmax = 403.893
+            text = "and empower them ?"
+        intervals [136]
+            xmin = 403.893
+            xmax = 404.625
+            text = ""
+        intervals [137]
+            xmin = 404.625
+            xmax = 405.053
+            text = "yeah"
+        intervals [138]
+            xmin = 405.053
+            xmax = 409.391
+            text = ""
+        intervals [139]
+            xmin = 409.391
+            xmax = 409.753
+            text = "mmm hmm"
+        intervals [140]
+            xmin = 409.753
+            xmax = 410.869
+            text = ""
+        intervals [141]
+            xmin = 410.869
+            xmax = 411.24
+            text = "uh huh"
+        intervals [142]
+            xmin = 411.24
+            xmax = 413.154
+            text = ""
+        intervals [143]
+            xmin = 413.154
+            xmax = 413.601
+            text = "mmm hmm"
+        intervals [144]
+            xmin = 413.601
+            xmax = 429.066
+            text = ""
+        intervals [145]
+            xmin = 429.066
+            xmax = 429.643
+            text = "mmm hmm"
+        intervals [146]
+            xmin = 429.643
+            xmax = 429.978
+            text = ""
+        intervals [147]
+            xmin = 429.978
+            xmax = 430.397
+            text = "yeah"
+        intervals [148]
+            xmin = 430.397
+            xmax = 439.557
+            text = ""
+        intervals [149]
+            xmin = 439.557
+            xmax = 440.332
+            text = "wow"
+        intervals [150]
+            xmin = 440.332
+            xmax = 471.189
+            text = ""
+        intervals [151]
+            xmin = 471.189
+            xmax = 477.43
+            text = "but do you think that that you - that experience in and of itself if you wouldn't've gone through that "
+        intervals [152]
+            xmin = 477.43
+            xmax = 477.708
+            text = ""
+        intervals [153]
+            xmin = 477.708
+            xmax = 483.32
+            text = "um - how how much uh growing did you really do . by actually being a part of"
+        intervals [154]
+            xmin = 483.32
+            xmax = 484.071
+            text = "a g~ program"
+        intervals [155]
+            xmin = 484.071
+            xmax = 484.081
+            text = ""
+        intervals [156]
+            xmin = 484.081
+            xmax = 484.705
+            text = "like that ?"
+        intervals [157]
+            xmin = 484.705
+            xmax = 485.452
+            text = ""
+        intervals [158]
+            xmin = 485.452
+            xmax = 488.657
+            text = "and being around people who were coming from different"
+        intervals [159]
+            xmin = 488.657
+            xmax = 490.213
+            text = "backgrounds obviously"
+        intervals [160]
+            xmin = 490.213
+            xmax = 491.218
+            text = "through Upward"
+        intervals [161]
+            xmin = 491.218
+            xmax = 492.103
+            text = "Bound you're"
+        intervals [162]
+            xmin = 492.103
+            xmax = 492.178
+            text = ""
+        intervals [163]
+            xmin = 492.178
+            xmax = 493.049
+            text = "it's a great opportunity to be with a lot of smart kids right ?"
+        intervals [164]
+            xmin = 493.049
+            xmax = 494.079
+            text = "opportunity to be"
+        intervals [165]
+            xmin = 494.079
+            xmax = 494.081
+            text = ""
+        intervals [166]
+            xmin = 494.081
+            xmax = 495.611
+            text = "with a lot of smart kids right ?"
+        intervals [167]
+            xmin = 495.611
+            xmax = 513.581
+            text = ""
+        intervals [168]
+            xmin = 513.581
+            xmax = 514.28
+            text = "mmm hmm"
+        intervals [169]
+            xmin = 514.28
+            xmax = 526.378
+            text = ""
+        intervals [170]
+            xmin = 526.378
+            xmax = 527.172
+            text = "wow"
+        intervals [171]
+            xmin = 527.172
+            xmax = 529.078
+            text = ""
+        intervals [172]
+            xmin = 529.078
+            xmax = 529.529
+            text = "mmm hmm"
+        intervals [173]
+            xmin = 529.529
+            xmax = 542.562
+            text = ""
+        intervals [174]
+            xmin = 542.562
+            xmax = 544.654
+            text = "[laughs]"
+        intervals [175]
+            xmin = 544.654
+            xmax = 545.571
+            text = "[breath]"
+        intervals [176]
+            xmin = 545.571
+            xmax = 562.551
+            text = ""
+        intervals [177]
+            xmin = 562.551
+            xmax = 563.431
+            text = "earning it"
+        intervals [178]
+            xmin = 563.431
+            xmax = 574.577
+            text = ""
+        intervals [179]
+            xmin = 574.577
+            xmax = 575.113
+            text = "mmm hmm"
+        intervals [180]
+            xmin = 575.113
+            xmax = 576.842
+            text = "mmm hmm mmm hmm"
+        intervals [181]
+            xmin = 576.842
+            xmax = 578.484
+            text = ""
+        intervals [182]
+            xmin = 578.484
+            xmax = 579.175
+            text = "mmm hmm"
+        intervals [183]
+            xmin = 579.175
+            xmax = 604.024
+            text = ""
+        intervals [184]
+            xmin = 604.024
+            xmax = 604.642
+            text = "wow"
+        intervals [185]
+            xmin = 604.642
+            xmax = 627.479
+            text = ""
+        intervals [186]
+            xmin = 627.479
+            xmax = 627.752
+            text = "and that"
+        intervals [187]
+            xmin = 627.752
+            xmax = 627.755
+            text = ""
+        intervals [188]
+            xmin = 627.755
+            xmax = 628.711
+            text = "was in high school ?"
+        intervals [189]
+            xmin = 628.711
+            xmax = 630.253
+            text = ""
+        intervals [190]
+            xmin = 630.253
+            xmax = 635.299
+            text = "so you went to um what hi~(high) what college did you then go to"
+        intervals [191]
+            xmin = 635.299
+            xmax = 635.699
+            text = ""
+        intervals [192]
+            xmin = 635.699
+            xmax = 636.631
+            text = "when you graduated ?"
+        intervals [193]
+            xmin = 636.631
+            xmax = 638.619
+            text = ""
+        intervals [194]
+            xmin = 638.619
+            xmax = 639.193
+            text = "Duquesne"
+        intervals [195]
+            xmin = 639.193
+            xmax = 641.386
+            text = ""
+        intervals [196]
+            xmin = 641.386
+            xmax = 644.538
+            text = "[laughs]"
+        intervals [197]
+            xmin = 644.538
+            xmax = 645.425
+            text = ""
+        intervals [198]
+            xmin = 645.425
+            xmax = 647.653
+            text = "[laughs]"
+        intervals [199]
+            xmin = 647.653
+            xmax = 660.317
+            text = ""
+        intervals [200]
+            xmin = 660.317
+            xmax = 660.921
+            text = "mmm hmm"
+        intervals [201]
+            xmin = 660.921
+            xmax = 661.933
+            text = ""
+        intervals [202]
+            xmin = 661.933
+            xmax = 662.647
+            text = "mmm hmm"
+        intervals [203]
+            xmin = 662.647
+            xmax = 670.786
+            text = ""
+        intervals [204]
+            xmin = 670.786
+            xmax = 671.19
+            text = "mmm hmm"
+        intervals [205]
+            xmin = 671.19
+            xmax = 677.109
+            text = ""
+        intervals [206]
+            xmin = 677.109
+            xmax = 677.534
+            text = "mmm hmm"
+        intervals [207]
+            xmin = 677.534
+            xmax = 737.325
+            text = ""
+        intervals [208]
+            xmin = 737.325
+            xmax = 737.702
+            text = "mmm hmm"
+        intervals [209]
+            xmin = 737.702
+            xmax = 745.764
+            text = ""
+        intervals [210]
+            xmin = 745.764
+            xmax = 746.511
+            text = "wow"
+        intervals [211]
+            xmin = 746.511
+            xmax = 758.26
+            text = ""
+        intervals [212]
+            xmin = 758.26
+            xmax = 763.815
+            text = "you graduated m~ from high school when you were sixteen -- that's amazing"
+        intervals [213]
+            xmin = 763.815
+            xmax = 767.712
+            text = ""
+        intervals [214]
+            xmin = 767.712
+            xmax = 768.693
+            text = "[laughs] [noise] it is"
+        intervals [215]
+            xmin = 768.693
+            xmax = 811.802
+            text = ""
+        intervals [216]
+            xmin = 811.802
+            xmax = 812.719
+            text = "are you kidding me ?"
+        intervals [217]
+            xmin = 812.719
+            xmax = 815.918
+            text = ""
+        intervals [218]
+            xmin = 815.918
+            xmax = 816.651
+            text = "uh huh"
+        intervals [219]
+            xmin = 816.651
+            xmax = 824.255
+            text = ""
+        intervals [220]
+            xmin = 824.255
+            xmax = 825.581
+            text = "that's amazing"
+        intervals [221]
+            xmin = 825.581
+            xmax = 853.154
+            text = ""
+        intervals [222]
+            xmin = 853.154
+            xmax = 853.604
+            text = "mmm hmm"
+        intervals [223]
+            xmin = 853.604
+            xmax = 857.503
+            text = ""
+        intervals [224]
+            xmin = 857.503
+            xmax = 858.163
+            text = "really ?"
+        intervals [225]
+            xmin = 858.163
+            xmax = 869.808
+            text = ""
+        intervals [226]
+            xmin = 869.808
+            xmax = 870.586
+            text = "mmm hmm"
+        intervals [227]
+            xmin = 870.586
+            xmax = 872.271
+            text = ""
+        intervals [228]
+            xmin = 872.271
+            xmax = 872.836
+            text = "mmm hmm"
+        intervals [229]
+            xmin = 872.836
+            xmax = 874.818
+            text = ""
+        intervals [230]
+            xmin = 874.818
+            xmax = 875.623
+            text = "hmm"
+        intervals [231]
+            xmin = 875.623
+            xmax = 887.777
+            text = ""
+        intervals [232]
+            xmin = 887.777
+            xmax = 888.395
+            text = "hmm"
+        intervals [233]
+            xmin = 888.395
+            xmax = 901.255
+            text = ""
+        intervals [234]
+            xmin = 901.255
+            xmax = 902.306
+            text = "yeah"
+        intervals [235]
+            xmin = 902.306
+            xmax = 919.69
+            text = ""
+        intervals [236]
+            xmin = 919.69
+            xmax = 927.663
+            text = "so do you - as [mumbles] did you treat that then as motivation to prove people wrong then ? yeah ?"
+        intervals [237]
+            xmin = 927.663
+            xmax = 941.579
+            text = ""
+        intervals [238]
+            xmin = 941.579
+            xmax = 941.961
+            text = "black"
+        intervals [239]
+            xmin = 941.961
+            xmax = 942.811
+            text = "student union"
+        intervals [240]
+            xmin = 942.811
+            xmax = 971.576
+            text = ""
+        intervals [241]
+            xmin = 971.576
+            xmax = 972.271
+            text = "mmm hmm"
+        intervals [242]
+            xmin = 972.271
+            xmax = 989.188
+            text = ""
+        intervals [243]
+            xmin = 989.188
+            xmax = 993.793
+            text = "[laughs]"
+        intervals [244]
+            xmin = 993.793
+            xmax = 995.183
+            text = ""
+        intervals [245]
+            xmin = 995.183
+            xmax = 995.789
+            text = "mmm hmm"
+        intervals [246]
+            xmin = 995.789
+            xmax = 999.164
+            text = ""
+        intervals [247]
+            xmin = 999.164
+            xmax = 999.745
+            text = "that's right"
+        intervals [248]
+            xmin = 999.745
+            xmax = 1004.78
+            text = ""
+        intervals [249]
+            xmin = 1004.78
+            xmax = 1005.269
+            text = "hmm"
+        intervals [250]
+            xmin = 1005.269
+            xmax = 1007.376
+            text = ""
+        intervals [251]
+            xmin = 1007.376
+            xmax = 1008.039
+            text = "mmm hmm"
+        intervals [252]
+            xmin = 1008.039
+            xmax = 1011.62
+            text = ""
+        intervals [253]
+            xmin = 1011.62
+            xmax = 1012.66
+            text = "to go to college ?"
+        intervals [254]
+            xmin = 1012.66
+            xmax = 1022.934
+            text = ""
+        intervals [255]
+            xmin = 1022.934
+            xmax = 1027.068
+            text = "[laughs]"
+        intervals [256]
+            xmin = 1027.068
+            xmax = 1043.228
+            text = ""
+        intervals [257]
+            xmin = 1043.228
+            xmax = 1045.062
+            text = "you have to . right"
+        intervals [258]
+            xmin = 1045.062
+            xmax = 1046.499
+            text = ""
+        intervals [259]
+            xmin = 1046.499
+            xmax = 1046.93
+            text = "yes"
+        intervals [260]
+            xmin = 1046.93
+            xmax = 1054.017
+            text = ""
+        intervals [261]
+            xmin = 1054.017
+            xmax = 1055.905
+            text = "but do you think it made you stronger"
+        intervals [262]
+            xmin = 1055.905
+            xmax = 1056.112
+            text = "though ?"
+        intervals [263]
+            xmin = 1056.112
+            xmax = 1068.685
+            text = ""
+        intervals [264]
+            xmin = 1068.685
+            xmax = 1069.061
+            text = "mmm hmm"
+        intervals [265]
+            xmin = 1069.061
+            xmax = 1110.936
+            text = ""
+        intervals [266]
+            xmin = 1110.936
+            xmax = 1111.739
+            text = "wow"
+        intervals [267]
+            xmin = 1111.739
+            xmax = 1119.625
+            text = ""
+        intervals [268]
+            xmin = 1119.625
+            xmax = 1120.041
+            text = "mmm hmm"
+        intervals [269]
+            xmin = 1120.041
+            xmax = 1121.497
+            text = ""
+        intervals [270]
+            xmin = 1121.497
+            xmax = 1121.879
+            text = "mmm hmm"
+        intervals [271]
+            xmin = 1121.879
+            xmax = 1128.223
+            text = ""
+        intervals [272]
+            xmin = 1128.223
+            xmax = 1128.656
+            text = "mmm hmm"
+        intervals [273]
+            xmin = 1128.656
+            xmax = 1129.062
+            text = ""
+        intervals [274]
+            xmin = 1129.062
+            xmax = 1129.427
+            text = "mmm hmm"
+        intervals [275]
+            xmin = 1129.427
+            xmax = 1132.498
+            text = ""
+        intervals [276]
+            xmin = 1132.498
+            xmax = 1133.111
+            text = "yes"
+        intervals [277]
+            xmin = 1133.111
+            xmax = 1162.157
+            text = ""
+        intervals [278]
+            xmin = 1162.157
+            xmax = 1163.381
+            text = "[laughs]"
+        intervals [279]
+            xmin = 1163.381
+            xmax = 1165.127
+            text = ""
+        intervals [280]
+            xmin = 1165.127
+            xmax = 1165.663
+            text = "mmm"
+        intervals [281]
+            xmin = 1165.663
+            xmax = 1166.02
+            text = ""
+        intervals [282]
+            xmin = 1166.02
+            xmax = 1166.506
+            text = "and they"
+        intervals [283]
+            xmin = 1166.506
+            xmax = 1167.731
+            text = "never would include you"
+        intervals [284]
+            xmin = 1167.731
+            xmax = 1175.631
+            text = ""
+        intervals [285]
+            xmin = 1175.631
+            xmax = 1176.162
+            text = "that's right"
+        intervals [286]
+            xmin = 1176.162
+            xmax = 1189.227
+            text = ""
+        intervals [287]
+            xmin = 1189.227
+            xmax = 1189.805
+            text = "mmm hmm"
+        intervals [288]
+            xmin = 1189.805
+            xmax = 1194.928
+            text = ""
+        intervals [289]
+            xmin = 1194.928
+            xmax = 1195.684
+            text = "hmm"
+        intervals [290]
+            xmin = 1195.684
+            xmax = 1202.232
+            text = ""
+        intervals [291]
+            xmin = 1202.232
+            xmax = 1202.594
+            text = "right"
+        intervals [292]
+            xmin = 1202.594
+            xmax = 1209.564
+            text = ""
+        intervals [293]
+            xmin = 1209.564
+            xmax = 1210.113
+            text = "that's right"
+        intervals [294]
+            xmin = 1210.113
+            xmax = 1212.473
+            text = ""
+        intervals [295]
+            xmin = 1212.473
+            xmax = 1212.966
+            text = "mmm hmm"
+        intervals [296]
+            xmin = 1212.966
+            xmax = 1217.836
+            text = ""
+        intervals [297]
+            xmin = 1217.836
+            xmax = 1218.328
+            text = "[inaudible]"
+        intervals [298]
+            xmin = 1218.328
+            xmax = 1242.206
+            text = ""
+        intervals [299]
+            xmin = 1242.206
+            xmax = 1246.845
+            text = "mmm and this was a job that you actually got . after you graduated ?"
+        intervals [300]
+            xmin = 1246.845
+            xmax = 1247.242
+            text = ""
+        intervals [301]
+            xmin = 1247.242
+            xmax = 1247.935
+            text = "from Duquesne ?"
+        intervals [302]
+            xmin = 1247.935
+            xmax = 1248.812
+            text = ""
+        intervals [303]
+            xmin = 1248.812
+            xmax = 1254.117
+            text = "and mmm is this one so~[s3] social work ? did you do get your de~(degree) degree . what'd you get your degree in ?"
+        intervals [304]
+            xmin = 1254.117
+            xmax = 1255.109
+            text = ""
+        intervals [305]
+            xmin = 1255.109
+            xmax = 1257.141
+            text = "[laughs]"
+        intervals [306]
+            xmin = 1257.141
+            xmax = 1268.042
+            text = ""
+        intervals [307]
+            xmin = 1268.042
+            xmax = 1268.505
+            text = "mmm hmm"
+        intervals [308]
+            xmin = 1268.505
+            xmax = 1272.423
+            text = ""
+        intervals [309]
+            xmin = 1272.423
+            xmax = 1273.425
+            text = "you so nebby ? [laughs]"
+        intervals [310]
+            xmin = 1273.425
+            xmax = 1274.099
+            text = "[laughs]"
+        intervals [311]
+            xmin = 1274.099
+            xmax = 1274.119
+            text = ""
+        intervals [312]
+            xmin = 1274.119
+            xmax = 1283.159
+            text = "[laughs] so then you actually - your first job was really - beginning that career becoming a community"
+        intervals [313]
+            xmin = 1283.159
+            xmax = 1284.295
+            text = "organizer right ?"
+        intervals [314]
+            xmin = 1284.295
+            xmax = 1284.835
+            text = ""
+        intervals [315]
+            xmin = 1284.835
+            xmax = 1285.74
+            text = "that's amazing"
+        intervals [316]
+            xmin = 1285.74
+            xmax = 1305.636
+            text = ""
+        intervals [317]
+            xmin = 1305.636
+            xmax = 1307.068
+            text = "[laughs]"
+        intervals [318]
+            xmin = 1307.068
+            xmax = 1307.679
+            text = ""
+        intervals [319]
+            xmin = 1307.679
+            xmax = 1308.436
+            text = "[laughs]"
+        intervals [320]
+            xmin = 1308.436
+            xmax = 1316.284
+            text = ""
+        intervals [321]
+            xmin = 1316.284
+            xmax = 1321.034
+            text = "[laughs]"
+        intervals [322]
+            xmin = 1321.034
+            xmax = 1322.957
+            text = ""
+        intervals [323]
+            xmin = 1322.957
+            xmax = 1323.434
+            text = "mmm hmm"
+        intervals [324]
+            xmin = 1323.434
+            xmax = 1329.754
+            text = ""
+        intervals [325]
+            xmin = 1329.754
+            xmax = 1330.399
+            text = "yes"
+        intervals [326]
+            xmin = 1330.399
+            xmax = 1336.145
+            text = ""
+        intervals [327]
+            xmin = 1336.145
+            xmax = 1336.71
+            text = "yes"
+        intervals [328]
+            xmin = 1336.71
+            xmax = 1382.98
+            text = ""
+        intervals [329]
+            xmin = 1382.98
+            xmax = 1383.425
+            text = "mmm hmm"
+        intervals [330]
+            xmin = 1383.425
+            xmax = 1404.46
+            text = ""
+        intervals [331]
+            xmin = 1404.46
+            xmax = 1405.06
+            text = "mmm hmm"
+        intervals [332]
+            xmin = 1405.06
+            xmax = 1407.421
+            text = ""
+        intervals [333]
+            xmin = 1407.421
+            xmax = 1409.865
+            text = "[laughs]"
+        intervals [334]
+            xmin = 1409.865
+            xmax = 1411.519
+            text = ""
+        intervals [335]
+            xmin = 1411.519
+            xmax = 1414.237
+            text = "[laughs] passing phase"
+        intervals [336]
+            xmin = 1414.237
+            xmax = 1420.721
+            text = ""
+        intervals [337]
+            xmin = 1420.721
+            xmax = 1421.209
+            text = "mmm hmm"
+        intervals [338]
+            xmin = 1421.209
+            xmax = 1424.491
+            text = ""
+        intervals [339]
+            xmin = 1424.491
+            xmax = 1431.616
+            text = "do you think that's an assumption though that like . first year - generation kids get I know I got that too"
+        intervals [340]
+            xmin = 1431.616
+            xmax = 1432.159
+            text = ""
+        intervals [341]
+            xmin = 1432.159
+            xmax = 1436.644
+            text = "from my mom . I mean she thought that I was just gonna walk into corporate America"
+        intervals [342]
+            xmin = 1436.644
+            xmax = 1437.528
+            text = ""
+        intervals [343]
+            xmin = 1437.528
+            xmax = 1446.975
+            text = "and like that going to . college . was . about just going out and just making a better living for yourself but not necessarily e~[E] enlightening"
+        intervals [344]
+            xmin = 1446.975
+            xmax = 1448.078
+            text = "yourself or empowering"
+        intervals [345]
+            xmin = 1448.078
+            xmax = 1448.098
+            text = ""
+        intervals [346]
+            xmin = 1448.098
+            xmax = 1449.841
+            text = "yourself in any other way except"
+        intervals [347]
+            xmin = 1449.841
+            xmax = 1451.123
+            text = "monetary terms"
+        intervals [348]
+            xmin = 1451.123
+            xmax = 1471.244
+            text = ""
+        intervals [349]
+            xmin = 1471.244
+            xmax = 1471.744
+            text = "mmm hmm"
+        intervals [350]
+            xmin = 1471.744
+            xmax = 1491.114
+            text = ""
+        intervals [351]
+            xmin = 1491.114
+            xmax = 1491.969
+            text = "yes"
+        intervals [352]
+            xmin = 1491.969
+            xmax = 1498.863
+            text = ""
+        intervals [353]
+            xmin = 1498.863
+            xmax = 1499.83
+            text = "mmm hmm"
+        intervals [354]
+            xmin = 1499.83
+            xmax = 1511.622
+            text = ""
+        intervals [355]
+            xmin = 1511.622
+            xmax = 1512.021
+            text = "mmm hmm"
+        intervals [356]
+            xmin = 1512.021
+            xmax = 1518.291
+            text = ""
+        intervals [357]
+            xmin = 1518.291
+            xmax = 1518.929
+            text = "mmm hmm"
+        intervals [358]
+            xmin = 1518.929
+            xmax = 1526.361
+            text = ""
+        intervals [359]
+            xmin = 1526.361
+            xmax = 1527.146
+            text = "wow"
+        intervals [360]
+            xmin = 1527.146
+            xmax = 1527.879
+            text = ""
+        intervals [361]
+            xmin = 1527.879
+            xmax = 1528.252
+            text = "that's"
+        intervals [362]
+            xmin = 1528.252
+            xmax = 1529.076
+            text = "powerful"
+        intervals [363]
+            xmin = 1529.076
+            xmax = 1536.916
+            text = ""
+        intervals [364]
+            xmin = 1536.916
+            xmax = 1537.486
+            text = "mmm hmm"
+        intervals [365]
+            xmin = 1537.486
+            xmax = 1541.488
+            text = ""
+        intervals [366]
+            xmin = 1541.488
+            xmax = 1542.019
+            text = "mmm hmm"
+        intervals [367]
+            xmin = 1542.019
+            xmax = 1545.744
+            text = ""
+        intervals [368]
+            xmin = 1545.744
+            xmax = 1546.578
+            text = "wow"
+        intervals [369]
+            xmin = 1546.578
+            xmax = 1568.886
+            text = ""
+        intervals [370]
+            xmin = 1568.886
+            xmax = 1569.711
+            text = "you got to go"
+        intervals [371]
+            xmin = 1569.711
+            xmax = 1573.398
+            text = ""
+        intervals [372]
+            xmin = 1573.398
+            xmax = 1575.189
+            text = "um [clicks tongue]"
+        intervals [373]
+            xmin = 1575.189
+            xmax = 1584.203
+            text = ""
+        intervals [374]
+            xmin = 1584.203
+            xmax = 1584.697
+            text = "yes"
+        intervals [375]
+            xmin = 1584.697
+            xmax = 1617.962
+            text = ""
+        intervals [376]
+            xmin = 1617.962
+            xmax = 1618.65
+            text = "yes"
+        intervals [377]
+            xmin = 1618.65
+            xmax = 1631.8
+            text = ""
+        intervals [378]
+            xmin = 1631.8
+            xmax = 1632.674
+            text = "yes"
+        intervals [379]
+            xmin = 1632.674
+            xmax = 1641.92
+            text = ""
+        intervals [380]
+            xmin = 1641.92
+            xmax = 1642.405
+            text = "yes"
+        intervals [381]
+            xmin = 1642.405
+            xmax = 1664.658
+            text = ""
+        intervals [382]
+            xmin = 1664.658
+            xmax = 1668.791
+            text = "that's amazing I think um [clears throat] uh"
+        intervals [383]
+            xmin = 1668.791
+            xmax = 1677.063
+            text = "I think yeah I I went through that same sort of experience it's really -- it's really great to hear that you know mine's"
+        intervals [384]
+            xmin = 1677.063
+            xmax = 1677.655
+            text = "wasn't it's not"
+        intervals [385]
+            xmin = 1677.655
+            xmax = 1678.285
+            text = "a unique"
+        intervals [386]
+            xmin = 1678.285
+            xmax = 1679.032
+            text = "one [laughs]"
+        intervals [387]
+            xmin = 1679.032
+            xmax = 1679.05
+            text = ""
+        intervals [388]
+            xmin = 1679.05
+            xmax = 1685.435
+            text = "[laughs] um so you are a community organizer now right ? is . is that what you do here ?"
+        intervals [389]
+            xmin = 1685.435
+            xmax = 1696.691
+            text = ""
+        intervals [390]
+            xmin = 1696.691
+            xmax = 1697.12
+            text = "mmm hmm"
+        intervals [391]
+            xmin = 1697.12
+            xmax = 1708.941
+            text = ""
+        intervals [392]
+            xmin = 1708.941
+            xmax = 1709.093
+            text = "so"
+        intervals [393]
+            xmin = 1709.093
+            xmax = 1709.401
+            text = "what do you"
+        intervals [394]
+            xmin = 1709.401
+            xmax = 1710.358
+            text = "do for a living then"
+        intervals [395]
+            xmin = 1710.358
+            xmax = 1711.103
+            text = "now ?"
+        intervals [396]
+            xmin = 1711.103
+            xmax = 1715.014
+            text = ""
+        intervals [397]
+            xmin = 1715.014
+            xmax = 1716.129
+            text = "okay"
+        intervals [398]
+            xmin = 1716.129
+            xmax = 1727.911
+            text = ""
+        intervals [399]
+            xmin = 1727.911
+            xmax = 1728.447
+            text = "yes"
+        intervals [400]
+            xmin = 1728.447
+            xmax = 1739.45
+            text = ""
+        intervals [401]
+            xmin = 1739.45
+            xmax = 1739.787
+            text = "mmm hmm"
+        intervals [402]
+            xmin = 1739.787
+            xmax = 1757.768
+            text = ""
+        intervals [403]
+            xmin = 1757.768
+            xmax = 1763.944
+            text = "so do you actually uh have programs for kids to foster - like talents ?"
+        intervals [404]
+            xmin = 1763.944
+            xmax = 1764.601
+            text = "or"
+        intervals [405]
+            xmin = 1764.601
+            xmax = 1764.615
+            text = ""
+        intervals [406]
+            xmin = 1764.615
+            xmax = 1767.311
+            text = "nurture talents et~[Et] artistic talents as well ?"
+        intervals [407]
+            xmin = 1767.311
+            xmax = 1768.282
+            text = ""
+        intervals [408]
+            xmin = 1768.282
+            xmax = 1769.428
+            text = "how is that ?"
+        intervals [409]
+            xmin = 1769.428
+            xmax = 1778.737
+            text = ""
+        intervals [410]
+            xmin = 1778.737
+            xmax = 1783.19
+            text = "[laughs]"
+        intervals [411]
+            xmin = 1783.19
+            xmax = 1784.229
+            text = ""
+        intervals [412]
+            xmin = 1784.229
+            xmax = 1784.651
+            text = "mmm hmm"
+        intervals [413]
+            xmin = 1784.651
+            xmax = 1811.405
+            text = ""
+        intervals [414]
+            xmin = 1811.405
+            xmax = 1811.957
+            text = "mmm hmm"
+        intervals [415]
+            xmin = 1811.957
+            xmax = 1823.699
+            text = ""
+        intervals [416]
+            xmin = 1823.699
+            xmax = 1824.056
+            text = "mmm hmm"
+        intervals [417]
+            xmin = 1824.056
+            xmax = 1835.047
+            text = ""
+        intervals [418]
+            xmin = 1835.047
+            xmax = 1835.929
+            text = "[laughs]"
+        intervals [419]
+            xmin = 1835.929
+            xmax = 1837.781
+            text = ""
+        intervals [420]
+            xmin = 1837.781
+            xmax = 1838.444
+            text = "yes"
+        intervals [421]
+            xmin = 1838.444
+            xmax = 1838.74
+            text = ""
+        intervals [422]
+            xmin = 1838.74
+            xmax = 1839.586
+            text = "I agree"
+        intervals [423]
+            xmin = 1839.586
+            xmax = 1848.052
+            text = ""
+        intervals [424]
+            xmin = 1848.052
+            xmax = 1848.48
+            text = "mmm hmm"
+        intervals [425]
+            xmin = 1848.48
+            xmax = 1851.158
+            text = ""
+        intervals [426]
+            xmin = 1851.158
+            xmax = 1852.325
+            text = "mmm hmm mmm hmm"
+        intervals [427]
+            xmin = 1852.325
+            xmax = 1857.519
+            text = ""
+        intervals [428]
+            xmin = 1857.519
+            xmax = 1862.822
+            text = "[breath] so are you still then do you still consider yourself a part of the working class or ?"
+        intervals [429]
+            xmin = 1862.822
+            xmax = 1880.525
+            text = ""
+        intervals [430]
+            xmin = 1880.525
+            xmax = 1881.738
+            text = "mmm hmm"
+        intervals [431]
+            xmin = 1881.738
+            xmax = 1882.825
+            text = ""
+        intervals [432]
+            xmin = 1882.825
+            xmax = 1883.968
+            text = "yes"
+        intervals [433]
+            xmin = 1883.968
+            xmax = 1887.939
+            text = ""
+        intervals [434]
+            xmin = 1887.939
+            xmax = 1888.496
+            text = "mmm hmm"
+        intervals [435]
+            xmin = 1888.496
+            xmax = 1901.222
+            text = ""
+        intervals [436]
+            xmin = 1901.222
+            xmax = 1901.689
+            text = "mmm hmm"
+        intervals [437]
+            xmin = 1901.689
+            xmax = 1906.168
+            text = ""
+        intervals [438]
+            xmin = 1906.168
+            xmax = 1906.633
+            text = "mmm hmm"
+        intervals [439]
+            xmin = 1906.633
+            xmax = 1908.58
+            text = ""
+        intervals [440]
+            xmin = 1908.58
+            xmax = 1908.842
+            text = "mmm"
+        intervals [441]
+            xmin = 1908.842
+            xmax = 1921.278
+            text = ""
+        intervals [442]
+            xmin = 1921.278
+            xmax = 1921.826
+            text = "mmm hmm"
+        intervals [443]
+            xmin = 1921.826
+            xmax = 1922.326
+            text = ""
+        intervals [444]
+            xmin = 1922.326
+            xmax = 1923.116
+            text = "mmm hmm"
+        intervals [445]
+            xmin = 1923.116
+            xmax = 1924.294
+            text = ""
+        intervals [446]
+            xmin = 1924.294
+            xmax = 1924.947
+            text = "mmm hmm"
+        intervals [447]
+            xmin = 1924.947
+            xmax = 1927.334
+            text = ""
+        intervals [448]
+            xmin = 1927.334
+            xmax = 1928.855
+            text = "mmm hmm right"
+        intervals [449]
+            xmin = 1928.855
+            xmax = 1931.004
+            text = ""
+        intervals [450]
+            xmin = 1931.004
+            xmax = 1936.355
+            text = "[breaths] [clears throat] um . as a uh African American do you"
+        intervals [451]
+            xmin = 1936.355
+            xmax = 1936.893
+            text = ""
+        intervals [452]
+            xmin = 1936.893
+            xmax = 1943.82
+            text = "uh is do you see that as . do you celebrate the identity of being African American or"
+        intervals [453]
+            xmin = 1943.82
+            xmax = 1944.352
+            text = ""
+        intervals [454]
+            xmin = 1944.352
+            xmax = 1951.922
+            text = "um . just how connected uh do you think you are like with your culture and and your people and"
+        intervals [455]
+            xmin = 1951.922
+            xmax = 1952.136
+            text = ""
+        intervals [456]
+            xmin = 1952.136
+            xmax = 1959.787
+            text = "in general with like . African American history and I mean how how in tuned are you to"
+        intervals [457]
+            xmin = 1959.787
+            xmax = 1963.682
+            text = "to that - experience African American experience"
+        intervals [458]
+            xmin = 1963.682
+            xmax = 1967.872
+            text = ""
+        intervals [459]
+            xmin = 1967.872
+            xmax = 1968.432
+            text = "mmm hmm"
+        intervals [460]
+            xmin = 1968.432
+            xmax = 1988.226
+            text = ""
+        intervals [461]
+            xmin = 1988.226
+            xmax = 1989.106
+            text = "yes"
+        intervals [462]
+            xmin = 1989.106
+            xmax = 1996.907
+            text = ""
+        intervals [463]
+            xmin = 1996.907
+            xmax = 1997.66
+            text = "wow"
+        intervals [464]
+            xmin = 1997.66
+            xmax = 1998.464
+            text = ""
+        intervals [465]
+            xmin = 1998.464
+            xmax = 1999.092
+            text = "mmm hmm "
+        intervals [466]
+            xmin = 1999.092
+            xmax = 2025.164
+            text = ""
+        intervals [467]
+            xmin = 2025.164
+            xmax = 2025.612
+            text = "yes"
+        intervals [468]
+            xmin = 2025.612
+            xmax = 2037.982
+            text = ""
+        intervals [469]
+            xmin = 2037.982
+            xmax = 2039.0
+            text = "that's amazing"
+        intervals [470]
+            xmin = 2039.0
+            xmax = 2042.563
+            text = ""
+        intervals [471]
+            xmin = 2042.563
+            xmax = 2042.935
+            text = "mmm hmm"
+        intervals [472]
+            xmin = 2042.935
+            xmax = 2062.786
+            text = ""
+        intervals [473]
+            xmin = 2062.786
+            xmax = 2063.386
+            text = "mmm hmm"
+        intervals [474]
+            xmin = 2063.386
+            xmax = 2068.084
+            text = ""
+        intervals [475]
+            xmin = 2068.084
+            xmax = 2069.162
+            text = "[laughs]"
+        intervals [476]
+            xmin = 2069.162
+            xmax = 2073.765
+            text = ""
+        intervals [477]
+            xmin = 2073.765
+            xmax = 2074.334
+            text = "mmm hmm"
+        intervals [478]
+            xmin = 2074.334
+            xmax = 2097.719
+            text = ""
+        intervals [479]
+            xmin = 2097.719
+            xmax = 2098.424
+            text = "mmm hmm"
+        intervals [480]
+            xmin = 2098.424
+            xmax = 2099.149
+            text = ""
+        intervals [481]
+            xmin = 2099.149
+            xmax = 2099.702
+            text = "mmm hmm"
+        intervals [482]
+            xmin = 2099.702
+            xmax = 2108.51
+            text = ""
+        intervals [483]
+            xmin = 2108.51
+            xmax = 2108.974
+            text = "mmm hmm"
+        intervals [484]
+            xmin = 2108.974
+            xmax = 2110.483
+            text = ""
+        intervals [485]
+            xmin = 2110.483
+            xmax = 2110.956
+            text = "mmm hmm"
+        intervals [486]
+            xmin = 2110.956
+            xmax = 2119.482
+            text = ""
+        intervals [487]
+            xmin = 2119.482
+            xmax = 2119.888
+            text = "mmm hmm"
+        intervals [488]
+            xmin = 2119.888
+            xmax = 2130.697
+            text = ""
+        intervals [489]
+            xmin = 2130.697
+            xmax = 2131.62
+            text = "mmm hmm"
+        intervals [490]
+            xmin = 2131.62
+            xmax = 2131.774
+            text = ""
+        intervals [491]
+            xmin = 2131.774
+            xmax = 2140.374
+            text = "[breath] and do you see that that that maybe is a slightly a problem in the African American community ?  is there there's a divide between the younger"
+        intervals [492]
+            xmin = 2140.374
+            xmax = 2141.047
+            text = "generation"
+        intervals [493]
+            xmin = 2141.047
+            xmax = 2141.062
+            text = ""
+        intervals [494]
+            xmin = 2141.062
+            xmax = 2142.277
+            text = "and the older generation"
+        intervals [495]
+            xmin = 2142.277
+            xmax = 2142.293
+            text = ""
+        intervals [496]
+            xmin = 2142.293
+            xmax = 2143.37
+            text = "and therefore"
+        intervals [497]
+            xmin = 2143.37
+            xmax = 2143.41
+            text = ""
+        intervals [498]
+            xmin = 2143.41
+            xmax = 2145.645
+            text = "you can't learn that which you don't"
+        intervals [499]
+            xmin = 2145.645
+            xmax = 2146.359
+            text = ""
+        intervals [500]
+            xmin = 2146.359
+            xmax = 2155.055
+            text = "know right ? so -- that sort of idea of passing dow~(down) and and very much do you see like the African American tradition as being very much"
+        intervals [501]
+            xmin = 2155.055
+            xmax = 2155.657
+            text = "oral ?"
+        intervals [502]
+            xmin = 2155.657
+            xmax = 2156.374
+            text = ""
+        intervals [503]
+            xmin = 2156.374
+            xmax = 2159.04
+            text = "and so that that their sense of the oral tradintion~[tr@dInSH]"
+        intervals [504]
+            xmin = 2159.04
+            xmax = 2159.673
+            text = "tradition has"
+        intervals [505]
+            xmin = 2159.673
+            xmax = 2160.692
+            text = "sort of just"
+        intervals [506]
+            xmin = 2160.692
+            xmax = 2161.057
+            text = ""
+        intervals [507]
+            xmin = 2161.057
+            xmax = 2162.078
+            text = "disappeared ?"
+        intervals [508]
+            xmin = 2162.078
+            xmax = 2179.943
+            text = ""
+        intervals [509]
+            xmin = 2179.943
+            xmax = 2180.548
+            text = "yes"
+        intervals [510]
+            xmin = 2180.548
+            xmax = 2187.959
+            text = ""
+        intervals [511]
+            xmin = 2187.959
+            xmax = 2188.405
+            text = "yes"
+        intervals [512]
+            xmin = 2188.405
+            xmax = 2204.032
+            text = ""
+        intervals [513]
+            xmin = 2204.032
+            xmax = 2204.942
+            text = "of value"
+        intervals [514]
+            xmin = 2204.942
+            xmax = 2205.688
+            text = ""
+        intervals [515]
+            xmin = 2205.688
+            xmax = 2206.161
+            text = "yes"
+        intervals [516]
+            xmin = 2206.161
+            xmax = 2211.06
+            text = ""
+        intervals [517]
+            xmin = 2211.06
+            xmax = 2211.66
+            text = "yes"
+        intervals [518]
+            xmin = 2211.66
+            xmax = 2240.252
+            text = ""
+        intervals [519]
+            xmin = 2240.252
+            xmax = 2241.332
+            text = "that's amazing"
+        intervals [520]
+            xmin = 2241.332
+            xmax = 2303.232
+            text = ""
+        intervals [521]
+            xmin = 2303.232
+            xmax = 2303.806
+            text = "mmm"
+        intervals [522]
+            xmin = 2303.806
+            xmax = 2319.48
+            text = ""
+        intervals [523]
+            xmin = 2319.48
+            xmax = 2322.18
+            text = "[laugh]"
+        intervals [524]
+            xmin = 2322.18
+            xmax = 2322.86
+            text = ""
+        intervals [525]
+            xmin = 2322.86
+            xmax = 2323.96
+            text = "[laughs] [breath]"
+        intervals [526]
+            xmin = 2323.96
+            xmax = 2376.201
+            text = ""
+        intervals [527]
+            xmin = 2376.201
+            xmax = 2377.521
+            text = "foresight right ?"
+        intervals [528]
+            xmin = 2377.521
+            xmax = 2378.284
+            text = ""
+        intervals [529]
+            xmin = 2378.284
+            xmax = 2378.742
+            text = "mmm hmm"
+        intervals [530]
+            xmin = 2378.742
+            xmax = 2404.374
+            text = ""
+        intervals [531]
+            xmin = 2404.374
+            xmax = 2404.863
+            text = "yes"
+        intervals [532]
+            xmin = 2404.863
+            xmax = 2415.416
+            text = ""
+        intervals [533]
+            xmin = 2415.416
+            xmax = 2416.037
+            text = "hmm"
+        intervals [534]
+            xmin = 2416.037
+            xmax = 2416.193
+            text = ""
+        intervals [535]
+            xmin = 2416.193
+            xmax = 2416.949
+            text = "okay"
+        intervals [536]
+            xmin = 2416.949
+            xmax = 2417.148
+            text = ""
+    item[3]:
+        class = "IntervalTier"
+        name = "Comments"
+        xmin = 0.0
+        xmax = 2417.148
+        intervals: size = 15
+        intervals [1]
+            xmin = 0.0
+            xmax = 13.619
+            text = ""
+        intervals [2]
+            xmin = 13.619
+            xmax = 14.335
+            text = "TB unclear here"
+        intervals [3]
+            xmin = 14.335
+            xmax = 493.532
+            text = ""
+        intervals [4]
+            xmin = 493.532
+            xmax = 494.078
+            text = "{Terri whispers}"
+        intervals [5]
+            xmin = 494.078
+            xmax = 1021.393
+            text = ""
+        intervals [6]
+            xmin = 1021.393
+            xmax = 1026.295
+            text = "{imitating sobbing}"
+        intervals [7]
+            xmin = 1026.295
+            xmax = 1241.42
+            text = ""
+        intervals [8]
+            xmin = 1241.42
+            xmax = 1242.226
+            text = "{whispered}"
+        intervals [9]
+            xmin = 1242.226
+            xmax = 1572.361
+            text = ""
+        intervals [10]
+            xmin = 1572.361
+            xmax = 1573.369
+            text = "{whispered}"
+        intervals [11]
+            xmin = 1573.369
+            xmax = 1831.875
+            text = ""
+        intervals [12]
+            xmin = 1831.875
+            xmax = 1835.051
+            text = "{imitates higher pitched voice}"
+        intervals [13]
+            xmin = 1835.051
+            xmax = 2069.202
+            text = ""
+        intervals [14]
+            xmin = 2069.202
+            xmax = 2073.764
+            text = "{speaks like old woman}"
+        intervals [15]
+            xmin = 2073.764
+            xmax = 2417.148
+            text = ""
+    item[4]:
+        class = "IntervalTier"
+        name = "Noise"
+        xmin = 0.0
+        xmax = 2417.148
+        intervals: size = 29
+        intervals [1]
+            xmin = 0.0
+            xmax = 0.327
+            text = ""
+        intervals [2]
+            xmin = 0.327
+            xmax = 0.77
+            text = "[microphone noise]"
+        intervals [3]
+            xmin = 0.77
+            xmax = 3.052
+            text = ""
+        intervals [4]
+            xmin = 3.052
+            xmax = 3.496
+            text = "[noise]"
+        intervals [5]
+            xmin = 3.496
+            xmax = 5.503
+            text = ""
+        intervals [6]
+            xmin = 5.503
+            xmax = 5.918
+            text = "[something brushes microphone]"
+        intervals [7]
+            xmin = 5.918
+            xmax = 269.382
+            text = ""
+        intervals [8]
+            xmin = 269.382
+            xmax = 269.942
+            text = "[something bumps microphone]"
+        intervals [9]
+            xmin = 269.942
+            xmax = 504.346
+            text = ""
+        intervals [10]
+            xmin = 504.346
+            xmax = 505.946
+            text = "[something brushes microphone]"
+        intervals [11]
+            xmin = 505.946
+            xmax = 535.662
+            text = ""
+        intervals [12]
+            xmin = 535.662
+            xmax = 536.843
+            text = "[something hits microphone]"
+        intervals [13]
+            xmin = 536.843
+            xmax = 547.567
+            text = ""
+        intervals [14]
+            xmin = 547.567
+            xmax = 548.435
+            text = "[something brushes microphone]"
+        intervals [15]
+            xmin = 548.435
+            xmax = 653.513
+            text = ""
+        intervals [16]
+            xmin = 653.513
+            xmax = 654.674
+            text = "[taps on table]"
+        intervals [17]
+            xmin = 654.674
+            xmax = 723.94
+            text = ""
+        intervals [18]
+            xmin = 723.94
+            xmax = 724.422
+            text = "[knocks on table]"
+        intervals [19]
+            xmin = 724.422
+            xmax = 1028.093
+            text = ""
+        intervals [20]
+            xmin = 1028.093
+            xmax = 1028.844
+            text = "[noise]"
+        intervals [21]
+            xmin = 1028.844
+            xmax = 1304.151
+            text = ""
+        intervals [22]
+            xmin = 1304.151
+            xmax = 1304.771
+            text = "[hits table]"
+        intervals [23]
+            xmin = 1304.771
+            xmax = 1912.961
+            text = ""
+        intervals [24]
+            xmin = 1912.961
+            xmax = 1914.351
+            text = "[something hits table]"
+        intervals [25]
+            xmin = 1914.351
+            xmax = 2249.166
+            text = ""
+        intervals [26]
+            xmin = 2249.166
+            xmax = 2249.967
+            text = "[hits table]"
+        intervals [27]
+            xmin = 2249.967
+            xmax = 2414.993
+            text = ""
+        intervals [28]
+            xmin = 2414.993
+            xmax = 2415.415
+            text = "[hits table]"
+        intervals [29]
+            xmin = 2415.415
+            xmax = 2417.148
+            text = ""
+    item[5]:
+        class = "IntervalTier"
+        name = "Redact"
+        xmin = 0.0
+        xmax = 2417.148
+        intervals: size = 1
+        intervals [1]
+            xmin = 0.0
+            xmax = 2417.148
+            text = ""

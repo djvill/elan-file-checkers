@@ -66,6 +66,7 @@ ui <- fluidPage(
 
 # Functions for server-side processing ------------------------------------
 
+## Tiers ==================================================================
 ##Function that takes a one-file tier df as input and outputs tier issues
 tierIssuesOneFile <- function(df, filename) {
   ##Initialize empty issues character vector
@@ -141,6 +142,21 @@ tierIssues <- function(df) {
     ##Only keep files with issues
     keep(~ length(.x) > 0)
 }
+
+## Dictionaries ===============================================================
+
+##Generate dictionary
+dict <-
+  ##Read dictionary file(s)
+  # list.files(here("dict/"), pattern="\\.txt", full.names=TRUE) %>% 
+  list.files("dict/", pattern="\\.txt", full.names=TRUE) %>% 
+  map(readLines) %>% 
+  ##As single character vector
+  reduce(c) %>% 
+  ##Ignore lines starting with "#" or empty lines
+  str_subset("^(#.*|)$", negate=TRUE) %>% 
+  ##Unique
+  unique()
 
 ##Function that takes a tier name and eaf file as input and outputs
 ##  non-dictionary words
@@ -236,6 +252,121 @@ dictCheck <- function(df, x) {
     keep(~ length(.x) > 0)
 }
 
+## Overlaps ===================================================================
+
+##Function that takes a tier name, eaf file, and file-wide time slot DF as
+##  input and outputs actual times for annotations
+getTimesTier <- function(tierName, eaf, timeSlots) {
+  ##Get all ALIGNABLE_ANNOTATION tags
+  str_glue("//TIER[@TIER_ID='{tierName}']//ALIGNABLE_ANNOTATION") %>%
+    xml_find_all(eaf, .) %>% 
+    ##Get attributes as a dataframe
+    xml_attrs() %>% 
+    bind_rows() %>% 
+    ##Add actual times
+    left_join(timeSlots %>%
+                rename(TIME_SLOT_REF1 = TIME_SLOT_ID,
+                       Start = TIME_VALUE),
+              by="TIME_SLOT_REF1") %>%
+    left_join(timeSlots %>%
+                rename(TIME_SLOT_REF2 = TIME_SLOT_ID,
+                       End = TIME_VALUE),
+              by="TIME_SLOT_REF2")
+}
+
+##Wrapper function around getTimesTier() that takes a single EAF file and name
+##  (meant to be used with eaflist() reactive and imap()) plus multi-file tier
+##  df (meant to be used with tierInfo() reactive) as input, and outputs nested
+##  list of dataframes of annotation times (files at level one, tier DFs at
+##  level two for speaker tiers only).
+getTimes <- function(eaf, eafName, df) {
+  ##Timeslots (maps time slot ID to actual time, in milliseconds)
+  timeSlots <- 
+    ##Get TIME_SLOT nodes
+    eaf %>% 
+    xml_find_all("//TIME_SLOT") %>% 
+    ##Get attributes as a dataframe
+    xml_attrs() %>% 
+    bind_rows() %>% 
+    ##Make actual time numeric
+    mutate(across(TIME_VALUE, as.numeric))
+  
+  ##Get speaker tier names
+  spkrTierNames <- 
+    ##df intended to be tierInfo() reactive
+    df %>% 
+    filter(File==eafName, SpkrTier) %>% 
+    pull(TIER_ID)
+  
+  ##Get times for speaker tiers (list of dataframes)
+  spkrTimes <- 
+    spkrTierNames %>% 
+    set_names(., .) %>% 
+    map(getTimesTier, eaf, timeSlots) %>% 
+    ##Only nonempty tiers
+    keep(~ nrow(.x) > 0)
+}
+
+##Strict version of dplyr::between(): x > left & x < right (for detecting
+##  overlaps)
+betweenStrict <- function (x, left, right) {
+  if (!is.null(attr(x, "class")) && !inherits(x, c("Date",
+                                                   "POSIXct"))) {
+    warning("between() called on numeric vector with S3 class")
+  }
+  if (length(left) != 1) {
+    stop("`left` must be length 1")
+  }
+  if (length(right) != 1) {
+    stop("`right` must be length 1")
+  }
+  if (!is.double(x)) {
+    x <- as.numeric(x)
+  }
+  x > left & x < right
+}
+
+##Function that takes a single tier name and a nested list of annotation time
+##  DFs (meant to be used with output of getTimes()), and outputs a single
+##  dataframe: the relevant annotation time DF plus three boolean overlaps
+##  columns (left, right, both), where TRUE means there is at least one
+##  annotation on another tier whose (e.g.) left boundary is within the
+##  annotation
+findOverlapsTier <- function(tierName, timesEAF) {
+  ##Get annotation timing DF for selected speaker
+  spkr <- timesEAF %>% pluck(tierName)
+  ##Get annotation timing DF that combines all other speakers
+  otherSpkrs <-
+    timesEAF %>%
+    extract(names(.) != tierName) %>%
+    bind_rows()
+
+  ##For each annotation in selected tier, check whether there are boundaries
+  ##  on any other speaker tier overlapping with the current annotation
+  spkr %>%
+    ##betweenStrict() requires length(left)==1 && length(right)==1
+    group_by(ANNOTATION_ID) %>%
+    ##Add overlaps
+    mutate(LeftOverlap = any(betweenStrict(otherSpkrs$Start, Start, End)),
+           RightOverlap = any(betweenStrict(otherSpkrs$End, Start, End)),
+           OverlapBoth = LeftOverlap & RightOverlap) %>%
+    ungroup()
+}
+
+##Wrapper function around getTimesTier() that takes a list of DFs of
+##  annotation times (one files' worth) and a single EAF name (meant to be used
+##  with output of getTimes() and imap()), and outputs the same list
+##  plus overlaps columns
+findOverlaps <- function(timesEAF, eafName) {
+  ##Loop over tiers within this file to get overlaps
+  timesEAF %>% 
+    names() %>% 
+    set_names(., .) %>% 
+    map(findOverlapsTier, timesEAF=timesEAF)
+}
+
+## UI display =================================================================
+
 ##Convenience functions to display/undisplay HTML elements
 display <- function(x) {
   if (!("shiny.tag" %in% class(x))) {
@@ -271,18 +402,7 @@ undisplay <- function(x) {
 }
 
 
-##Generate dictionary
-dict <-
-  ##Read dictionary file(s)
-  # list.files(here("dict/"), pattern="\\.txt", full.names=TRUE) %>% 
-  list.files("dict/", pattern="\\.txt", full.names=TRUE) %>% 
-  map(readLines) %>% 
-  ##As single character vector
-  reduce(c) %>% 
-  ##Ignore lines starting with "#" or empty lines
-  str_subset("^(#.*|)$", negate=TRUE) %>% 
-  ##Unique
-  unique()
+
 
 # Server ------------------------------------------------------------------
 server <- function(input, output) {
@@ -342,50 +462,11 @@ server <- function(input, output) {
   
   # Debugging output --------------------------------------------------------
   output$debug <- renderPrint({
-    getTimesTier <- function(tierName, eaf, timeSlots) {
-      ##Get all ALIGNABLE_ANNOTATION tags
-      str_glue("//TIER[@TIER_ID='{tierName}']//ALIGNABLE_ANNOTATION") %>%
-        xml_find_all(eaf, .) %>% 
-        ##Get attributes as a dataframe
-        xml_attrs() %>% 
-        bind_rows() %>% 
-        ##Add actual times
-        left_join(timeSlots %>%
-                    rename(TIME_SLOT_REF1 = TIME_SLOT_ID,
-                           Start = TIME_VALUE)) %>%
-        left_join(timeSlots %>%
-                    rename(TIME_SLOT_REF2 = TIME_SLOT_ID,
-                           End = TIME_VALUE))
-    }
+    tierInfo <- tierInfo()
+    times <- eaflist() %>% imap(getTimes, df=tierInfo)
+    list(overlaps = times %>% imap(findOverlaps))
     
-    getTimes <- function(eaf, eafName) {
-      ##Timeslots (maps time slot ID to actual time, in milliseconds)
-      timeSlots <- 
-        ##Get TIME_SLOT nodes
-        eaf %>% 
-        xml_find_all("//TIME_SLOT") %>% 
-        ##Get attributes as a dataframe
-        xml_attrs() %>% 
-        bind_rows() %>% 
-        ##Make actual time numeric
-        mutate(across(TIME_VALUE, as.numeric))
-      
-      ##Get speaker tier names
-      spkrTierNames <- 
-        tierInfo() %>% 
-        filter(File==eafName, SpkrTier) %>% 
-        pull(TIER_ID)
-      
-      ##Get times for speaker tiers (list of dataframes)
-      spkrTimes <- 
-        spkrTierNames %>% 
-        set_names(., .) %>% 
-        map(getTimesTier, eaf, timeSlots) %>% 
-        ##Only nonempty tiers
-        keep(~ nrow(.x) > 0)
-    }
-    
-    list(getTimes = eaflist()[1] %>% imap(getTimes))
+    ##Next step: fix overlaps for 1st tier and recheck.
   })
   
   
@@ -417,7 +498,8 @@ server <- function(input, output) {
       map_if(files()$File,
              ~ !endsWith(.x, "eaf"),
              ~ tags$li(.x, class="bad"),
-             .else=tags$li)
+             .else=tags$li),
+      id="checkDetails"
     )
     
     ##Style headings based on whether file extensions are valid
@@ -441,11 +523,15 @@ server <- function(input, output) {
     ##Content
     tierSubhead <- h3(paste("The tier checker returned the following issue(s),",
                             "which can be resolved using Change Tier Attributes in Elan:"),
-                      id="tierSubhead")
-    tierDetails <- tags$ul("")
+                      id="tierSubhead") %>% 
+      ##By default, don't display
+      undisplay()
+    tierDetails <- tags$ul("", id="tierDetails") %>% 
+      ##By default, don't display
+      undisplay()
     
     ##If not exiting early yet, check for tier issues
-    if (!exitEarly && !overrideExit$fileExt) {
+    if (!exitEarly || overrideExit$fileExt) {
       ##Get tier issues
       tierIss <- tierIssues(tierInfo())
       ##If no tier issues, don't display anything & make step heading green
@@ -488,11 +574,15 @@ server <- function(input, output) {
     dictSubhead <- h3(paste("The following word(s) are not currently in the dictionary.",
                             "Please correct misspellings, fix punctuation, and/or add pronunciation codes.",
                             "Notify Dan of any words that should be added to the dictionary."),
-                      id="dictSubhead")
-    dictDetails <- tags$ul("", is="dictDetails")
+                      id="dictSubhead") %>% 
+      ##By default, don't display
+      undisplay()
+    dictDetails <- tags$ul("", id="dictDetails") %>% 
+      ##By default, don't display
+      undisplay()
     
     ##If not exiting early yet, check for dictionary issues
-    if (!exitEarly && !overrideExit$tiers) {
+    if (!exitEarly || overrideExit$tiers) {
       ##Get dictionary check
       dictIss <- dictCheck(tierInfo(), eaflist())
       ##If no dictionary issues, don't display anything & make step heading green
@@ -542,15 +632,19 @@ server <- function(input, output) {
     overlapsSubhead <- h3(paste("The overlap checker could not resolve the following overlaps.",
                                 "Please fix these overlaps; remember to make overlaps a",
                                 "separate turn on each speaker's tier."),
-                      id="dictSubhead")
-    overlapsDetails <- tags$ul("", is="overlapsDetails")
+                      id="dictSubhead") %>% 
+      ##By default, don't display
+      undisplay()
+    overlapsDetails <- tags$ul("", is="overlapsDetails") %>% 
+      ##By default, don't display
+      undisplay()
     
     ##If not exiting early yet, check for dictionary issues
-    if (!exitEarly && !overrideExit$dict) {
+    if (!exitEarly || overrideExit$dict) {
       ##Get overlaps issues
       overlapsIss <- dictCheck(tierInfo(), eaflist())
       ##If no dictionary issues, don't display anything & make step heading green
-      if (length(dictIss)==0) {
+      if (length(overlapsIss)==0) {
         overlapsSubhead <- undisplay(overlapsSubhead)
         overlapsDetails <- undisplay(overlapsDetails)
         stepHeads$overlaps <- stepHeads$overlaps %>% 
@@ -641,8 +735,19 @@ server <- function(input, output) {
     paste(sprintf("%02i", time[1]), sprintf("%02i", time[2]), sprintf("%06.3f", time[3]), sep=":")
   }
   
-  eaflistNew <- reactive({
-    if (length(tierIssues())==0 & length(dictIssues())==0) {
+  spkrTiers <- reactive({
+    setNames(lapply(eaflist(), function(eaf) {
+      xml_find_all(eaf, paste("//TIER[@TIER_ID!='comment' and @TIER_ID!='comments' and",
+                              "@TIER_ID!='Comment' and @TIER_ID!='Comments' and", 
+                              "@TIER_ID!='noise' and @TIER_ID!='noises' and",
+                              "@TIER_ID!='Noise' and @TIER_ID!='Noises' and",
+                              "(@LINGUISTIC_TYPE_REF='default-lt' or @LINGUISTIC_TYPE_REF='UtteranceType')]"))
+    }), names(eaflist()))
+  })
+  
+  # eaflistNew <- reactive({
+  tmStamps <- reactive({
+    # if (length(tierIssues())==0 & length(dictIssues())==0) {
       setNames(lapply(names(eaflist()), function(x) {
         numOverlaps <- numOverlapsFixed <- 0
         eaf <- eaflist()[[x]]
@@ -657,6 +762,8 @@ server <- function(input, output) {
                                   Start=tmStamps[xml_attr(xml_find_all(tier, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "TIME_SLOT_REF1")],
                                   End=tmStamps[xml_attr(xml_find_all(tier, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "TIME_SLOT_REF2")])
         })
+        tmStamps
+        
         ##For each turn in each nonempty speaker tier, see if there's an overlap. If so, resolve it.
         for (spkr in seq_len(length(spkrTimesAll))) {
           spkrTimes <- spkrTimesAll[[spkr]]
@@ -697,7 +804,7 @@ server <- function(input, output) {
         eaf
       }), names(eaflist())
       )
-    }
+    # }
   })
   overlapIssues <- reactive({
     if (length(tierIssues())==0 & length(dictIssues())==0) {
