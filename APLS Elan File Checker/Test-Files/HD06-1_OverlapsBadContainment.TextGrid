@@ -11,7 +11,7 @@ item []:
         name = "HD06" 
         xmin = 0 
         xmax = 2417.148 
-        intervals: size = 823 
+        intervals: size = 819 
         intervals [1]:
             xmin = 0 
             xmax = 8.305 
@@ -2426,881 +2426,865 @@ item []:
             text = "that's what I . I think all my jobs have been organizing jobs the job titles" 
         intervals [604]:
             xmin = 1690.143 
-            xmax = 1696.681 
-            text = "are different but [breath] I think essentially whenever you're working in a community and you need to [breath] build consensus" 
-        intervals [605]:
-            xmin = 1696.681 
-            xmax = 1696.691 
-            text = "" 
-        intervals [606]:
-            xmin = 1696.691 
-            xmax = 1697.12 
-            text = "and you need" 
-        intervals [607]:
-            xmin = 1697.12 
-            xmax = 1697.149 
-            text = "" 
-        intervals [608]:
-            xmin = 1697.149 
             xmax = 1706.049 
-            text = "to find [breath] direction uh y~ you need to be an organizer you . sometimes need to . think you have answers or sometimes need to go to meetings" 
-        intervals [609]:
+            text = "are different but [breath] I think essentially whenever you're working in a community and you need to [breath] build consensus and you need to find [breath] direction uh y~ you need to be an organizer you . sometimes need to . think you have answers or sometimes need to go to meetings" 
+        intervals [605]:
             xmin = 1706.049 
             xmax = 1708.952 
             text = "and say I don't have a clue what should we do" 
-        intervals [610]:
+        intervals [606]:
             xmin = 1708.952 
             xmax = 1709.093 
             text = "" 
-        intervals [611]:
+        intervals [607]:
             xmin = 1709.093 
             xmax = 1709.401 
             text = "so" 
-        intervals [612]:
+        intervals [608]:
             xmin = 1709.401 
             xmax = 1710.358 
             text = "" 
-        intervals [613]:
+        intervals [609]:
             xmin = 1710.358 
             xmax = 1711.103 
             text = "[laughs]" 
-        intervals [614]:
+        intervals [610]:
             xmin = 1711.103 
             xmax = 1715.014 
             text = "[breath] I am the director of arts and neighborhood development at Hill House" 
-        intervals [615]:
+        intervals [611]:
             xmin = 1715.014 
             xmax = 1716.129 
             text = "um" 
-        intervals [616]:
+        intervals [612]:
             xmin = 1716.129 
             xmax = 1719.465 
             text = "[clicks tongue] and I still think of it as a community organizing gig" 
-        intervals [617]:
+        intervals [613]:
             xmin = 1719.465 
             xmax = 1727.911 
             text = "um [sniffs] you know to get artists who've never worked in the Hill to come in the Hill - requires a set of skills that organizers need you" 
-        intervals [618]:
+        intervals [614]:
             xmin = 1727.911 
             xmax = 1728.447 
             text = "know" 
-        intervals [619]:
+        intervals [615]:
             xmin = 1728.447 
             xmax = 1733.408 
             text = "to be able to um - [clicks tongue] to communicate effectively [breath]" 
-        intervals [620]:
+        intervals [616]:
             xmin = 1733.408 
             xmax = 1739.449 
             text = "to be able to give people this sense of [breath] of urgency um connectedness" 
-        intervals [621]:
+        intervals [617]:
             xmin = 1739.449 
             xmax = 1739.882 
             text = "" 
-        intervals [622]:
+        intervals [618]:
             xmin = 1739.882 
             xmax = 1747.893 
             text = "um those are all the skills that it takes to get artists to come into the community [breath] same skills to get [breath] adults and kids" 
-        intervals [623]:
+        intervals [619]:
             xmin = 1747.893 
             xmax = 1757.761 
             text = "to interact with folks they've never seen before [breath] um and so I~ I~ I've thought of every job I've ever had as as community organizing" 
-        intervals [624]:
+        intervals [620]:
             xmin = 1757.761 
             xmax = 1763.944 
             text = "" 
-        intervals [625]:
+        intervals [621]:
             xmin = 1763.944 
             xmax = 1764.601 
             text = "mmm hmm" 
-        intervals [626]:
+        intervals [622]:
             xmin = 1764.601 
             xmax = 1767.311 
             text = "" 
-        intervals [627]:
+        intervals [623]:
             xmin = 1767.311 
             xmax = 1768.291 
             text = "mmm hmm" 
-        intervals [628]:
+        intervals [624]:
             xmin = 1768.291 
             xmax = 1769.434 
             text = "" 
-        intervals [629]:
+        intervals [625]:
             xmin = 1769.434 
             xmax = 1778.737 
             text = "it's amazing uh -- you know I~ I sometimes think [scoffs] how did I end up with this job - I think that's the story of my life" 
-        intervals [630]:
+        intervals [626]:
             xmin = 1778.737 
             xmax = 1783.19 
             text = "I just like [breath] I just under a lucky star and just like end up in" 
-        intervals [631]:
+        intervals [627]:
             xmin = 1783.19 
             xmax = 1784.229 
             text = "these different places" 
-        intervals [632]:
+        intervals [628]:
             xmin = 1784.229 
             xmax = 1784.689 
             text = "" 
-        intervals [633]:
+        intervals [629]:
             xmin = 1784.689 
             xmax = 1790.344 
             text = "a year ago . h~ Hill House had an opportunity [breath] to do a summer arts program" 
-        intervals [634]:
+        intervals [630]:
             xmin = 1790.344 
             xmax = 1790.35 
             text = "" 
-        intervals [635]:
+        intervals [631]:
             xmin = 1790.35 
             xmax = 1797.367 
             text = "and the boss said [breath] - you know some artists [laughs] you can organize this camp . and [breath]" 
-        intervals [636]:
+        intervals [632]:
             xmin = 1797.367 
             xmax = 1797.854 
             text = "" 
-        intervals [637]:
+        intervals [633]:
             xmin = 1797.854 
             xmax = 1802.892 
             text = "it turned into like this -- couldn't be simple [breath]" 
-        intervals [638]:
+        intervals [634]:
             xmin = 1802.892 
             xmax = 1811.371 
             text = "[unclear] all these artists doing all these classes and some of them went really well and [breath] you know some of some of them didn't go as well as I expected" 
-        intervals [639]:
+        intervals [635]:
             xmin = 1811.371 
             xmax = 1811.405 
             text = "" 
-        intervals [640]:
+        intervals [636]:
             xmin = 1811.405 
             xmax = 1811.949 
             text = "but" 
-        intervals [641]:
+        intervals [637]:
             xmin = 1811.949 
             xmax = 1818.003 
             text = "the whole idea was that these artists had such a good time - working in the Hill they wanna come back" 
-        intervals [642]:
+        intervals [638]:
             xmin = 1818.003 
             xmax = 1818.047 
             text = "" 
-        intervals [643]:
+        intervals [639]:
             xmin = 1818.047 
             xmax = 1823.699 
             text = "[breath] because I think this is the coolest neighborhood [breath] and I~ when you get people to come in" 
-        intervals [644]:
+        intervals [640]:
             xmin = 1823.699 
             xmax = 1824.041 
             text = "" 
-        intervals [645]:
+        intervals [641]:
             xmin = 1824.041 
             xmax = 1826.55 
             text = "and look around and meet people and" 
-        intervals [646]:
+        intervals [642]:
             xmin = 1826.55 
             xmax = 1835.02 
             text = "you know have that Pittsburgh experience of [breath] you're a complete stranger and somebody walks up to you and says what are you doing in my neighborhood and why are you looking at that building" 
-        intervals [647]:
+        intervals [643]:
             xmin = 1835.02 
             xmax = 1835.047 
             text = "" 
-        intervals [648]:
+        intervals [644]:
             xmin = 1835.047 
             xmax = 1835.929 
             text = "people get" 
-        intervals [649]:
+        intervals [645]:
             xmin = 1835.929 
             xmax = 1835.934 
             text = "" 
-        intervals [650]:
+        intervals [646]:
             xmin = 1835.934 
             xmax = 1837.75 
             text = "the sense that this is a cool place" 
-        intervals [651]:
+        intervals [647]:
             xmin = 1837.75 
             xmax = 1837.781 
             text = "" 
-        intervals [652]:
+        intervals [648]:
             xmin = 1837.781 
             xmax = 1838.423 
             text = "and um" 
-        intervals [653]:
+        intervals [649]:
             xmin = 1838.423 
             xmax = 1839.584 
             text = "" 
-        intervals [654]:
+        intervals [650]:
             xmin = 1839.584 
             xmax = 1848.054 
             text = "so you know I ended up in doing the arts program and -- I was running the program that served women in recovery from drugs and alcohol" 
-        intervals [655]:
+        intervals [651]:
             xmin = 1848.054 
             xmax = 1848.481 
             text = "" 
-        intervals [656]:
+        intervals [652]:
             xmin = 1848.481 
             xmax = 1851.156 
             text = "this time last year when I was asked to do the arts programs" 
-        intervals [657]:
+        intervals [653]:
             xmin = 1851.156 
             xmax = 1852.357 
             text = "" 
-        intervals [658]:
+        intervals [654]:
             xmin = 1852.357 
             xmax = 1857.517 
             text = "uh just end up ended up here and [breath] it's a nice fit it's a it's a it's a very cool fit" 
-        intervals [659]:
+        intervals [655]:
             xmin = 1857.517 
             xmax = 1862.9 
             text = "" 
-        intervals [660]:
+        intervals [656]:
             xmin = 1862.9 
             xmax = 1867.17 
             text = "mmm hmm mmm hmm -- I think um" 
-        intervals [661]:
+        intervals [657]:
             xmin = 1867.17 
             xmax = 1868.038 
             text = "" 
-        intervals [662]:
+        intervals [658]:
             xmin = 1868.038 
             xmax = 1868.891 
             text = "[laughs]" 
-        intervals [663]:
+        intervals [659]:
             xmin = 1868.891 
             xmax = 1869.893 
             text = "" 
-        intervals [664]:
+        intervals [660]:
             xmin = 1869.893 
             xmax = 1874.921 
             text = "I think sometimes um - I~ I~ i~[I] i~[I] [sighs] uh" 
-        intervals [665]:
+        intervals [661]:
             xmin = 1874.921 
             xmax = 1875.05 
             text = "" 
-        intervals [666]:
+        intervals [662]:
             xmin = 1875.05 
             xmax = 1880.525 
             text = "it's like carrying the same concerns that my parents had . [breath] you know do I have enough" 
-        intervals [667]:
+        intervals [663]:
             xmin = 1880.525 
             xmax = 1881.738 
             text = "money" 
-        intervals [668]:
+        intervals [664]:
             xmin = 1881.738 
             xmax = 1881.739 
             text = "" 
-        intervals [669]:
+        intervals [665]:
             xmin = 1881.739 
             xmax = 1882.825 
             text = "is there enough stuff in the" 
-        intervals [670]:
+        intervals [666]:
             xmin = 1882.825 
             xmax = 1883.968 
             text = "house you" 
-        intervals [671]:
+        intervals [667]:
             xmin = 1883.968 
             xmax = 1887.939 
             text = "know [breath] um am I gonna make it to be able to pay the bills can" 
-        intervals [672]:
+        intervals [668]:
             xmin = 1887.939 
             xmax = 1888.496 
             text = "I [breath]" 
-        intervals [673]:
+        intervals [669]:
             xmin = 1888.496 
             xmax = 1888.539 
             text = "" 
-        intervals [674]:
+        intervals [670]:
             xmin = 1888.539 
             xmax = 1897.107 
             text = "i~[I] all the same worries that they had I still have 'cause I don't -- think I've ever - looked at myself as anything but working class" 
-        intervals [675]:
+        intervals [671]:
             xmin = 1897.107 
             xmax = 1897.115 
             text = "" 
-        intervals [676]:
+        intervals [672]:
             xmin = 1897.115 
             xmax = 1901.23 
             text = "um -- I~ I live in a working class neighborhood" 
-        intervals [677]:
+        intervals [673]:
             xmin = 1901.23 
             xmax = 1901.695 
             text = "" 
-        intervals [678]:
+        intervals [674]:
             xmin = 1901.695 
             xmax = 1906.171 
             text = "and I have a lot of friends who like -- live in Shadyside and stuff" 
-        intervals [679]:
+        intervals [675]:
             xmin = 1906.171 
             xmax = 1906.644 
             text = "" 
-        intervals [680]:
+        intervals [676]:
             xmin = 1906.644 
             xmax = 1908.58 
             text = "can barely make it" 
-        intervals [681]:
+        intervals [677]:
             xmin = 1908.58 
             xmax = 1908.843 
             text = "" 
-        intervals [682]:
+        intervals [678]:
             xmin = 1908.843 
             xmax = 1911.99 
             text = "but it's like [breath] they got the right address" 
-        intervals [683]:
+        intervals [679]:
             xmin = 1911.99 
             xmax = 1914.348 
             text = "" 
-        intervals [684]:
+        intervals [680]:
             xmin = 1914.348 
             xmax = 1921.267 
             text = "I got the right neighbors so I'm g~ I'm good I love the building I live in I [breath] I l~ you know I hate great neighbors" 
-        intervals [685]:
+        intervals [681]:
             xmin = 1921.267 
             xmax = 1921.278 
             text = "" 
-        intervals [686]:
+        intervals [682]:
             xmin = 1921.278 
             xmax = 1921.826 
             text = "and" 
-        intervals [687]:
+        intervals [683]:
             xmin = 1921.826 
             xmax = 1923.279 
             text = "" 
-        intervals [688]:
+        intervals [684]:
             xmin = 1923.279 
             xmax = 1927.304 
             text = "it's convenient I'm not embarrassed about where I live" 
-        intervals [689]:
+        intervals [685]:
             xmin = 1927.304 
             xmax = 1930.226 
             text = "" 
-        intervals [690]:
+        intervals [686]:
             xmin = 1930.226 
             xmax = 1930.941 
             text = "so" 
-        intervals [691]:
+        intervals [687]:
             xmin = 1930.941 
             xmax = 1964.685 
             text = "" 
-        intervals [692]:
+        intervals [688]:
             xmin = 1964.685 
             xmax = 1967.87 
             text = "I think in terms of history" 
-        intervals [693]:
+        intervals [689]:
             xmin = 1967.87 
             xmax = 1968.509 
             text = "" 
-        intervals [694]:
+        intervals [690]:
             xmin = 1968.509 
             xmax = 1974.614 
             text = "I feel real connected I mean [breath] you know I grew up when people ts~[ts] told stories" 
-        intervals [695]:
+        intervals [691]:
             xmin = 1974.614 
             xmax = 1980.295 
             text = "so I have . I learned community stories I learned family stories um" 
-        intervals [696]:
+        intervals [692]:
             xmin = 1980.295 
             xmax = 1988.229 
             text = "[breath] when I grew up it wasn't just that I had to understand - the folks who lived in my block on Paulson Avenue" 
-        intervals [697]:
+        intervals [693]:
             xmin = 1988.229 
             xmax = 1989.146 
             text = "" 
-        intervals [698]:
+        intervals [694]:
             xmin = 1989.146 
             xmax = 1996.908 
             text = "but I understood -- you know -- I understood the world through my grandmother's experience through my" 
-        intervals [699]:
+        intervals [695]:
             xmin = 1996.908 
             xmax = 1997.66 
             text = "great grandmother's" 
-        intervals [700]:
+        intervals [696]:
             xmin = 1997.66 
             xmax = 1997.662 
             text = "" 
-        intervals [701]:
+        intervals [697]:
             xmin = 1997.662 
             xmax = 1998.464 
             text = "experience" 
-        intervals [702]:
+        intervals [698]:
             xmin = 1998.464 
             xmax = 1999.092 
             text = "so" 
-        intervals [703]:
+        intervals [699]:
             xmin = 1999.092 
             xmax = 2006.603 
             text = "I grew up -- listening to a Victrola[vIkJr5l@] and thinking everybody had a Victrola[vIkJr5l@] in their house" 
-        intervals [704]:
+        intervals [700]:
             xmin = 2006.603 
             xmax = 2007.177 
             text = "" 
-        intervals [705]:
+        intervals [701]:
             xmin = 2007.177 
             xmax = 2010.619 
             text = "I thought everybody said Victrola[vIkJr5l@]" 
-        intervals [706]:
+        intervals [702]:
             xmin = 2010.619 
             xmax = 2019.7 
             text = "'cause my grandmother - had an old one that wound up and then even when they got like a little stereo thing [breath] everybody said Victrola[vIkJr5l@]" 
-        intervals [707]:
+        intervals [703]:
             xmin = 2019.7 
             xmax = 2025.133 
             text = "and so it's like in my mind [breath] - because I grew up with generations" 
-        intervals [708]:
+        intervals [704]:
             xmin = 2025.133 
             xmax = 2025.61 
             text = "" 
-        intervals [709]:
+        intervals [705]:
             xmin = 2025.61 
             xmax = 2032.522 
             text = "my grandmother's experience and what the depression was like and [breath] what she had to do and what the world was like [breath]" 
-        intervals [710]:
+        intervals [706]:
             xmin = 2032.522 
             xmax = 2037.982 
             text = "it's part of my experience -- same for my grandmother [breath] same for my mom" 
-        intervals [711]:
+        intervals [707]:
             xmin = 2037.982 
             xmax = 2039.017 
             text = "" 
-        intervals [712]:
+        intervals [708]:
             xmin = 2039.017 
             xmax = 2042.564 
             text = "and so I have a I have this great sense of connection" 
-        intervals [713]:
+        intervals [709]:
             xmin = 2042.564 
             xmax = 2042.936 
             text = "" 
-        intervals [714]:
+        intervals [710]:
             xmin = 2042.936 
             xmax = 2048.029 
             text = "to history - I don't feel like I'm real connected to young people" 
-        intervals [715]:
+        intervals [711]:
             xmin = 2048.029 
             xmax = 2055.748 
             text = "I feel like it's a completely different world and [breath] sometimes I feel so old like [breath] I'm not even sure if what" 
-        intervals [716]:
+        intervals [712]:
             xmin = 2055.748 
             xmax = 2056.463 
             text = "" 
-        intervals [717]:
+        intervals [713]:
             xmin = 2056.463 
             xmax = 2062.778 
             text = "if my view of the world wo~[w@] it would be relevant to them 'cause I grew up with different sensibilities and" 
-        intervals [718]:
+        intervals [714]:
             xmin = 2062.778 
             xmax = 2063.429 
             text = "" 
-        intervals [719]:
+        intervals [715]:
             xmin = 2063.429 
             xmax = 2068.073 
             text = "I feel myself getting old 'cause I'm saying things I heard my mom and my grandmother say" 
-        intervals [720]:
+        intervals [716]:
             xmin = 2068.073 
             xmax = 2068.084 
             text = "" 
-        intervals [721]:
+        intervals [717]:
             xmin = 2068.084 
             xmax = 2069.162 
             text = "like" 
-        intervals [722]:
+        intervals [718]:
             xmin = 2069.162 
             xmax = 2069.179 
             text = "" 
-        intervals [723]:
+        intervals [719]:
             xmin = 2069.179 
             xmax = 2073.765 
             text = "if her mother made her wear her pants down around her butt she wouldn't want to wear them out" 
-        intervals [724]:
+        intervals [720]:
             xmin = 2073.765 
             xmax = 2074.334 
             text = "you know ? you" 
-        intervals [725]:
+        intervals [721]:
             xmin = 2074.334 
             xmax = 2074.344 
             text = "" 
-        intervals [726]:
+        intervals [722]:
             xmin = 2074.344 
             xmax = 2078.62 
             text = "know I'm looking at young people and so [breath] I'm real clear" 
-        intervals [727]:
+        intervals [723]:
             xmin = 2078.62 
             xmax = 2088.823 
             text = "that they're that I'm getting older - that I'm old-fashioned that I have a whole different worldview [breath] and I'm all right that they have theirs I just think that" 
-        intervals [728]:
+        intervals [724]:
             xmin = 2088.823 
             xmax = 2097.689 
             text = "[breath] there are other people [breath] who um - can work better with young people 'cause they got a different sense [breath] of how they relate to young people" 
-        intervals [729]:
+        intervals [725]:
             xmin = 2097.689 
             xmax = 2097.719 
             text = "" 
-        intervals [730]:
+        intervals [726]:
             xmin = 2097.719 
             xmax = 2098.424 
             text = "I'm just" 
-        intervals [731]:
+        intervals [727]:
             xmin = 2098.424 
             xmax = 2098.428 
             text = "" 
-        intervals [732]:
+        intervals [728]:
             xmin = 2098.428 
             xmax = 2099.149 
             text = "old" 
-        intervals [733]:
+        intervals [729]:
             xmin = 2099.149 
             xmax = 2099.698 
             text = "I've always" 
-        intervals [734]:
+        intervals [730]:
             xmin = 2099.698 
             xmax = 2108.509 
             text = "been old for my age so I feel like [breath] you know there are people who um . understand the language - can be real open to all of that and" 
-        intervals [735]:
+        intervals [731]:
             xmin = 2108.509 
             xmax = 2109.134 
             text = "" 
-        intervals [736]:
+        intervals [732]:
             xmin = 2109.134 
             xmax = 2110.487 
             text = "can do it better than I do" 
-        intervals [737]:
+        intervals [733]:
             xmin = 2110.487 
             xmax = 2110.956 
             text = "I mean I" 
-        intervals [738]:
+        intervals [734]:
             xmin = 2110.956 
             xmax = 2110.968 
             text = "" 
-        intervals [739]:
+        intervals [735]:
             xmin = 2110.968 
             xmax = 2119.48 
             text = "listen to the music and all that kinds of stuff [breath] but I don't I'm not gonna kid myself and say I can sit down and talk to a seventeen year old girl -- 'cause I don't feel like I could" 
-        intervals [740]:
+        intervals [736]:
             xmin = 2119.48 
             xmax = 2119.482 
             text = "" 
-        intervals [741]:
+        intervals [737]:
             xmin = 2119.482 
             xmax = 2119.882 
             text = "there's" 
-        intervals [742]:
+        intervals [738]:
             xmin = 2119.882 
             xmax = 2122.123 
             text = "just many other people - who can" 
-        intervals [743]:
+        intervals [739]:
             xmin = 2122.123 
             xmax = 2130.697 
             text = "[clicks tongue] so so I try to - keep the continuity going by [breath] -- connecting young people to elders who" 
-        intervals [744]:
+        intervals [740]:
             xmin = 2130.697 
             xmax = 2131.62 
             text = "tell stories" 
-        intervals [745]:
+        intervals [741]:
             xmin = 2131.62 
             xmax = 2140.37 
             text = "" 
-        intervals [746]:
+        intervals [742]:
             xmin = 2140.37 
             xmax = 2141.047 
             text = "mmm hmm" 
-        intervals [747]:
+        intervals [743]:
             xmin = 2141.047 
             xmax = 2142.293 
             text = "" 
-        intervals [748]:
+        intervals [744]:
             xmin = 2142.293 
             xmax = 2143.37 
             text = "mmm hmm" 
-        intervals [749]:
+        intervals [745]:
             xmin = 2143.37 
             xmax = 2145.657 
             text = "" 
-        intervals [750]:
+        intervals [746]:
             xmin = 2145.657 
             xmax = 2146.327 
             text = "mmm hmm" 
-        intervals [751]:
+        intervals [747]:
             xmin = 2146.327 
             xmax = 2155.056 
             text = "" 
-        intervals [752]:
+        intervals [748]:
             xmin = 2155.056 
             xmax = 2155.657 
             text = "mmm" 
-        intervals [753]:
+        intervals [749]:
             xmin = 2155.657 
             xmax = 2156.361 
             text = "mmm hmm" 
-        intervals [754]:
+        intervals [750]:
             xmin = 2156.361 
             xmax = 2159.04 
             text = "" 
-        intervals [755]:
+        intervals [751]:
             xmin = 2159.04 
             xmax = 2159.673 
             text = "[unclear]" 
-        intervals [756]:
+        intervals [752]:
             xmin = 2159.673 
             xmax = 2160.716 
             text = "" 
-        intervals [757]:
+        intervals [753]:
             xmin = 2160.716 
             xmax = 2161.057 
             text = "it's" 
-        intervals [758]:
+        intervals [754]:
             xmin = 2161.057 
             xmax = 2162.078 
             text = "gone" 
-        intervals [759]:
+        intervals [755]:
             xmin = 2162.078 
             xmax = 2162.106 
             text = "" 
-        intervals [760]:
+        intervals [756]:
             xmin = 2162.106 
             xmax = 2172.508 
             text = "yeah 'cause it's . you know . it's funny [scoffs] when I bring - students into the Hill and . and introduce them to elders" 
-        intervals [761]:
+        intervals [757]:
             xmin = 2172.508 
             xmax = 2179.917 
             text = "it's . it's almost like most of the white students that come here [breath] understand the importance of reading history" 
-        intervals [762]:
+        intervals [758]:
             xmin = 2179.917 
             xmax = 2180.571 
             text = "" 
-        intervals [763]:
+        intervals [759]:
             xmin = 2180.571 
             xmax = 2187.959 
             text = "experiencing it through somebody else's life [breath] hearing the stories and doing it with a a great degree of respect " 
-        intervals [764]:
+        intervals [760]:
             xmin = 2187.959 
             xmax = 2188.593 
             text = "" 
-        intervals [765]:
+        intervals [761]:
             xmin = 2188.593 
             xmax = 2194.542 
             text = "and it's really hard sometimes when young black people [breath] you try to hook them up with the elders it's like [clicks tongue] [breath]" 
-        intervals [766]:
+        intervals [762]:
             xmin = 2194.542 
             xmax = 2203.188 
             text = "they're old and [breath] I don't know how you bridge the yeah they're old [breath] but s~ in something that they're saying [breath] is" 
-        intervals [767]:
+        intervals [763]:
             xmin = 2203.188 
             xmax = 2204.032 
             text = "" 
-        intervals [768]:
+        intervals [764]:
             xmin = 2204.032 
             xmax = 2204.942 
             text = "a kernel of" 
-        intervals [769]:
+        intervals [765]:
             xmin = 2204.942 
             xmax = 2205.688 
             text = "truth" 
-        intervals [770]:
+        intervals [766]:
             xmin = 2205.688 
             xmax = 2206.161 
             text = "or" 
-        intervals [771]:
+        intervals [767]:
             xmin = 2206.161 
             xmax = 2206.188 
             text = "" 
-        intervals [772]:
+        intervals [768]:
             xmin = 2206.188 
             xmax = 2211.06 
             text = "[breath] something to hold onto or [breath] some different way to think about the world and" 
-        intervals [773]:
+        intervals [769]:
             xmin = 2211.06 
             xmax = 2211.66 
             text = "I think" 
-        intervals [774]:
+        intervals [770]:
             xmin = 2211.66 
             xmax = 2211.718 
             text = "" 
-        intervals [775]:
+        intervals [771]:
             xmin = 2211.718 
             xmax = 2218.387 
             text = "for me that is just the hardest thing [breath] and I think it's because I grew up at a time where" 
-        intervals [776]:
+        intervals [772]:
             xmin = 2218.387 
             xmax = 2219.175 
             text = "" 
-        intervals [777]:
+        intervals [773]:
             xmin = 2219.175 
             xmax = 2225.887 
             text = "literally the block I grew up in - it was us it was my grandmother my great grandmother" 
-        intervals [778]:
+        intervals [774]:
             xmin = 2225.887 
             xmax = 2233.685 
             text = "my grandmother's sister [breath] all the neighbors who stayed there all the time and so [breath] . it was almost like" 
-        intervals [779]:
+        intervals [775]:
             xmin = 2233.685 
             xmax = 2234.11 
             text = "" 
-        intervals [780]:
+        intervals [776]:
             xmin = 2234.11 
             xmax = 2240.278 
             text = "you couldn't live in that existence . and not be touched by somebody's story" 
-        intervals [781]:
+        intervals [777]:
             xmin = 2240.278 
             xmax = 2241.332 
             text = "and it's not like" 
-        intervals [782]:
+        intervals [778]:
             xmin = 2241.332 
             xmax = 2241.393 
             text = "" 
-        intervals [783]:
+        intervals [779]:
             xmin = 2241.393 
             xmax = 2247.014 
             text = "they would sit down and say I'm gonna tell you a story but [breath] like I would stay at my grandmother's house" 
-        intervals [784]:
+        intervals [780]:
             xmin = 2247.014 
             xmax = 2255.968 
             text = "and . she would tell me things . or she would show me a picture or - we had this ritual I stayed with my grandmother when I was little" 
-        intervals [785]:
+        intervals [781]:
             xmin = 2255.968 
             xmax = 2265.439 
             text = "and - up until I graduated from college and she passed away [breath] I stayed there every weekend - we slept in the same bed . and we had these rituals" 
-        intervals [786]:
+        intervals [782]:
             xmin = 2265.439 
             xmax = 2272.279 
             text = "[clicks tongue] and um - you know we'd eat dinner together and then we'd watch the news and she had this ritual about" 
-        intervals [787]:
+        intervals [783]:
             xmin = 2272.279 
             xmax = 2279.799 
             text = "[breath] turning off certain lights turning on certain lights locking doors at a certain time pulling down the shades she had this whole ritual [breath]" 
-        intervals [788]:
+        intervals [784]:
             xmin = 2279.799 
             xmax = 2285.499 
             text = "we'd watch the news turn off the l~ the lights and the T V at eleven thirty" 
-        intervals [789]:
+        intervals [785]:
             xmin = 2285.499 
             xmax = 2285.719 
             text = "" 
-        intervals [790]:
+        intervals [786]:
             xmin = 2285.719 
             xmax = 2294.679 
             text = "[clicks tongue] she'd ask me about my day she'd tell me about her day [breath] she'd te~[tE] may tell me some other family stuff [breath] and then I would listen to her say her prayers" 
-        intervals [791]:
+        intervals [787]:
             xmin = 2294.679 
             xmax = 2303.163 
             text = "and I learned a lot about my grandmother's life -- from - the things that she prayed for and the things that she prayed about" 
-        intervals [792]:
+        intervals [788]:
             xmin = 2303.163 
             xmax = 2304.02 
             text = "" 
-        intervals [793]:
+        intervals [789]:
             xmin = 2304.02 
             xmax = 2310.719 
             text = "and it's you know kids don't do that [breath] and they don't sleep with their grandmother and . and listen or they don't" 
-        intervals [794]:
+        intervals [790]:
             xmin = 2310.719 
             xmax = 2319.46 
             text = "you know she would make food and [breath] my grandmother . never measured anything . and she was one of those just a pinch what's that ?" 
-        intervals [795]:
+        intervals [791]:
             xmin = 2319.46 
             xmax = 2319.48 
             text = "" 
-        intervals [796]:
+        intervals [792]:
             xmin = 2319.48 
             xmax = 2322.18 
             text = "it's a pinch" 
-        intervals [797]:
+        intervals [793]:
             xmin = 2322.18 
             xmax = 2322.86 
             text = "you know and" 
-        intervals [798]:
+        intervals [794]:
             xmin = 2322.86 
             xmax = 2323.96 
             text = "like" 
-        intervals [799]:
+        intervals [795]:
             xmin = 2323.96 
             xmax = 2324.012 
             text = "" 
-        intervals [800]:
+        intervals [796]:
             xmin = 2324.012 
             xmax = 2329.079 
             text = "m~ m~ being with my grandmother while she was cooking at the time I was like [breath]" 
-        intervals [801]:
+        intervals [797]:
             xmin = 2329.079 
             xmax = 2334.599 
             text = "sometimes it was boring . but looking back I thought [breath] we spent hours in that kitchen" 
-        intervals [802]:
+        intervals [798]:
             xmin = 2334.599 
             xmax = 2342.579 
             text = "and she put love in that food and [breath] you know she was teaching me that [breath] nothing is exact life isn't exact" 
-        intervals [803]:
+        intervals [799]:
             xmin = 2342.579 
             xmax = 2348.849 
             text = "[breath] it's a little bit of this and i~[I] it's an experiment - you try this it doesn't work you try something else" 
-        intervals [804]:
+        intervals [800]:
             xmin = 2348.849 
             xmax = 2358.444 
             text = "and I'm thinking all the lessons that she taught me [breath] just by saying . you gotta feel it [breath] you just gotta look at it it's gotta fit in your hand . you gotta figure it out" 
-        intervals [805]:
+        intervals [801]:
             xmin = 2358.444 
             xmax = 2359.055 
             text = "" 
-        intervals [806]:
+        intervals [802]:
             xmin = 2359.055 
             xmax = 2366.119 
             text = "kids don't do that they play games they watch . T V you know you know what I mean ? [breath] so they don't sit and have" 
-        intervals [807]:
+        intervals [803]:
             xmin = 2366.119 
             xmax = 2376.195 
             text = "those moments where they just absorb something [breath] and it doesn't make sense until  - thirty years later - you see they don't have that sense of" 
-        intervals [808]:
+        intervals [804]:
             xmin = 2376.195 
             xmax = 2376.201 
             text = "" 
-        intervals [809]:
+        intervals [805]:
             xmin = 2376.201 
             xmax = 2377.521 
             text = "I'm connected" 
-        intervals [810]:
+        intervals [806]:
             xmin = 2377.521 
             xmax = 2377.541 
             text = "" 
-        intervals [811]:
+        intervals [807]:
             xmin = 2377.541 
             xmax = 2378.282 
             text = "to the world" 
-        intervals [812]:
+        intervals [808]:
             xmin = 2378.282 
             xmax = 2378.741 
             text = "" 
-        intervals [813]:
+        intervals [809]:
             xmin = 2378.741 
             xmax = 2386.461 
             text = "'cause I'm connected to somebody who was here before [breath] and everything that happened to her - shaped her - shapes me" 
-        intervals [814]:
+        intervals [810]:
             xmin = 2386.461 
             xmax = 2386.668 
             text = "" 
-        intervals [815]:
+        intervals [811]:
             xmin = 2386.668 
             xmax = 2390.577 
             text = "so i~[I] you know - I don't know how you bridge that" 
-        intervals [816]:
+        intervals [812]:
             xmin = 2390.577 
             xmax = 2399.455 
             text = "I know uh I'm hoping that there's somebody out there that can help [breath] bridge that 'cause I meet young people [breath] and it's like their sense of of the world" 
-        intervals [817]:
+        intervals [813]:
             xmin = 2399.455 
             xmax = 2404.374 
             text = "started in . nineteen -- ninety two" 
-        intervals [818]:
+        intervals [814]:
             xmin = 2404.374 
             xmax = 2404.86 
             text = "" 
-        intervals [819]:
+        intervals [815]:
             xmin = 2404.86 
             xmax = 2411.718 
             text = "like they you know [breath] everything before that was old  well yeah mmm old is relative but yes old" 
-        intervals [820]:
+        intervals [816]:
             xmin = 2411.718 
             xmax = 2414.993 
             text = "and we still need to know it" 
-        intervals [821]:
+        intervals [817]:
             xmin = 2414.993 
             xmax = 2416.193 
             text = "" 
-        intervals [822]:
+        intervals [818]:
             xmin = 2416.193 
             xmax = 2416.949 
             text = "[unclear]" 
-        intervals [823]:
+        intervals [819]:
             xmin = 2416.949 
             xmax = 2417.148 
             text = "" 
@@ -3309,7 +3293,7 @@ item []:
         name = "Interviewer HD06" 
         xmin = 0 
         xmax = 2417.148 
-        intervals: size = 536 
+        intervals: size = 533 
         intervals [1]:
             xmin = 0 
             xmax = 3.523 
@@ -4920,537 +4904,525 @@ item []:
             text = "" 
         intervals [403]:
             xmin = 1757.768 
-            xmax = 1763.944 
-            text = "so do you actually uh have programs for kids to foster - like talents ?" 
-        intervals [404]:
-            xmin = 1763.944 
-            xmax = 1764.601 
-            text = "or" 
-        intervals [405]:
-            xmin = 1764.601 
-            xmax = 1764.615 
-            text = "" 
-        intervals [406]:
-            xmin = 1764.615 
             xmax = 1767.311 
-            text = "nurture talents et~[Et] artistic talents as well ?" 
-        intervals [407]:
+            text = "so do you actually uh have programs for kids to foster - like talents ? or nurture talents et~[Et] artistic talents as well ?" 
+        intervals [404]:
             xmin = 1767.311 
             xmax = 1768.282 
             text = "" 
-        intervals [408]:
+        intervals [405]:
             xmin = 1768.282 
             xmax = 1769.428 
             text = "how is that ?" 
-        intervals [409]:
+        intervals [406]:
             xmin = 1769.428 
             xmax = 1778.737 
             text = "" 
-        intervals [410]:
+        intervals [407]:
             xmin = 1778.737 
             xmax = 1783.19 
             text = "[laughs]" 
-        intervals [411]:
+        intervals [408]:
             xmin = 1783.19 
             xmax = 1784.229 
             text = "" 
-        intervals [412]:
+        intervals [409]:
             xmin = 1784.229 
             xmax = 1784.651 
             text = "mmm hmm" 
-        intervals [413]:
+        intervals [410]:
             xmin = 1784.651 
             xmax = 1811.405 
             text = "" 
-        intervals [414]:
+        intervals [411]:
             xmin = 1811.405 
             xmax = 1811.957 
             text = "mmm hmm" 
-        intervals [415]:
+        intervals [412]:
             xmin = 1811.957 
             xmax = 1823.699 
             text = "" 
-        intervals [416]:
+        intervals [413]:
             xmin = 1823.699 
             xmax = 1824.056 
             text = "mmm hmm" 
-        intervals [417]:
+        intervals [414]:
             xmin = 1824.056 
             xmax = 1835.047 
             text = "" 
-        intervals [418]:
+        intervals [415]:
             xmin = 1835.047 
             xmax = 1835.929 
             text = "[laughs]" 
-        intervals [419]:
+        intervals [416]:
             xmin = 1835.929 
             xmax = 1837.781 
             text = "" 
-        intervals [420]:
+        intervals [417]:
             xmin = 1837.781 
             xmax = 1838.444 
             text = "yes" 
-        intervals [421]:
+        intervals [418]:
             xmin = 1838.444 
             xmax = 1838.74 
             text = "" 
-        intervals [422]:
+        intervals [419]:
             xmin = 1838.74 
             xmax = 1839.586 
             text = "I agree" 
-        intervals [423]:
+        intervals [420]:
             xmin = 1839.586 
             xmax = 1848.052 
             text = "" 
-        intervals [424]:
+        intervals [421]:
             xmin = 1848.052 
             xmax = 1848.48 
             text = "mmm hmm" 
-        intervals [425]:
+        intervals [422]:
             xmin = 1848.48 
             xmax = 1851.158 
             text = "" 
-        intervals [426]:
+        intervals [423]:
             xmin = 1851.158 
             xmax = 1852.325 
             text = "mmm hmm mmm hmm" 
-        intervals [427]:
+        intervals [424]:
             xmin = 1852.325 
             xmax = 1857.519 
             text = "" 
-        intervals [428]:
+        intervals [425]:
             xmin = 1857.519 
             xmax = 1862.822 
             text = "[breath] so are you still then do you still consider yourself a part of the working class or ?" 
-        intervals [429]:
+        intervals [426]:
             xmin = 1862.822 
             xmax = 1880.525 
             text = "" 
-        intervals [430]:
+        intervals [427]:
             xmin = 1880.525 
             xmax = 1881.738 
             text = "mmm hmm" 
-        intervals [431]:
+        intervals [428]:
             xmin = 1881.738 
             xmax = 1882.825 
             text = "" 
-        intervals [432]:
+        intervals [429]:
             xmin = 1882.825 
             xmax = 1883.968 
             text = "yes" 
-        intervals [433]:
+        intervals [430]:
             xmin = 1883.968 
             xmax = 1887.939 
             text = "" 
-        intervals [434]:
+        intervals [431]:
             xmin = 1887.939 
             xmax = 1888.496 
             text = "mmm hmm" 
-        intervals [435]:
+        intervals [432]:
             xmin = 1888.496 
             xmax = 1901.222 
             text = "" 
-        intervals [436]:
+        intervals [433]:
             xmin = 1901.222 
             xmax = 1901.689 
             text = "mmm hmm" 
-        intervals [437]:
+        intervals [434]:
             xmin = 1901.689 
             xmax = 1906.168 
             text = "" 
-        intervals [438]:
+        intervals [435]:
             xmin = 1906.168 
             xmax = 1906.633 
             text = "mmm hmm" 
-        intervals [439]:
+        intervals [436]:
             xmin = 1906.633 
             xmax = 1908.58 
             text = "" 
-        intervals [440]:
+        intervals [437]:
             xmin = 1908.58 
             xmax = 1908.842 
             text = "mmm" 
-        intervals [441]:
+        intervals [438]:
             xmin = 1908.842 
             xmax = 1921.278 
             text = "" 
-        intervals [442]:
+        intervals [439]:
             xmin = 1921.278 
             xmax = 1921.826 
             text = "mmm hmm" 
-        intervals [443]:
+        intervals [440]:
             xmin = 1921.826 
             xmax = 1922.326 
             text = "" 
-        intervals [444]:
+        intervals [441]:
             xmin = 1922.326 
             xmax = 1923.116 
             text = "mmm hmm" 
-        intervals [445]:
+        intervals [442]:
             xmin = 1923.116 
             xmax = 1924.294 
             text = "" 
-        intervals [446]:
+        intervals [443]:
             xmin = 1924.294 
             xmax = 1924.947 
             text = "mmm hmm" 
-        intervals [447]:
+        intervals [444]:
             xmin = 1924.947 
             xmax = 1927.334 
             text = "" 
-        intervals [448]:
+        intervals [445]:
             xmin = 1927.334 
             xmax = 1928.855 
             text = "mmm hmm right" 
-        intervals [449]:
+        intervals [446]:
             xmin = 1928.855 
             xmax = 1931.004 
             text = "" 
-        intervals [450]:
+        intervals [447]:
             xmin = 1931.004 
             xmax = 1936.355 
             text = "[breaths] [clears throat] um . as a uh African American do you" 
-        intervals [451]:
+        intervals [448]:
             xmin = 1936.355 
             xmax = 1936.893 
             text = "" 
-        intervals [452]:
+        intervals [449]:
             xmin = 1936.893 
             xmax = 1943.82 
             text = "uh is do you see that as . do you celebrate the identity of being African American or" 
-        intervals [453]:
+        intervals [450]:
             xmin = 1943.82 
             xmax = 1944.352 
             text = "" 
-        intervals [454]:
+        intervals [451]:
             xmin = 1944.352 
             xmax = 1951.922 
             text = "um . just how connected uh do you think you are like with your culture and and your people and" 
-        intervals [455]:
+        intervals [452]:
             xmin = 1951.922 
             xmax = 1952.136 
             text = "" 
-        intervals [456]:
+        intervals [453]:
             xmin = 1952.136 
             xmax = 1959.787 
             text = "in general with like . African American history and I mean how how in tuned are you to" 
-        intervals [457]:
+        intervals [454]:
             xmin = 1959.787 
             xmax = 1963.682 
             text = "to that - experience African American experience" 
-        intervals [458]:
+        intervals [455]:
             xmin = 1963.682 
             xmax = 1967.872 
             text = "" 
-        intervals [459]:
+        intervals [456]:
             xmin = 1967.872 
             xmax = 1968.432 
             text = "mmm hmm" 
-        intervals [460]:
+        intervals [457]:
             xmin = 1968.432 
             xmax = 1988.226 
             text = "" 
-        intervals [461]:
+        intervals [458]:
             xmin = 1988.226 
             xmax = 1989.106 
             text = "yes" 
-        intervals [462]:
+        intervals [459]:
             xmin = 1989.106 
             xmax = 1996.907 
             text = "" 
-        intervals [463]:
+        intervals [460]:
             xmin = 1996.907 
             xmax = 1997.66 
             text = "wow" 
-        intervals [464]:
+        intervals [461]:
             xmin = 1997.66 
             xmax = 1998.464 
             text = "" 
-        intervals [465]:
+        intervals [462]:
             xmin = 1998.464 
             xmax = 1999.092 
             text = "mmm hmm " 
-        intervals [466]:
+        intervals [463]:
             xmin = 1999.092 
             xmax = 2025.164 
             text = "" 
-        intervals [467]:
+        intervals [464]:
             xmin = 2025.164 
             xmax = 2025.612 
             text = "yes" 
-        intervals [468]:
+        intervals [465]:
             xmin = 2025.612 
             xmax = 2037.982 
             text = "" 
-        intervals [469]:
+        intervals [466]:
             xmin = 2037.982 
             xmax = 2039 
             text = "that's amazing" 
-        intervals [470]:
+        intervals [467]:
             xmin = 2039 
             xmax = 2042.563 
             text = "" 
-        intervals [471]:
+        intervals [468]:
             xmin = 2042.563 
             xmax = 2042.935 
             text = "mmm hmm" 
-        intervals [472]:
+        intervals [469]:
             xmin = 2042.935 
             xmax = 2062.786 
             text = "" 
-        intervals [473]:
+        intervals [470]:
             xmin = 2062.786 
             xmax = 2063.386 
             text = "mmm hmm" 
-        intervals [474]:
+        intervals [471]:
             xmin = 2063.386 
             xmax = 2068.084 
             text = "" 
-        intervals [475]:
+        intervals [472]:
             xmin = 2068.084 
             xmax = 2069.162 
             text = "[laughs]" 
-        intervals [476]:
+        intervals [473]:
             xmin = 2069.162 
             xmax = 2073.765 
             text = "" 
-        intervals [477]:
+        intervals [474]:
             xmin = 2073.765 
             xmax = 2074.334 
             text = "mmm hmm" 
-        intervals [478]:
+        intervals [475]:
             xmin = 2074.334 
             xmax = 2097.719 
             text = "" 
-        intervals [479]:
+        intervals [476]:
             xmin = 2097.719 
             xmax = 2098.424 
             text = "mmm hmm" 
-        intervals [480]:
+        intervals [477]:
             xmin = 2098.424 
             xmax = 2099.149 
             text = "" 
-        intervals [481]:
+        intervals [478]:
             xmin = 2099.149 
             xmax = 2099.702 
             text = "mmm hmm" 
-        intervals [482]:
+        intervals [479]:
             xmin = 2099.702 
             xmax = 2108.51 
             text = "" 
-        intervals [483]:
+        intervals [480]:
             xmin = 2108.51 
             xmax = 2108.974 
             text = "mmm hmm" 
-        intervals [484]:
+        intervals [481]:
             xmin = 2108.974 
             xmax = 2110.483 
             text = "" 
-        intervals [485]:
+        intervals [482]:
             xmin = 2110.483 
             xmax = 2110.956 
             text = "mmm hmm" 
-        intervals [486]:
+        intervals [483]:
             xmin = 2110.956 
             xmax = 2119.482 
             text = "" 
-        intervals [487]:
+        intervals [484]:
             xmin = 2119.482 
             xmax = 2119.888 
             text = "mmm hmm" 
-        intervals [488]:
+        intervals [485]:
             xmin = 2119.888 
             xmax = 2130.697 
             text = "" 
-        intervals [489]:
+        intervals [486]:
             xmin = 2130.697 
             xmax = 2131.62 
             text = "mmm hmm" 
-        intervals [490]:
+        intervals [487]:
             xmin = 2131.62 
             xmax = 2131.774 
             text = "" 
-        intervals [491]:
+        intervals [488]:
             xmin = 2131.774 
             xmax = 2140.374 
             text = "[breath] and do you see that that that maybe is a slightly a problem in the African American community ?  is there there's a divide between the younger" 
-        intervals [492]:
+        intervals [489]:
             xmin = 2140.374 
             xmax = 2141.047 
             text = "generation" 
-        intervals [493]:
+        intervals [490]:
             xmin = 2141.047 
             xmax = 2141.062 
             text = "" 
-        intervals [494]:
+        intervals [491]:
             xmin = 2141.062 
             xmax = 2142.277 
             text = "and the older generation" 
-        intervals [495]:
+        intervals [492]:
             xmin = 2142.277 
             xmax = 2142.293 
             text = "" 
-        intervals [496]:
+        intervals [493]:
             xmin = 2142.293 
             xmax = 2143.37 
             text = "and therefore" 
-        intervals [497]:
+        intervals [494]:
             xmin = 2143.37 
             xmax = 2143.41 
             text = "" 
-        intervals [498]:
+        intervals [495]:
             xmin = 2143.41 
             xmax = 2145.645 
             text = "you can't learn that which you don't" 
-        intervals [499]:
+        intervals [496]:
             xmin = 2145.645 
             xmax = 2146.359 
             text = "" 
-        intervals [500]:
+        intervals [497]:
             xmin = 2146.359 
             xmax = 2155.055 
             text = "know right ? so -- that sort of idea of passing dow~(down) and and very much do you see like the African American tradition as being very much" 
-        intervals [501]:
+        intervals [498]:
             xmin = 2155.055 
             xmax = 2155.657 
             text = "oral ?" 
-        intervals [502]:
+        intervals [499]:
             xmin = 2155.657 
             xmax = 2156.374 
             text = "" 
-        intervals [503]:
+        intervals [500]:
             xmin = 2156.374 
             xmax = 2159.04 
             text = "and so that that their sense of the oral tradintion~[tr@dInSH]" 
-        intervals [504]:
+        intervals [501]:
             xmin = 2159.04 
             xmax = 2159.673 
             text = "tradition has" 
-        intervals [505]:
+        intervals [502]:
             xmin = 2159.673 
             xmax = 2160.692 
             text = "sort of just" 
-        intervals [506]:
+        intervals [503]:
             xmin = 2160.692 
             xmax = 2161.057 
             text = "" 
-        intervals [507]:
+        intervals [504]:
             xmin = 2161.057 
             xmax = 2162.078 
             text = "disappeared ?" 
-        intervals [508]:
+        intervals [505]:
             xmin = 2162.078 
             xmax = 2179.943 
             text = "" 
-        intervals [509]:
+        intervals [506]:
             xmin = 2179.943 
             xmax = 2180.548 
             text = "yes" 
-        intervals [510]:
+        intervals [507]:
             xmin = 2180.548 
             xmax = 2187.959 
             text = "" 
-        intervals [511]:
+        intervals [508]:
             xmin = 2187.959 
             xmax = 2188.405 
             text = "yes" 
-        intervals [512]:
+        intervals [509]:
             xmin = 2188.405 
             xmax = 2204.032 
             text = "" 
-        intervals [513]:
+        intervals [510]:
             xmin = 2204.032 
             xmax = 2204.942 
             text = "of value" 
-        intervals [514]:
+        intervals [511]:
             xmin = 2204.942 
             xmax = 2205.688 
             text = "" 
-        intervals [515]:
+        intervals [512]:
             xmin = 2205.688 
             xmax = 2206.161 
             text = "yes" 
-        intervals [516]:
+        intervals [513]:
             xmin = 2206.161 
             xmax = 2211.06 
             text = "" 
-        intervals [517]:
+        intervals [514]:
             xmin = 2211.06 
             xmax = 2211.66 
             text = "yes" 
-        intervals [518]:
+        intervals [515]:
             xmin = 2211.66 
             xmax = 2240.252 
             text = "" 
-        intervals [519]:
+        intervals [516]:
             xmin = 2240.252 
             xmax = 2241.332 
             text = "that's amazing" 
-        intervals [520]:
+        intervals [517]:
             xmin = 2241.332 
             xmax = 2303.232 
             text = "" 
-        intervals [521]:
+        intervals [518]:
             xmin = 2303.232 
             xmax = 2303.806 
             text = "mmm" 
-        intervals [522]:
+        intervals [519]:
             xmin = 2303.806 
             xmax = 2319.48 
             text = "" 
-        intervals [523]:
+        intervals [520]:
             xmin = 2319.48 
             xmax = 2322.18 
             text = "[laugh]" 
-        intervals [524]:
+        intervals [521]:
             xmin = 2322.18 
             xmax = 2322.86 
             text = "" 
-        intervals [525]:
+        intervals [522]:
             xmin = 2322.86 
             xmax = 2323.96 
             text = "[laughs] [breath]" 
-        intervals [526]:
+        intervals [523]:
             xmin = 2323.96 
             xmax = 2376.201 
             text = "" 
-        intervals [527]:
+        intervals [524]:
             xmin = 2376.201 
             xmax = 2377.521 
             text = "foresight right ?" 
-        intervals [528]:
+        intervals [525]:
             xmin = 2377.521 
             xmax = 2378.284 
             text = "" 
-        intervals [529]:
+        intervals [526]:
             xmin = 2378.284 
             xmax = 2378.742 
             text = "mmm hmm" 
-        intervals [530]:
+        intervals [527]:
             xmin = 2378.742 
             xmax = 2404.374 
             text = "" 
-        intervals [531]:
+        intervals [528]:
             xmin = 2404.374 
             xmax = 2404.863 
             text = "yes" 
-        intervals [532]:
+        intervals [529]:
             xmin = 2404.863 
             xmax = 2415.416 
             text = "" 
-        intervals [533]:
+        intervals [530]:
             xmin = 2415.416 
             xmax = 2416.037 
             text = "hmm" 
-        intervals [534]:
+        intervals [531]:
             xmin = 2416.037 
             xmax = 2416.193 
             text = "" 
-        intervals [535]:
+        intervals [532]:
             xmin = 2416.193 
             xmax = 2416.949 
             text = "okay" 
-        intervals [536]:
+        intervals [533]:
             xmin = 2416.949 
             xmax = 2417.148 
             text = "" 

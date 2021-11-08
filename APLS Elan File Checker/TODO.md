@@ -2,12 +2,12 @@
 
 ## Basic functionality
 
-- Tidy up text
-
+- Order tiers by importance (main speaker(s) > interviewer > bystander(s)), and align overlaps from least important to most important
+- Handle multiple main speakers
 
 ## Refactoring code
 
-- Tidyverse
+- Refactor overlaps
 
 
 
