@@ -6297,7 +6297,7 @@
         </ANNOTATION>
     </TIER>
     <TIER ANNOTATOR="Emma McKibbin" LINGUISTIC_TYPE_REF="default-lt"
-        PARTICIPANT="Noise" TIER_ID="Noise">
+        PARTICIPANT="Noises" TIER_ID="Noises">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a4"
                 TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts2">
@@ -6384,7 +6384,7 @@
         </ANNOTATION>
     </TIER>
     <TIER ANNOTATOR="Emma McKibbin" LINGUISTIC_TYPE_REF="default-lt"
-        PARTICIPANT="Redact" TIER_ID="Redact"/>
+        PARTICIPANT="Redactions" TIER_ID="Redactions"/>
 	<LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
         LINGUISTIC_TYPE_ID="default-lt" TIME_ALIGNABLE="true"/>
     <CONSTRAINT
