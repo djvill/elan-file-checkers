@@ -23,7 +23,9 @@ caseSens <- FALSE
 ##Maximum cross-tier misalignment (in ms) to 'snap together'. Set lower to be
 ##  more conservative about what counts as an intended cross-tier alignment
 overlapThresh <- 500
-
+##Time display type: "S" (seconds, useful for Praat TextGrids), or "HMS" (useful
+##  for ELAN)
+timeDisp <- "HMS"
 
 ##Exit-early overrides, for debugging
 overrideExit <- list(fileExt = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
@@ -44,7 +46,8 @@ ui <- fluidPage(
                 placeholder="Box outline must turn green",
                 multiple = TRUE)),
     
-    mainPanel(verbatimTextOutput("debug"),
+    # mainPanel(verbatimTextOutput("debug"),
+    mainPanel(uiOutput("debug"),
               uiOutput("out"))
     
     # mainPanel(
@@ -310,26 +313,6 @@ getTimes <- function(eaf, eafName, df) {
     keep(~ nrow(.x) > 0)
 }
 
-##Strict version of dplyr::between(): x > left & x < right (for detecting
-##  overlaps)
-##This will be removed since it requires only x to be vectorized, and I need left and right to be vectorized
-betweenStrict <- function (x, left, right) {
-  if (!is.null(attr(x, "class")) && !inherits(x, c("Date",
-                                                   "POSIXct"))) {
-    warning("between() called on numeric vector with S3 class")
-  }
-  if (length(left) != 1) {
-    stop("`left` must be length 1")
-  }
-  if (length(right) != 1) {
-    stop("`right` must be length 1")
-  }
-  if (!is.double(x)) {
-    x <- as.numeric(x)
-  }
-  x > left & x < right
-}
-
 ##Function that takes a single tier name and a nested list of annotation time
 ##  DFs (meant to be used with output of getTimes()), and outputs a single
 ##  dataframe: the relevant annotation time DF plus three boolean overlaps
@@ -541,21 +524,70 @@ fixOverlaps <- function(timesEAF, eaflist, eafName) {
   overlapsPost
 }
 
-##Fix overlaps in all files, returning any unresolved overlaps
+##Format millisecond times as HH:MM:SS.SSS
+formatTimes <- function(time, type=c("S","HMS")[2]) {
+  time <- time / 1000
+  if (type=="S") {
+    round(time, 3)
+  } else if (type=="HMS") {
+    time <- c((time %/% 60) %/% 60,
+              (time %/% 60) %% 60,
+              time %% 60)
+    paste(sprintf("%02i", time[1]), sprintf("%02i", time[2]),
+          sprintf("%06.3f", time[3]), sep=":")
+  }
+}
+
+##Fix overlaps in all files, returning any unresolved overlaps, formatted
+##  nicely for printing
 ##x should be eaflist(), df should be tierInfo()
-overlaps <- function(x, df) {
+overlapsIssues <- function(x, df) {
   ##Get timing data
   times <- imap(x, getTimes, df=df)
   
-  ##Fix overlaps
-  x %>% 
+  ##Fix overlaps & format output for display
+  fixed <- 
+    x %>% 
     names() %>% 
     set_names(., .) %>% 
+    ##Fix overlaps
     map(~ fixOverlaps(times[[.x]], x, .x) %>% 
-          ##Only keep tiers with remaining overlaps
-          keep(~ nrow(.x) > 0)) %>% 
-    ##Only keep files with remaining overlaps
-    keep(~ length(.x) > 0)
+          ##All in one DF
+          bind_rows(.id="Tier")) %>% 
+    imap(~ .x %>%
+           ##One row per annotation (nicer labels)
+           select(ANNOTATION_ID, Tier, Side, Time) %>%
+           mutate(Side = if_else(Side==1, "Start", "End")) %>%
+           pivot_wider(names_from=Side, values_from=Time))
+  ##Remove empty entries from times and fixed
+  nonempty <- map_int(fixed, nrow) > 0
+  times <- times[nonempty]
+  fixed <- fixed[nonempty]
+  
+  ##If any NAs in Start/End, patch rows
+  if (any(fixed %>% 
+          map_lgl(~ .x %>% 
+                  select(Start, End) %>% 
+                  is.na() %>% 
+                  any()))) {
+    ##Get just relevant annotations (otherwise rows_patch() will complain)
+    times <- map2(times, fixed,
+                  ~ .x %>%
+                    bind_rows() %>%
+                    select(ANNOTATION_ID, Start, End) %>%
+                    semi_join(.y, "ANNOTATION_ID"))
+    
+    ##Add missing timestamps
+    fixed <- map2(fixed, times, rows_patch, by="ANNOTATION_ID")
+  }
+  
+  ##Sort by start time, remove annotation ID, nicer Start/End formatting, & return
+  fixed %>% 
+    map(~ .x %>% 
+          arrange(Start) %>% 
+          select(-ANNOTATION_ID) %>% 
+          rowwise() %>% 
+          mutate(across(c(Start,End), formatTimes, type=timeDisp)))
 }
 
 ## UI display =================================================================
@@ -654,9 +686,9 @@ server <- function(input, output) {
   })
   
   # Debugging output --------------------------------------------------------
-  output$debug <- renderPrint({
-    o <- overlaps(eaflist(), tierInfo())
-    list(o = o)
+  # output$debug <- renderPrint({
+  output$debug <- renderUI({
+    a() %>% undisplay()
   })
   
   
@@ -832,7 +864,7 @@ server <- function(input, output) {
     ##If not exiting early yet, check for dictionary issues
     if (!exitEarly || overrideExit$dict) {
       ##Get overlaps issues
-      overlapsIss <- dictCheck(tierInfo(), eaflist())
+      overlapsIss <- overlapsIssues(eaflist(), tierInfo())
       ##If no dictionary issues, don't display anything & make step heading green
       if (length(overlapsIss)==0) {
         overlapsSubhead <- undisplay(overlapsSubhead)
@@ -843,31 +875,29 @@ server <- function(input, output) {
         ##If overlaps issues, display issues in nested list
         overlapsSubhead <- display(overlapsSubhead)
         overlapsDetails <- overlapsDetails %>%
-          display() # %>% 
-        # tagAppendChild(
-        #   ##For each element in dictIss (each file with an issue), create a
-        #   ##  bullet-list headed by name of file, with a nested bullet-list
-        #   ##  headed by name of tier
-        #   dictIss %>%
-        #     imap(
-        #       ~ tags$li(
-        #         paste0("In file ", .y, ":"),
-        #         tags$ul(
-        #           imap(.x,
-        #                ~ tags$li(
-        #                  paste0("On tier ", .y, ":"),
-        #                  tags$ul(
-        #                    map(.x, tags$li)
-        #                  )
-        #                ))
-        #         )))
-        # )
+          display() %>% 
+          tagAppendChild(
+            ##For each element in overlapsIss (each file with an issue), create a
+            ##  bullet-list headed by name of file, with a nested bullet-list
+            ##  headed by name of tier
+            overlapsIss %>%
+              imap(
+                ~ tags$li(
+                  paste0("In file ", .y, ":"),
+                  tags$table(
+                    tags$tr(
+                      map(colnames(.x), tags$th)
+                    ),
+                    .x %>% 
+                      rowwise() %>% 
+                      group_map(~ tags$tr(map(.x, tags$td))),
+                    class="table shiny-table table- spacing-s overlap-table"
+                  )))
+          )
         
         ##Style headers
         stepHeads$overlaps <- stepHeads$overlaps %>% 
           tagAppendAttributes(class="bad")
-        stepHeads[3] <- stepHeads[3] %>% 
-          map(tagAppendAttributes, class="grayout")
         
         ##Exit early
         exitEarly <- TRUE
@@ -938,153 +968,6 @@ server <- function(input, output) {
     }), names(eaflist()))
   })
   
-  # tmStamps <- reactive({
-  #   setNames(lapply(names(eaflist()), function(x) {
-  #     numOverlaps <- numOverlapsFixed <- 0
-  #     eaf <- eaflist()[[x]]
-  #     tmStamps <- as.numeric(xml_attr(xml_children(xml_find_first(eaf, "TIME_ORDER")), "TIME_VALUE"))
-  #     names(tmStamps) <- xml_attr(xml_children(xml_find_first(eaf, "TIME_ORDER")), "TIME_SLOT_ID")
-  #     tmStamps <- sort(tmStamps)
-  #     spkrTiersNonempty <- spkrTiers()[[x]][sapply(spkrTiers()[[x]], function(spkr) length(xml_children(spkr)))>0]
-  #     names(spkrTiersNonempty) <- sapply(spkrTiersNonempty, xml_attr, attr="TIER_ID")
-  #     ##Construct by-tier list of data.frames of turn IDs, start times, end times,
-  #     spkrTimesAll <- map(spkrTiersNonempty, function(tier) {
-  #       spkrTimes <- data.frame(AnnID=xml_attr(xml_find_all(tier, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "ANNOTATION_ID"),
-  #                               Start=tmStamps[xml_attr(xml_find_all(tier, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "TIME_SLOT_REF1")],
-  #                               End=tmStamps[xml_attr(xml_find_all(tier, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "TIME_SLOT_REF2")])
-  #     })
-  #     list(spkrTimesAll = spkrTimesAll, 
-  #          tmStamps = tmStamps)
-  #   }),
-  #   names(eaflist))
-  # })
-  # 
-  # eaflistNew <- reactive({
-  #   setNames(lapply(names(eaflist()), function(x) {
-  #     numOverlaps <- numOverlapsFixed <- 0
-  #     eaf <- eaflist()[[x]]
-  #     tmStamps <- as.numeric(xml_attr(xml_children(xml_find_first(eaf, "TIME_ORDER")), "TIME_VALUE"))
-  #     names(tmStamps) <- xml_attr(xml_children(xml_find_first(eaf, "TIME_ORDER")), "TIME_SLOT_ID")
-  #     tmStamps <- sort(tmStamps)
-  #     spkrTiersNonempty <- spkrTiers()[[x]][sapply(spkrTiers()[[x]], function(spkr) length(xml_children(spkr)))>0]
-  #     names(spkrTiersNonempty) <- sapply(spkrTiersNonempty, xml_attr, attr="TIER_ID")
-  #     ##Construct by-tier list of data.frames of turn IDs, start times, end times,
-  #     spkrTimesAll <- map(spkrTiersNonempty, function(tier) {
-  #       spkrTimes <- data.frame(AnnID=xml_attr(xml_find_all(tier, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "ANNOTATION_ID"),
-  #                               Start=tmStamps[xml_attr(xml_find_all(tier, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "TIME_SLOT_REF1")],
-  #                               End=tmStamps[xml_attr(xml_find_all(tier, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "TIME_SLOT_REF2")])
-  #     })
-  #     tmStamps
-  #     
-  #     ##For each turn in each nonempty speaker tier, see if there's an overlap. If so, resolve it.
-  #     for (spkr in seq_len(length(spkrTimesAll))) {
-  #       spkrTimes <- spkrTimesAll[[spkr]]
-  #       otherSpkrs <- do.call(rbind, spkrTimesAll[-spkr])
-  #       tier <- names(spkrTimesAll)[spkr]
-  #       for (turn in seq_len(nrow(spkrTimes))) {
-  #         if (any(spkrTimes$Start[turn] > otherSpkrs$Start & spkrTimes$Start[turn] < otherSpkrs$End)) {
-  #           numOverlaps <- numOverlaps + 1
-  #           if (min(abs(spkrTimes$Start[turn] - c(otherSpkrs$Start, otherSpkrs$End))) <= overlapThresh) {
-  #             numOverlapsFixed <- numOverlapsFixed + 1
-  #             nearest <- which.min(abs(spkrTimes$Start[turn] - c(otherSpkrs$Start, otherSpkrs$End)))
-  #             nearest <- c(otherSpkrs$Start, otherSpkrs$End)[nearest]
-  #             oll <- names(tmStamps)[which(tmStamps==nearest)[1]]
-  #             nodeStr <- paste0("//TIER[@TIER_ID='", tier, "']/ANNOTATION/ALIGNABLE_ANNOTATION[@ANNOTATION_ID='",
-  #                               spkrTimes$AnnID[turn], "']")
-  #             xml_set_attr(xml_find_first(eaf, nodeStr), "TIME_SLOT_REF1", oll)
-  #             spkrTimes$Start[turn] <- nearest
-  #           }
-  #         }
-  #         if (any(spkrTimes$End[turn] > otherSpkrs$Start & spkrTimes$End[turn] < otherSpkrs$End)) {
-  #           numOverlaps <- numOverlaps + 1
-  #           if (min(abs(spkrTimes$End[turn] - c(otherSpkrs$Start, otherSpkrs$End))) <= overlapThresh) {
-  #             numOverlapsFixed <- numOverlapsFixed + 1
-  #             nearest <- which.min(abs(spkrTimes$End[turn] - c(otherSpkrs$Start, otherSpkrs$End)))
-  #             nearest <- c(otherSpkrs$Start, otherSpkrs$End)[nearest]
-  #             olr <- names(tmStamps)[which(tmStamps==nearest)[1]]
-  #             nodeStr <- paste0("//TIER[@TIER_ID='", tier, "']/ANNOTATION/ALIGNABLE_ANNOTATION[@ANNOTATION_ID='",
-  #                               spkrTimes$AnnID[turn], "']")
-  #             xml_set_attr(xml_find_first(eaf, nodeStr), "TIME_SLOT_REF2", olr)
-  #             spkrTimes$End[turn] <- nearest
-  #           }
-  #         }
-  #       }
-  #       spkrTimesAll[[spkr]] <- spkrTimes
-  #     }
-  #     attr(eaf, "NumOverlaps") <- numOverlaps
-  #     attr(eaf, "NumOverlapsFixed") <- numOverlapsFixed
-  #     eaf
-  #   }), names(eaflist())
-  #   )
-  # })
-  # overlapIssues <- reactive({
-  #   issues <- lapply(names(eaflistNew()), function (x) {
-  #     eaf <- eaflistNew()[[x]]
-  #     tmStamps <- as.numeric(xml_attr(xml_children(xml_find_first(eaf, "TIME_ORDER")), "TIME_VALUE"))
-  #     names(tmStamps) <- xml_attr(xml_children(xml_find_first(eaf, "TIME_ORDER")), "TIME_SLOT_ID")
-  #     tmStamps <- sort(tmStamps)
-  #     spkrTiersNonempty <- spkrTiers()[[x]][sapply(spkrTiers()[[x]], function(spkr) length(xml_children(spkr)))>0]
-  #     spkrTimesAll <- lapply(spkrTiersNonempty, function(spkr) {
-  #       data.frame(AnnID=xml_attr(xml_find_all(spkr, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "ANNOTATION_ID"),
-  #                  Start=tmStamps[xml_attr(xml_find_all(spkr, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "TIME_SLOT_REF1")],
-  #                  End=tmStamps[xml_attr(xml_find_all(spkr, "./ANNOTATION/ALIGNABLE_ANNOTATION"), "TIME_SLOT_REF2")])
-  #     })
-  #     names(spkrTimesAll) <- sapply(spkrTiersNonempty, xml_attr, attr="TIER_ID")
-  #     
-  #     message <- unlist(sapply(1:length(spkrTimesAll), function(spkr) {
-  #       spkrTimes <- spkrTimesAll[[spkr]]
-  #       spkrName <- names(spkrTimesAll)[spkr]
-  #       otherSpkrs <- do.call(rbind, spkrTimesAll[-spkr])
-  #       tier <- names(spkrTimesAll)[spkr]
-  #       sapply(1:nrow(spkrTimes), function(turn) {
-  #         overlapLeft <- any(spkrTimes$Start[turn] > otherSpkrs$Start & spkrTimes$Start[turn] < otherSpkrs$End)
-  #         overlapRight <- any(spkrTimes$End[turn] > otherSpkrs$Start & spkrTimes$End[turn] < otherSpkrs$End)
-  #         if (overlapLeft & overlapRight) {
-  #           c(paste("Left margin overlap for", spkrName, "interval", turn,
-  #                   "(interval starts at", paste0(formatTimes(spkrTimes$Start[turn]), ")")),
-  #             paste("Right margin overlap for", spkrName, "interval", turn,
-  #                   "(interval ends at", paste0(formatTimes(spkrTimes$End[turn]), ")")))
-  #         } else if (overlapLeft) {
-  #           paste("Left margin overlap for", spkrName, "interval", turn,
-  #                 "(interval starts at", paste0(formatTimes(spkrTimes$Start[turn]), ")"))
-  #         } else if (overlapLeft) {
-  #           paste("Right margin overlap for", spkrName, "interval", turn,
-  #                 "(interval ends at", paste0(formatTimes(spkrTimes$End[turn]), ")"))
-  #         }
-  #       })
-  #     }))
-  #     message
-  #   })
-  #   names(issues) <- paste0(names(eaflistNew()), " (",
-  #                           sapply(eaflistNew(), attr, "NumOverlapsFixed"), 
-  #                           " overlaps automatically resolved)")
-  #   if (length(issues)==1) issues <- issues[[1]] #Don't show file name if only one file uploaded
-  #   issues <- issues[sapply(issues, length)>0]
-  #   issues
-  # })
-  # output$overlapsTop <- renderPrint({
-  #   req(files())
-  #   if (length(tierIssues())==0 & length(dictIssues())==0) {
-  #     overlapsFixed <- sum(sapply(eaflistNew(), attr, "NumOverlapsFixed"))
-  #     if (length(overlapIssues())==0) {
-  #       if (overlapsFixed > 0) {
-  #         header <- paste("No more overlaps!", overlapsFixed, "overlaps were resolved automatically.")
-  #       } else {
-  #         header <- "There were no overlaps in the files you uploaded. High five!"
-  #       }
-  #     } else {
-  #       header <- paste("The overlap checker automatically resolved", overlapsFixed, 
-  #                       "overlaps, but could not resolve the following:")
-  #     }
-  #     cat(header)
-  #   }
-  # })
-  # output$overlaps <- renderPrint({
-  #   if (length(tierIssues())==0 & length(overlapIssues())>0) {
-  #     overlapIssues()
-  #   }
-  # })
-  # 
   # Create output file(s) ---------------------------------------------------
   output$OutputFile <- downloadHandler(
     filename=function() {

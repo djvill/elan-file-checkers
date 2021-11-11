@@ -37,3 +37,11 @@ h1#reuploadHead {
 h3 {
   font-size: 16px;
 }
+
+/* Overlap tables: look nicer */
+.overlap-table {
+  margin-left: 20px;
+}
+.overlap-table > tbody > tr > th {
+  border-top-style: none;
+}
