@@ -517,7 +517,6 @@ fixOverlaps <- function(timesEAF, eaflist, eafName) {
     message("iters: ", iters)
     message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
     message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
-    message("any(map_int(overlapsPost, nrow) > 0): ", any(map_int(overlapsPost, nrow) > 0))
   }
   
   ##Return overlapsPost
@@ -905,8 +904,13 @@ server <- function(input, output) {
     }
     
     
-    # Download button ---------------------------------------------------------
-    
+    # Download ----------------------------------------------------------------
+    ##Content
+    downloadHead <- h1("The file(s) passed all checks. Great job!",
+                       id="downloadHead")
+    downloadSubhead <- h3("Please download the corrected file(s) and upload to the server",
+                          id="downloadSubhead")
+    downloadBtn <- downloadButton("OutputFile", "Download corrected file(s)")
     
     # UI output ---------------------------------------------------------------
     ##Reupload heading
@@ -916,8 +920,14 @@ server <- function(input, output) {
     ##Style reupload heading
     if (exitEarly) {
       reuploadHead <- display(reuploadHead)
+      downloadHead <- undisplay(downloadHead)
+      downloadSubhead <- undisplay(downloadSubhead)
+      downloadBtn <- undisplay(downloadBtn)
     } else {
       reuploadHead <- undisplay(reuploadHead)
+      downloadHead <- display(downloadHead)
+      downloadSubhead <- display(downloadSubhead)
+      downloadBtn <- display(downloadBtn)
     }
     
     ##Construct tag list
@@ -937,71 +947,34 @@ server <- function(input, output) {
       stepHeads$overlaps,
       overlapsSubhead,
       overlapsDetails,
-      reuploadHead
+      reuploadHead,
+      downloadHead,
+      downloadSubhead,
+      downloadBtn
     )
     
   })
   
-  # Output: overlap checker/fixer -------------------------------------------
-  output$overlapsHead <- renderPrint({
-    if (fileExtValid()) {
-      cat("Step 3: Checking for overlaps...")
-    }
-  })
-  formatTimes <- function(time) {
-    time <- c(((time/1000) %/% 60) %/% 60,
-              ((time/1000) %/% 60) %% 60,
-              (time/1000) %% 60)
-    paste(sprintf("%02i", time[1]), sprintf("%02i", time[2]), sprintf("%06.3f", time[3]), sep=":")
-  }
-  # formatTimes <- function(time) {
-  #   time
-  # }
-  
-  spkrTiers <- reactive({
-    setNames(lapply(eaflist(), function(eaf) {
-      xml_find_all(eaf, paste("//TIER[@TIER_ID!='comment' and @TIER_ID!='comments' and",
-                              "@TIER_ID!='Comment' and @TIER_ID!='Comments' and", 
-                              "@TIER_ID!='noise' and @TIER_ID!='noises' and",
-                              "@TIER_ID!='Noise' and @TIER_ID!='Noises' and",
-                              "(@LINGUISTIC_TYPE_REF='default-lt' or @LINGUISTIC_TYPE_REF='UtteranceType')]"))
-    }), names(eaflist()))
-  })
   
   # Create output file(s) ---------------------------------------------------
   output$OutputFile <- downloadHandler(
     filename=function() {
-      if (length(eaflistNew())==1) {
-        names(eaflistNew())
+      if (length(eaflist())==1) {
+        names(eaflist())
       } else {
         "corrected_eafs.zip"
       }
     },
     content=function(file) {
-      if (length(eaflistNew())==1) {
-        write_xml(eaflistNew()[[1]], file)
+      if (length(eaflist())==1) {
+        write_xml(eaflist()[[1]], file)
       } else {
-        sapply(names(eaflistNew(), function(eafname) write_xml(eaflistNew()[[eafname]], eafname)))
-        zip(file, names(eaflistNew()))
+        eaflist() %>% 
+          iwalk(write_xml)
+        zip(file, names(eaflist()))
       }
     }
   )
-  # ##Display download button, or instruct the user to finish the job.
-  # output$download <- renderUI({
-  #   if (length(tierIssues())==0 & length(dictIssues())==0) {
-  #     overlapsFixed <- sum(sapply(eaflistNew(), attr, "NumOverlapsFixed"))
-  #     if (overlapsFixed > 0) {
-  #       downloadButton("OutputFile", "Download corrected file(s)") ##Change this to reflect # of corrected files
-  #     } else {
-  #       h4("Please", 
-  #          strong("upload these files to the NZILBB server"), 
-  #          "(if you haven't already) and",
-  #          strong("mark these files as done on the", 
-  #                 a("Transcription Log", 
-  #                   href="https://docs.google.com/spreadsheets/d/1hSBUvD7OnbdTO5QQt4xKvIs14qFwh6WzTUoYDILYDM4/edit#gid=0")))
-  #     }
-  #   }
-  # })
 }
 
 shinyApp(ui = ui, server = server)

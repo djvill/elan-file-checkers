@@ -41,6 +41,7 @@ h3 {
 /* Overlap tables: look nicer */
 .overlap-table {
   margin-left: 20px;
+  width: 75%;
 }
 .overlap-table > tbody > tr > th {
   border-top-style: none;
