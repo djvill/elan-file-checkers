@@ -9,7 +9,19 @@ library(magrittr)
 library(here)
 
 
-# Parameters --------------------------------------------------------------
+# Parameters ------------------------------------------------------------------
+
+##Debugging
+##Show additional UI element(s) at top of main panel for debugging?
+showDebug <- FALSE
+
+##File structures
+##Regex for extracting SpkrCode and FileSuffix columns using tidyr::extract();
+##  should specify exactly two capturing groups
+spkrExtractRegex <- "^((?:CB|FH|HD|LV)\\d+(?:and\\d+)?)\\.?(.+)\\..+?$"
+##Regex for extracting Neighborhood and SpeakerNum columns using
+##  tidyr::extract(); should specify exactly two capturing groups
+spkrNumExtractRegex <- "([A-Z]{2})(\\d+)(?:and\\d+)?"
 
 ##Dictionary checking
 ##Permit angle brackets for single-word interruptions?
@@ -37,7 +49,7 @@ ui <- fluidPage(
   ),
   titlePanel("Elan File Checker for APLS"),
   p("Created by Dan Villarreal"),
-  p("Updated 24 October 2021"),
+  p("Updated 14 November 2021"),
   sidebarLayout(
     sidebarPanel(
       fileInput("files",
@@ -46,23 +58,8 @@ ui <- fluidPage(
                 placeholder="Box outline must turn green",
                 multiple = TRUE)),
     
-    # mainPanel(verbatimTextOutput("debug"),
     mainPanel(uiOutput("debug"),
               uiOutput("out"))
-    
-    # mainPanel(
-    #   h1(textOutput("checkHead")),
-    #   h2(textOutput("tiersHead")),
-    #   textOutput("tiersTop"),
-    #   verbatimTextOutput("tiers"),
-    #   h2(textOutput("dictHead")),
-    #   textOutput("dictTop"),
-    #   verbatimTextOutput("dict"),
-    #   h2(textOutput("overlapsHead")),
-    #   textOutput("overlapsTop"),
-    #   verbatimTextOutput("overlaps"),
-    #   uiOutput("download")
-    # )
   )
 )
 
@@ -70,7 +67,9 @@ ui <- fluidPage(
 # Functions for server-side processing ------------------------------------
 
 ## Tiers ==================================================================
-##Function that takes a one-file tier df as input and outputs tier issues
+##Function that takes a one-file tier df as input (meant to be used with a
+##  subset of rows in tierInfo() reactive) and outputs nested list of tier 
+##  issues
 tierIssuesOneFile <- function(df, filename) {
   ##Initialize empty issues character vector
   issues <- character(0L)
@@ -79,25 +78,41 @@ tierIssuesOneFile <- function(df, filename) {
   df <- df %>% 
     mutate(tierNum = paste("Tier", row_number()))
   
-  ##Handle missing tiers
-  checkTiers <- c(paste0(c("", "Interviewer "), unique(df$SpkrCode)),
-                  "Comments", "Noises", "Redactions")
-  issues <- c(issues,
-              checkTiers %>% 
-                map(
-                  ~ if(!(.x %in% df$TIER_ID)) {
-                    paste("There are no tiers with tier name", .x)
-                  }) %>% 
-                reduce(c))
+  ##Handle missing tiers (non-interviewer)
+  checkTiers <- c(unique(df$SpkrCode), "Comments", "Noises", "Redactions")
+  missingTiers <- setdiff(checkTiers, df$TIER_ID)
+  if (length(missingTiers) > 0) {
+    issues <- c(issues, paste("There are no tiers with tier name", missingTiers))
+  }
+  
+  ##Interviewers can be named either Interviewer [SpkrCode] or actual name
+  interviewerTier <- paste0("Interviewer ", unique(df$SpkrCode), "|",
+                            if_else(unique(df$Neighborhood)=="HD", 
+                                    "Trista Pennington", 
+                                    "Barbara Johnstone"))
+  ##Detect missing interviewer tier
+  if (!any(str_detect(df$TIER_ID, paste0("^(", interviewerTier, ")$")))) {
+    issues <- c(issues, paste("There are no tiers with tier name", 
+                              ##Format for printing
+                              interviewerTier %>% 
+                                str_replace("\\|", " or ")))
+  }
   
   ##Handle missing attributes
   checkAttrs <- c("ANNOTATOR", "PARTICIPANT", "TIER_ID")
   missingAttr <- function(x) {
+    ##String formatting for output
     attrTitle <- str_to_title(x)
     attrArticle <- if_else(str_detect(tolower(x), "^[aeiou]"), "an", "a")
     
+    ##Check attribute for all tiers
     tryCatch({
+      ##Try retrieving attribute column from dataframe; if missing, it'll throw
+      ##  an error, indicating that no tiers in the file have that attribute
       attrCol <- df[,x]
+      
+      ##If any rows are missing attribute, get character vector of messages
+      ##  naming each tier
       if (any(is.na(attrCol))) {
         noAttrDF <- df[is.na(attrCol), ]
         noAttr <-
@@ -111,12 +126,16 @@ tierIssuesOneFile <- function(df, filename) {
     })
     
   }
+  
+  ##Check each attribute and return result as list of character vectors
   issues <- c(issues,
               checkAttrs %>% 
                 map(missingAttr) %>% 
                 reduce(c))
   
-  ##Handle mismatched tier ID & participant attrs
+  ##Handle mismatched tier ID & participant attrs (return character vector)
+  ##Only check tier ID & participant attrs if neither is missing (in which case
+  ##  the missing attr has already been registered above)
   if (!is.null(df$PARTICIPANT) && !is.null(df$TIER_ID) &&
       !identical(df$TIER_ID, df$PARTICIPANT)) {
     issues <- c(issues,
@@ -128,8 +147,8 @@ tierIssuesOneFile <- function(df, filename) {
                   pull(msg))
   }
   
+  ##Return issues (if none found, this is an empty vector)
   issues
-  
 }
 
 ##Wrapper function around tierIssuesOneFile() that takes a multi-file tier df as
@@ -640,16 +659,14 @@ server <- function(input, output) {
       rename(File = name) %>% 
       ##Add neighborhood, speaker number, and file number
       ##Will need to be extended to multiple speakers, non-interview tasks, etc.
-      tidyr::extract(File, c("SpkrCode", "FileNum"), 
-                     "((?:CB|FH|HD|LV)\\d+)-(\\d+).+", FALSE, TRUE) %>% 
-      tidyr::extract(SpkrCode, c("Neighborhood", "SpeakerNum"),
-                     "([A-Z]{2})(\\d+)", FALSE, TRUE) %>% 
+      tidyr::extract(File, c("SpkrCode", "FileSuffix"), spkrExtractRegex, FALSE, TRUE) %>% 
+      tidyr::extract(SpkrCode, c("Neighborhood", "SpeakerNum"), spkrNumExtractRegex, FALSE, TRUE) %>% 
       ##Add file extension
       mutate(FileExt = str_extract(File, "[^\\.]+$"),
              FileExtValid = FileExt=="eaf",
              .after=File) %>% 
       ##Sort
-      arrange(Neighborhood, SpeakerNum, FileNum, File)
+      arrange(Neighborhood, SpeakerNum, FileSuffix, File)
   })
   
   ##Read files: Get a list that's nrow(files()) long, each element an xml_document
@@ -685,10 +702,26 @@ server <- function(input, output) {
   })
   
   # Debugging output --------------------------------------------------------
-  # output$debug <- renderPrint({
+  ##Wrapper to include verbatim debugging text in UI or UI elements
   output$debug <- renderUI({
-    a() %>% undisplay()
+    out <- verbatimTextOutput("debugPrint")
+    
+    ##Optionally display or undisplay
+    if (showDebug) {
+      display(out)
+    } else {
+      undisplay(out)
+    }
   })
+  
+  ##Verbatim debugging text (works best if a list() of objects with names from
+  ##  environment, to 'peek into' environment)
+  output$debugPrint <-
+    renderPrint({
+      list(tierInfo = tierInfo() %>%
+             as.data.frame(),
+           tierIssues = tierIssues(tierInfo()))
+    })
   
   
   # Output: UI --------------------------------------------------------------
