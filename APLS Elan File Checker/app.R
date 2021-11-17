@@ -23,6 +23,10 @@ spkrExtractRegex <- "^((?:CB|FH|HD|LV)\\d+(?:and\\d+)?)\\.?(.+)\\..+?$"
 ##  tidyr::extract(); should specify exactly two capturing groups
 spkrNumExtractRegex <- "([A-Z]{2})(\\d+)(?:and\\d+)?"
 
+##Tier checking
+##Required non-speaker tiers
+nonSpkrTiers <- c("Comment","Noise","Redaction")
+
 ##Dictionary checking
 ##Permit angle brackets for single-word interruptions?
 permitAngleBrackets <- FALSE
@@ -79,7 +83,7 @@ tierIssuesOneFile <- function(df, filename) {
     mutate(tierNum = paste("Tier", row_number()))
   
   ##Handle missing tiers (non-interviewer)
-  checkTiers <- c(unique(df$SpkrCode), "Comments", "Noises", "Redactions")
+  checkTiers <- c(unique(df$SpkrCode), nonSpkrTiers)
   missingTiers <- setdiff(checkTiers, df$TIER_ID)
   if (length(missingTiers) > 0) {
     issues <- c(issues, paste("There are no tiers with tier name", missingTiers))
@@ -696,7 +700,7 @@ server <- function(input, output) {
       ##One row per tier, with file info
       map_dfr(~ map_dfr(.x, xml_attrs), .id="File") %>% 
       ##Add SpkrTier (is the tier a speaker tier?)
-      mutate(SpkrTier = str_detect(tolower(PARTICIPANT), "comments|noises|redactions", negate=TRUE)) %>% 
+      mutate(SpkrTier = !(tolower(PARTICIPANT) %in% nonSpkrTiers)) %>% 
       ##Add info from files()
       left_join(files(), by="File")
   })
