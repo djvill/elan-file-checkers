@@ -26,6 +26,7 @@ spkrNumExtractRegex <- "([A-Z]{2})(\\d+)(?:and\\d+)?"
 ##Tier checking
 ##Required non-speaker tiers
 nonSpkrTiers <- c("Comment","Noise","Redaction")
+# nonSpkrTiers <- c("Comment","Comments","Noise","Noises","Redaction","Redactions")
 
 ##Dictionary checking
 ##Permit angle brackets for single-word interruptions?
@@ -283,12 +284,17 @@ dictCheck <- function(df, x) {
 ##Function that takes a tier name, eaf file, and file-wide time slot DF as
 ##  input and outputs actual times for annotations
 getTimesTier <- function(tierName, eaf, timeSlots) {
-  ##Get all ALIGNABLE_ANNOTATION tags
-  str_glue("//TIER[@TIER_ID='{tierName}']//ALIGNABLE_ANNOTATION") %>%
+  tierTimes <-
+    ##Get all ALIGNABLE_ANNOTATION tags
+    str_glue("//TIER[@TIER_ID='{tierName}']//ALIGNABLE_ANNOTATION") %>%
     xml_find_all(eaf, .) %>% 
     ##Get attributes as a dataframe
     xml_attrs() %>% 
-    bind_rows() %>% 
+    bind_rows()
+  
+  ##Add actual times, only if tier is nonempty
+  if (nrow(tierTimes) > 0) {
+    tierTimes <- tierTimes %>% 
     ##Add actual times
     left_join(timeSlots %>%
                 rename(TIME_SLOT_REF1 = TIME_SLOT_ID,
@@ -298,6 +304,10 @@ getTimesTier <- function(tierName, eaf, timeSlots) {
                 rename(TIME_SLOT_REF2 = TIME_SLOT_ID,
                        End = TIME_VALUE),
               by="TIME_SLOT_REF2")
+  } else {
+    ##If tier is empty, return NULL (will be immediately discard()ed)
+    NULL
+  }
 }
 
 ##Wrapper function around getTimesTier() that takes a single EAF file and name
@@ -333,7 +343,7 @@ getTimes <- function(eaf, eafName, df) {
     set_names(., .) %>% 
     map(getTimesTier, eaf, timeSlots) %>%
     ##Only nonempty tiers
-    keep(~ nrow(.x) > 0)
+    discard(is.null)
 }
 
 ##Function that takes a single tier name and a nested list of annotation time
@@ -700,7 +710,7 @@ server <- function(input, output) {
       ##One row per tier, with file info
       map_dfr(~ map_dfr(.x, xml_attrs), .id="File") %>% 
       ##Add SpkrTier (is the tier a speaker tier?)
-      mutate(SpkrTier = !(tolower(PARTICIPANT) %in% nonSpkrTiers)) %>% 
+      mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(nonSpkrTiers))) %>% 
       ##Add info from files()
       left_join(files(), by="File")
   })
@@ -722,9 +732,7 @@ server <- function(input, output) {
   ##  environment, to 'peek into' environment)
   output$debugPrint <-
     renderPrint({
-      list(tierInfo = tierInfo() %>%
-             as.data.frame(),
-           tierIssues = tierIssues(tierInfo()))
+      
     })
   
   
