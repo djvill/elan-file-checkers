@@ -32,7 +32,7 @@ nonSpkrTiers <- c("Comment","Noise","Redaction")
 ##Permit angle brackets for single-word interruptions?
 permitAngleBrackets <- FALSE
 ##Characters to accept in pronounce codes
-pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE\\{VQU@i$u312456]"
+pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE\\{VQU@i$u312456789]"
 ##Case-sensitive?
 caseSens <- FALSE
 
@@ -224,7 +224,9 @@ dictCheckTier <- function(tierName, eaf) {
     str_subset(paste0("^[[:alpha:]']+~?\\[", pronChars, "+\\]$"),
                negate=TRUE) %>% 
     ##Ignore standalone valid punctuation
-    str_subset("[.?-]|--", negate=TRUE)
+    str_subset("[.?-]|--", negate=TRUE) %>% 
+    ##Ignore empty words
+    str_subset("^$", negate=TRUE)
   
   ##Get forms of words for checking
   wordDF <- tibble(
@@ -232,7 +234,7 @@ dictCheckTier <- function(tierName, eaf) {
     ##First checking form
     CheckWord1 = Word %>%
       ##Strip attached valid punctuation
-      str_remove("([.?-]|--)$") %>%
+      str_remove("(\\s[.?-]|--)$") %>%
       ##For words with paren codes, use the paren code for checking
       str_replace(".+\\((.+)\\)$", "\\1") %>%
       ##Strip clitics for checking
@@ -732,7 +734,7 @@ server <- function(input, output) {
   ##  environment, to 'peek into' environment)
   output$debugPrint <-
     renderPrint({
-      
+      list()
     })
   
   

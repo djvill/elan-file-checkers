@@ -45,7 +45,9 @@ convertDict <- function(type = c("CELEX", "LaBB-CAT", "tilde")[1], root, dictPat
     ##2nd column (main spellings) & 10th column (alternative spellings, which has many empties)
     dict <- c(as.character(celex[,2]), stringr::str_subset(as.character(celex[,10]), ".+"))
   } else if (type=="LaBB-CAT") { 
-    dict <- read.csv(dictPath, header=FALSE)[,1]
+    library(readr)
+    dict <- unique(read_csv(dictPath, col_names=c("word","pronounce"), col_types="cc", 
+                            quote="", comment="\"##")$word)
   } else if (type=="tilde") {
     vLetters <- c("a", "e", "i", "o", "u")
     cLetters <- setdiff(letters, vLetters)
