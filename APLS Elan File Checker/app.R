@@ -91,17 +91,18 @@ tierIssuesOneFile <- function(df, filename) {
   }
   
   ##Interviewers can be named either Interviewer [SpkrCode] or actual name
-  interviewerTier <- paste0("Interviewer ", unique(df$SpkrCode), "|",
-                            if_else(unique(df$Neighborhood)=="HD", 
-                                    "Trista Pennington", 
-                                    "Barbara Johnstone"))
+  interviewerTier <- c(paste("Interviewer", unique(df$SpkrCode)),
+                       if_else(unique(df$Neighborhood)=="HD", 
+                               "Trista Pennington", 
+                               "Barbara Johnstone"))
   ##Detect missing interviewer tier
-  if (!any(str_detect(df$TIER_ID, paste0("^(", interviewerTier, ")$")))) {
+  if (!any(interviewerTier %in% df$TIER_ID)) {
     issues <- c(issues, paste("There are no tiers with tier name", 
                               ##Format for printing
-                              interviewerTier %>% 
-                                str_replace("\\|", " or ")))
+                              paste(interviewerTier, collapse=" or ")))
   }
+  
+  
   
   ##Handle missing attributes
   checkAttrs <- c("ANNOTATOR", "PARTICIPANT", "TIER_ID")
@@ -120,10 +121,11 @@ tierIssuesOneFile <- function(df, filename) {
       ##  naming each tier
       if (any(is.na(attrCol))) {
         noAttrDF <- df[is.na(attrCol), ]
-        noAttr <-
+		noAttr <-
           noAttrDF %>% 
           mutate(tierName = if_else(is.na(TIER_ID), tierNum, TIER_ID)) %>% 
           pull(tierName)
+		
         paste("Tier missing", attrArticle, attrTitle, "attribute:", noAttr)
       }
     }, error = function(e) {
@@ -730,11 +732,14 @@ server <- function(input, output) {
     }
   })
   
-  ##Verbatim debugging text (works best if a list() of objects with names from
-  ##  environment, to 'peek into' environment)
+  ##Verbatim debugging text (to 'peek into' environment)
   output$debugPrint <-
     renderPrint({
-      list()
+      list(
+        ##Put reactive objects here with name from environment or expression, such as
+        ##  `eaflist()` = eaflist()
+        ##  `tierInfo()$TIER_ID` = tierInfo()$TIER_ID,
+      )
     })
   
   

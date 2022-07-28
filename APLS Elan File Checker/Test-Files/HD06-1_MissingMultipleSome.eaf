@@ -1602,7 +1602,7 @@
         <TIME_SLOT TIME_SLOT_ID="ts1590" TIME_VALUE="2416949"/>
     </TIME_ORDER>
     <TIER ANNOTATOR="Emma McKibbin" LINGUISTIC_TYPE_REF="default-lt"
-        TIER_ID="Terri Baltimore">
+        TIER_ID="HD06">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a7"
                 TIME_SLOT_REF1="ts11" TIME_SLOT_REF2="ts12">
@@ -4539,7 +4539,7 @@
         </ANNOTATION>
     </TIER>
     <TIER LINGUISTIC_TYPE_REF="default-lt"
-        PARTICIPANT="Interviewer Terri Baltimore">
+        PARTICIPANT="Interviewer HD06">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1"
                 TIME_SLOT_REF1="ts5" TIME_SLOT_REF2="ts6">
@@ -6297,7 +6297,7 @@
         </ANNOTATION>
     </TIER>
     <TIER ANNOTATOR="Emma McKibbin" LINGUISTIC_TYPE_REF="default-lt"
-        PARTICIPANT="Noises" TIER_ID="Noises">
+        PARTICIPANT="Noise" TIER_ID="Noise">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a4"
                 TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts2">
@@ -6383,7 +6383,9 @@
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>
-    <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
+    <TIER ANNOTATOR="Emma McKibbin" LINGUISTIC_TYPE_REF="default-lt"
+        PARTICIPANT="Redaction" TIER_ID="Redaction"/>
+	<LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
         LINGUISTIC_TYPE_ID="default-lt" TIME_ALIGNABLE="true"/>
     <CONSTRAINT
         DESCRIPTION="Time subdivision of parent annotation's time interval, no time gaps allowed within this interval" STEREOTYPE="Time_Subdivision"/>
