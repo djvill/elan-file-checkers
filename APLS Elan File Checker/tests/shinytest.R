@@ -1,3 +1,2 @@
 library(shinytest)
-shinytest::testApp("../")
-
+testApp("../", testnames=dir("shinytest/", "test.+R$"))

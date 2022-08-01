@@ -120,11 +120,11 @@ tierIssuesOneFile <- function(df, filename) {
       ##  naming each tier
       if (any(is.na(attrCol))) {
         noAttrDF <- df[is.na(attrCol), ]
-		noAttr <-
+        noAttr <-
           noAttrDF %>% 
           mutate(tierName = if_else(is.na(TIER_ID), tierNum, TIER_ID)) %>% 
           pull(tierName)
-		
+        
         paste("Tier missing", attrArticle, attrTitle, "attribute:", noAttr)
       }
     }, error = function(e) {
@@ -298,15 +298,15 @@ getTimesTier <- function(tierName, eaf, timeSlots) {
   ##Add actual times, only if tier is nonempty
   if (nrow(tierTimes) > 0) {
     tierTimes <- tierTimes %>% 
-    ##Add actual times
-    left_join(timeSlots %>%
-                rename(TIME_SLOT_REF1 = TIME_SLOT_ID,
-                       Start = TIME_VALUE),
-              by="TIME_SLOT_REF1") %>%
-    left_join(timeSlots %>%
-                rename(TIME_SLOT_REF2 = TIME_SLOT_ID,
-                       End = TIME_VALUE),
-              by="TIME_SLOT_REF2")
+      ##Add actual times
+      left_join(timeSlots %>%
+                  rename(TIME_SLOT_REF1 = TIME_SLOT_ID,
+                         Start = TIME_VALUE),
+                by="TIME_SLOT_REF1") %>%
+      left_join(timeSlots %>%
+                  rename(TIME_SLOT_REF2 = TIME_SLOT_ID,
+                         End = TIME_VALUE),
+                by="TIME_SLOT_REF2")
   } else {
     ##If tier is empty, return NULL (will be immediately discard()ed)
     NULL
@@ -405,12 +405,12 @@ findOverlapsTier <- function(tierName, timesEAF) {
   ##  triggers an error below
   overlapBounds <- overlapBounds %>% 
     mutate(NewTS = case_when(
-              !CloseEnough ~ "Too far",
-              StartDiff <= EndDiff ~ TIME_SLOT_REF1_overlapped,
-              StartDiff > EndDiff ~ TIME_SLOT_REF2_overlapped,
-              TRUE ~ NA_character_),
-            ##Add node path for fixing overlap
-            NodePath = str_glue("//ALIGNABLE_ANNOTATION[@ANNOTATION_ID='{ANNOTATION_ID}']"))
+      !CloseEnough ~ "Too far",
+      StartDiff <= EndDiff ~ TIME_SLOT_REF1_overlapped,
+      StartDiff > EndDiff ~ TIME_SLOT_REF2_overlapped,
+      TRUE ~ NA_character_),
+      ##Add node path for fixing overlap
+      NodePath = str_glue("//ALIGNABLE_ANNOTATION[@ANNOTATION_ID='{ANNOTATION_ID}']"))
   
   ##Return dataframe
   overlapBounds
@@ -667,7 +667,7 @@ is.displayed <- function(x) {
   }
   
   # if ("shiny.tag" %in% class(x)) {
-    sty <- x$attribs$style
+  sty <- x$attribs$style
   # } else {
   #   sty <- xml_attr(x, "style")
   # }
@@ -760,11 +760,11 @@ server <- function(input, output) {
   output$out <- renderUI({
     ##Always-displayed headings
     stepHeads <- list(tiers = h2("Step 1: Validating tier names and attributes...",
-	id="tierHead"),
+                                 id="tierHead"),
                       dict = h2("Step 2: Checking for out-of-dictionary words...",
-					  id="dictHead"),
+                                id="dictHead"),
                       overlaps = h2("Step 3: Checking for overlaps...",
-					  id="overlapsHead"))
+                                    id="overlapsHead"))
     
     ##If no uploaded files, just display headings
     if (!isTruthy(input$files)) {
@@ -798,7 +798,7 @@ server <- function(input, output) {
       noEafHead <- undisplay(noEafHead)
     } else {
       noEafHead <- display(noEafHead) %>%
-	    tagAppendAttributes(class="bad")
+        tagAppendAttributes(class="bad")
       stepHeads <- stepHeads %>%
         map(tagAppendAttributes, class="grayout")
       

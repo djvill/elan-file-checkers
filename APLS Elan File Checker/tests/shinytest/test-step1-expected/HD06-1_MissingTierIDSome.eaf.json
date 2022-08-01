@@ -1,0 +1,171 @@
+{
+  "export": {
+    "fileDF": [
+      {
+        "File": "HD06-1_MissingTierIDSome.eaf",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_MissingTierIDSome",
+        "size": 339413,
+        "type": ""
+      }
+    ],
+    "tierInfo": [
+      {
+        "File": "HD06-1_MissingTierIDSome.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "HD06",
+        "TIER_ID": "HD06",
+        "SpkrTier": true,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_MissingTierIDSome",
+        "size": 339413,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_MissingTierIDSome.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Interviewer HD06",
+        "SpkrTier": true,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_MissingTierIDSome",
+        "size": 339413,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_MissingTierIDSome.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Comment",
+        "SpkrTier": false,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_MissingTierIDSome",
+        "size": 339413,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_MissingTierIDSome.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Noise",
+        "TIER_ID": "Noise",
+        "SpkrTier": false,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_MissingTierIDSome",
+        "size": 339413,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_MissingTierIDSome.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Redaction",
+        "TIER_ID": "Redaction",
+        "SpkrTier": false,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_MissingTierIDSome",
+        "size": 339413,
+        "type": ""
+      }
+    ]
+  },
+  "elements": {
+    "stepHeads": [
+      {
+        "id": "noEafHead",
+        "displayed": false
+      },
+      {
+        "id": "tierHead",
+        "class": "bad",
+        "displayed": true
+      },
+      {
+        "id": "dictHead",
+        "class": "grayout",
+        "displayed": true
+      },
+      {
+        "id": "overlapsHead",
+        "class": "grayout",
+        "displayed": true
+      }
+    ],
+    "stepSubheads": [
+      {
+        "id": "tierSubhead",
+        "displayed": true
+      },
+      {
+        "id": "dictSubhead",
+        "displayed": false
+      },
+      {
+        "id": "overlapsSubhead",
+        "displayed": false
+      },
+      {
+        "id": "downloadSubhead",
+        "displayed": false
+      }
+    ],
+    "stepDetails": [
+      {
+        "id": "checkDetails",
+        "hasContent": true,
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li>HD06-1_MissingTierIDSome.eaf<\/li>\n<\/ul>\n"
+      },
+      {
+        "id": "tierDetails",
+        "hasContent": true,
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MissingTierIDSome.eaf:\n    <ul>\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 2<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+      },
+      {
+        "id": "dictDetails",
+        "hasContent": false,
+        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "overlapsDetails",
+        "hasContent": false,
+        "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      }
+    ],
+    "lastDetails": [
+      "tierDetails"
+    ],
+    "tierDetails": {
+      "HD06-1_MissingTierIDSome.eaf": [
+        "There are no tiers with tier name Comment",
+        "There are no tiers with tier name Interviewer HD06 or Trista Pennington",
+        "Tier missing a Tier_id attribute: Tier 2",
+        "Tier missing a Tier_id attribute: Tier 3"
+      ]
+    }
+  }
+}
