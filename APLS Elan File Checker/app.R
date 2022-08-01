@@ -752,20 +752,9 @@ server <- function(input, output) {
     })
   
   ##Export test values
-  # ##If failing step 0, can't export eaflist, etc.
-  # fileExtValid <- reactive({
-  #   req(fileDF())
-  #   all(fileDF()$FileExtValid)
-  # })
-  # if (!fileExtValid()) {
-  #   exportTestValues(fileDF = fileDF())
-  # } else {
   exportTestValues(fileDF = fileDF(),
                    eaflist = print(eaflist()),
-                   tierInfo = tierInfo(),
-                   tierIss = tierIssues(tierInfo())
-  )
-  # }
+                   tierInfo = tierInfo())
   
   # Output: UI --------------------------------------------------------------
   output$out <- renderUI({
@@ -798,17 +787,18 @@ server <- function(input, output) {
              ~ !endsWith(.x, "eaf"),
              ~ tags$li(.x, class="bad"),
              .else=tags$li),
-      id="checkDetails"
+      id="checkDetails", class="details"
     )
     
     ##Style headings based on whether file extensions are valid
     noEafHead <- h2("The checker only works on files with an .eaf file extension",
-                    id="noEafHead", class="bad")
+                    id="noEafHead")
     fileExtValid <- all(fileDF()$FileExtValid)
     if (fileExtValid) {
       noEafHead <- undisplay(noEafHead)
     } else {
-      noEafHead <- display(noEafHead)
+      noEafHead <- display(noEafHead) %>%
+	    tagAppendAttributes(class="bad")
       stepHeads <- stepHeads %>%
         map(tagAppendAttributes, class="grayout")
       
@@ -825,7 +815,7 @@ server <- function(input, output) {
                       id="tierSubhead") %>% 
       ##By default, don't display
       undisplay()
-    tierDetails <- tags$ul("", id="tierDetails") %>% 
+    tierDetails <- tags$ul("", id="tierDetails", class="details") %>% 
       ##By default, don't display
       undisplay()
     
@@ -876,7 +866,7 @@ server <- function(input, output) {
                       id="dictSubhead") %>% 
       ##By default, don't display
       undisplay()
-    dictDetails <- tags$ul("", id="dictDetails") %>% 
+    dictDetails <- tags$ul("", id="dictDetails", class="details") %>% 
       ##By default, don't display
       undisplay()
     
@@ -934,7 +924,7 @@ server <- function(input, output) {
                           id="overlapsSubhead") %>% 
       ##By default, don't display
       undisplay()
-    overlapsDetails <- tags$ul("", id="overlapsDetails") %>% 
+    overlapsDetails <- tags$ul("", id="overlapsDetails", class="details") %>% 
       ##By default, don't display
       undisplay()
     
