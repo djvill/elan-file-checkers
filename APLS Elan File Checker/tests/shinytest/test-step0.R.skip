@@ -1,0 +1,11 @@
+##This test is being skipped because (as currently written), most exported
+##  values rely on all file extensions being valid, which crashes the test
+##	(https://github.com/rstudio/shinytest/issues/429)
+
+app <- ShinyDriver$new("../../")
+app$snapshotInit("test-step0")
+
+app$uploadFile(files = "step0/HD06-1_BadFileExt.eaff")
+# app$snapshot(list(output = "out",
+#                   export = "fileDF"))
+app$snapshot(list(output = "out"))

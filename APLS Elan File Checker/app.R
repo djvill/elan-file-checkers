@@ -6,7 +6,6 @@ library(purrr)
 library(tidyr)
 library(dplyr)
 library(magrittr)
-library(here)
 
 
 # Parameters ------------------------------------------------------------------
@@ -661,7 +660,20 @@ undisplay <- function(x) {
   
   x
 }
-
+is.displayed <- function(x) {
+  if (!any(c("shiny.tag") %in% class(x))) {
+    stop("is.displayed() only works with shiny.tag objects, not ", 
+         paste(class(x), collapse="/"), " objects.")
+  }
+  
+  # if ("shiny.tag" %in% class(x)) {
+    sty <- x$attribs$style
+  # } else {
+  #   sty <- xml_attr(x, "style")
+  # }
+  
+  !grepl("display:\\s*none", sty)
+}
 
 
 
@@ -670,7 +682,7 @@ server <- function(input, output) {
   # Set up file structures --------------------------------------------------
   
   ##Dataframe of files
-  files <- eventReactive(input$files, {
+  fileDF <- eventReactive(input$files, {
     ##Start with input files dataframe
     input$files %>% 
       ##More informative column name
@@ -687,21 +699,15 @@ server <- function(input, output) {
       arrange(Neighborhood, SpeakerNum, FileSuffix, File)
   })
   
-  ##Read files: Get a list that's nrow(files()) long, each element an xml_document
+  ##Read files: Get a list that's nrow(fileDF()) long, each element an xml_document
   eaflist <- reactive({
-    req(all(files()$FileExtValid) || overrideExit$fileExt)
-    files() %>% 
+    req(all(fileDF()$FileExtValid) || overrideExit$fileExt)
+    fileDF() %>% 
       pull(datapath, name=File) %>% 
       map(read_xml)
   })
   
-  ##Number of files
-  numFiles <- reactive({
-    req(eaflist())
-    length(eaflist())
-  })
-  
-  ##Extract tiers: Get a list that's nrow(files()) long, each element an xml_nodeset with one node per tier
+  ##Extract tiers: Get a list that's nrow(fileDF) long, each element an xml_nodeset with one node per tier
   tiers <- reactive({
     req(eaflist())
     map(eaflist(), xml_find_all, "//TIER")
@@ -715,8 +721,8 @@ server <- function(input, output) {
       map_dfr(~ map_dfr(.x, xml_attrs), .id="File") %>% 
       ##Add SpkrTier (is the tier a speaker tier?)
       mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(nonSpkrTiers))) %>% 
-      ##Add info from files()
-      left_join(files(), by="File")
+      ##Add info from fileDF
+      left_join(fileDF(), by="File")
   })
   
   # Debugging output --------------------------------------------------------
@@ -739,16 +745,37 @@ server <- function(input, output) {
         ##Put reactive objects here with name from environment or expression, such as
         ##  `eaflist()` = eaflist()
         ##  `tierInfo()$TIER_ID` = tierInfo()$TIER_ID,
+        ##or if that's too cumbersome, just give it a temporary name, such as
+        ##  jon = tierInfo()$TIER_ID %>% 
+        ##    unique()
       )
     })
   
+  ##Export test values
+  # ##If failing step 0, can't export eaflist, etc.
+  # fileExtValid <- reactive({
+  #   req(fileDF())
+  #   all(fileDF()$FileExtValid)
+  # })
+  # if (!fileExtValid()) {
+  #   exportTestValues(fileDF = fileDF())
+  # } else {
+  exportTestValues(fileDF = fileDF(),
+                   eaflist = print(eaflist()),
+                   tierInfo = tierInfo(),
+                   tierIss = tierIssues(tierInfo())
+  )
+  # }
   
   # Output: UI --------------------------------------------------------------
   output$out <- renderUI({
     ##Always-displayed headings
-    stepHeads <- list(tiers = h2("Step 1: Validating tier names and attributes..."),
-                      dict = h2("Step 2: Checking for out-of-dictionary words..."),
-                      overlaps = h2("Step 3: Checking for overlaps..."))
+    stepHeads <- list(tiers = h2("Step 1: Validating tier names and attributes...",
+	id="tierHead"),
+                      dict = h2("Step 2: Checking for out-of-dictionary words...",
+					  id="dictHead"),
+                      overlaps = h2("Step 3: Checking for overlaps...",
+					  id="overlapsHead"))
     
     ##If no uploaded files, just display headings
     if (!isTruthy(input$files)) {
@@ -761,14 +788,13 @@ server <- function(input, output) {
     exitEarly <- FALSE
     
     
-    
     # Step 0: File extension check --------------------------------------------
     checkHead <- h1("Checking the following files...",
                     id="checkHead")
     
     ##Get bullet-list of filenames (styling bad ones in red)
     checkDetails <- tags$ul(
-      map_if(files()$File,
+      map_if(fileDF()$File,
              ~ !endsWith(.x, "eaf"),
              ~ tags$li(.x, class="bad"),
              .else=tags$li),
@@ -778,7 +804,7 @@ server <- function(input, output) {
     ##Style headings based on whether file extensions are valid
     noEafHead <- h2("The checker only works on files with an .eaf file extension",
                     id="noEafHead", class="bad")
-    fileExtValid <- all(files()$FileExtValid)
+    fileExtValid <- all(fileDF()$FileExtValid)
     if (fileExtValid) {
       noEafHead <- undisplay(noEafHead)
     } else {
@@ -905,10 +931,10 @@ server <- function(input, output) {
     overlapsSubhead <- h3(paste("The overlap checker could not resolve the following overlaps.",
                                 "Please fix these overlaps; remember to make overlaps a",
                                 "separate turn on each speaker's tier."),
-                          id="dictSubhead") %>% 
+                          id="overlapsSubhead") %>% 
       ##By default, don't display
       undisplay()
-    overlapsDetails <- tags$ul("", is="overlapsDetails") %>% 
+    overlapsDetails <- tags$ul("", id="overlapsDetails") %>% 
       ##By default, don't display
       undisplay()
     
