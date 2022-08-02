@@ -1,5 +1,6 @@
 ##Utilities for running tests
 
+##Is an element (shiny.tag or xml_node) displayed?
 is.displayed <- function(x) {
   if (!any(c("shiny.tag", "xml_node") %in% class(x))) {
     stop("is.displayed() only works with shiny.tag or xml_node objects, not ", 
@@ -21,7 +22,7 @@ write_utf8 <- function (text, ...) {
   writeBin(charToRaw(enc2utf8(text)), ...)
 }
 
-##snapshot: compare to shinytest:::sd_snapshot()
+##Take snapshot: compare to shinytest:::sd_snapshot()
 snap <- function(app, name=NULL, path=getwd()) {
   library(rvest)
   library(purrr)
@@ -29,16 +30,20 @@ snap <- function(app, name=NULL, path=getwd()) {
   library(stringr)
   library(jsonlite)
   
+  ##Get output html pane (to be parsed for test values)
   allVals <- app$getAllValues()
   mainUI <- read_html(allVals$output$out$html)
+  
+  ##"Unpack" test values from html container
   testVals <- allVals$output$export$html %>% 
-    ##"Unpack" test values from html container
     read_html() %>% 
     html_elements("div")
   exported <- 
     testVals %>% 
     map(~ .x %>% html_text() %>% fromJSON()) %>% 
     set_names(testVals %>% html_attr("id"))
+  
+  ##Get info on step headings, subheads, and details
   stepHeads <- data.frame(
     id = html_attr(html_elements(mainUI, "h2"), "id"),
     class = html_attr(html_elements(mainUI, "h2"), "class"),
@@ -51,7 +56,10 @@ snap <- function(app, name=NULL, path=getwd()) {
     {data.frame(id = html_attr(., "id"),
                 hasContent = map_lgl(., ~ nchar(html_text(.x)) > 0),
                 content = map_chr(., as.character))}
-  lastDetails <- stepDetails %>% 
+  
+  ##Get formatted version of the last details element with content
+  lastDetails <- 
+    stepDetails %>% 
     filter(hasContent) %>% 
     tail(1) %>% 
     pull(id)
@@ -68,6 +76,7 @@ snap <- function(app, name=NULL, path=getwd()) {
     set_names(children, fileNames)
   }
   
+  ##Put together snapshot
   out <- list(export = exported,
               elements = list(stepHeads = stepHeads,
                               stepSubheads = stepSubheads,
@@ -78,10 +87,18 @@ snap <- function(app, name=NULL, path=getwd()) {
   names(out$elements)[length(out$elements)] <- lastDetails
   out <- prettify(toJSON(out), indent=2)
   
+  ##Optionally save snapshot
   if (!is.null(name)) {
-    current_dir <- paste0(path, "-current")
+    ##Set up directory name
+    if (!endsWith(path, "-current/")) {
+      current_dir <- paste0(path, "-current/")
+    } else {
+      current_dir <- path
+    }
+    
+    ##If this is the first snapshot, start with empty directory
     if (!exists("fileCounter")) {
-      fileCounter <- 0
+      fileCounter <<- 0
     }
     if (fileCounter == 0) {
       if (dir.exists(current_dir)) {
@@ -89,6 +106,8 @@ snap <- function(app, name=NULL, path=getwd()) {
       }
       dir.create(current_dir, recursive = TRUE)
     }
+    
+    ##Save snapshot & increment counter
     write_utf8(out, paste0(current_dir, "/", name, ".json"))
     fileCounter <<- fileCounter + 1
   }

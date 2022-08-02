@@ -10,6 +10,9 @@ library(magrittr)
 
 # Parameters ------------------------------------------------------------------
 
+##Version date
+versDate <- "2 August 2022"
+
 ##Debugging
 ##Show additional UI element(s) at top of main panel for debugging?
 showDebug <- FALSE
@@ -53,7 +56,7 @@ ui <- fluidPage(
   ),
   titlePanel("Elan File Checker for APLS"),
   p("Created by Dan Villarreal"),
-  p("Updated 14 November 2021"),
+  p(paste("Updated", versDate)),
   sidebarLayout(
     sidebarPanel(
       fileInput("files",

@@ -1,13 +1,14 @@
 ##Test the files for step 1
 source("utils.R")
 app <- ShinyDriver$new("../../")
-testPath <- "test-step1"
+testPath <- paste0("test-step1", "-current/")
 testFiles <- dir("step1", ".+eaf", full.names=TRUE)
-fileCounter <- 0
+fileCounter <<- 0
 
 ##All files
 app$uploadFile(files=testFiles)
 snap(app, "All", testPath)
+app$takeScreenshot(paste0(testPath, "All.png"))
 
 ##Indiv files
 for (f in testFiles) {

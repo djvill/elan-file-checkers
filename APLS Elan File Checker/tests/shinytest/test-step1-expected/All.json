@@ -101,13 +101,13 @@
         "type": ""
       },
       {
-        "File": "HD06-1_NoTierIssues.eaf",
+        "File": "HD06-1_NoIssues.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_NoTierIssues",
+        "FileSuffix": "-1_NoIssues",
         "size": 339997,
         "type": ""
       }
@@ -797,7 +797,7 @@
         "type": ""
       },
       {
-        "File": "HD06-1_NoTierIssues.eaf",
+        "File": "HD06-1_NoIssues.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "HD06",
@@ -808,12 +808,12 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_NoTierIssues",
+        "FileSuffix": "-1_NoIssues",
         "size": 339997,
         "type": ""
       },
       {
-        "File": "HD06-1_NoTierIssues.eaf",
+        "File": "HD06-1_NoIssues.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Interviewer HD06",
@@ -824,12 +824,12 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_NoTierIssues",
+        "FileSuffix": "-1_NoIssues",
         "size": 339997,
         "type": ""
       },
       {
-        "File": "HD06-1_NoTierIssues.eaf",
+        "File": "HD06-1_NoIssues.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Comment",
@@ -840,12 +840,12 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_NoTierIssues",
+        "FileSuffix": "-1_NoIssues",
         "size": 339997,
         "type": ""
       },
       {
-        "File": "HD06-1_NoTierIssues.eaf",
+        "File": "HD06-1_NoIssues.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Noise",
@@ -856,12 +856,12 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_NoTierIssues",
+        "FileSuffix": "-1_NoIssues",
         "size": 339997,
         "type": ""
       },
       {
-        "File": "HD06-1_NoTierIssues.eaf",
+        "File": "HD06-1_NoIssues.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Redaction",
@@ -872,7 +872,7 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_NoTierIssues",
+        "FileSuffix": "-1_NoIssues",
         "size": 339997,
         "type": ""
       }
@@ -922,7 +922,7 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li>HD06-1_BadNonspkrTierNames.eaf<\/li>\n  <li>HD06-1_BadSpkrTierNames.eaf<\/li>\n  <li>HD06-1_MissingAnnotatorAll.eaf<\/li>\n  <li>HD06-1_MissingAnnotatorSome.eaf<\/li>\n  <li>HD06-1_MissingMultipleSome.eaf<\/li>\n  <li>HD06-1_MissingParticipantSome.eaf<\/li>\n  <li>HD06-1_MissingRedact.eaf<\/li>\n  <li>HD06-1_MissingTierIDAll.eaf<\/li>\n  <li>HD06-1_MissingTierIDSome.eaf<\/li>\n  <li>HD06-1_NoTierIssues.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li>HD06-1_BadNonspkrTierNames.eaf<\/li>\n  <li>HD06-1_BadSpkrTierNames.eaf<\/li>\n  <li>HD06-1_MissingAnnotatorAll.eaf<\/li>\n  <li>HD06-1_MissingAnnotatorSome.eaf<\/li>\n  <li>HD06-1_MissingMultipleSome.eaf<\/li>\n  <li>HD06-1_MissingParticipantSome.eaf<\/li>\n  <li>HD06-1_MissingRedact.eaf<\/li>\n  <li>HD06-1_MissingTierIDAll.eaf<\/li>\n  <li>HD06-1_MissingTierIDSome.eaf<\/li>\n  <li>HD06-1_NoIssues.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",

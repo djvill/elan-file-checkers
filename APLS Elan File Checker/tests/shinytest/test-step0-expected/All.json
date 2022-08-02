@@ -13,13 +13,13 @@
         "type": ""
       },
       {
-        "File": "HD06-1_NoFileExtIssues.eaf",
+        "File": "HD06-1_NoIssues.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_NoFileExtIssues",
+        "FileSuffix": "-1_NoIssues",
         "size": 339997,
         "type": ""
       }
@@ -70,7 +70,7 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"bad\">HD06-1_BadFileExt.eaff<\/li>\n  <li>HD06-1_NoFileExtIssues.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"bad\">HD06-1_BadFileExt.eaff<\/li>\n  <li>HD06-1_NoIssues.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
@@ -95,7 +95,7 @@
       "HD06-1_BadFileExt.eaff": [
 
       ],
-      "HD06-1_NoFileExtIssues.eaf": [
+      "HD06-1_NoIssues.eaf": [
 
       ]
     }

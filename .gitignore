@@ -6,9 +6,9 @@ Celex English
 Elan File Checkers.Rproj
 CB Elan File Checker/dict/userDict.txt
 JH Elan File Checker/dict/userDict.txt
-.gitignore
 *.lnk
 SouthlandCBElanFileCheckerZIP/
 UnzipTest/
 Test/
 celexDict.txt
+**test*-current/
