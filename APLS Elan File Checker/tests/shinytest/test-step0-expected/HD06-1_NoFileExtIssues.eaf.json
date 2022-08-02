@@ -2,22 +2,23 @@
   "export": {
     "fileDF": [
       {
-        "File": "HD06-1_MissingParticipantSome.eaf",
+        "File": "HD06-1_NoFileExtIssues.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingParticipantSome",
-        "size": 339419,
+        "FileSuffix": "-1_NoFileExtIssues",
+        "size": 339997,
         "type": ""
       }
     ],
     "tierInfo": [
       {
-        "File": "HD06-1_MissingParticipantSome.eaf",
+        "File": "HD06-1_NoFileExtIssues.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "HD06",
         "TIER_ID": "HD06",
         "SpkrTier": true,
         "FileExt": "eaf",
@@ -25,14 +26,15 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingParticipantSome",
-        "size": 339419,
+        "FileSuffix": "-1_NoFileExtIssues",
+        "size": 339997,
         "type": ""
       },
       {
-        "File": "HD06-1_MissingParticipantSome.eaf",
+        "File": "HD06-1_NoFileExtIssues.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Interviewer HD06",
         "TIER_ID": "Interviewer HD06",
         "SpkrTier": true,
         "FileExt": "eaf",
@@ -40,15 +42,15 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingParticipantSome",
-        "size": 339419,
-        "type": "",
-        "PARTICIPANT": "Interviewer HD06"
+        "FileSuffix": "-1_NoFileExtIssues",
+        "size": 339997,
+        "type": ""
       },
       {
-        "File": "HD06-1_MissingParticipantSome.eaf",
+        "File": "HD06-1_NoFileExtIssues.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Comment",
         "TIER_ID": "Comment",
         "SpkrTier": false,
         "FileExt": "eaf",
@@ -56,30 +58,31 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingParticipantSome",
-        "size": 339419,
-        "type": "",
-        "PARTICIPANT": "Comment"
+        "FileSuffix": "-1_NoFileExtIssues",
+        "size": 339997,
+        "type": ""
       },
       {
-        "File": "HD06-1_MissingParticipantSome.eaf",
+        "File": "HD06-1_NoFileExtIssues.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Noise",
         "TIER_ID": "Noise",
-        "SpkrTier": true,
+        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingParticipantSome",
-        "size": 339419,
+        "FileSuffix": "-1_NoFileExtIssues",
+        "size": 339997,
         "type": ""
       },
       {
-        "File": "HD06-1_MissingParticipantSome.eaf",
+        "File": "HD06-1_NoFileExtIssues.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Redaction",
         "TIER_ID": "Redaction",
         "SpkrTier": false,
         "FileExt": "eaf",
@@ -87,10 +90,9 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingParticipantSome",
-        "size": 339419,
-        "type": "",
-        "PARTICIPANT": "Redaction"
+        "FileSuffix": "-1_NoFileExtIssues",
+        "size": 339997,
+        "type": ""
       }
     ]
   },
@@ -102,24 +104,24 @@
       },
       {
         "id": "tierHead",
-        "class": "bad",
+        "class": "good",
         "displayed": true
       },
       {
         "id": "dictHead",
-        "class": "grayout",
+        "class": "good",
         "displayed": true
       },
       {
         "id": "overlapsHead",
-        "class": "grayout",
+        "class": "good",
         "displayed": true
       }
     ],
     "stepSubheads": [
       {
         "id": "tierSubhead",
-        "displayed": true
+        "displayed": false
       },
       {
         "id": "dictSubhead",
@@ -131,19 +133,19 @@
       },
       {
         "id": "downloadSubhead",
-        "displayed": false
+        "displayed": true
       }
     ],
     "stepDetails": [
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li>HD06-1_MissingParticipantSome.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li>HD06-1_NoFileExtIssues.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
-        "hasContent": true,
-        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MissingParticipantSome.eaf:\n    <ul>\n<li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Participant attribute: Noise<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+        "hasContent": false,
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
       },
       {
         "id": "dictDetails",
@@ -157,12 +159,11 @@
       }
     ],
     "lastDetails": [
-      "tierDetails"
+      "checkDetails"
     ],
-    "tierDetails": {
-      "HD06-1_MissingParticipantSome.eaf": [
-        "Tier missing a Participant attribute: HD06",
-        "Tier missing a Participant attribute: Noise"
+    "checkDetails": {
+      "HD06-1_NoFileExtIssues.eaf": [
+
       ]
     }
   }

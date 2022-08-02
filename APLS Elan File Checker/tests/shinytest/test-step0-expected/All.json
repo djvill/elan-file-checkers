@@ -1,0 +1,103 @@
+{
+  "export": {
+    "fileDF": [
+      {
+        "File": "HD06-1_BadFileExt.eaff",
+        "FileExt": "eaff",
+        "FileExtValid": false,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadFileExt",
+        "size": 339384,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_NoFileExtIssues.eaf",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_NoFileExtIssues",
+        "size": 339997,
+        "type": ""
+      }
+    ]
+  },
+  "elements": {
+    "stepHeads": [
+      {
+        "id": "noEafHead",
+        "class": "bad",
+        "displayed": true
+      },
+      {
+        "id": "tierHead",
+        "class": "grayout",
+        "displayed": true
+      },
+      {
+        "id": "dictHead",
+        "class": "grayout",
+        "displayed": true
+      },
+      {
+        "id": "overlapsHead",
+        "class": "grayout",
+        "displayed": true
+      }
+    ],
+    "stepSubheads": [
+      {
+        "id": "tierSubhead",
+        "displayed": false
+      },
+      {
+        "id": "dictSubhead",
+        "displayed": false
+      },
+      {
+        "id": "overlapsSubhead",
+        "displayed": false
+      },
+      {
+        "id": "downloadSubhead",
+        "displayed": false
+      }
+    ],
+    "stepDetails": [
+      {
+        "id": "checkDetails",
+        "hasContent": true,
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"bad\">HD06-1_BadFileExt.eaff<\/li>\n  <li>HD06-1_NoFileExtIssues.eaf<\/li>\n<\/ul>\n"
+      },
+      {
+        "id": "tierDetails",
+        "hasContent": false,
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "dictDetails",
+        "hasContent": false,
+        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "overlapsDetails",
+        "hasContent": false,
+        "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      }
+    ],
+    "lastDetails": [
+      "checkDetails"
+    ],
+    "checkDetails": {
+      "HD06-1_BadFileExt.eaff": [
+
+      ],
+      "HD06-1_NoFileExtIssues.eaf": [
+
+      ]
+    }
+  }
+}

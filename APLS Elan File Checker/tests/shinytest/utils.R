@@ -22,28 +22,23 @@ write_utf8 <- function (text, ...) {
 }
 
 ##snapshot: compare to shinytest:::sd_snapshot()
-snap <- function(app, name, path) {
+snap <- function(app, name=NULL, path=getwd()) {
   library(rvest)
   library(purrr)
   library(dplyr)
   library(stringr)
   library(jsonlite)
   
-  current_dir <- paste0(path, "-current")
-  if (!exists("fileCounter")) {
-    fileCounter <- 0
-  }
-  if (fileCounter == 0) {
-    if (dir.exists(current_dir)) {
-      unlink(current_dir, recursive=TRUE)
-    }
-    dir.create(current_dir, recursive = TRUE)
-  }
-  
   allVals <- app$getAllValues()
   mainUI <- read_html(allVals$output$out$html)
-  testVals <- allVals$export
-  
+  testVals <- allVals$output$export$html %>% 
+    ##"Unpack" test values from html container
+    read_html() %>% 
+    html_elements("div")
+  exported <- 
+    testVals %>% 
+    map(~ .x %>% html_text() %>% fromJSON()) %>% 
+    set_names(testVals %>% html_attr("id"))
   stepHeads <- data.frame(
     id = html_attr(html_elements(mainUI, "h2"), "id"),
     class = html_attr(html_elements(mainUI, "h2"), "class"),
@@ -73,13 +68,7 @@ snap <- function(app, name, path) {
     set_names(children, fileNames)
   }
   
-  out <- list(export = list(fileDF = testVals$fileDF %>% 
-                              ##Datapaths are in random tmp directories so they
-                              ##  create false positive diffs
-                              select(-datapath),
-                            # eaflist = testVals$eaflist,
-                            tierInfo = testVals$tierInfo %>% 
-                              select(-datapath)),
+  out <- list(export = exported,
               elements = list(stepHeads = stepHeads,
                               stepSubheads = stepSubheads,
                               stepDetails = stepDetails,
@@ -87,9 +76,22 @@ snap <- function(app, name, path) {
                               html_elements(mainUI, paste0("#", lastDetails)) %>% 
                                 formatDetails()))
   names(out$elements)[length(out$elements)] <- lastDetails
-  
   out <- prettify(toJSON(out), indent=2)
-  if (!dir.exists(current_dir)) dir.create(current_dir)
-  write_utf8(out, paste0(current_dir, "/", name, ".json"))
-  fileCounter <<- fileCounter + 1
+  
+  if (!is.null(name)) {
+    current_dir <- paste0(path, "-current")
+    if (!exists("fileCounter")) {
+      fileCounter <- 0
+    }
+    if (fileCounter == 0) {
+      if (dir.exists(current_dir)) {
+        unlink(current_dir, recursive=TRUE)
+      }
+      dir.create(current_dir, recursive = TRUE)
+    }
+    write_utf8(out, paste0(current_dir, "/", name, ".json"))
+    fileCounter <<- fileCounter + 1
+  }
+  
+  invisible(out)
 }

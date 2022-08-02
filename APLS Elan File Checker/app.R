@@ -63,6 +63,7 @@ ui <- fluidPage(
                 multiple = TRUE)),
     
     mainPanel(uiOutput("debug"),
+              uiOutput("export"), ##Never shown
               uiOutput("out"))
   )
 )
@@ -751,10 +752,24 @@ server <- function(input, output) {
       )
     })
   
-  ##Export test values
-  exportTestValues(fileDF = fileDF(),
-                   eaflist = print(eaflist()),
-                   tierInfo = tierInfo())
+  ##Export test values (packed away in 1+ divs)
+  output$export <- renderUI({
+    export <- list(tags$div(fileDF() %>% 
+                              select(-datapath) %>% 
+                              jsonlite::toJSON() %>% 
+                              jsonlite::prettify(2), id="fileDF") %>% 
+                     undisplay())
+    if (all(fileDF()$FileExtValid)) {
+      tagList(export,
+              tags$div(tierInfo() %>% 
+                         select(-datapath) %>% 
+                         jsonlite::toJSON() %>% 
+                         jsonlite::prettify(2), id="tierInfo") %>% 
+                undisplay())
+    } else {
+      tagList(export)
+    }
+  })
   
   # Output: UI --------------------------------------------------------------
   output$out <- renderUI({
