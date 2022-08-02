@@ -1,0 +1,218 @@
+{
+  "export": {
+    "fileDF": [
+      {
+        "File": "HD06-1_BadNonContainment.eaf",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadNonContainment",
+        "size": 338607,
+        "type": ""
+      }
+    ],
+    "tierInfo": [
+      {
+        "File": "HD06-1_BadNonContainment.eaf",
+        "LINGUISTIC_TYPE_REF": "praat",
+        "TIER_ID": "HD06",
+        "PARTICIPANT": "HD06",
+        "ANNOTATOR": "Emma M",
+        "SpkrTier": true,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadNonContainment",
+        "size": 338607,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_BadNonContainment.eaf",
+        "LINGUISTIC_TYPE_REF": "praat",
+        "TIER_ID": "Interviewer HD06",
+        "PARTICIPANT": "Interviewer HD06",
+        "ANNOTATOR": "Emma M",
+        "SpkrTier": true,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadNonContainment",
+        "size": 338607,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_BadNonContainment.eaf",
+        "LINGUISTIC_TYPE_REF": "praat",
+        "TIER_ID": "Comment",
+        "PARTICIPANT": "Comment",
+        "ANNOTATOR": "Emma M",
+        "SpkrTier": false,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadNonContainment",
+        "size": 338607,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_BadNonContainment.eaf",
+        "LINGUISTIC_TYPE_REF": "praat",
+        "TIER_ID": "Noise",
+        "PARTICIPANT": "Noise",
+        "ANNOTATOR": "Emma M",
+        "SpkrTier": false,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadNonContainment",
+        "size": 338607,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_BadNonContainment.eaf",
+        "LINGUISTIC_TYPE_REF": "praat",
+        "TIER_ID": "Redaction",
+        "PARTICIPANT": "Redaction",
+        "ANNOTATOR": "Emma M",
+        "SpkrTier": false,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadNonContainment",
+        "size": 338607,
+        "type": ""
+      }
+    ]
+  },
+  "elements": {
+    "stepHeads": [
+      {
+        "id": "noEafHead",
+        "displayed": false
+      },
+      {
+        "id": "tierHead",
+        "class": "good",
+        "displayed": true
+      },
+      {
+        "id": "dictHead",
+        "class": "good",
+        "displayed": true
+      },
+      {
+        "id": "overlapsHead",
+        "class": "bad",
+        "displayed": true
+      }
+    ],
+    "stepSubheads": [
+      {
+        "id": "tierSubhead",
+        "displayed": false
+      },
+      {
+        "id": "dictSubhead",
+        "displayed": false
+      },
+      {
+        "id": "overlapsSubhead",
+        "displayed": true
+      },
+      {
+        "id": "downloadSubhead",
+        "displayed": false
+      }
+    ],
+    "stepDetails": [
+      {
+        "id": "checkDetails",
+        "hasContent": true,
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li>HD06-1_BadNonContainment.eaf<\/li>\n<\/ul>\n"
+      },
+      {
+        "id": "tierDetails",
+        "hasContent": false,
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "dictDetails",
+        "hasContent": false,
+        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "overlapsDetails",
+        "hasContent": true,
+        "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_BadNonContainment.eaf:\n    <table class=\"table shiny-table table- spacing-s overlap-table file-headed\">\n<tr>\n<th>Tier<\/th>\n        <th>Start<\/th>\n        <th>End<\/th>\n      <\/tr>\n<tr>\n<td>Interviewer HD06<\/td>\n        <td>00:00:31.847<\/td>\n        <td>00:00:33.333<\/td>\n      <\/tr>\n<tr>\n<td>HD06<\/td>\n        <td>00:00:32.372<\/td>\n        <td>00:00:35.864<\/td>\n      <\/tr>\n<tr>\n<td>HD06<\/td>\n        <td>00:02:03.441<\/td>\n        <td>00:02:08.549<\/td>\n      <\/tr>\n<tr>\n<td>Interviewer HD06<\/td>\n        <td>00:02:07.707<\/td>\n        <td>00:02:09.166<\/td>\n      <\/tr>\n<tr>\n<td>Interviewer HD06<\/td>\n        <td>00:27:59.050<\/td>\n        <td>00:28:05.435<\/td>\n      <\/tr>\n<tr>\n<td>HD06<\/td>\n        <td>00:28:04.639<\/td>\n        <td>00:28:10.143<\/td>\n      <\/tr>\n<tr>\n<td>Interviewer HD06<\/td>\n        <td>00:32:04.294<\/td>\n        <td>00:32:04.947<\/td>\n      <\/tr>\n<\/table>\n<\/li>\n<\/ul>\n"
+      }
+    ],
+    "lastDetailID": [
+      "overlapsDetails"
+    ],
+    "overlapsDetails": {
+      "HD06-1_BadNonContainment.eaf": [
+        {
+          "Tier": "Interviewer HD06",
+          "Start": "00:00:31.847",
+          "End": "00:00:33.333",
+          "Start_sec": 31.847,
+          "End_sec": 33.333
+        },
+        {
+          "Tier": "HD06",
+          "Start": "00:00:32.372",
+          "End": "00:00:35.864",
+          "Start_sec": 32.372,
+          "End_sec": 35.864
+        },
+        {
+          "Tier": "HD06",
+          "Start": "00:02:03.441",
+          "End": "00:02:08.549",
+          "Start_sec": 123.441,
+          "End_sec": 128.549
+        },
+        {
+          "Tier": "Interviewer HD06",
+          "Start": "00:02:07.707",
+          "End": "00:02:09.166",
+          "Start_sec": 127.707,
+          "End_sec": 129.166
+        },
+        {
+          "Tier": "Interviewer HD06",
+          "Start": "00:27:59.050",
+          "End": "00:28:05.435",
+          "Start_sec": 1679.05,
+          "End_sec": 1685.435
+        },
+        {
+          "Tier": "HD06",
+          "Start": "00:28:04.639",
+          "End": "00:28:10.143",
+          "Start_sec": 1684.639,
+          "End_sec": 1690.143
+        },
+        {
+          "Tier": "Interviewer HD06",
+          "Start": "00:32:04.294",
+          "End": "00:32:04.947",
+          "Start_sec": 1924.294,
+          "End_sec": 1924.947
+        }
+      ]
+    }
+  }
+}

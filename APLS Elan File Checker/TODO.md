@@ -10,8 +10,7 @@
 
 ## Testing
 
-- Explicitly define what the outcome should be for each test file
-  - Perhaps use `shinytest` ([article](https://shiny.rstudio.com/articles/testing-overview.html), [vignette](https://rstudio.github.io/shinytest/articles/shinytest.html))
+- Step 3: If any overlaps are fixed, JSON file should include files w/ fixed overlaps (regardless of whether they're actually output by the app---that is, whether there are remaining overlaps to fix)
 
 
 ## Extensions

@@ -58,22 +58,70 @@ snap <- function(app, name=NULL, path=getwd()) {
                 content = map_chr(., as.character))}
   
   ##Get formatted version of the last details element with content
-  lastDetails <- 
+  lastDetailID <- 
     stepDetails %>% 
     filter(hasContent) %>% 
     tail(1) %>% 
     pull(id)
-  formatDetails <- function(x) {
-    children <- 
-      x %>% 
+  lastDetailElem <- html_elements(mainUI, paste0("#", lastDetailID))
+  
+  ##Translate from HTML to vector (checkDetails) or named list (others)
+  if (lastDetailID=="checkDetails") {
+    lastDetails <- 
+      lastDetailElem %>% 
       html_children() %>% 
-      map(~ html_text(html_elements(.x, "li")))
+      html_text()
+  } else {
+    ##Get file names from li children
     fileNames <- 
-      x %>% 
+      lastDetailElem %>% 
       html_children() %>% 
       html_text2() %>% 
       str_replace(regex("In file (.+?):.+", dotall=TRUE), "\\1")
-    set_names(children, fileNames)
+    
+    if (lastDetailID=="tierDetails") {
+      lastDetails <- 
+        lastDetailElem %>% 
+        html_children() %>% 
+        map(~ .x %>% 
+              html_elements("li") %>% 
+              html_text()) %>% 
+        set_names(fileNames)
+    } else if (lastDetailID=="dictDetails") {
+      tierNames <-
+        lastDetailElem %>% 
+        html_children() %>% 
+        map(~ .x %>% 
+              html_elements(".file-headed > li") %>% 
+              html_text2() %>% 
+              str_replace(regex("On tier (.+?):.+", dotall=TRUE), "\\1"))
+      lastDetails <- 
+        lastDetailElem %>% 
+        html_elements(".file-headed") %>% 
+        map2(tierNames,
+             ~ .x %>% 
+               html_elements(".tier-headed") %>% 
+               map(
+                 ~ .x %>% 
+                   html_children() %>% 
+                   html_text()) %>% 
+               set_names(.y)
+        ) %>% 
+        set_names(fileNames)
+    } else if (lastDetailID=="overlapsDetails") {
+      require(lubridate)
+      lastDetails <-
+        lastDetailElem %>% 
+        html_elements(".file-headed") %>% 
+        ##Parse as dataframe with added columns for times in seconds
+        map(~ .x %>% 
+              html_table() %>% 
+              mutate(across(-Tier, list(sec = ~ .x %>% 
+                              hms() %>% 
+                              period_to_seconds())))
+              ) %>% 
+        set_names(fileNames)
+    }
   }
   
   ##Put together snapshot
@@ -81,11 +129,9 @@ snap <- function(app, name=NULL, path=getwd()) {
               elements = list(stepHeads = stepHeads,
                               stepSubheads = stepSubheads,
                               stepDetails = stepDetails,
-                              lastDetails = lastDetails,
-                              html_elements(mainUI, paste0("#", lastDetails)) %>% 
-                                formatDetails()))
-  names(out$elements)[length(out$elements)] <- lastDetails
-  out <- prettify(toJSON(out), indent=2)
+                              lastDetailID = lastDetailID,
+                              lastDetails))
+  names(out$elements)[length(out$elements)] <- lastDetailID
   
   ##Optionally save snapshot
   if (!is.null(name)) {
@@ -108,7 +154,10 @@ snap <- function(app, name=NULL, path=getwd()) {
     }
     
     ##Save snapshot & increment counter
-    write_utf8(out, paste0(current_dir, "/", name, ".json"))
+    out %>% 
+      toJSON() %>% 
+      prettify(indent=2) %>% 
+      write_utf8(paste0(current_dir, "/", name, ".json"))
     fileCounter <<- fileCounter + 1
   }
   

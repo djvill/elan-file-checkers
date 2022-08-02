@@ -860,7 +860,8 @@ server <- function(input, output) {
                 ~ tags$li(
                   paste0("In file ", .y, ":"),
                   tags$ul(
-                    map(.x, tags$li)
+                    map(.x, tags$li),
+                    class="file-headed"
                   )))
           )
         
@@ -916,10 +917,13 @@ server <- function(input, output) {
                          ~ tags$li(
                            paste0("On tier ", .y, ":"),
                            tags$ul(
-                             map(.x, tags$li)
+                             map(.x, tags$li),
+                             class="tier-headed"
                            )
-                         ))
-                  )))
+                         )),
+                    class="file-headed"
+                  ))
+              )
           )
         
         ##Style headers
@@ -976,7 +980,7 @@ server <- function(input, output) {
                     .x %>% 
                       rowwise() %>% 
                       group_map(~ tags$tr(map(.x, tags$td))),
-                    class="table shiny-table table- spacing-s overlap-table"
+                    class="table shiny-table table- spacing-s overlap-table file-headed"
                   )))
           )
         
