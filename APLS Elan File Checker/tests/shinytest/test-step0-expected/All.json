@@ -1,4 +1,7 @@
 {
+  "success": [
+    false
+  ],
   "export": {
     "fileDF": [
       {
@@ -88,16 +91,12 @@
         "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
       }
     ],
-    "lastDetails": [
+    "lastDetailID": [
       "checkDetails"
     ],
-    "checkDetails": {
-      "HD06-1_BadFileExt.eaff": [
-
-      ],
-      "HD06-1_NoIssues.eaf": [
-
-      ]
-    }
+    "checkDetails": [
+      "HD06-1_BadFileExt.eaff",
+      "HD06-1_NoIssues.eaf"
+    ]
   }
 }
