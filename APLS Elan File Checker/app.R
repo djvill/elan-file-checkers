@@ -771,9 +771,6 @@ server <- function(input, output) {
       require(jsonlite)
       undisplay(tags$div(prettify(toJSON(x), 2), id=nm))
     }
-    eaflist_to_df <- function(x, df=tierInfo()) {
-      imap(x, getTimes, df=df)
-    }
     
     ##First element: fileDF()
     export <- list(pack_val(fileDF() %>% select(-datapath), "fileDF"))
@@ -783,33 +780,6 @@ server <- function(input, output) {
       tagList(export,
               pack_val(tierInfo() %>% select(-datapath), "tierInfo"),
               pack_val(eaflist(), "eaflist"))
-      
-      
-      ##Reconstruct original eaflist from fileDF()
-      # eaforig <-
-      # fileDF() %>% 
-      # pull(datapath, name=File) %>% 
-      # map(read_xml) %>% 
-      # eaflist_to_df()
-      ##Current eaflist
-      ####THIS DOESN'T WORK---eafcurr is always the original eaflist
-      ####As far as I can tell, the only way to get the modified eaflist is by downloading it (a la shinytest:::sd_snapshotDownload())
-      # eafcurr <- 
-      # eaflist() %>% 
-      # eaflist_to_df()
-      
-      ##Add one eaflist if no changes, two if changes
-      ####THIS DOESN'T WORK---eafcurr is always the original eaflist
-      # if (identical(eaforig, eafcurr)) {
-      # tagList(export,
-      # pack_val(tierInfo() %>% select(-datapath), "tierInfo"),
-      # pack_val(eafcurr, "eaflist"))
-      # } else {
-      # tagList(export,
-      # pack_val(tierInfo() %>% select(-datapath), "tierInfo"),
-      # pack_val(eaforig, "eaflist_orig"),
-      # pack_val(eafcurr, "eaflist_curr"))
-      # }
     } else {
       ##If failing step0, export just fileDF()
       tagList(export)
