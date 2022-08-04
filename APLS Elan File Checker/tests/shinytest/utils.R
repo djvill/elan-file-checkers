@@ -23,7 +23,7 @@ write_utf8 <- function (text, ...) {
 }
 
 ##Take snapshot: compare to shinytest:::sd_snapshot()
-snap <- function(app, name=NULL, path=getwd()) {
+snap <- function(app, name=NULL, path=getwd(), incl_eaflist=FALSE) {
   library(rvest)
   library(purrr)
   library(dplyr)
@@ -52,6 +52,7 @@ snap <- function(app, name=NULL, path=getwd()) {
   stepSubheads <- html_elements(mainUI, "h3") %>% 
     {data.frame(id = html_attr(., "id"),
                 displayed = map_lgl(., is.displayed))}
+  success <- is.displayed(html_element(mainUI, "#downloadSubhead"))
   stepDetails <- html_elements(mainUI, ".details") %>%
     {data.frame(id = html_attr(., "id"),
                 hasContent = map_lgl(., ~ nchar(html_text(.x)) > 0),
@@ -125,13 +126,22 @@ snap <- function(app, name=NULL, path=getwd()) {
   }
   
   ##Put together snapshot
-  out <- list(export = exported,
+  ##Keep eaflist out of exported (since it takes up a lot of space)
+  eaflist <- exported$eaflist
+  exported$eaflist <- NULL
+  ##Put together list
+  out <- list(success = success,
+              export = exported,
               elements = list(stepHeads = stepHeads,
                               stepSubheads = stepSubheads,
                               stepDetails = stepDetails,
                               lastDetailID = lastDetailID,
                               lastDetails))
   names(out$elements)[length(out$elements)] <- lastDetailID
+  ##Optionally include eaflist
+  if (incl_eaflist) {
+    out <- c(out, eaflist=list(eaflist))
+  }
   
   ##Optionally save snapshot
   if (!is.null(name)) {
@@ -162,4 +172,46 @@ snap <- function(app, name=NULL, path=getwd()) {
   }
   
   invisible(out)
+}
+
+##Get file from snapshot: compare to shinytest:::sd_snapshotDownload()
+snapDownload <- function(app, name=NULL, path=getwd(), 
+                         id="OutputFile", suffix="_out") {
+  ##Only works if just 1 file has been uploaded
+  files <- app$getAllValues()$input$files
+  if (nrow(files) != 1) {
+    stop("snapDownload() only works if exactly 1 file has been uploaded")
+  }
+  
+  ##Get file from app
+  url <- app$findElement(paste0("#", id))$getAttribute("href")
+  req <- shinytest:::httr_get(url)
+  
+  ##Optionally save file
+  if (!is.null(name)) {
+    ##Set up directory name
+    if (!endsWith(path, "-current/")) {
+      current_dir <- paste0(path, "-current/")
+    } else {
+      current_dir <- path
+    }
+    
+    ##If this is the first snapshot, start with empty directory
+    if (!exists("fileCounter")) {
+      fileCounter <<- 0
+    }
+    if (fileCounter == 0) {
+      if (dir.exists(current_dir)) {
+        unlink(current_dir, recursive=TRUE)
+      }
+      dir.create(current_dir, recursive = TRUE)
+    }
+    
+    ##Save file and increment fileCounter
+    fName <- sub("\\.eaf", paste0(suffix, ".eaf"), name)
+    writeBin(req$content, paste0(current_dir, "/", fName))
+    fileCounter <<- fileCounter + 1
+  }
+  
+  invisible(req$content)
 }

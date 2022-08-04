@@ -2,9 +2,14 @@
 
 ## In logical order
 
+- Bugfix: When step1 file 8 is uploaded (no TIER_ID), there's the error "object 'TIER_ID' not found" instead of the html output
+  - I dealt with this recently, but I must have re-broken it!
+
 - Add to shinytest: If any overlaps are fixed, JSON file should include files w/ fixed overlaps (regardless of whether they're actually output by the app---that is, whether there are remaining overlaps to fix)
-  - Check shinytest articles for how to include output files.
-    - Maybe just add output$OutputFile to snap()? I don't quite get how the fixed overlaps get in there (is eaflist() itself modified??)
+  - Instead of JSON, output file is downloaded (with suffix "_out")
+  - I've chosen to only implement this for step 3 (where the shape of the output file is relevant).
+  - This is only implemented for successful runs (where the download button is shown); this is required because otherwise you get `Error in shinytest:::httr_get(url) : Shiny app is no longer running`
+  - Optionally you can also add `eaflist()` into the output JSON (only implemented for step 3 because it takes up a lot of space)
 - Order tiers by importance (main speaker(s) > interviewer > bystander(s)), and align overlaps from least important to most important
   - Add new test files: Ensure interviewer is snapped to main speaker(s)
   - So I can eventually add Redaction as the highest priority (since we need to delete exactly the right audio)
@@ -36,6 +41,8 @@
 ## Refactoring
 
 - Reduce the number of file structure objects created (some are unnecessary intermediate steps)
+- In shinytest utils: Create a separate function to set up savename, because there's duplicated code between snap() and snapDownload()
+- In snapDownload(): Move success checking into the function itself (it's safer that way)
 
 
 ## Extensions

@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version date
-versDate <- "2 August 2022"
+versDate <- "4 August 2022"
 
 ##Debugging
 ##Show additional UI element(s) at top of main panel for debugging?
@@ -420,7 +420,7 @@ findOverlapsTier <- function(tierName, timesEAF) {
   overlapBounds
 }
 
-##Check for problems with overlapBounds, fix any overlaps by modifying eaflist,
+##Check for problems with overlapBounds, fix any overlaps by modifying eaflist(),
 ##  and return overlapBounds with info about fixed boundaries
 fixOverlapsTier <- function(overlapBounds, eaflist, eafName) {
   ##Check for boundaries where NewTS is NA
@@ -480,7 +480,7 @@ fixOverlapsTier <- function(overlapBounds, eaflist, eafName) {
                 "\n"))
   }
   
-  ##Fix overlaps in EAF list
+  ##Fix overlaps in eaflist()
   overlapBoundsFixed %>% 
     rowwise() %>% 
     group_walk(
@@ -755,21 +755,63 @@ server <- function(input, output) {
       )
     })
   
-  ##Export test values (packed away in 1+ divs)
+  ##Export test values (packed away in 1+ <div>s)
+  ##To unpack in shinytest, use the following: 
+  ##  app <- ShinyDriver$new()
+  ##  fileDF <- ##for example
+  ##    app$getAllValues() %>%
+  ##    pluck("output", "export", "html") %>%
+  ##    read_html() %>%
+  ##    rvest::html_element("#fileDF") %>% 
+  ##    html_text() %>% 
+  ##    jsonlite::fromJSON()
   output$export <- renderUI({
-    export <- list(tags$div(fileDF() %>% 
-                              select(-datapath) %>% 
-                              jsonlite::toJSON() %>% 
-                              jsonlite::prettify(2), id="fileDF") %>% 
-                     undisplay())
+    ##Package a value into a <div>
+    pack_val <- function(x, nm) {
+      require(jsonlite)
+      undisplay(tags$div(prettify(toJSON(x), 2), id=nm))
+    }
+    eaflist_to_df <- function(x, df=tierInfo()) {
+      imap(x, getTimes, df=df)
+    }
+    
+    ##First element: fileDF()
+    export <- list(pack_val(fileDF() %>% select(-datapath), "fileDF"))
+    
+    ##If step 0 passed, add tierInfo() & at least one eaflist()
     if (all(fileDF()$FileExtValid)) {
       tagList(export,
-              tags$div(tierInfo() %>% 
-                         select(-datapath) %>% 
-                         jsonlite::toJSON() %>% 
-                         jsonlite::prettify(2), id="tierInfo") %>% 
-                undisplay())
+              pack_val(tierInfo() %>% select(-datapath), "tierInfo"),
+              pack_val(eaflist(), "eaflist"))
+      
+      
+      ##Reconstruct original eaflist from fileDF()
+      # eaforig <-
+      # fileDF() %>% 
+      # pull(datapath, name=File) %>% 
+      # map(read_xml) %>% 
+      # eaflist_to_df()
+      ##Current eaflist
+      ####THIS DOESN'T WORK---eafcurr is always the original eaflist
+      ####As far as I can tell, the only way to get the modified eaflist is by downloading it (a la shinytest:::sd_snapshotDownload())
+      # eafcurr <- 
+      # eaflist() %>% 
+      # eaflist_to_df()
+      
+      ##Add one eaflist if no changes, two if changes
+      ####THIS DOESN'T WORK---eafcurr is always the original eaflist
+      # if (identical(eaforig, eafcurr)) {
+      # tagList(export,
+      # pack_val(tierInfo() %>% select(-datapath), "tierInfo"),
+      # pack_val(eafcurr, "eaflist"))
+      # } else {
+      # tagList(export,
+      # pack_val(tierInfo() %>% select(-datapath), "tierInfo"),
+      # pack_val(eaforig, "eaflist_orig"),
+      # pack_val(eafcurr, "eaflist_curr"))
+      # }
     } else {
+      ##If failing step0, export just fileDF()
       tagList(export)
     }
   })
@@ -1042,7 +1084,7 @@ server <- function(input, output) {
       downloadSubhead,
       downloadBtn
     )
-  ##End output$out <- renderUI({})
+    ##End output$out <- renderUI({})
   })
   
   
