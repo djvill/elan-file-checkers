@@ -1,4 +1,7 @@
 {
+  "success": [
+    false
+  ],
   "export": {
     "fileDF": [
       {
@@ -145,7 +148,7 @@
       {
         "id": "tierDetails",
         "hasContent": true,
-        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_BadNonspkrTierNames.eaf:\n    <ul>\n<li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>Mismatched tier name (Comment) &amp; Participant attribute (Coment)<\/li>\n      <li>Mismatched tier name (Noie) &amp; Participant attribute (Noise)<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_BadNonspkrTierNames.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>Mismatched tier name (Comment) &amp; Participant attribute (Coment)<\/li>\n      <li>Mismatched tier name (Noie) &amp; Participant attribute (Noise)<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
       },
       {
         "id": "dictDetails",
@@ -158,7 +161,7 @@
         "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
       }
     ],
-    "lastDetails": [
+    "lastDetailID": [
       "tierDetails"
     ],
     "tierDetails": {

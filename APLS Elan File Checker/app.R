@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version date
-versDate <- "4 August 2022"
+versDate <- "22 September 2022"
 
 ##Debugging
 ##Show additional UI element(s) at top of main panel for debugging?
@@ -82,13 +82,19 @@ tierIssuesOneFile <- function(df, filename) {
   ##Initialize empty issues character vector
   issues <- character(0L)
   
+  hasTierID <- !is.null(as.data.frame(df)$TIER_ID) ## not tibble to suppress warning
   ##Add tier number (as backup for IDing tiers w/o TIER_ID attr)
   df <- df %>% 
     mutate(tierNum = paste("Tier", row_number()))
   
   ##Handle missing tiers (non-interviewer)
   checkTiers <- c(unique(df$SpkrCode), nonSpkrTiers)
-  missingTiers <- setdiff(checkTiers, df$TIER_ID)
+  if (hasTierID) {
+    missingTiers <- setdiff(checkTiers, df$TIER_ID)
+  } else {
+    missingTiers <- checkTiers
+  }
+  
   if (length(missingTiers) > 0) {
     issues <- c(issues, paste("There are no tiers with tier name", missingTiers))
   }
@@ -99,7 +105,7 @@ tierIssuesOneFile <- function(df, filename) {
                                "Trista Pennington", 
                                "Barbara Johnstone"))
   ##Detect missing interviewer tier
-  if (!any(interviewerTier %in% df$TIER_ID)) {
+  if (!hasTierID || !any(interviewerTier %in% df$TIER_ID)) {
     issues <- c(issues, paste("There are no tiers with tier name", 
                               ##Format for printing
                               paste(interviewerTier, collapse=" or ")))
@@ -111,7 +117,7 @@ tierIssuesOneFile <- function(df, filename) {
   checkAttrs <- c("ANNOTATOR", "PARTICIPANT", "TIER_ID")
   missingAttr <- function(x) {
     ##String formatting for output
-    attrTitle <- str_to_title(x)
+    attrTitle <- if_else(x=="TIER_ID", "Tier name", str_to_title(x))
     attrArticle <- if_else(str_detect(tolower(x), "^[aeiou]"), "an", "a")
     
     ##Check attribute for all tiers
@@ -146,7 +152,7 @@ tierIssuesOneFile <- function(df, filename) {
   ##Handle mismatched tier ID & participant attrs (return character vector)
   ##Only check tier ID & participant attrs if neither is missing (in which case
   ##  the missing attr has already been registered above)
-  if (!is.null(df$PARTICIPANT) && !is.null(df$TIER_ID) &&
+  if (!is.null(df$PARTICIPANT) && hasTierID &&
       !identical(df$TIER_ID, df$PARTICIPANT)) {
     issues <- c(issues,
                 df %>% 

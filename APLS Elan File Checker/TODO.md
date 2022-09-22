@@ -2,9 +2,6 @@
 
 ## In logical order
 
-- Bugfix: When step1 file 8 is uploaded (no TIER_ID), there's the error "object 'TIER_ID' not found" instead of the html output
-  - I dealt with this recently, but I must have re-broken it!
-
 - Add to shinytest: If any overlaps are fixed, JSON file should include files w/ fixed overlaps (regardless of whether they're actually output by the app---that is, whether there are remaining overlaps to fix)
   - Instead of JSON, output file is downloaded (with suffix "_out")
   - I've chosen to only implement this for step 3 (where the shape of the output file is relevant).

@@ -1,4 +1,7 @@
 {
+  "success": [
+    false
+  ],
   "export": {
     "fileDF": [
       {
@@ -143,7 +146,7 @@
       {
         "id": "tierDetails",
         "hasContent": true,
-        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MissingTierIDSome.eaf:\n    <ul>\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 2<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MissingTierIDSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
       },
       {
         "id": "dictDetails",
@@ -156,15 +159,15 @@
         "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
       }
     ],
-    "lastDetails": [
+    "lastDetailID": [
       "tierDetails"
     ],
     "tierDetails": {
       "HD06-1_MissingTierIDSome.eaf": [
         "There are no tiers with tier name Comment",
         "There are no tiers with tier name Interviewer HD06 or Trista Pennington",
-        "Tier missing a Tier_id attribute: Tier 2",
-        "Tier missing a Tier_id attribute: Tier 3"
+        "Tier missing a Tier name attribute: Tier 2",
+        "Tier missing a Tier name attribute: Tier 3"
       ]
     }
   }

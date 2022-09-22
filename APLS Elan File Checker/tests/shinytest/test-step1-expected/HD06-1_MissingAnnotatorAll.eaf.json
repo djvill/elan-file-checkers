@@ -1,4 +1,7 @@
 {
+  "success": [
+    false
+  ],
   "export": {
     "fileDF": [
       {
@@ -140,7 +143,7 @@
       {
         "id": "tierDetails",
         "hasContent": true,
-        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MissingAnnotatorAll.eaf:\n    <ul>\n<li>All tiers missing an Annotator attribute<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MissingAnnotatorAll.eaf:\n    <ul class=\"file-headed\">\n<li>All tiers missing an Annotator attribute<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
       },
       {
         "id": "dictDetails",
@@ -153,7 +156,7 @@
         "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
       }
     ],
-    "lastDetails": [
+    "lastDetailID": [
       "tierDetails"
     ],
     "tierDetails": {

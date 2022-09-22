@@ -1,4 +1,7 @@
 {
+  "success": [
+    false
+  ],
   "export": {
     "fileDF": [
       {
@@ -927,7 +930,7 @@
       {
         "id": "tierDetails",
         "hasContent": true,
-        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_BadNonspkrTierNames.eaf:\n    <ul>\n<li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>Mismatched tier name (Comment) &amp; Participant attribute (Coment)<\/li>\n      <li>Mismatched tier name (Noie) &amp; Participant attribute (Noise)<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_BadSpkrTierNames.eaf:\n    <ul>\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingAnnotatorAll.eaf:\n    <ul>\n<li>Tier missing an Annotator attribute: HD06<\/li>\n      <li>Tier missing an Annotator attribute: Interviewer HD06<\/li>\n      <li>Tier missing an Annotator attribute: Comment<\/li>\n      <li>Tier missing an Annotator attribute: Noise<\/li>\n      <li>Tier missing an Annotator attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingAnnotatorSome.eaf:\n    <ul>\n<li>Tier missing an Annotator attribute: Interviewer HD06<\/li>\n      <li>Tier missing an Annotator attribute: Noise<\/li>\n      <li>Tier missing an Annotator attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingMultipleSome.eaf:\n    <ul>\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing an Annotator attribute: Tier 2<\/li>\n      <li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 2<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingParticipantSome.eaf:\n    <ul>\n<li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Participant attribute: Noise<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingRedact.eaf:\n    <ul>\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingTierIDAll.eaf:\n    <ul>\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 1<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 2<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 3<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 4<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 5<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingTierIDSome.eaf:\n    <ul>\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 2<\/li>\n      <li>Tier missing a Tier_id attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_BadNonspkrTierNames.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>Mismatched tier name (Comment) &amp; Participant attribute (Coment)<\/li>\n      <li>Mismatched tier name (Noie) &amp; Participant attribute (Noise)<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_BadSpkrTierNames.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingAnnotatorAll.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing an Annotator attribute: HD06<\/li>\n      <li>Tier missing an Annotator attribute: Interviewer HD06<\/li>\n      <li>Tier missing an Annotator attribute: Comment<\/li>\n      <li>Tier missing an Annotator attribute: Noise<\/li>\n      <li>Tier missing an Annotator attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingAnnotatorSome.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing an Annotator attribute: Interviewer HD06<\/li>\n      <li>Tier missing an Annotator attribute: Noise<\/li>\n      <li>Tier missing an Annotator attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingMultipleSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing an Annotator attribute: Tier 2<\/li>\n      <li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingParticipantSome.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Participant attribute: Noise<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingRedact.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingTierIDAll.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier name attribute: Tier 1<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n      <li>Tier missing a Tier name attribute: Tier 4<\/li>\n      <li>Tier missing a Tier name attribute: Tier 5<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingTierIDSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
       },
       {
         "id": "dictDetails",
@@ -940,7 +943,7 @@
         "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
       }
     ],
-    "lastDetails": [
+    "lastDetailID": [
       "tierDetails"
     ],
     "tierDetails": {
@@ -971,8 +974,8 @@
         "There are no tiers with tier name Interviewer HD06 or Trista Pennington",
         "Tier missing an Annotator attribute: Tier 2",
         "Tier missing a Participant attribute: HD06",
-        "Tier missing a Tier_id attribute: Tier 2",
-        "Tier missing a Tier_id attribute: Tier 3"
+        "Tier missing a Tier name attribute: Tier 2",
+        "Tier missing a Tier name attribute: Tier 3"
       ],
       "HD06-1_MissingParticipantSome.eaf": [
         "Tier missing a Participant attribute: HD06",
@@ -989,17 +992,17 @@
         "There are no tiers with tier name Noise",
         "There are no tiers with tier name Redaction",
         "There are no tiers with tier name Interviewer HD06 or Trista Pennington",
-        "Tier missing a Tier_id attribute: Tier 1",
-        "Tier missing a Tier_id attribute: Tier 2",
-        "Tier missing a Tier_id attribute: Tier 3",
-        "Tier missing a Tier_id attribute: Tier 4",
-        "Tier missing a Tier_id attribute: Tier 5"
+        "Tier missing a Tier name attribute: Tier 1",
+        "Tier missing a Tier name attribute: Tier 2",
+        "Tier missing a Tier name attribute: Tier 3",
+        "Tier missing a Tier name attribute: Tier 4",
+        "Tier missing a Tier name attribute: Tier 5"
       ],
       "HD06-1_MissingTierIDSome.eaf": [
         "There are no tiers with tier name Comment",
         "There are no tiers with tier name Interviewer HD06 or Trista Pennington",
-        "Tier missing a Tier_id attribute: Tier 2",
-        "Tier missing a Tier_id attribute: Tier 3"
+        "Tier missing a Tier name attribute: Tier 2",
+        "Tier missing a Tier name attribute: Tier 3"
       ]
     }
   }
