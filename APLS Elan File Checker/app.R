@@ -746,12 +746,14 @@ server <- function(input, output) {
   output$debugPrint <-
     renderPrint({
       list(
-        ##Put reactive objects here with name from environment or expression, such as
-        ##  `eaflist()` = eaflist()
-        ##  `tierInfo()$TIER_ID` = tierInfo()$TIER_ID,
-        ##or if that's too cumbersome, just give it a temporary name, such as
-        ##  jon = tierInfo()$TIER_ID %>% 
-        ##    unique()
+        ##To use:
+        ## 1. Set debugPrint to TRUE
+        ## 2. Put reactive objects here with name from environment or expression, such as
+        ##      `eaflist()` = eaflist()
+        ##      `tierInfo()$TIER_ID` = tierInfo()$TIER_ID,
+        ##    or if that's too cumbersome, just give it a temporary name, such as
+        ##      jon = tierInfo()$TIER_ID %>% 
+        ##        unique()
       )
     })
   
@@ -779,7 +781,7 @@ server <- function(input, output) {
     if (all(fileDF()$FileExtValid)) {
       tagList(export,
               pack_val(tierInfo() %>% select(-datapath), "tierInfo"),
-              pack_val(eaflist(), "eaflist"))
+              pack_val(eaflist() %>% map(as_list), "eaflist"))
     } else {
       ##If failing step0, export just fileDF()
       tagList(export)
