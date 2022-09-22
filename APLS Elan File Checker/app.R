@@ -779,6 +779,10 @@ server <- function(input, output) {
       require(jsonlite)
       undisplay(tags$div(prettify(toJSON(x), 2), id=nm))
     }
+    ##Turn eaflist into DF
+    eaflist_to_df <- function(x, df=tierInfo()) {
+      imap(x, getTimes, df=df)
+    }
     
     ##First element: fileDF()
     export <- list(pack_val(fileDF() %>% select(-datapath), "fileDF"))
@@ -787,7 +791,7 @@ server <- function(input, output) {
     if (all(fileDF()$FileExtValid)) {
       tagList(export,
               pack_val(tierInfo() %>% select(-datapath), "tierInfo"),
-              pack_val(eaflist() %>% map(as_list), "eaflist"))
+              pack_val(eaflist() %>% eaflist_to_df(), "eaflist"))
     } else {
       ##If failing step0, export just fileDF()
       tagList(export)
