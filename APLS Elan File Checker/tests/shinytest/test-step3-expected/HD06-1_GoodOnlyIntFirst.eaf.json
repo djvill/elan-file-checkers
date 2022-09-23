@@ -1,0 +1,5604 @@
+{
+  "success": [
+    true
+  ],
+  "export": {
+    "fileDF": [
+      {
+        "File": "HD06-1_GoodOnlyIntFirst.eaf",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_GoodOnlyIntFirst",
+        "size": 339997,
+        "type": ""
+      }
+    ],
+    "tierInfo": [
+      {
+        "File": "HD06-1_GoodOnlyIntFirst.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Interviewer HD06",
+        "TIER_ID": "Interviewer HD06",
+        "SpkrTier": true,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_GoodOnlyIntFirst",
+        "size": 339997,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_GoodOnlyIntFirst.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "HD06",
+        "TIER_ID": "HD06",
+        "SpkrTier": true,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_GoodOnlyIntFirst",
+        "size": 339997,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_GoodOnlyIntFirst.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Comment",
+        "TIER_ID": "Comment",
+        "SpkrTier": false,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_GoodOnlyIntFirst",
+        "size": 339997,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_GoodOnlyIntFirst.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Noise",
+        "TIER_ID": "Noise",
+        "SpkrTier": false,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_GoodOnlyIntFirst",
+        "size": 339997,
+        "type": ""
+      },
+      {
+        "File": "HD06-1_GoodOnlyIntFirst.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Redaction",
+        "TIER_ID": "Redaction",
+        "SpkrTier": false,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_GoodOnlyIntFirst",
+        "size": 339997,
+        "type": ""
+      }
+    ]
+  },
+  "elements": {
+    "stepHeads": [
+      {
+        "id": "noEafHead",
+        "displayed": false
+      },
+      {
+        "id": "tierHead",
+        "class": "good",
+        "displayed": true
+      },
+      {
+        "id": "dictHead",
+        "class": "good",
+        "displayed": true
+      },
+      {
+        "id": "overlapsHead",
+        "class": "good",
+        "displayed": true
+      }
+    ],
+    "stepSubheads": [
+      {
+        "id": "tierSubhead",
+        "displayed": false
+      },
+      {
+        "id": "dictSubhead",
+        "displayed": false
+      },
+      {
+        "id": "overlapsSubhead",
+        "displayed": false
+      },
+      {
+        "id": "downloadSubhead",
+        "displayed": true
+      }
+    ],
+    "stepDetails": [
+      {
+        "id": "checkDetails",
+        "hasContent": true,
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li>HD06-1_GoodOnlyIntFirst.eaf<\/li>\n<\/ul>\n"
+      },
+      {
+        "id": "tierDetails",
+        "hasContent": false,
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "dictDetails",
+        "hasContent": false,
+        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "overlapsDetails",
+        "hasContent": false,
+        "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      }
+    ],
+    "lastDetailID": [
+      "checkDetails"
+    ],
+    "checkDetails": [
+      "HD06-1_GoodOnlyIntFirst.eaf"
+    ]
+  },
+  "eaflist": {
+    "HD06-1_GoodOnlyIntFirst.eaf": {
+      "Interviewer HD06": [
+        {
+          "ANNOTATION_ID": "a1",
+          "TIME_SLOT_REF1": "ts5",
+          "TIME_SLOT_REF2": "ts6",
+          "Start": 3523,
+          "End": 5499
+        },
+        {
+          "ANNOTATION_ID": "a3",
+          "TIME_SLOT_REF1": "ts9",
+          "TIME_SLOT_REF2": "ts10",
+          "Start": 6037,
+          "End": 7436
+        },
+        {
+          "ANNOTATION_ID": "a10",
+          "TIME_SLOT_REF1": "ts12",
+          "TIME_SLOT_REF2": "ts14",
+          "Start": 9300,
+          "End": 9897
+        },
+        {
+          "ANNOTATION_ID": "a11",
+          "TIME_SLOT_REF1": "ts17",
+          "TIME_SLOT_REF2": "ts18",
+          "Start": 10305,
+          "End": 11184
+        },
+        {
+          "ANNOTATION_ID": "a12",
+          "TIME_SLOT_REF1": "ts20",
+          "TIME_SLOT_REF2": "ts22",
+          "Start": 11251,
+          "End": 12422
+        },
+        {
+          "ANNOTATION_ID": "a16",
+          "TIME_SLOT_REF1": "ts26",
+          "TIME_SLOT_REF2": "ts29",
+          "Start": 13619,
+          "End": 14335
+        },
+        {
+          "ANNOTATION_ID": "a17",
+          "TIME_SLOT_REF1": "ts32",
+          "TIME_SLOT_REF2": "ts34",
+          "Start": 15310,
+          "End": 17812
+        },
+        {
+          "ANNOTATION_ID": "a19",
+          "TIME_SLOT_REF1": "ts35",
+          "TIME_SLOT_REF2": "ts37",
+          "Start": 17832,
+          "End": 20717
+        },
+        {
+          "ANNOTATION_ID": "a21",
+          "TIME_SLOT_REF1": "ts39",
+          "TIME_SLOT_REF2": "ts40",
+          "Start": 22009,
+          "End": 22391
+        },
+        {
+          "ANNOTATION_ID": "a28",
+          "TIME_SLOT_REF1": "ts43",
+          "TIME_SLOT_REF2": "ts44",
+          "Start": 24072,
+          "End": 31365
+        },
+        {
+          "ANNOTATION_ID": "a30",
+          "TIME_SLOT_REF1": "ts47",
+          "TIME_SLOT_REF2": "ts48",
+          "Start": 31847,
+          "End": 32562
+        },
+        {
+          "ANNOTATION_ID": "a31",
+          "TIME_SLOT_REF1": "ts51",
+          "TIME_SLOT_REF2": "ts52",
+          "Start": 35889,
+          "End": 37082
+        },
+        {
+          "ANNOTATION_ID": "a32",
+          "TIME_SLOT_REF1": "ts53",
+          "TIME_SLOT_REF2": "ts56",
+          "Start": 37084,
+          "End": 37394
+        },
+        {
+          "ANNOTATION_ID": "a33",
+          "TIME_SLOT_REF1": "ts57",
+          "TIME_SLOT_REF2": "ts58",
+          "Start": 37416,
+          "End": 38164
+        },
+        {
+          "ANNOTATION_ID": "a34",
+          "TIME_SLOT_REF1": "ts61",
+          "TIME_SLOT_REF2": "ts62",
+          "Start": 39024,
+          "End": 39652
+        },
+        {
+          "ANNOTATION_ID": "a35",
+          "TIME_SLOT_REF1": "ts65",
+          "TIME_SLOT_REF2": "ts66",
+          "Start": 40192,
+          "End": 44879
+        },
+        {
+          "ANNOTATION_ID": "a38",
+          "TIME_SLOT_REF1": "ts69",
+          "TIME_SLOT_REF2": "ts70",
+          "Start": 45504,
+          "End": 46896
+        },
+        {
+          "ANNOTATION_ID": "a39",
+          "TIME_SLOT_REF1": "ts72",
+          "TIME_SLOT_REF2": "ts74",
+          "Start": 46899,
+          "End": 47401
+        },
+        {
+          "ANNOTATION_ID": "a40",
+          "TIME_SLOT_REF1": "ts75",
+          "TIME_SLOT_REF2": "ts76",
+          "Start": 47406,
+          "End": 50221
+        },
+        {
+          "ANNOTATION_ID": "a51",
+          "TIME_SLOT_REF1": "ts78",
+          "TIME_SLOT_REF2": "ts81",
+          "Start": 50223,
+          "End": 50775
+        },
+        {
+          "ANNOTATION_ID": "a52",
+          "TIME_SLOT_REF1": "ts80",
+          "TIME_SLOT_REF2": "ts82",
+          "Start": 50775,
+          "End": 53398
+        },
+        {
+          "ANNOTATION_ID": "a55",
+          "TIME_SLOT_REF1": "ts87",
+          "TIME_SLOT_REF2": "ts88",
+          "Start": 64096,
+          "End": 64802
+        },
+        {
+          "ANNOTATION_ID": "a63",
+          "TIME_SLOT_REF1": "ts93",
+          "TIME_SLOT_REF2": "ts94",
+          "Start": 70730,
+          "End": 71513
+        },
+        {
+          "ANNOTATION_ID": "a64",
+          "TIME_SLOT_REF1": "ts96",
+          "TIME_SLOT_REF2": "ts98",
+          "Start": 72054,
+          "End": 72927
+        },
+        {
+          "ANNOTATION_ID": "a78",
+          "TIME_SLOT_REF1": "ts101",
+          "TIME_SLOT_REF2": "ts103",
+          "Start": 78433,
+          "End": 79383
+        },
+        {
+          "ANNOTATION_ID": "a65",
+          "TIME_SLOT_REF1": "ts102",
+          "TIME_SLOT_REF2": "ts105",
+          "Start": 79383,
+          "End": 80448
+        },
+        {
+          "ANNOTATION_ID": "a80",
+          "TIME_SLOT_REF1": "ts107",
+          "TIME_SLOT_REF2": "ts108",
+          "Start": 80507,
+          "End": 83374
+        },
+        {
+          "ANNOTATION_ID": "a81",
+          "TIME_SLOT_REF1": "ts111",
+          "TIME_SLOT_REF2": "ts112",
+          "Start": 90327,
+          "End": 90973
+        },
+        {
+          "ANNOTATION_ID": "a82",
+          "TIME_SLOT_REF1": "ts115",
+          "TIME_SLOT_REF2": "ts116",
+          "Start": 91567,
+          "End": 96704
+        },
+        {
+          "ANNOTATION_ID": "a83",
+          "TIME_SLOT_REF1": "ts120",
+          "TIME_SLOT_REF2": "ts123",
+          "Start": 106949,
+          "End": 107784
+        },
+        {
+          "ANNOTATION_ID": "a85",
+          "TIME_SLOT_REF1": "ts125",
+          "TIME_SLOT_REF2": "ts126",
+          "Start": 110309,
+          "End": 110679
+        },
+        {
+          "ANNOTATION_ID": "a86",
+          "TIME_SLOT_REF1": "ts129",
+          "TIME_SLOT_REF2": "ts130",
+          "Start": 114567,
+          "End": 115085
+        },
+        {
+          "ANNOTATION_ID": "a87",
+          "TIME_SLOT_REF1": "ts133",
+          "TIME_SLOT_REF2": "ts134",
+          "Start": 122861,
+          "End": 123441
+        },
+        {
+          "ANNOTATION_ID": "a88",
+          "TIME_SLOT_REF1": "ts138",
+          "TIME_SLOT_REF2": "ts139",
+          "Start": 128276,
+          "End": 129174
+        },
+        {
+          "ANNOTATION_ID": "a109",
+          "TIME_SLOT_REF1": "ts144",
+          "TIME_SLOT_REF2": "ts147",
+          "Start": 130557,
+          "End": 131249
+        },
+        {
+          "ANNOTATION_ID": "a111",
+          "TIME_SLOT_REF1": "ts154",
+          "TIME_SLOT_REF2": "ts156",
+          "Start": 153779,
+          "End": 154357
+        },
+        {
+          "ANNOTATION_ID": "a905",
+          "TIME_SLOT_REF1": "ts160",
+          "TIME_SLOT_REF2": "ts162",
+          "Start": 156723,
+          "End": 157505
+        },
+        {
+          "ANNOTATION_ID": "a125",
+          "TIME_SLOT_REF1": "ts167",
+          "TIME_SLOT_REF2": "ts168",
+          "Start": 169472,
+          "End": 173485
+        },
+        {
+          "ANNOTATION_ID": "a126",
+          "TIME_SLOT_REF1": "ts171",
+          "TIME_SLOT_REF2": "ts174",
+          "Start": 174478,
+          "End": 175149
+        },
+        {
+          "ANNOTATION_ID": "a127",
+          "TIME_SLOT_REF1": "ts177",
+          "TIME_SLOT_REF2": "ts178",
+          "Start": 181271,
+          "End": 181941
+        },
+        {
+          "ANNOTATION_ID": "a128",
+          "TIME_SLOT_REF1": "ts181",
+          "TIME_SLOT_REF2": "ts182",
+          "Start": 182627,
+          "End": 183287
+        },
+        {
+          "ANNOTATION_ID": "a129",
+          "TIME_SLOT_REF1": "ts185",
+          "TIME_SLOT_REF2": "ts188",
+          "Start": 183936,
+          "End": 185133
+        },
+        {
+          "ANNOTATION_ID": "a136",
+          "TIME_SLOT_REF1": "ts191",
+          "TIME_SLOT_REF2": "ts192",
+          "Start": 185856,
+          "End": 189074
+        },
+        {
+          "ANNOTATION_ID": "a140",
+          "TIME_SLOT_REF1": "ts195",
+          "TIME_SLOT_REF2": "ts198",
+          "Start": 190941,
+          "End": 191523
+        },
+        {
+          "ANNOTATION_ID": "a141",
+          "TIME_SLOT_REF1": "ts201",
+          "TIME_SLOT_REF2": "ts202",
+          "Start": 194788,
+          "End": 195442
+        },
+        {
+          "ANNOTATION_ID": "a142",
+          "TIME_SLOT_REF1": "ts205",
+          "TIME_SLOT_REF2": "ts206",
+          "Start": 197323,
+          "End": 201786
+        },
+        {
+          "ANNOTATION_ID": "a143",
+          "TIME_SLOT_REF1": "ts208",
+          "TIME_SLOT_REF2": "ts209",
+          "Start": 201786,
+          "End": 203133
+        },
+        {
+          "ANNOTATION_ID": "a147",
+          "TIME_SLOT_REF1": "ts211",
+          "TIME_SLOT_REF2": "ts212",
+          "Start": 203150,
+          "End": 204312
+        },
+        {
+          "ANNOTATION_ID": "a150",
+          "TIME_SLOT_REF1": "ts217",
+          "TIME_SLOT_REF2": "ts218",
+          "Start": 211922,
+          "End": 218586
+        },
+        {
+          "ANNOTATION_ID": "a151",
+          "TIME_SLOT_REF1": "ts221",
+          "TIME_SLOT_REF2": "ts222",
+          "Start": 219948,
+          "End": 220421
+        },
+        {
+          "ANNOTATION_ID": "a154",
+          "TIME_SLOT_REF1": "ts224",
+          "TIME_SLOT_REF2": "ts226",
+          "Start": 220861,
+          "End": 222981
+        },
+        {
+          "ANNOTATION_ID": "a156",
+          "TIME_SLOT_REF1": "ts227",
+          "TIME_SLOT_REF2": "ts229",
+          "Start": 223895,
+          "End": 226053
+        },
+        {
+          "ANNOTATION_ID": "a167",
+          "TIME_SLOT_REF1": "ts230",
+          "TIME_SLOT_REF2": "ts231",
+          "Start": 226057,
+          "End": 228381
+        },
+        {
+          "ANNOTATION_ID": "a168",
+          "TIME_SLOT_REF1": "ts245",
+          "TIME_SLOT_REF2": "ts246",
+          "Start": 263119,
+          "End": 263918
+        },
+        {
+          "ANNOTATION_ID": "a181",
+          "TIME_SLOT_REF1": "ts255",
+          "TIME_SLOT_REF2": "ts258",
+          "Start": 275499,
+          "End": 276046
+        },
+        {
+          "ANNOTATION_ID": "a182",
+          "TIME_SLOT_REF1": "ts263",
+          "TIME_SLOT_REF2": "ts265",
+          "Start": 285412,
+          "End": 286196
+        },
+        {
+          "ANNOTATION_ID": "a183",
+          "TIME_SLOT_REF1": "ts266",
+          "TIME_SLOT_REF2": "ts267",
+          "Start": 286196,
+          "End": 287335
+        },
+        {
+          "ANNOTATION_ID": "a184",
+          "TIME_SLOT_REF1": "ts268",
+          "TIME_SLOT_REF2": "ts271",
+          "Start": 287335,
+          "End": 288254
+        },
+        {
+          "ANNOTATION_ID": "a185",
+          "TIME_SLOT_REF1": "ts272",
+          "TIME_SLOT_REF2": "ts274",
+          "Start": 288254,
+          "End": 288710
+        },
+        {
+          "ANNOTATION_ID": "a186",
+          "TIME_SLOT_REF1": "ts276",
+          "TIME_SLOT_REF2": "ts278",
+          "Start": 289507,
+          "End": 294907
+        },
+        {
+          "ANNOTATION_ID": "a187",
+          "TIME_SLOT_REF1": "ts281",
+          "TIME_SLOT_REF2": "ts282",
+          "Start": 295681,
+          "End": 296313
+        },
+        {
+          "ANNOTATION_ID": "a198",
+          "TIME_SLOT_REF1": "ts287",
+          "TIME_SLOT_REF2": "ts289",
+          "Start": 311164,
+          "End": 311769
+        },
+        {
+          "ANNOTATION_ID": "a199",
+          "TIME_SLOT_REF1": "ts299",
+          "TIME_SLOT_REF2": "ts300",
+          "Start": 333791,
+          "End": 334399
+        },
+        {
+          "ANNOTATION_ID": "a907",
+          "TIME_SLOT_REF1": "ts304",
+          "TIME_SLOT_REF2": "ts306",
+          "Start": 341578,
+          "End": 343354
+        },
+        {
+          "ANNOTATION_ID": "a201",
+          "TIME_SLOT_REF1": "ts309",
+          "TIME_SLOT_REF2": "ts310",
+          "Start": 347088,
+          "End": 347674
+        },
+        {
+          "ANNOTATION_ID": "a212",
+          "TIME_SLOT_REF1": "ts315",
+          "TIME_SLOT_REF2": "ts316",
+          "Start": 361696,
+          "End": 362374
+        },
+        {
+          "ANNOTATION_ID": "a213",
+          "TIME_SLOT_REF1": "ts321",
+          "TIME_SLOT_REF2": "ts322",
+          "Start": 375130,
+          "End": 380881
+        },
+        {
+          "ANNOTATION_ID": "a214",
+          "TIME_SLOT_REF1": "ts323",
+          "TIME_SLOT_REF2": "ts326",
+          "Start": 380881,
+          "End": 381363
+        },
+        {
+          "ANNOTATION_ID": "a215",
+          "TIME_SLOT_REF1": "ts329",
+          "TIME_SLOT_REF2": "ts333",
+          "Start": 382295,
+          "End": 382929
+        },
+        {
+          "ANNOTATION_ID": "a998",
+          "TIME_SLOT_REF1": "ts336",
+          "TIME_SLOT_REF2": "ts339",
+          "Start": 391884,
+          "End": 392700
+        },
+        {
+          "ANNOTATION_ID": "a231",
+          "TIME_SLOT_REF1": "ts342",
+          "TIME_SLOT_REF2": "ts346",
+          "Start": 402971,
+          "End": 403893
+        },
+        {
+          "ANNOTATION_ID": "a232",
+          "TIME_SLOT_REF1": "ts349",
+          "TIME_SLOT_REF2": "ts350",
+          "Start": 404625,
+          "End": 405053
+        },
+        {
+          "ANNOTATION_ID": "a233",
+          "TIME_SLOT_REF1": "ts354",
+          "TIME_SLOT_REF2": "ts355",
+          "Start": 409391,
+          "End": 409753
+        },
+        {
+          "ANNOTATION_ID": "a234",
+          "TIME_SLOT_REF1": "ts359",
+          "TIME_SLOT_REF2": "ts360",
+          "Start": 410869,
+          "End": 411240
+        },
+        {
+          "ANNOTATION_ID": "a235",
+          "TIME_SLOT_REF1": "ts364",
+          "TIME_SLOT_REF2": "ts365",
+          "Start": 413154,
+          "End": 413601
+        },
+        {
+          "ANNOTATION_ID": "a236",
+          "TIME_SLOT_REF1": "ts372",
+          "TIME_SLOT_REF2": "ts373",
+          "Start": 429066,
+          "End": 429643
+        },
+        {
+          "ANNOTATION_ID": "a252",
+          "TIME_SLOT_REF1": "ts377",
+          "TIME_SLOT_REF2": "ts379",
+          "Start": 429978,
+          "End": 430397
+        },
+        {
+          "ANNOTATION_ID": "a253",
+          "TIME_SLOT_REF1": "ts383",
+          "TIME_SLOT_REF2": "ts384",
+          "Start": 439557,
+          "End": 440332
+        },
+        {
+          "ANNOTATION_ID": "a254",
+          "TIME_SLOT_REF1": "ts395",
+          "TIME_SLOT_REF2": "ts396",
+          "Start": 471189,
+          "End": 477430
+        },
+        {
+          "ANNOTATION_ID": "a255",
+          "TIME_SLOT_REF1": "ts397",
+          "TIME_SLOT_REF2": "ts398",
+          "Start": 477708,
+          "End": 483320
+        },
+        {
+          "ANNOTATION_ID": "a256",
+          "TIME_SLOT_REF1": "ts399",
+          "TIME_SLOT_REF2": "ts402",
+          "Start": 483320,
+          "End": 484071
+        },
+        {
+          "ANNOTATION_ID": "a257",
+          "TIME_SLOT_REF1": "ts403",
+          "TIME_SLOT_REF2": "ts404",
+          "Start": 484081,
+          "End": 484705
+        },
+        {
+          "ANNOTATION_ID": "a258",
+          "TIME_SLOT_REF1": "ts405",
+          "TIME_SLOT_REF2": "ts406",
+          "Start": 485452,
+          "End": 488657
+        },
+        {
+          "ANNOTATION_ID": "a259",
+          "TIME_SLOT_REF1": "ts408",
+          "TIME_SLOT_REF2": "ts410",
+          "Start": 488657,
+          "End": 490213
+        },
+        {
+          "ANNOTATION_ID": "a260",
+          "TIME_SLOT_REF1": "ts411",
+          "TIME_SLOT_REF2": "ts412",
+          "Start": 490213,
+          "End": 491218
+        },
+        {
+          "ANNOTATION_ID": "a908",
+          "TIME_SLOT_REF1": "ts414",
+          "TIME_SLOT_REF2": "ts416",
+          "Start": 491218,
+          "End": 492103
+        },
+        {
+          "ANNOTATION_ID": "a272",
+          "TIME_SLOT_REF1": "ts417",
+          "TIME_SLOT_REF2": "ts418",
+          "Start": 492178,
+          "End": 493049
+        },
+        {
+          "ANNOTATION_ID": "a1002",
+          "TIME_SLOT_REF1": "ts419",
+          "TIME_SLOT_REF2": "ts423",
+          "Start": 493049,
+          "End": 494079
+        },
+        {
+          "ANNOTATION_ID": "a1003",
+          "TIME_SLOT_REF1": "ts425",
+          "TIME_SLOT_REF2": "ts427",
+          "Start": 494081,
+          "End": 495611
+        },
+        {
+          "ANNOTATION_ID": "a275",
+          "TIME_SLOT_REF1": "ts434",
+          "TIME_SLOT_REF2": "ts436",
+          "Start": 513581,
+          "End": 514280
+        },
+        {
+          "ANNOTATION_ID": "a276",
+          "TIME_SLOT_REF1": "ts441",
+          "TIME_SLOT_REF2": "ts442",
+          "Start": 526378,
+          "End": 527172
+        },
+        {
+          "ANNOTATION_ID": "a283",
+          "TIME_SLOT_REF1": "ts445",
+          "TIME_SLOT_REF2": "ts447",
+          "Start": 529078,
+          "End": 529529
+        },
+        {
+          "ANNOTATION_ID": "a284",
+          "TIME_SLOT_REF1": "ts455",
+          "TIME_SLOT_REF2": "ts460",
+          "Start": 542562,
+          "End": 544654
+        },
+        {
+          "ANNOTATION_ID": "a289",
+          "TIME_SLOT_REF1": "ts459",
+          "TIME_SLOT_REF2": "ts462",
+          "Start": 544654,
+          "End": 545571
+        },
+        {
+          "ANNOTATION_ID": "a293",
+          "TIME_SLOT_REF1": "ts470",
+          "TIME_SLOT_REF2": "ts472",
+          "Start": 562551,
+          "End": 563431
+        },
+        {
+          "ANNOTATION_ID": "a303",
+          "TIME_SLOT_REF1": "ts477",
+          "TIME_SLOT_REF2": "ts479",
+          "Start": 574577,
+          "End": 575113
+        },
+        {
+          "ANNOTATION_ID": "a404",
+          "TIME_SLOT_REF1": "ts480",
+          "TIME_SLOT_REF2": "ts482",
+          "Start": 575113,
+          "End": 576842
+        },
+        {
+          "ANNOTATION_ID": "a304",
+          "TIME_SLOT_REF1": "ts486",
+          "TIME_SLOT_REF2": "ts488",
+          "Start": 578484,
+          "End": 579175
+        },
+        {
+          "ANNOTATION_ID": "a308",
+          "TIME_SLOT_REF1": "ts499",
+          "TIME_SLOT_REF2": "ts500",
+          "Start": 604024,
+          "End": 604642
+        },
+        {
+          "ANNOTATION_ID": "a314",
+          "TIME_SLOT_REF1": "ts510",
+          "TIME_SLOT_REF2": "ts512",
+          "Start": 627479,
+          "End": 627752
+        },
+        {
+          "ANNOTATION_ID": "a315",
+          "TIME_SLOT_REF1": "ts513",
+          "TIME_SLOT_REF2": "ts514",
+          "Start": 627755,
+          "End": 628711
+        },
+        {
+          "ANNOTATION_ID": "a316",
+          "TIME_SLOT_REF1": "ts517",
+          "TIME_SLOT_REF2": "ts519",
+          "Start": 630253,
+          "End": 635299
+        },
+        {
+          "ANNOTATION_ID": "a335",
+          "TIME_SLOT_REF1": "ts521",
+          "TIME_SLOT_REF2": "ts522",
+          "Start": 635699,
+          "End": 636631
+        },
+        {
+          "ANNOTATION_ID": "a336",
+          "TIME_SLOT_REF1": "ts525",
+          "TIME_SLOT_REF2": "ts527",
+          "Start": 638619,
+          "End": 639193
+        },
+        {
+          "ANNOTATION_ID": "a337",
+          "TIME_SLOT_REF1": "ts531",
+          "TIME_SLOT_REF2": "ts533",
+          "Start": 641386,
+          "End": 644538
+        },
+        {
+          "ANNOTATION_ID": "a338",
+          "TIME_SLOT_REF1": "ts538",
+          "TIME_SLOT_REF2": "ts540",
+          "Start": 645425,
+          "End": 647653
+        },
+        {
+          "ANNOTATION_ID": "a339",
+          "TIME_SLOT_REF1": "ts547",
+          "TIME_SLOT_REF2": "ts549",
+          "Start": 660317,
+          "End": 660921
+        },
+        {
+          "ANNOTATION_ID": "a340",
+          "TIME_SLOT_REF1": "ts553",
+          "TIME_SLOT_REF2": "ts554",
+          "Start": 661933,
+          "End": 662647
+        },
+        {
+          "ANNOTATION_ID": "a341",
+          "TIME_SLOT_REF1": "ts559",
+          "TIME_SLOT_REF2": "ts560",
+          "Start": 670786,
+          "End": 671190
+        },
+        {
+          "ANNOTATION_ID": "a344",
+          "TIME_SLOT_REF1": "ts563",
+          "TIME_SLOT_REF2": "ts564",
+          "Start": 677109,
+          "End": 677534
+        },
+        {
+          "ANNOTATION_ID": "a356",
+          "TIME_SLOT_REF1": "ts587",
+          "TIME_SLOT_REF2": "ts588",
+          "Start": 737325,
+          "End": 737702
+        },
+        {
+          "ANNOTATION_ID": "a358",
+          "TIME_SLOT_REF1": "ts590",
+          "TIME_SLOT_REF2": "ts592",
+          "Start": 745764,
+          "End": 746511
+        },
+        {
+          "ANNOTATION_ID": "a366",
+          "TIME_SLOT_REF1": "ts597",
+          "TIME_SLOT_REF2": "ts598",
+          "Start": 758260,
+          "End": 763815
+        },
+        {
+          "ANNOTATION_ID": "a367",
+          "TIME_SLOT_REF1": "ts601",
+          "TIME_SLOT_REF2": "ts602",
+          "Start": 767712,
+          "End": 768693
+        },
+        {
+          "ANNOTATION_ID": "a373",
+          "TIME_SLOT_REF1": "ts617",
+          "TIME_SLOT_REF2": "ts618",
+          "Start": 811802,
+          "End": 812719
+        },
+        {
+          "ANNOTATION_ID": "a374",
+          "TIME_SLOT_REF1": "ts621",
+          "TIME_SLOT_REF2": "ts622",
+          "Start": 815918,
+          "End": 816651
+        },
+        {
+          "ANNOTATION_ID": "a380",
+          "TIME_SLOT_REF1": "ts626",
+          "TIME_SLOT_REF2": "ts627",
+          "Start": 824255,
+          "End": 825581
+        },
+        {
+          "ANNOTATION_ID": "a384",
+          "TIME_SLOT_REF1": "ts637",
+          "TIME_SLOT_REF2": "ts638",
+          "Start": 853154,
+          "End": 853604
+        },
+        {
+          "ANNOTATION_ID": "a385",
+          "TIME_SLOT_REF1": "ts641",
+          "TIME_SLOT_REF2": "ts642",
+          "Start": 857503,
+          "End": 858163
+        },
+        {
+          "ANNOTATION_ID": "a392",
+          "TIME_SLOT_REF1": "ts648",
+          "TIME_SLOT_REF2": "ts651",
+          "Start": 869808,
+          "End": 870586
+        },
+        {
+          "ANNOTATION_ID": "a393",
+          "TIME_SLOT_REF1": "ts653",
+          "TIME_SLOT_REF2": "ts654",
+          "Start": 872271,
+          "End": 872836
+        },
+        {
+          "ANNOTATION_ID": "a394",
+          "TIME_SLOT_REF1": "ts657",
+          "TIME_SLOT_REF2": "ts658",
+          "Start": 874818,
+          "End": 875623
+        },
+        {
+          "ANNOTATION_ID": "a398",
+          "TIME_SLOT_REF1": "ts666",
+          "TIME_SLOT_REF2": "ts669",
+          "Start": 887777,
+          "End": 888395
+        },
+        {
+          "ANNOTATION_ID": "a401",
+          "TIME_SLOT_REF1": "ts673",
+          "TIME_SLOT_REF2": "ts674",
+          "Start": 901255,
+          "End": 902306
+        },
+        {
+          "ANNOTATION_ID": "a435",
+          "TIME_SLOT_REF1": "ts683",
+          "TIME_SLOT_REF2": "ts684",
+          "Start": 919690,
+          "End": 927663
+        },
+        {
+          "ANNOTATION_ID": "a917",
+          "TIME_SLOT_REF1": "ts692",
+          "TIME_SLOT_REF2": "ts694",
+          "Start": 941579,
+          "End": 941961
+        },
+        {
+          "ANNOTATION_ID": "a918",
+          "TIME_SLOT_REF1": "ts695",
+          "TIME_SLOT_REF2": "ts697",
+          "Start": 941961,
+          "End": 942811
+        },
+        {
+          "ANNOTATION_ID": "a437",
+          "TIME_SLOT_REF1": "ts705",
+          "TIME_SLOT_REF2": "ts706",
+          "Start": 971576,
+          "End": 972271
+        },
+        {
+          "ANNOTATION_ID": "a438",
+          "TIME_SLOT_REF1": "ts710",
+          "TIME_SLOT_REF2": "ts713",
+          "Start": 989188,
+          "End": 993793
+        },
+        {
+          "ANNOTATION_ID": "a439",
+          "TIME_SLOT_REF1": "ts717",
+          "TIME_SLOT_REF2": "ts719",
+          "Start": 995183,
+          "End": 995789
+        },
+        {
+          "ANNOTATION_ID": "a440",
+          "TIME_SLOT_REF1": "ts722",
+          "TIME_SLOT_REF2": "ts724",
+          "Start": 999164,
+          "End": 999745
+        },
+        {
+          "ANNOTATION_ID": "a441",
+          "TIME_SLOT_REF1": "ts726",
+          "TIME_SLOT_REF2": "ts731",
+          "Start": 1004780,
+          "End": 1005269
+        },
+        {
+          "ANNOTATION_ID": "a442",
+          "TIME_SLOT_REF1": "ts734",
+          "TIME_SLOT_REF2": "ts736",
+          "Start": 1007376,
+          "End": 1008039
+        },
+        {
+          "ANNOTATION_ID": "a443",
+          "TIME_SLOT_REF1": "ts739",
+          "TIME_SLOT_REF2": "ts743",
+          "Start": 1011620,
+          "End": 1012660
+        },
+        {
+          "ANNOTATION_ID": "a444",
+          "TIME_SLOT_REF1": "ts749",
+          "TIME_SLOT_REF2": "ts751",
+          "Start": 1022934,
+          "End": 1027068
+        },
+        {
+          "ANNOTATION_ID": "a445",
+          "TIME_SLOT_REF1": "ts758",
+          "TIME_SLOT_REF2": "ts761",
+          "Start": 1043228,
+          "End": 1045062
+        },
+        {
+          "ANNOTATION_ID": "a446",
+          "TIME_SLOT_REF1": "ts765",
+          "TIME_SLOT_REF2": "ts766",
+          "Start": 1046499,
+          "End": 1046930
+        },
+        {
+          "ANNOTATION_ID": "a454",
+          "TIME_SLOT_REF1": "ts769",
+          "TIME_SLOT_REF2": "ts770",
+          "Start": 1054017,
+          "End": 1055905
+        },
+        {
+          "ANNOTATION_ID": "a455",
+          "TIME_SLOT_REF1": "ts771",
+          "TIME_SLOT_REF2": "ts773",
+          "Start": 1055905,
+          "End": 1056112
+        },
+        {
+          "ANNOTATION_ID": "a456",
+          "TIME_SLOT_REF1": "ts779",
+          "TIME_SLOT_REF2": "ts780",
+          "Start": 1068685,
+          "End": 1069061
+        },
+        {
+          "ANNOTATION_ID": "a469",
+          "TIME_SLOT_REF1": "ts793",
+          "TIME_SLOT_REF2": "ts794",
+          "Start": 1110936,
+          "End": 1111739
+        },
+        {
+          "ANNOTATION_ID": "a470",
+          "TIME_SLOT_REF1": "ts797",
+          "TIME_SLOT_REF2": "ts799",
+          "Start": 1119625,
+          "End": 1120041
+        },
+        {
+          "ANNOTATION_ID": "a471",
+          "TIME_SLOT_REF1": "ts802",
+          "TIME_SLOT_REF2": "ts805",
+          "Start": 1121497,
+          "End": 1121879
+        },
+        {
+          "ANNOTATION_ID": "a472",
+          "TIME_SLOT_REF1": "ts809",
+          "TIME_SLOT_REF2": "ts811",
+          "Start": 1128223,
+          "End": 1128656
+        },
+        {
+          "ANNOTATION_ID": "a473",
+          "TIME_SLOT_REF1": "ts814",
+          "TIME_SLOT_REF2": "ts816",
+          "Start": 1129062,
+          "End": 1129427
+        },
+        {
+          "ANNOTATION_ID": "a481",
+          "TIME_SLOT_REF1": "ts819",
+          "TIME_SLOT_REF2": "ts820",
+          "Start": 1132498,
+          "End": 1133111
+        },
+        {
+          "ANNOTATION_ID": "a482",
+          "TIME_SLOT_REF1": "ts828",
+          "TIME_SLOT_REF2": "ts830",
+          "Start": 1162157,
+          "End": 1163381
+        },
+        {
+          "ANNOTATION_ID": "a483",
+          "TIME_SLOT_REF1": "ts833",
+          "TIME_SLOT_REF2": "ts834",
+          "Start": 1165127,
+          "End": 1165663
+        },
+        {
+          "ANNOTATION_ID": "a484",
+          "TIME_SLOT_REF1": "ts835",
+          "TIME_SLOT_REF2": "ts837",
+          "Start": 1166020,
+          "End": 1166506
+        },
+        {
+          "ANNOTATION_ID": "a485",
+          "TIME_SLOT_REF1": "ts839",
+          "TIME_SLOT_REF2": "ts840",
+          "Start": 1166506,
+          "End": 1167731
+        },
+        {
+          "ANNOTATION_ID": "a491",
+          "TIME_SLOT_REF1": "ts843",
+          "TIME_SLOT_REF2": "ts844",
+          "Start": 1175631,
+          "End": 1176162
+        },
+        {
+          "ANNOTATION_ID": "a492",
+          "TIME_SLOT_REF1": "ts849",
+          "TIME_SLOT_REF2": "ts850",
+          "Start": 1189227,
+          "End": 1189805
+        },
+        {
+          "ANNOTATION_ID": "a493",
+          "TIME_SLOT_REF1": "ts854",
+          "TIME_SLOT_REF2": "ts855",
+          "Start": 1194928,
+          "End": 1195684
+        },
+        {
+          "ANNOTATION_ID": "a497",
+          "TIME_SLOT_REF1": "ts859",
+          "TIME_SLOT_REF2": "ts860",
+          "Start": 1202232,
+          "End": 1202594
+        },
+        {
+          "ANNOTATION_ID": "a498",
+          "TIME_SLOT_REF1": "ts863",
+          "TIME_SLOT_REF2": "ts864",
+          "Start": 1209564,
+          "End": 1210113
+        },
+        {
+          "ANNOTATION_ID": "a499",
+          "TIME_SLOT_REF1": "ts867",
+          "TIME_SLOT_REF2": "ts868",
+          "Start": 1212473,
+          "End": 1212966
+        },
+        {
+          "ANNOTATION_ID": "a511",
+          "TIME_SLOT_REF1": "ts872",
+          "TIME_SLOT_REF2": "ts874",
+          "Start": 1217836,
+          "End": 1218328
+        },
+        {
+          "ANNOTATION_ID": "a518",
+          "TIME_SLOT_REF1": "ts882",
+          "TIME_SLOT_REF2": "ts884",
+          "Start": 1242206,
+          "End": 1246845
+        },
+        {
+          "ANNOTATION_ID": "a519",
+          "TIME_SLOT_REF1": "ts887",
+          "TIME_SLOT_REF2": "ts888",
+          "Start": 1247242,
+          "End": 1247935
+        },
+        {
+          "ANNOTATION_ID": "a520",
+          "TIME_SLOT_REF1": "ts891",
+          "TIME_SLOT_REF2": "ts892",
+          "Start": 1248812,
+          "End": 1254117
+        },
+        {
+          "ANNOTATION_ID": "a521",
+          "TIME_SLOT_REF1": "ts895",
+          "TIME_SLOT_REF2": "ts897",
+          "Start": 1255109,
+          "End": 1257141
+        },
+        {
+          "ANNOTATION_ID": "a533",
+          "TIME_SLOT_REF1": "ts904",
+          "TIME_SLOT_REF2": "ts907",
+          "Start": 1268042,
+          "End": 1268505
+        },
+        {
+          "ANNOTATION_ID": "a534",
+          "TIME_SLOT_REF1": "ts909",
+          "TIME_SLOT_REF2": "ts910",
+          "Start": 1272423,
+          "End": 1273425
+        },
+        {
+          "ANNOTATION_ID": "a535",
+          "TIME_SLOT_REF1": "ts912",
+          "TIME_SLOT_REF2": "ts914",
+          "Start": 1273425,
+          "End": 1274099
+        },
+        {
+          "ANNOTATION_ID": "a536",
+          "TIME_SLOT_REF1": "ts915",
+          "TIME_SLOT_REF2": "ts916",
+          "Start": 1274119,
+          "End": 1283159
+        },
+        {
+          "ANNOTATION_ID": "a537",
+          "TIME_SLOT_REF1": "ts917",
+          "TIME_SLOT_REF2": "ts919",
+          "Start": 1283159,
+          "End": 1284295
+        },
+        {
+          "ANNOTATION_ID": "a538",
+          "TIME_SLOT_REF1": "ts923",
+          "TIME_SLOT_REF2": "ts924",
+          "Start": 1284835,
+          "End": 1285740
+        },
+        {
+          "ANNOTATION_ID": "a539",
+          "TIME_SLOT_REF1": "ts934",
+          "TIME_SLOT_REF2": "ts937",
+          "Start": 1305636,
+          "End": 1307068
+        },
+        {
+          "ANNOTATION_ID": "a540",
+          "TIME_SLOT_REF1": "ts938",
+          "TIME_SLOT_REF2": "ts941",
+          "Start": 1307679,
+          "End": 1308436
+        },
+        {
+          "ANNOTATION_ID": "a545",
+          "TIME_SLOT_REF1": "ts946",
+          "TIME_SLOT_REF2": "ts947",
+          "Start": 1316284,
+          "End": 1321034
+        },
+        {
+          "ANNOTATION_ID": "a555",
+          "TIME_SLOT_REF1": "ts951",
+          "TIME_SLOT_REF2": "ts952",
+          "Start": 1322957,
+          "End": 1323434
+        },
+        {
+          "ANNOTATION_ID": "a556",
+          "TIME_SLOT_REF1": "ts955",
+          "TIME_SLOT_REF2": "ts956",
+          "Start": 1329754,
+          "End": 1330399
+        },
+        {
+          "ANNOTATION_ID": "a557",
+          "TIME_SLOT_REF1": "ts959",
+          "TIME_SLOT_REF2": "ts960",
+          "Start": 1336145,
+          "End": 1336710
+        },
+        {
+          "ANNOTATION_ID": "a563",
+          "TIME_SLOT_REF1": "ts972",
+          "TIME_SLOT_REF2": "ts975",
+          "Start": 1382980,
+          "End": 1383425
+        },
+        {
+          "ANNOTATION_ID": "a564",
+          "TIME_SLOT_REF1": "ts980",
+          "TIME_SLOT_REF2": "ts985",
+          "Start": 1404460,
+          "End": 1405060
+        },
+        {
+          "ANNOTATION_ID": "a571",
+          "TIME_SLOT_REF1": "ts987",
+          "TIME_SLOT_REF2": "ts991",
+          "Start": 1407421,
+          "End": 1409865
+        },
+        {
+          "ANNOTATION_ID": "a572",
+          "TIME_SLOT_REF1": "ts992",
+          "TIME_SLOT_REF2": "ts997",
+          "Start": 1411519,
+          "End": 1414237
+        },
+        {
+          "ANNOTATION_ID": "a573",
+          "TIME_SLOT_REF1": "ts1000",
+          "TIME_SLOT_REF2": "ts1001",
+          "Start": 1420721,
+          "End": 1421209
+        },
+        {
+          "ANNOTATION_ID": "a582",
+          "TIME_SLOT_REF1": "ts1005",
+          "TIME_SLOT_REF2": "ts1006",
+          "Start": 1424491,
+          "End": 1431616
+        },
+        {
+          "ANNOTATION_ID": "a583",
+          "TIME_SLOT_REF1": "ts1009",
+          "TIME_SLOT_REF2": "ts1010",
+          "Start": 1432159,
+          "End": 1436644
+        },
+        {
+          "ANNOTATION_ID": "a589",
+          "TIME_SLOT_REF1": "ts1011",
+          "TIME_SLOT_REF2": "ts1013",
+          "Start": 1437528,
+          "End": 1446975
+        },
+        {
+          "ANNOTATION_ID": "a584",
+          "TIME_SLOT_REF1": "ts1014",
+          "TIME_SLOT_REF2": "ts1015",
+          "Start": 1446975,
+          "End": 1448078
+        },
+        {
+          "ANNOTATION_ID": "a586",
+          "TIME_SLOT_REF1": "ts1017",
+          "TIME_SLOT_REF2": "ts1019",
+          "Start": 1448098,
+          "End": 1449841
+        },
+        {
+          "ANNOTATION_ID": "a587",
+          "TIME_SLOT_REF1": "ts1020",
+          "TIME_SLOT_REF2": "ts1021",
+          "Start": 1449841,
+          "End": 1451123
+        },
+        {
+          "ANNOTATION_ID": "a590",
+          "TIME_SLOT_REF1": "ts1027",
+          "TIME_SLOT_REF2": "ts1029",
+          "Start": 1471244,
+          "End": 1471744
+        },
+        {
+          "ANNOTATION_ID": "a596",
+          "TIME_SLOT_REF1": "ts1034",
+          "TIME_SLOT_REF2": "ts1036",
+          "Start": 1491114,
+          "End": 1491969
+        },
+        {
+          "ANNOTATION_ID": "a599",
+          "TIME_SLOT_REF1": "ts1039",
+          "TIME_SLOT_REF2": "ts1041",
+          "Start": 1498863,
+          "End": 1499830
+        },
+        {
+          "ANNOTATION_ID": "a600",
+          "TIME_SLOT_REF1": "ts1047",
+          "TIME_SLOT_REF2": "ts1048",
+          "Start": 1511622,
+          "End": 1512021
+        },
+        {
+          "ANNOTATION_ID": "a604",
+          "TIME_SLOT_REF1": "ts1050",
+          "TIME_SLOT_REF2": "ts1052",
+          "Start": 1518291,
+          "End": 1518929
+        },
+        {
+          "ANNOTATION_ID": "a607",
+          "TIME_SLOT_REF1": "ts1054",
+          "TIME_SLOT_REF2": "ts1056",
+          "Start": 1526361,
+          "End": 1527146
+        },
+        {
+          "ANNOTATION_ID": "a608",
+          "TIME_SLOT_REF1": "ts1060",
+          "TIME_SLOT_REF2": "ts1062",
+          "Start": 1527879,
+          "End": 1528252
+        },
+        {
+          "ANNOTATION_ID": "a609",
+          "TIME_SLOT_REF1": "ts1063",
+          "TIME_SLOT_REF2": "ts1065",
+          "Start": 1528252,
+          "End": 1529076
+        },
+        {
+          "ANNOTATION_ID": "a612",
+          "TIME_SLOT_REF1": "ts1066",
+          "TIME_SLOT_REF2": "ts1068",
+          "Start": 1536916,
+          "End": 1537486
+        },
+        {
+          "ANNOTATION_ID": "a615",
+          "TIME_SLOT_REF1": "ts1071",
+          "TIME_SLOT_REF2": "ts1072",
+          "Start": 1541488,
+          "End": 1542019
+        },
+        {
+          "ANNOTATION_ID": "a616",
+          "TIME_SLOT_REF1": "ts1075",
+          "TIME_SLOT_REF2": "ts1076",
+          "Start": 1545744,
+          "End": 1546578
+        },
+        {
+          "ANNOTATION_ID": "a623",
+          "TIME_SLOT_REF1": "ts1083",
+          "TIME_SLOT_REF2": "ts1085",
+          "Start": 1568886,
+          "End": 1569711
+        },
+        {
+          "ANNOTATION_ID": "a624",
+          "TIME_SLOT_REF1": "ts1089",
+          "TIME_SLOT_REF2": "ts1091",
+          "Start": 1573398,
+          "End": 1575189
+        },
+        {
+          "ANNOTATION_ID": "a626",
+          "TIME_SLOT_REF1": "ts1094",
+          "TIME_SLOT_REF2": "ts1096",
+          "Start": 1584203,
+          "End": 1584697
+        },
+        {
+          "ANNOTATION_ID": "a628",
+          "TIME_SLOT_REF1": "ts1107",
+          "TIME_SLOT_REF2": "ts1108",
+          "Start": 1617962,
+          "End": 1618650
+        },
+        {
+          "ANNOTATION_ID": "a635",
+          "TIME_SLOT_REF1": "ts1113",
+          "TIME_SLOT_REF2": "ts1114",
+          "Start": 1631800,
+          "End": 1632674
+        },
+        {
+          "ANNOTATION_ID": "a637",
+          "TIME_SLOT_REF1": "ts1116",
+          "TIME_SLOT_REF2": "ts1118",
+          "Start": 1641920,
+          "End": 1642405
+        },
+        {
+          "ANNOTATION_ID": "a638",
+          "TIME_SLOT_REF1": "ts1124",
+          "TIME_SLOT_REF2": "ts1126",
+          "Start": 1664658,
+          "End": 1668791
+        },
+        {
+          "ANNOTATION_ID": "a647",
+          "TIME_SLOT_REF1": "ts1127",
+          "TIME_SLOT_REF2": "ts1130",
+          "Start": 1668791,
+          "End": 1677063
+        },
+        {
+          "ANNOTATION_ID": "a644",
+          "TIME_SLOT_REF1": "ts1128",
+          "TIME_SLOT_REF2": "ts1132",
+          "Start": 1677063,
+          "End": 1677655
+        },
+        {
+          "ANNOTATION_ID": "a645",
+          "TIME_SLOT_REF1": "ts1133",
+          "TIME_SLOT_REF2": "ts1134",
+          "Start": 1677655,
+          "End": 1678285
+        },
+        {
+          "ANNOTATION_ID": "a646",
+          "TIME_SLOT_REF1": "ts1136",
+          "TIME_SLOT_REF2": "ts1138",
+          "Start": 1678285,
+          "End": 1679032
+        },
+        {
+          "ANNOTATION_ID": "a649",
+          "TIME_SLOT_REF1": "ts1139",
+          "TIME_SLOT_REF2": "ts1140",
+          "Start": 1679050,
+          "End": 1685435
+        },
+        {
+          "ANNOTATION_ID": "a652",
+          "TIME_SLOT_REF1": "ts1146",
+          "TIME_SLOT_REF2": "ts1148",
+          "Start": 1696691,
+          "End": 1697120
+        },
+        {
+          "ANNOTATION_ID": "a655",
+          "TIME_SLOT_REF1": "ts1152",
+          "TIME_SLOT_REF2": "ts1154",
+          "Start": 1708941,
+          "End": 1709093
+        },
+        {
+          "ANNOTATION_ID": "a656",
+          "TIME_SLOT_REF1": "ts1155",
+          "TIME_SLOT_REF2": "ts1157",
+          "Start": 1709093,
+          "End": 1709401
+        },
+        {
+          "ANNOTATION_ID": "a657",
+          "TIME_SLOT_REF1": "ts1158",
+          "TIME_SLOT_REF2": "ts1160",
+          "Start": 1709401,
+          "End": 1710358
+        },
+        {
+          "ANNOTATION_ID": "a658",
+          "TIME_SLOT_REF1": "ts1162",
+          "TIME_SLOT_REF2": "ts1164",
+          "Start": 1710358,
+          "End": 1711103
+        },
+        {
+          "ANNOTATION_ID": "a663",
+          "TIME_SLOT_REF1": "ts1167",
+          "TIME_SLOT_REF2": "ts1169",
+          "Start": 1715014,
+          "End": 1716129
+        },
+        {
+          "ANNOTATION_ID": "a666",
+          "TIME_SLOT_REF1": "ts1175",
+          "TIME_SLOT_REF2": "ts1177",
+          "Start": 1727911,
+          "End": 1728447
+        },
+        {
+          "ANNOTATION_ID": "a670",
+          "TIME_SLOT_REF1": "ts1183",
+          "TIME_SLOT_REF2": "ts1184",
+          "Start": 1739450,
+          "End": 1739787
+        },
+        {
+          "ANNOTATION_ID": "a673",
+          "TIME_SLOT_REF1": "ts1189",
+          "TIME_SLOT_REF2": "ts1190",
+          "Start": 1757768,
+          "End": 1763944
+        },
+        {
+          "ANNOTATION_ID": "a674",
+          "TIME_SLOT_REF1": "ts1191",
+          "TIME_SLOT_REF2": "ts1193",
+          "Start": 1763944,
+          "End": 1764601
+        },
+        {
+          "ANNOTATION_ID": "a677",
+          "TIME_SLOT_REF1": "ts1195",
+          "TIME_SLOT_REF2": "ts1196",
+          "Start": 1764615,
+          "End": 1767311
+        },
+        {
+          "ANNOTATION_ID": "a678",
+          "TIME_SLOT_REF1": "ts1198",
+          "TIME_SLOT_REF2": "ts1200",
+          "Start": 1768282,
+          "End": 1769428
+        },
+        {
+          "ANNOTATION_ID": "a700",
+          "TIME_SLOT_REF1": "ts1204",
+          "TIME_SLOT_REF2": "ts1207",
+          "Start": 1778737,
+          "End": 1783190
+        },
+        {
+          "ANNOTATION_ID": "a680",
+          "TIME_SLOT_REF1": "ts1209",
+          "TIME_SLOT_REF2": "ts1210",
+          "Start": 1784229,
+          "End": 1784651
+        },
+        {
+          "ANNOTATION_ID": "a716",
+          "TIME_SLOT_REF1": "ts1219",
+          "TIME_SLOT_REF2": "ts1223",
+          "Start": 1811405,
+          "End": 1811957
+        },
+        {
+          "ANNOTATION_ID": "a717",
+          "TIME_SLOT_REF1": "ts1227",
+          "TIME_SLOT_REF2": "ts1229",
+          "Start": 1823699,
+          "End": 1824056
+        },
+        {
+          "ANNOTATION_ID": "a718",
+          "TIME_SLOT_REF1": "ts1234",
+          "TIME_SLOT_REF2": "ts1237",
+          "Start": 1835047,
+          "End": 1835929
+        },
+        {
+          "ANNOTATION_ID": "a719",
+          "TIME_SLOT_REF1": "ts1241",
+          "TIME_SLOT_REF2": "ts1244",
+          "Start": 1837781,
+          "End": 1838444
+        },
+        {
+          "ANNOTATION_ID": "a720",
+          "TIME_SLOT_REF1": "ts1245",
+          "TIME_SLOT_REF2": "ts1247",
+          "Start": 1838740,
+          "End": 1839586
+        },
+        {
+          "ANNOTATION_ID": "a721",
+          "TIME_SLOT_REF1": "ts1248",
+          "TIME_SLOT_REF2": "ts1250",
+          "Start": 1848052,
+          "End": 1848480
+        },
+        {
+          "ANNOTATION_ID": "a722",
+          "TIME_SLOT_REF1": "ts1253",
+          "TIME_SLOT_REF2": "ts1254",
+          "Start": 1851158,
+          "End": 1852325
+        },
+        {
+          "ANNOTATION_ID": "a734",
+          "TIME_SLOT_REF1": "ts1257",
+          "TIME_SLOT_REF2": "ts1258",
+          "Start": 1857519,
+          "End": 1862822
+        },
+        {
+          "ANNOTATION_ID": "a735",
+          "TIME_SLOT_REF1": "ts1267",
+          "TIME_SLOT_REF2": "ts1269",
+          "Start": 1880525,
+          "End": 1881738
+        },
+        {
+          "ANNOTATION_ID": "a736",
+          "TIME_SLOT_REF1": "ts1273",
+          "TIME_SLOT_REF2": "ts1275",
+          "Start": 1882825,
+          "End": 1883968
+        },
+        {
+          "ANNOTATION_ID": "a737",
+          "TIME_SLOT_REF1": "ts1280",
+          "TIME_SLOT_REF2": "ts1282",
+          "Start": 1887939,
+          "End": 1888496
+        },
+        {
+          "ANNOTATION_ID": "a739",
+          "TIME_SLOT_REF1": "ts1286",
+          "TIME_SLOT_REF2": "ts1288",
+          "Start": 1901222,
+          "End": 1901689
+        },
+        {
+          "ANNOTATION_ID": "a741",
+          "TIME_SLOT_REF1": "ts1290",
+          "TIME_SLOT_REF2": "ts1292",
+          "Start": 1906168,
+          "End": 1906633
+        },
+        {
+          "ANNOTATION_ID": "a755",
+          "TIME_SLOT_REF1": "ts1295",
+          "TIME_SLOT_REF2": "ts1296",
+          "Start": 1908580,
+          "End": 1908842
+        },
+        {
+          "ANNOTATION_ID": "a756",
+          "TIME_SLOT_REF1": "ts1303",
+          "TIME_SLOT_REF2": "ts1305",
+          "Start": 1921278,
+          "End": 1921826
+        },
+        {
+          "ANNOTATION_ID": "a757",
+          "TIME_SLOT_REF1": "ts1307",
+          "TIME_SLOT_REF2": "ts1308",
+          "Start": 1922326,
+          "End": 1923116
+        },
+        {
+          "ANNOTATION_ID": "a758",
+          "TIME_SLOT_REF1": "ts1311",
+          "TIME_SLOT_REF2": "ts1312",
+          "Start": 1924294,
+          "End": 1924947
+        },
+        {
+          "ANNOTATION_ID": "a759",
+          "TIME_SLOT_REF1": "ts1315",
+          "TIME_SLOT_REF2": "ts1316",
+          "Start": 1927334,
+          "End": 1928855
+        },
+        {
+          "ANNOTATION_ID": "a760",
+          "TIME_SLOT_REF1": "ts1319",
+          "TIME_SLOT_REF2": "ts1320",
+          "Start": 1931004,
+          "End": 1936355
+        },
+        {
+          "ANNOTATION_ID": "a780",
+          "TIME_SLOT_REF1": "ts1321",
+          "TIME_SLOT_REF2": "ts1322",
+          "Start": 1936893,
+          "End": 1943820
+        },
+        {
+          "ANNOTATION_ID": "a781",
+          "TIME_SLOT_REF1": "ts1323",
+          "TIME_SLOT_REF2": "ts1324",
+          "Start": 1944352,
+          "End": 1951922
+        },
+        {
+          "ANNOTATION_ID": "a782",
+          "TIME_SLOT_REF1": "ts1325",
+          "TIME_SLOT_REF2": "ts1326",
+          "Start": 1952136,
+          "End": 1959787
+        },
+        {
+          "ANNOTATION_ID": "a783",
+          "TIME_SLOT_REF1": "ts1327",
+          "TIME_SLOT_REF2": "ts1328",
+          "Start": 1959787,
+          "End": 1963682
+        },
+        {
+          "ANNOTATION_ID": "a784",
+          "TIME_SLOT_REF1": "ts1331",
+          "TIME_SLOT_REF2": "ts1332",
+          "Start": 1967872,
+          "End": 1968432
+        },
+        {
+          "ANNOTATION_ID": "a785",
+          "TIME_SLOT_REF1": "ts1338",
+          "TIME_SLOT_REF2": "ts1340",
+          "Start": 1988226,
+          "End": 1989106
+        },
+        {
+          "ANNOTATION_ID": "a786",
+          "TIME_SLOT_REF1": "ts1342",
+          "TIME_SLOT_REF2": "ts1346",
+          "Start": 1996907,
+          "End": 1997660
+        },
+        {
+          "ANNOTATION_ID": "a787",
+          "TIME_SLOT_REF1": "ts1349",
+          "TIME_SLOT_REF2": "ts1352",
+          "Start": 1998464,
+          "End": 1999092
+        },
+        {
+          "ANNOTATION_ID": "a788",
+          "TIME_SLOT_REF1": "ts1361",
+          "TIME_SLOT_REF2": "ts1363",
+          "Start": 2025164,
+          "End": 2025612
+        },
+        {
+          "ANNOTATION_ID": "a789",
+          "TIME_SLOT_REF1": "ts1366",
+          "TIME_SLOT_REF2": "ts1368",
+          "Start": 2037982,
+          "End": 2039000
+        },
+        {
+          "ANNOTATION_ID": "a790",
+          "TIME_SLOT_REF1": "ts1370",
+          "TIME_SLOT_REF2": "ts1372",
+          "Start": 2042563,
+          "End": 2042935
+        },
+        {
+          "ANNOTATION_ID": "a791",
+          "TIME_SLOT_REF1": "ts1379",
+          "TIME_SLOT_REF2": "ts1380",
+          "Start": 2062786,
+          "End": 2063386
+        },
+        {
+          "ANNOTATION_ID": "a800",
+          "TIME_SLOT_REF1": "ts1383",
+          "TIME_SLOT_REF2": "ts1385",
+          "Start": 2068084,
+          "End": 2069162
+        },
+        {
+          "ANNOTATION_ID": "a801",
+          "TIME_SLOT_REF1": "ts1391",
+          "TIME_SLOT_REF2": "ts1393",
+          "Start": 2073765,
+          "End": 2074334
+        },
+        {
+          "ANNOTATION_ID": "a802",
+          "TIME_SLOT_REF1": "ts1401",
+          "TIME_SLOT_REF2": "ts1403",
+          "Start": 2097719,
+          "End": 2098424
+        },
+        {
+          "ANNOTATION_ID": "a803",
+          "TIME_SLOT_REF1": "ts1407",
+          "TIME_SLOT_REF2": "ts1411",
+          "Start": 2099149,
+          "End": 2099702
+        },
+        {
+          "ANNOTATION_ID": "a809",
+          "TIME_SLOT_REF1": "ts1413",
+          "TIME_SLOT_REF2": "ts1414",
+          "Start": 2108510,
+          "End": 2108974
+        },
+        {
+          "ANNOTATION_ID": "a810",
+          "TIME_SLOT_REF1": "ts1416",
+          "TIME_SLOT_REF2": "ts1419",
+          "Start": 2110483,
+          "End": 2110956
+        },
+        {
+          "ANNOTATION_ID": "a811",
+          "TIME_SLOT_REF1": "ts1423",
+          "TIME_SLOT_REF2": "ts1427",
+          "Start": 2119482,
+          "End": 2119888
+        },
+        {
+          "ANNOTATION_ID": "a817",
+          "TIME_SLOT_REF1": "ts1430",
+          "TIME_SLOT_REF2": "ts1433",
+          "Start": 2130697,
+          "End": 2131620
+        },
+        {
+          "ANNOTATION_ID": "a818",
+          "TIME_SLOT_REF1": "ts1435",
+          "TIME_SLOT_REF2": "ts1437",
+          "Start": 2131774,
+          "End": 2140374
+        },
+        {
+          "ANNOTATION_ID": "a819",
+          "TIME_SLOT_REF1": "ts1438",
+          "TIME_SLOT_REF2": "ts1440",
+          "Start": 2140374,
+          "End": 2141047
+        },
+        {
+          "ANNOTATION_ID": "a820",
+          "TIME_SLOT_REF1": "ts1441",
+          "TIME_SLOT_REF2": "ts1442",
+          "Start": 2141062,
+          "End": 2142277
+        },
+        {
+          "ANNOTATION_ID": "a821",
+          "TIME_SLOT_REF1": "ts1444",
+          "TIME_SLOT_REF2": "ts1446",
+          "Start": 2142293,
+          "End": 2143370
+        },
+        {
+          "ANNOTATION_ID": "a825",
+          "TIME_SLOT_REF1": "ts1447",
+          "TIME_SLOT_REF2": "ts1448",
+          "Start": 2143410,
+          "End": 2145645
+        },
+        {
+          "ANNOTATION_ID": "a826",
+          "TIME_SLOT_REF1": "ts1451",
+          "TIME_SLOT_REF2": "ts1452",
+          "Start": 2146359,
+          "End": 2155055
+        },
+        {
+          "ANNOTATION_ID": "a827",
+          "TIME_SLOT_REF1": "ts1453",
+          "TIME_SLOT_REF2": "ts1455",
+          "Start": 2155055,
+          "End": 2155657
+        },
+        {
+          "ANNOTATION_ID": "a831",
+          "TIME_SLOT_REF1": "ts1459",
+          "TIME_SLOT_REF2": "ts1460",
+          "Start": 2156374,
+          "End": 2159040
+        },
+        {
+          "ANNOTATION_ID": "a832",
+          "TIME_SLOT_REF1": "ts1462",
+          "TIME_SLOT_REF2": "ts1464",
+          "Start": 2159040,
+          "End": 2159673
+        },
+        {
+          "ANNOTATION_ID": "a833",
+          "TIME_SLOT_REF1": "ts1465",
+          "TIME_SLOT_REF2": "ts1466",
+          "Start": 2159673,
+          "End": 2160692
+        },
+        {
+          "ANNOTATION_ID": "a834",
+          "TIME_SLOT_REF1": "ts1470",
+          "TIME_SLOT_REF2": "ts1472",
+          "Start": 2161057,
+          "End": 2162078
+        },
+        {
+          "ANNOTATION_ID": "a835",
+          "TIME_SLOT_REF1": "ts1477",
+          "TIME_SLOT_REF2": "ts1478",
+          "Start": 2179943,
+          "End": 2180548
+        },
+        {
+          "ANNOTATION_ID": "a846",
+          "TIME_SLOT_REF1": "ts1481",
+          "TIME_SLOT_REF2": "ts1482",
+          "Start": 2187959,
+          "End": 2188405
+        },
+        {
+          "ANNOTATION_ID": "a847",
+          "TIME_SLOT_REF1": "ts1487",
+          "TIME_SLOT_REF2": "ts1489",
+          "Start": 2204032,
+          "End": 2204942
+        },
+        {
+          "ANNOTATION_ID": "a848",
+          "TIME_SLOT_REF1": "ts1493",
+          "TIME_SLOT_REF2": "ts1496",
+          "Start": 2205688,
+          "End": 2206161
+        },
+        {
+          "ANNOTATION_ID": "a849",
+          "TIME_SLOT_REF1": "ts1498",
+          "TIME_SLOT_REF2": "ts1501",
+          "Start": 2211060,
+          "End": 2211660
+        },
+        {
+          "ANNOTATION_ID": "a855",
+          "TIME_SLOT_REF1": "ts1510",
+          "TIME_SLOT_REF2": "ts1513",
+          "Start": 2240252,
+          "End": 2241332
+        },
+        {
+          "ANNOTATION_ID": "a856",
+          "TIME_SLOT_REF1": "ts1533",
+          "TIME_SLOT_REF2": "ts1534",
+          "Start": 2303232,
+          "End": 2303806
+        },
+        {
+          "ANNOTATION_ID": "a868",
+          "TIME_SLOT_REF1": "ts1539",
+          "TIME_SLOT_REF2": "ts1541",
+          "Start": 2319480,
+          "End": 2322180
+        },
+        {
+          "ANNOTATION_ID": "a869",
+          "TIME_SLOT_REF1": "ts1545",
+          "TIME_SLOT_REF2": "ts1547",
+          "Start": 2322860,
+          "End": 2323960
+        },
+        {
+          "ANNOTATION_ID": "a874",
+          "TIME_SLOT_REF1": "ts1563",
+          "TIME_SLOT_REF2": "ts1565",
+          "Start": 2376201,
+          "End": 2377521
+        },
+        {
+          "ANNOTATION_ID": "a883",
+          "TIME_SLOT_REF1": "ts1569",
+          "TIME_SLOT_REF2": "ts1571",
+          "Start": 2378284,
+          "End": 2378742
+        },
+        {
+          "ANNOTATION_ID": "a885",
+          "TIME_SLOT_REF1": "ts1578",
+          "TIME_SLOT_REF2": "ts1581",
+          "Start": 2404374,
+          "End": 2404863
+        },
+        {
+          "ANNOTATION_ID": "a890",
+          "TIME_SLOT_REF1": "ts1587",
+          "TIME_SLOT_REF2": "ts1588",
+          "Start": 2415416,
+          "End": 2416037
+        },
+        {
+          "ANNOTATION_ID": "a892",
+          "TIME_SLOT_REF1": "ts1590",
+          "TIME_SLOT_REF2": "ts1592",
+          "Start": 2416193,
+          "End": 2416949
+        }
+      ],
+      "HD06": [
+        {
+          "ANNOTATION_ID": "a7",
+          "TIME_SLOT_REF1": "ts11",
+          "TIME_SLOT_REF2": "ts13",
+          "Start": 8305,
+          "End": 9362
+        },
+        {
+          "ANNOTATION_ID": "a8",
+          "TIME_SLOT_REF1": "ts15",
+          "TIME_SLOT_REF2": "ts16",
+          "Start": 9897,
+          "End": 10242
+        },
+        {
+          "ANNOTATION_ID": "a9",
+          "TIME_SLOT_REF1": "ts19",
+          "TIME_SLOT_REF2": "ts21",
+          "Start": 11251,
+          "End": 12422
+        },
+        {
+          "ANNOTATION_ID": "a13",
+          "TIME_SLOT_REF1": "ts23",
+          "TIME_SLOT_REF2": "ts24",
+          "Start": 12627,
+          "End": 13580
+        },
+        {
+          "ANNOTATION_ID": "a14",
+          "TIME_SLOT_REF1": "ts25",
+          "TIME_SLOT_REF2": "ts28",
+          "Start": 13619,
+          "End": 14335
+        },
+        {
+          "ANNOTATION_ID": "a15",
+          "TIME_SLOT_REF1": "ts31",
+          "TIME_SLOT_REF2": "ts33",
+          "Start": 14345,
+          "End": 15311
+        },
+        {
+          "ANNOTATION_ID": "a18",
+          "TIME_SLOT_REF1": "ts36",
+          "TIME_SLOT_REF2": "ts38",
+          "Start": 20668,
+          "End": 21932
+        },
+        {
+          "ANNOTATION_ID": "a56",
+          "TIME_SLOT_REF1": "ts41",
+          "TIME_SLOT_REF2": "ts42",
+          "Start": 22403,
+          "End": 24053
+        },
+        {
+          "ANNOTATION_ID": "a22",
+          "TIME_SLOT_REF1": "ts45",
+          "TIME_SLOT_REF2": "ts46",
+          "Start": 31379,
+          "End": 31808
+        },
+        {
+          "ANNOTATION_ID": "a23",
+          "TIME_SLOT_REF1": "ts49",
+          "TIME_SLOT_REF2": "ts50",
+          "Start": 32596,
+          "End": 35864
+        },
+        {
+          "ANNOTATION_ID": "a24",
+          "TIME_SLOT_REF1": "ts54",
+          "TIME_SLOT_REF2": "ts55",
+          "Start": 37084,
+          "End": 37392
+        },
+        {
+          "ANNOTATION_ID": "a25",
+          "TIME_SLOT_REF1": "ts59",
+          "TIME_SLOT_REF2": "ts60",
+          "Start": 38169,
+          "End": 38917
+        },
+        {
+          "ANNOTATION_ID": "a26",
+          "TIME_SLOT_REF1": "ts63",
+          "TIME_SLOT_REF2": "ts64",
+          "Start": 39653,
+          "End": 40182
+        },
+        {
+          "ANNOTATION_ID": "a27",
+          "TIME_SLOT_REF1": "ts67",
+          "TIME_SLOT_REF2": "ts68",
+          "Start": 44881,
+          "End": 45429
+        },
+        {
+          "ANNOTATION_ID": "a37",
+          "TIME_SLOT_REF1": "ts71",
+          "TIME_SLOT_REF2": "ts73",
+          "Start": 46899,
+          "End": 47378
+        },
+        {
+          "ANNOTATION_ID": "a42",
+          "TIME_SLOT_REF1": "ts77",
+          "TIME_SLOT_REF2": "ts79",
+          "Start": 50223,
+          "End": 50775
+        },
+        {
+          "ANNOTATION_ID": "a43",
+          "TIME_SLOT_REF1": "ts83",
+          "TIME_SLOT_REF2": "ts84",
+          "Start": 53430,
+          "End": 56603
+        },
+        {
+          "ANNOTATION_ID": "a44",
+          "TIME_SLOT_REF1": "ts85",
+          "TIME_SLOT_REF2": "ts86",
+          "Start": 57432,
+          "End": 64095
+        },
+        {
+          "ANNOTATION_ID": "a47",
+          "TIME_SLOT_REF1": "ts89",
+          "TIME_SLOT_REF2": "ts90",
+          "Start": 64812,
+          "End": 67715
+        },
+        {
+          "ANNOTATION_ID": "a48",
+          "TIME_SLOT_REF1": "ts91",
+          "TIME_SLOT_REF2": "ts92",
+          "Start": 69964,
+          "End": 70578
+        },
+        {
+          "ANNOTATION_ID": "a58",
+          "TIME_SLOT_REF1": "ts95",
+          "TIME_SLOT_REF2": "ts97",
+          "Start": 72054,
+          "End": 72924
+        },
+        {
+          "ANNOTATION_ID": "a59",
+          "TIME_SLOT_REF1": "ts99",
+          "TIME_SLOT_REF2": "ts100",
+          "Start": 72933,
+          "End": 78431
+        },
+        {
+          "ANNOTATION_ID": "a62",
+          "TIME_SLOT_REF1": "ts104",
+          "TIME_SLOT_REF2": "ts106",
+          "Start": 79384,
+          "End": 80448
+        },
+        {
+          "ANNOTATION_ID": "a67",
+          "TIME_SLOT_REF1": "ts109",
+          "TIME_SLOT_REF2": "ts110",
+          "Start": 83852,
+          "End": 90261
+        },
+        {
+          "ANNOTATION_ID": "a68",
+          "TIME_SLOT_REF1": "ts113",
+          "TIME_SLOT_REF2": "ts114",
+          "Start": 91012,
+          "End": 91554
+        },
+        {
+          "ANNOTATION_ID": "a69",
+          "TIME_SLOT_REF1": "ts117",
+          "TIME_SLOT_REF2": "ts118",
+          "Start": 97315,
+          "End": 106899
+        },
+        {
+          "ANNOTATION_ID": "a71",
+          "TIME_SLOT_REF1": "ts119",
+          "TIME_SLOT_REF2": "ts122",
+          "Start": 106948,
+          "End": 107782
+        },
+        {
+          "ANNOTATION_ID": "a72",
+          "TIME_SLOT_REF1": "ts121",
+          "TIME_SLOT_REF2": "ts124",
+          "Start": 107782,
+          "End": 110284
+        },
+        {
+          "ANNOTATION_ID": "a73",
+          "TIME_SLOT_REF1": "ts127",
+          "TIME_SLOT_REF2": "ts128",
+          "Start": 110703,
+          "End": 114555
+        },
+        {
+          "ANNOTATION_ID": "a74",
+          "TIME_SLOT_REF1": "ts131",
+          "TIME_SLOT_REF2": "ts132",
+          "Start": 115097,
+          "End": 122849
+        },
+        {
+          "ANNOTATION_ID": "a75",
+          "TIME_SLOT_REF1": "ts135",
+          "TIME_SLOT_REF2": "ts136",
+          "Start": 123441,
+          "End": 128272
+        },
+        {
+          "ANNOTATION_ID": "a76",
+          "TIME_SLOT_REF1": "ts137",
+          "TIME_SLOT_REF2": "ts140",
+          "Start": 128272,
+          "End": 129174
+        },
+        {
+          "ANNOTATION_ID": "a77",
+          "TIME_SLOT_REF1": "ts141",
+          "TIME_SLOT_REF2": "ts142",
+          "Start": 129211,
+          "End": 130506
+        },
+        {
+          "ANNOTATION_ID": "a90",
+          "TIME_SLOT_REF1": "ts143",
+          "TIME_SLOT_REF2": "ts146",
+          "Start": 130556,
+          "End": 131249
+        },
+        {
+          "ANNOTATION_ID": "a91",
+          "TIME_SLOT_REF1": "ts145",
+          "TIME_SLOT_REF2": "ts148",
+          "Start": 131249,
+          "End": 133804
+        },
+        {
+          "ANNOTATION_ID": "a94",
+          "TIME_SLOT_REF1": "ts149",
+          "TIME_SLOT_REF2": "ts150",
+          "Start": 134467,
+          "End": 142157
+        },
+        {
+          "ANNOTATION_ID": "a97",
+          "TIME_SLOT_REF1": "ts151",
+          "TIME_SLOT_REF2": "ts152",
+          "Start": 142166,
+          "End": 148036
+        },
+        {
+          "ANNOTATION_ID": "a99",
+          "TIME_SLOT_REF1": "ts153",
+          "TIME_SLOT_REF2": "ts155",
+          "Start": 148047,
+          "End": 153781
+        },
+        {
+          "ANNOTATION_ID": "a102",
+          "TIME_SLOT_REF1": "ts157",
+          "TIME_SLOT_REF2": "ts158",
+          "Start": 154369,
+          "End": 156723
+        },
+        {
+          "ANNOTATION_ID": "a103",
+          "TIME_SLOT_REF1": "ts159",
+          "TIME_SLOT_REF2": "ts161",
+          "Start": 156723,
+          "End": 157505
+        },
+        {
+          "ANNOTATION_ID": "a104",
+          "TIME_SLOT_REF1": "ts163",
+          "TIME_SLOT_REF2": "ts164",
+          "Start": 157531,
+          "End": 166032
+        },
+        {
+          "ANNOTATION_ID": "a113",
+          "TIME_SLOT_REF1": "ts165",
+          "TIME_SLOT_REF2": "ts166",
+          "Start": 166484,
+          "End": 168792
+        },
+        {
+          "ANNOTATION_ID": "a117",
+          "TIME_SLOT_REF1": "ts169",
+          "TIME_SLOT_REF2": "ts170",
+          "Start": 173489,
+          "End": 174463
+        },
+        {
+          "ANNOTATION_ID": "a118",
+          "TIME_SLOT_REF1": "ts172",
+          "TIME_SLOT_REF2": "ts173",
+          "Start": 174478,
+          "End": 175146
+        },
+        {
+          "ANNOTATION_ID": "a119",
+          "TIME_SLOT_REF1": "ts175",
+          "TIME_SLOT_REF2": "ts176",
+          "Start": 175149,
+          "End": 181263
+        },
+        {
+          "ANNOTATION_ID": "a122",
+          "TIME_SLOT_REF1": "ts179",
+          "TIME_SLOT_REF2": "ts180",
+          "Start": 181943,
+          "End": 182613
+        },
+        {
+          "ANNOTATION_ID": "a123",
+          "TIME_SLOT_REF1": "ts183",
+          "TIME_SLOT_REF2": "ts184",
+          "Start": 183287,
+          "End": 183932
+        },
+        {
+          "ANNOTATION_ID": "a124",
+          "TIME_SLOT_REF1": "ts186",
+          "TIME_SLOT_REF2": "ts187",
+          "Start": 183940,
+          "End": 185133
+        },
+        {
+          "ANNOTATION_ID": "a130",
+          "TIME_SLOT_REF1": "ts189",
+          "TIME_SLOT_REF2": "ts190",
+          "Start": 185159,
+          "End": 185841
+        },
+        {
+          "ANNOTATION_ID": "a131",
+          "TIME_SLOT_REF1": "ts193",
+          "TIME_SLOT_REF2": "ts194",
+          "Start": 189286,
+          "End": 190929
+        },
+        {
+          "ANNOTATION_ID": "a132",
+          "TIME_SLOT_REF1": "ts196",
+          "TIME_SLOT_REF2": "ts197",
+          "Start": 190941,
+          "End": 191522
+        },
+        {
+          "ANNOTATION_ID": "a133",
+          "TIME_SLOT_REF1": "ts199",
+          "TIME_SLOT_REF2": "ts200",
+          "Start": 191546,
+          "End": 194788
+        },
+        {
+          "ANNOTATION_ID": "a134",
+          "TIME_SLOT_REF1": "ts203",
+          "TIME_SLOT_REF2": "ts204",
+          "Start": 195460,
+          "End": 197297
+        },
+        {
+          "ANNOTATION_ID": "a135",
+          "TIME_SLOT_REF1": "ts207",
+          "TIME_SLOT_REF2": "ts210",
+          "Start": 201786,
+          "End": 203144
+        },
+        {
+          "ANNOTATION_ID": "a144",
+          "TIME_SLOT_REF1": "ts213",
+          "TIME_SLOT_REF2": "ts214",
+          "Start": 204312,
+          "End": 206643
+        },
+        {
+          "ANNOTATION_ID": "a146",
+          "TIME_SLOT_REF1": "ts215",
+          "TIME_SLOT_REF2": "ts216",
+          "Start": 206644,
+          "End": 211865
+        },
+        {
+          "ANNOTATION_ID": "a148",
+          "TIME_SLOT_REF1": "ts219",
+          "TIME_SLOT_REF2": "ts220",
+          "Start": 218586,
+          "End": 219948
+        },
+        {
+          "ANNOTATION_ID": "a906",
+          "TIME_SLOT_REF1": "ts223",
+          "TIME_SLOT_REF2": "ts225",
+          "Start": 220423,
+          "End": 220862
+        },
+        {
+          "ANNOTATION_ID": "a160",
+          "TIME_SLOT_REF1": "ts228",
+          "TIME_SLOT_REF2": "ts232",
+          "Start": 226050,
+          "End": 228385
+        },
+        {
+          "ANNOTATION_ID": "a161",
+          "TIME_SLOT_REF1": "ts233",
+          "TIME_SLOT_REF2": "ts234",
+          "Start": 228669,
+          "End": 234319
+        },
+        {
+          "ANNOTATION_ID": "a162",
+          "TIME_SLOT_REF1": "ts235",
+          "TIME_SLOT_REF2": "ts236",
+          "Start": 234319,
+          "End": 238376
+        },
+        {
+          "ANNOTATION_ID": "a163",
+          "TIME_SLOT_REF1": "ts237",
+          "TIME_SLOT_REF2": "ts238",
+          "Start": 238376,
+          "End": 244247
+        },
+        {
+          "ANNOTATION_ID": "a164",
+          "TIME_SLOT_REF1": "ts239",
+          "TIME_SLOT_REF2": "ts240",
+          "Start": 244251,
+          "End": 252478
+        },
+        {
+          "ANNOTATION_ID": "a165",
+          "TIME_SLOT_REF1": "ts241",
+          "TIME_SLOT_REF2": "ts242",
+          "Start": 252494,
+          "End": 257152
+        },
+        {
+          "ANNOTATION_ID": "a169",
+          "TIME_SLOT_REF1": "ts243",
+          "TIME_SLOT_REF2": "ts244",
+          "Start": 257193,
+          "End": 263095
+        },
+        {
+          "ANNOTATION_ID": "a166",
+          "TIME_SLOT_REF1": "ts247",
+          "TIME_SLOT_REF2": "ts248",
+          "Start": 263918,
+          "End": 266765
+        },
+        {
+          "ANNOTATION_ID": "a170",
+          "TIME_SLOT_REF1": "ts249",
+          "TIME_SLOT_REF2": "ts250",
+          "Start": 266811,
+          "End": 268821
+        },
+        {
+          "ANNOTATION_ID": "a171",
+          "TIME_SLOT_REF1": "ts253",
+          "TIME_SLOT_REF2": "ts254",
+          "Start": 269956,
+          "End": 275499
+        },
+        {
+          "ANNOTATION_ID": "a172",
+          "TIME_SLOT_REF1": "ts256",
+          "TIME_SLOT_REF2": "ts257",
+          "Start": 275499,
+          "End": 276044
+        },
+        {
+          "ANNOTATION_ID": "a173",
+          "TIME_SLOT_REF1": "ts259",
+          "TIME_SLOT_REF2": "ts260",
+          "Start": 276066,
+          "End": 278886
+        },
+        {
+          "ANNOTATION_ID": "a174",
+          "TIME_SLOT_REF1": "ts261",
+          "TIME_SLOT_REF2": "ts262",
+          "Start": 279829,
+          "End": 285412
+        },
+        {
+          "ANNOTATION_ID": "a175",
+          "TIME_SLOT_REF1": "ts264",
+          "TIME_SLOT_REF2": "ts269",
+          "Start": 286190,
+          "End": 287336
+        },
+        {
+          "ANNOTATION_ID": "a176",
+          "TIME_SLOT_REF1": "ts270",
+          "TIME_SLOT_REF2": "ts273",
+          "Start": 288252,
+          "End": 288697
+        },
+        {
+          "ANNOTATION_ID": "a177",
+          "TIME_SLOT_REF1": "ts275",
+          "TIME_SLOT_REF2": "ts277",
+          "Start": 288719,
+          "End": 289516
+        },
+        {
+          "ANNOTATION_ID": "a178",
+          "TIME_SLOT_REF1": "ts279",
+          "TIME_SLOT_REF2": "ts280",
+          "Start": 294916,
+          "End": 295672
+        },
+        {
+          "ANNOTATION_ID": "a179",
+          "TIME_SLOT_REF1": "ts283",
+          "TIME_SLOT_REF2": "ts284",
+          "Start": 296314,
+          "End": 305869
+        },
+        {
+          "ANNOTATION_ID": "a180",
+          "TIME_SLOT_REF1": "ts285",
+          "TIME_SLOT_REF2": "ts286",
+          "Start": 305879,
+          "End": 311017
+        },
+        {
+          "ANNOTATION_ID": "a189",
+          "TIME_SLOT_REF1": "ts288",
+          "TIME_SLOT_REF2": "ts290",
+          "Start": 311164,
+          "End": 311785
+        },
+        {
+          "ANNOTATION_ID": "a190",
+          "TIME_SLOT_REF1": "ts291",
+          "TIME_SLOT_REF2": "ts292",
+          "Start": 311798,
+          "End": 319726
+        },
+        {
+          "ANNOTATION_ID": "a191",
+          "TIME_SLOT_REF1": "ts293",
+          "TIME_SLOT_REF2": "ts294",
+          "Start": 319747,
+          "End": 323089
+        },
+        {
+          "ANNOTATION_ID": "a192",
+          "TIME_SLOT_REF1": "ts295",
+          "TIME_SLOT_REF2": "ts296",
+          "Start": 323097,
+          "End": 331169
+        },
+        {
+          "ANNOTATION_ID": "a193",
+          "TIME_SLOT_REF1": "ts297",
+          "TIME_SLOT_REF2": "ts298",
+          "Start": 331853,
+          "End": 333773
+        },
+        {
+          "ANNOTATION_ID": "a194",
+          "TIME_SLOT_REF1": "ts301",
+          "TIME_SLOT_REF2": "ts302",
+          "Start": 334509,
+          "End": 341578
+        },
+        {
+          "ANNOTATION_ID": "a195",
+          "TIME_SLOT_REF1": "ts303",
+          "TIME_SLOT_REF2": "ts305",
+          "Start": 341578,
+          "End": 343354
+        },
+        {
+          "ANNOTATION_ID": "a196",
+          "TIME_SLOT_REF1": "ts307",
+          "TIME_SLOT_REF2": "ts308",
+          "Start": 343367,
+          "End": 347074
+        },
+        {
+          "ANNOTATION_ID": "a197",
+          "TIME_SLOT_REF1": "ts311",
+          "TIME_SLOT_REF2": "ts312",
+          "Start": 347744,
+          "End": 357183
+        },
+        {
+          "ANNOTATION_ID": "a204",
+          "TIME_SLOT_REF1": "ts313",
+          "TIME_SLOT_REF2": "ts314",
+          "Start": 357205,
+          "End": 361696
+        },
+        {
+          "ANNOTATION_ID": "a205",
+          "TIME_SLOT_REF1": "ts317",
+          "TIME_SLOT_REF2": "ts318",
+          "Start": 362396,
+          "End": 364752
+        },
+        {
+          "ANNOTATION_ID": "a206",
+          "TIME_SLOT_REF1": "ts319",
+          "TIME_SLOT_REF2": "ts320",
+          "Start": 364752,
+          "End": 374593
+        },
+        {
+          "ANNOTATION_ID": "a207",
+          "TIME_SLOT_REF1": "ts324",
+          "TIME_SLOT_REF2": "ts325",
+          "Start": 380894,
+          "End": 381363
+        },
+        {
+          "ANNOTATION_ID": "a208",
+          "TIME_SLOT_REF1": "ts327",
+          "TIME_SLOT_REF2": "ts328",
+          "Start": 381376,
+          "End": 382295
+        },
+        {
+          "ANNOTATION_ID": "a209",
+          "TIME_SLOT_REF1": "ts330",
+          "TIME_SLOT_REF2": "ts331",
+          "Start": 382295,
+          "End": 382923
+        },
+        {
+          "ANNOTATION_ID": "a210",
+          "TIME_SLOT_REF1": "ts332",
+          "TIME_SLOT_REF2": "ts334",
+          "Start": 382923,
+          "End": 391884
+        },
+        {
+          "ANNOTATION_ID": "a211",
+          "TIME_SLOT_REF1": "ts335",
+          "TIME_SLOT_REF2": "ts337",
+          "Start": 391884,
+          "End": 392700
+        },
+        {
+          "ANNOTATION_ID": "a218",
+          "TIME_SLOT_REF1": "ts338",
+          "TIME_SLOT_REF2": "ts340",
+          "Start": 392700,
+          "End": 394044
+        },
+        {
+          "ANNOTATION_ID": "a219",
+          "TIME_SLOT_REF1": "ts341",
+          "TIME_SLOT_REF2": "ts343",
+          "Start": 394044,
+          "End": 402980
+        },
+        {
+          "ANNOTATION_ID": "a220",
+          "TIME_SLOT_REF1": "ts344",
+          "TIME_SLOT_REF2": "ts345",
+          "Start": 402982,
+          "End": 403884
+        },
+        {
+          "ANNOTATION_ID": "a221",
+          "TIME_SLOT_REF1": "ts347",
+          "TIME_SLOT_REF2": "ts348",
+          "Start": 403899,
+          "End": 404618
+        },
+        {
+          "ANNOTATION_ID": "a222",
+          "TIME_SLOT_REF1": "ts351",
+          "TIME_SLOT_REF2": "ts352",
+          "Start": 405058,
+          "End": 409388
+        },
+        {
+          "ANNOTATION_ID": "a261",
+          "TIME_SLOT_REF1": "ts353",
+          "TIME_SLOT_REF2": "ts356",
+          "Start": 409388,
+          "End": 409757
+        },
+        {
+          "ANNOTATION_ID": "a223",
+          "TIME_SLOT_REF1": "ts357",
+          "TIME_SLOT_REF2": "ts358",
+          "Start": 409757,
+          "End": 410851
+        },
+        {
+          "ANNOTATION_ID": "a224",
+          "TIME_SLOT_REF1": "ts361",
+          "TIME_SLOT_REF2": "ts362",
+          "Start": 411261,
+          "End": 413141
+        },
+        {
+          "ANNOTATION_ID": "a225",
+          "TIME_SLOT_REF1": "ts363",
+          "TIME_SLOT_REF2": "ts366",
+          "Start": 413145,
+          "End": 413604
+        },
+        {
+          "ANNOTATION_ID": "a226",
+          "TIME_SLOT_REF1": "ts367",
+          "TIME_SLOT_REF2": "ts368",
+          "Start": 413628,
+          "End": 422390
+        },
+        {
+          "ANNOTATION_ID": "a227",
+          "TIME_SLOT_REF1": "ts369",
+          "TIME_SLOT_REF2": "ts370",
+          "Start": 422962,
+          "End": 429062
+        },
+        {
+          "ANNOTATION_ID": "a240",
+          "TIME_SLOT_REF1": "ts371",
+          "TIME_SLOT_REF2": "ts375",
+          "Start": 429062,
+          "End": 429653
+        },
+        {
+          "ANNOTATION_ID": "a241",
+          "TIME_SLOT_REF1": "ts374",
+          "TIME_SLOT_REF2": "ts376",
+          "Start": 429653,
+          "End": 429978
+        },
+        {
+          "ANNOTATION_ID": "a242",
+          "TIME_SLOT_REF1": "ts378",
+          "TIME_SLOT_REF2": "ts380",
+          "Start": 429978,
+          "End": 430397
+        },
+        {
+          "ANNOTATION_ID": "a243",
+          "TIME_SLOT_REF1": "ts381",
+          "TIME_SLOT_REF2": "ts382",
+          "Start": 430880,
+          "End": 439441
+        },
+        {
+          "ANNOTATION_ID": "a244",
+          "TIME_SLOT_REF1": "ts385",
+          "TIME_SLOT_REF2": "ts386",
+          "Start": 440872,
+          "End": 448682
+        },
+        {
+          "ANNOTATION_ID": "a245",
+          "TIME_SLOT_REF1": "ts387",
+          "TIME_SLOT_REF2": "ts388",
+          "Start": 448899,
+          "End": 451874
+        },
+        {
+          "ANNOTATION_ID": "a246",
+          "TIME_SLOT_REF1": "ts389",
+          "TIME_SLOT_REF2": "ts390",
+          "Start": 452522,
+          "End": 460316
+        },
+        {
+          "ANNOTATION_ID": "a247",
+          "TIME_SLOT_REF1": "ts391",
+          "TIME_SLOT_REF2": "ts392",
+          "Start": 460316,
+          "End": 467703
+        },
+        {
+          "ANNOTATION_ID": "a248",
+          "TIME_SLOT_REF1": "ts393",
+          "TIME_SLOT_REF2": "ts394",
+          "Start": 468002,
+          "End": 471156
+        },
+        {
+          "ANNOTATION_ID": "a249",
+          "TIME_SLOT_REF1": "ts400",
+          "TIME_SLOT_REF2": "ts401",
+          "Start": 483346,
+          "End": 484057
+        },
+        {
+          "ANNOTATION_ID": "a250",
+          "TIME_SLOT_REF1": "ts407",
+          "TIME_SLOT_REF2": "ts409",
+          "Start": 488657,
+          "End": 490212
+        },
+        {
+          "ANNOTATION_ID": "a262",
+          "TIME_SLOT_REF1": "ts413",
+          "TIME_SLOT_REF2": "ts415",
+          "Start": 491218,
+          "End": 492103
+        },
+        {
+          "ANNOTATION_ID": "a1001",
+          "TIME_SLOT_REF1": "ts420",
+          "TIME_SLOT_REF2": "ts424",
+          "Start": 493049,
+          "End": 494079
+        },
+        {
+          "ANNOTATION_ID": "a264",
+          "TIME_SLOT_REF1": "ts426",
+          "TIME_SLOT_REF2": "ts429",
+          "Start": 495611,
+          "End": 504530
+        },
+        {
+          "ANNOTATION_ID": "a266",
+          "TIME_SLOT_REF1": "ts430",
+          "TIME_SLOT_REF2": "ts432",
+          "Start": 505705,
+          "End": 513576
+        },
+        {
+          "ANNOTATION_ID": "a267",
+          "TIME_SLOT_REF1": "ts433",
+          "TIME_SLOT_REF2": "ts435",
+          "Start": 513581,
+          "End": 514280
+        },
+        {
+          "ANNOTATION_ID": "a268",
+          "TIME_SLOT_REF1": "ts437",
+          "TIME_SLOT_REF2": "ts438",
+          "Start": 514282,
+          "End": 521177
+        },
+        {
+          "ANNOTATION_ID": "a269",
+          "TIME_SLOT_REF1": "ts439",
+          "TIME_SLOT_REF2": "ts440",
+          "Start": 521246,
+          "End": 526318
+        },
+        {
+          "ANNOTATION_ID": "a270",
+          "TIME_SLOT_REF1": "ts443",
+          "TIME_SLOT_REF2": "ts444",
+          "Start": 527219,
+          "End": 529073
+        },
+        {
+          "ANNOTATION_ID": "a279",
+          "TIME_SLOT_REF1": "ts446",
+          "TIME_SLOT_REF2": "ts448",
+          "Start": 529085,
+          "End": 529538
+        },
+        {
+          "ANNOTATION_ID": "a280",
+          "TIME_SLOT_REF1": "ts449",
+          "TIME_SLOT_REF2": "ts450",
+          "Start": 529540,
+          "End": 534467
+        },
+        {
+          "ANNOTATION_ID": "a281",
+          "TIME_SLOT_REF1": "ts451",
+          "TIME_SLOT_REF2": "ts454",
+          "Start": 534467,
+          "End": 542553
+        },
+        {
+          "ANNOTATION_ID": "a910",
+          "TIME_SLOT_REF1": "ts456",
+          "TIME_SLOT_REF2": "ts457",
+          "Start": 542570,
+          "End": 544620
+        },
+        {
+          "ANNOTATION_ID": "a287",
+          "TIME_SLOT_REF1": "ts458",
+          "TIME_SLOT_REF2": "ts461",
+          "Start": 544645,
+          "End": 545564
+        },
+        {
+          "ANNOTATION_ID": "a288",
+          "TIME_SLOT_REF1": "ts463",
+          "TIME_SLOT_REF2": "ts466",
+          "Start": 545583,
+          "End": 554162
+        },
+        {
+          "ANNOTATION_ID": "a290",
+          "TIME_SLOT_REF1": "ts467",
+          "TIME_SLOT_REF2": "ts468",
+          "Start": 554162,
+          "End": 562551
+        },
+        {
+          "ANNOTATION_ID": "a291",
+          "TIME_SLOT_REF1": "ts469",
+          "TIME_SLOT_REF2": "ts471",
+          "Start": 562551,
+          "End": 563423
+        },
+        {
+          "ANNOTATION_ID": "a292",
+          "TIME_SLOT_REF1": "ts473",
+          "TIME_SLOT_REF2": "ts474",
+          "Start": 563765,
+          "End": 567782
+        },
+        {
+          "ANNOTATION_ID": "a294",
+          "TIME_SLOT_REF1": "ts475",
+          "TIME_SLOT_REF2": "ts476",
+          "Start": 567782,
+          "End": 574577
+        },
+        {
+          "ANNOTATION_ID": "a295",
+          "TIME_SLOT_REF1": "ts478",
+          "TIME_SLOT_REF2": "ts481",
+          "Start": 575104,
+          "End": 576842
+        },
+        {
+          "ANNOTATION_ID": "a296",
+          "TIME_SLOT_REF1": "ts483",
+          "TIME_SLOT_REF2": "ts484",
+          "Start": 576852,
+          "End": 578476
+        },
+        {
+          "ANNOTATION_ID": "a297",
+          "TIME_SLOT_REF1": "ts485",
+          "TIME_SLOT_REF2": "ts487",
+          "Start": 578484,
+          "End": 579175
+        },
+        {
+          "ANNOTATION_ID": "a298",
+          "TIME_SLOT_REF1": "ts489",
+          "TIME_SLOT_REF2": "ts490",
+          "Start": 579182,
+          "End": 581297
+        },
+        {
+          "ANNOTATION_ID": "a299",
+          "TIME_SLOT_REF1": "ts491",
+          "TIME_SLOT_REF2": "ts492",
+          "Start": 581705,
+          "End": 586469
+        },
+        {
+          "ANNOTATION_ID": "a300",
+          "TIME_SLOT_REF1": "ts493",
+          "TIME_SLOT_REF2": "ts494",
+          "Start": 586469,
+          "End": 591739
+        },
+        {
+          "ANNOTATION_ID": "a301",
+          "TIME_SLOT_REF1": "ts495",
+          "TIME_SLOT_REF2": "ts496",
+          "Start": 591756,
+          "End": 596060
+        },
+        {
+          "ANNOTATION_ID": "a302",
+          "TIME_SLOT_REF1": "ts497",
+          "TIME_SLOT_REF2": "ts498",
+          "Start": 596060,
+          "End": 604010
+        },
+        {
+          "ANNOTATION_ID": "a305",
+          "TIME_SLOT_REF1": "ts501",
+          "TIME_SLOT_REF2": "ts502",
+          "Start": 604642,
+          "End": 610904
+        },
+        {
+          "ANNOTATION_ID": "a307",
+          "TIME_SLOT_REF1": "ts503",
+          "TIME_SLOT_REF2": "ts504",
+          "Start": 613646,
+          "End": 618052
+        },
+        {
+          "ANNOTATION_ID": "a309",
+          "TIME_SLOT_REF1": "ts505",
+          "TIME_SLOT_REF2": "ts506",
+          "Start": 618052,
+          "End": 625647
+        },
+        {
+          "ANNOTATION_ID": "a310",
+          "TIME_SLOT_REF1": "ts507",
+          "TIME_SLOT_REF2": "ts508",
+          "Start": 625840,
+          "End": 627476
+        },
+        {
+          "ANNOTATION_ID": "a311",
+          "TIME_SLOT_REF1": "ts509",
+          "TIME_SLOT_REF2": "ts511",
+          "Start": 627479,
+          "End": 627752
+        },
+        {
+          "ANNOTATION_ID": "a312",
+          "TIME_SLOT_REF1": "ts515",
+          "TIME_SLOT_REF2": "ts516",
+          "Start": 628719,
+          "End": 629760
+        },
+        {
+          "ANNOTATION_ID": "a321",
+          "TIME_SLOT_REF1": "ts518",
+          "TIME_SLOT_REF2": "ts520",
+          "Start": 635292,
+          "End": 635685
+        },
+        {
+          "ANNOTATION_ID": "a322",
+          "TIME_SLOT_REF1": "ts523",
+          "TIME_SLOT_REF2": "ts524",
+          "Start": 636660,
+          "End": 638560
+        },
+        {
+          "ANNOTATION_ID": "a323",
+          "TIME_SLOT_REF1": "ts526",
+          "TIME_SLOT_REF2": "ts528",
+          "Start": 638619,
+          "End": 639193
+        },
+        {
+          "ANNOTATION_ID": "a913",
+          "TIME_SLOT_REF1": "ts529",
+          "TIME_SLOT_REF2": "ts532",
+          "Start": 639193,
+          "End": 641386
+        },
+        {
+          "ANNOTATION_ID": "a325",
+          "TIME_SLOT_REF1": "ts530",
+          "TIME_SLOT_REF2": "ts534",
+          "Start": 641386,
+          "End": 644545
+        },
+        {
+          "ANNOTATION_ID": "a326",
+          "TIME_SLOT_REF1": "ts535",
+          "TIME_SLOT_REF2": "ts536",
+          "Start": 644552,
+          "End": 645425
+        },
+        {
+          "ANNOTATION_ID": "a327",
+          "TIME_SLOT_REF1": "ts537",
+          "TIME_SLOT_REF2": "ts539",
+          "Start": 645425,
+          "End": 647653
+        },
+        {
+          "ANNOTATION_ID": "a328",
+          "TIME_SLOT_REF1": "ts541",
+          "TIME_SLOT_REF2": "ts542",
+          "Start": 647653,
+          "End": 651614
+        },
+        {
+          "ANNOTATION_ID": "a330",
+          "TIME_SLOT_REF1": "ts545",
+          "TIME_SLOT_REF2": "ts546",
+          "Start": 654718,
+          "End": 660317
+        },
+        {
+          "ANNOTATION_ID": "a343",
+          "TIME_SLOT_REF1": "ts548",
+          "TIME_SLOT_REF2": "ts550",
+          "Start": 660317,
+          "End": 660921
+        },
+        {
+          "ANNOTATION_ID": "a331",
+          "TIME_SLOT_REF1": "ts551",
+          "TIME_SLOT_REF2": "ts552",
+          "Start": 660965,
+          "End": 661933
+        },
+        {
+          "ANNOTATION_ID": "a332",
+          "TIME_SLOT_REF1": "ts555",
+          "TIME_SLOT_REF2": "ts556",
+          "Start": 662676,
+          "End": 663812
+        },
+        {
+          "ANNOTATION_ID": "a333",
+          "TIME_SLOT_REF1": "ts557",
+          "TIME_SLOT_REF2": "ts558",
+          "Start": 664790,
+          "End": 670786
+        },
+        {
+          "ANNOTATION_ID": "a334",
+          "TIME_SLOT_REF1": "ts561",
+          "TIME_SLOT_REF2": "ts562",
+          "Start": 671219,
+          "End": 677109
+        },
+        {
+          "ANNOTATION_ID": "a346",
+          "TIME_SLOT_REF1": "ts565",
+          "TIME_SLOT_REF2": "ts566",
+          "Start": 677555,
+          "End": 680940
+        },
+        {
+          "ANNOTATION_ID": "a347",
+          "TIME_SLOT_REF1": "ts567",
+          "TIME_SLOT_REF2": "ts569",
+          "Start": 681398,
+          "End": 689089
+        },
+        {
+          "ANNOTATION_ID": "a348",
+          "TIME_SLOT_REF1": "ts568",
+          "TIME_SLOT_REF2": "ts570",
+          "Start": 689089,
+          "End": 695678
+        },
+        {
+          "ANNOTATION_ID": "a349",
+          "TIME_SLOT_REF1": "ts571",
+          "TIME_SLOT_REF2": "ts572",
+          "Start": 695678,
+          "End": 700471
+        },
+        {
+          "ANNOTATION_ID": "a350",
+          "TIME_SLOT_REF1": "ts573",
+          "TIME_SLOT_REF2": "ts574",
+          "Start": 700592,
+          "End": 706638
+        },
+        {
+          "ANNOTATION_ID": "a351",
+          "TIME_SLOT_REF1": "ts575",
+          "TIME_SLOT_REF2": "ts576",
+          "Start": 706638,
+          "End": 715250
+        },
+        {
+          "ANNOTATION_ID": "a352",
+          "TIME_SLOT_REF1": "ts577",
+          "TIME_SLOT_REF2": "ts578",
+          "Start": 715783,
+          "End": 718940
+        },
+        {
+          "ANNOTATION_ID": "a353",
+          "TIME_SLOT_REF1": "ts579",
+          "TIME_SLOT_REF2": "ts582",
+          "Start": 719028,
+          "End": 726190
+        },
+        {
+          "ANNOTATION_ID": "a354",
+          "TIME_SLOT_REF1": "ts583",
+          "TIME_SLOT_REF2": "ts584",
+          "Start": 726209,
+          "End": 729891
+        },
+        {
+          "ANNOTATION_ID": "a355",
+          "TIME_SLOT_REF1": "ts585",
+          "TIME_SLOT_REF2": "ts586",
+          "Start": 729891,
+          "End": 737324
+        },
+        {
+          "ANNOTATION_ID": "a357",
+          "TIME_SLOT_REF1": "ts589",
+          "TIME_SLOT_REF2": "ts591",
+          "Start": 737734,
+          "End": 745764
+        },
+        {
+          "ANNOTATION_ID": "a359",
+          "TIME_SLOT_REF1": "ts593",
+          "TIME_SLOT_REF2": "ts594",
+          "Start": 746511,
+          "End": 753553
+        },
+        {
+          "ANNOTATION_ID": "a360",
+          "TIME_SLOT_REF1": "ts595",
+          "TIME_SLOT_REF2": "ts596",
+          "Start": 753577,
+          "End": 758221
+        },
+        {
+          "ANNOTATION_ID": "a361",
+          "TIME_SLOT_REF1": "ts599",
+          "TIME_SLOT_REF2": "ts600",
+          "Start": 765627,
+          "End": 767712
+        },
+        {
+          "ANNOTATION_ID": "a915",
+          "TIME_SLOT_REF1": "ts603",
+          "TIME_SLOT_REF2": "ts604",
+          "Start": 768693,
+          "End": 769593
+        },
+        {
+          "ANNOTATION_ID": "a363",
+          "TIME_SLOT_REF1": "ts605",
+          "TIME_SLOT_REF2": "ts606",
+          "Start": 769603,
+          "End": 779582
+        },
+        {
+          "ANNOTATION_ID": "a364",
+          "TIME_SLOT_REF1": "ts607",
+          "TIME_SLOT_REF2": "ts608",
+          "Start": 779583,
+          "End": 783350
+        },
+        {
+          "ANNOTATION_ID": "a365",
+          "TIME_SLOT_REF1": "ts609",
+          "TIME_SLOT_REF2": "ts610",
+          "Start": 783352,
+          "End": 792193
+        },
+        {
+          "ANNOTATION_ID": "a368",
+          "TIME_SLOT_REF1": "ts611",
+          "TIME_SLOT_REF2": "ts612",
+          "Start": 792209,
+          "End": 795554
+        },
+        {
+          "ANNOTATION_ID": "a369",
+          "TIME_SLOT_REF1": "ts613",
+          "TIME_SLOT_REF2": "ts614",
+          "Start": 795554,
+          "End": 805383
+        },
+        {
+          "ANNOTATION_ID": "a370",
+          "TIME_SLOT_REF1": "ts615",
+          "TIME_SLOT_REF2": "ts616",
+          "Start": 805446,
+          "End": 811176
+        },
+        {
+          "ANNOTATION_ID": "a371",
+          "TIME_SLOT_REF1": "ts619",
+          "TIME_SLOT_REF2": "ts620",
+          "Start": 812719,
+          "End": 815918
+        },
+        {
+          "ANNOTATION_ID": "a372",
+          "TIME_SLOT_REF1": "ts623",
+          "TIME_SLOT_REF2": "ts624",
+          "Start": 816809,
+          "End": 824251
+        },
+        {
+          "ANNOTATION_ID": "a376",
+          "TIME_SLOT_REF1": "ts625",
+          "TIME_SLOT_REF2": "ts628",
+          "Start": 824251,
+          "End": 825587
+        },
+        {
+          "ANNOTATION_ID": "a377",
+          "TIME_SLOT_REF1": "ts629",
+          "TIME_SLOT_REF2": "ts630",
+          "Start": 825625,
+          "End": 831358
+        },
+        {
+          "ANNOTATION_ID": "a378",
+          "TIME_SLOT_REF1": "ts631",
+          "TIME_SLOT_REF2": "ts632",
+          "Start": 831376,
+          "End": 841047
+        },
+        {
+          "ANNOTATION_ID": "a379",
+          "TIME_SLOT_REF1": "ts633",
+          "TIME_SLOT_REF2": "ts634",
+          "Start": 841063,
+          "End": 849705
+        },
+        {
+          "ANNOTATION_ID": "a381",
+          "TIME_SLOT_REF1": "ts635",
+          "TIME_SLOT_REF2": "ts636",
+          "Start": 849705,
+          "End": 853154
+        },
+        {
+          "ANNOTATION_ID": "a382",
+          "TIME_SLOT_REF1": "ts639",
+          "TIME_SLOT_REF2": "ts640",
+          "Start": 853624,
+          "End": 857503
+        },
+        {
+          "ANNOTATION_ID": "a383",
+          "TIME_SLOT_REF1": "ts643",
+          "TIME_SLOT_REF2": "ts644",
+          "Start": 858188,
+          "End": 859918
+        },
+        {
+          "ANNOTATION_ID": "a386",
+          "TIME_SLOT_REF1": "ts645",
+          "TIME_SLOT_REF2": "ts646",
+          "Start": 860256,
+          "End": 869799
+        },
+        {
+          "ANNOTATION_ID": "a387",
+          "TIME_SLOT_REF1": "ts647",
+          "TIME_SLOT_REF2": "ts649",
+          "Start": 869799,
+          "End": 870558
+        },
+        {
+          "ANNOTATION_ID": "a388",
+          "TIME_SLOT_REF1": "ts650",
+          "TIME_SLOT_REF2": "ts652",
+          "Start": 870558,
+          "End": 872271
+        },
+        {
+          "ANNOTATION_ID": "a389",
+          "TIME_SLOT_REF1": "ts655",
+          "TIME_SLOT_REF2": "ts656",
+          "Start": 872873,
+          "End": 874633
+        },
+        {
+          "ANNOTATION_ID": "a390",
+          "TIME_SLOT_REF1": "ts659",
+          "TIME_SLOT_REF2": "ts660",
+          "Start": 875660,
+          "End": 878589
+        },
+        {
+          "ANNOTATION_ID": "a391",
+          "TIME_SLOT_REF1": "ts661",
+          "TIME_SLOT_REF2": "ts662",
+          "Start": 879436,
+          "End": 885614
+        },
+        {
+          "ANNOTATION_ID": "a395",
+          "TIME_SLOT_REF1": "ts663",
+          "TIME_SLOT_REF2": "ts664",
+          "Start": 885720,
+          "End": 886444
+        },
+        {
+          "ANNOTATION_ID": "a396",
+          "TIME_SLOT_REF1": "ts665",
+          "TIME_SLOT_REF2": "ts667",
+          "Start": 887776,
+          "End": 888374
+        },
+        {
+          "ANNOTATION_ID": "a397",
+          "TIME_SLOT_REF1": "ts668",
+          "TIME_SLOT_REF2": "ts670",
+          "Start": 888374,
+          "End": 896384
+        },
+        {
+          "ANNOTATION_ID": "a399",
+          "TIME_SLOT_REF1": "ts671",
+          "TIME_SLOT_REF2": "ts672",
+          "Start": 896384,
+          "End": 901173
+        },
+        {
+          "ANNOTATION_ID": "a400",
+          "TIME_SLOT_REF1": "ts675",
+          "TIME_SLOT_REF2": "ts676",
+          "Start": 902313,
+          "End": 905778
+        },
+        {
+          "ANNOTATION_ID": "a405",
+          "TIME_SLOT_REF1": "ts677",
+          "TIME_SLOT_REF2": "ts678",
+          "Start": 906226,
+          "End": 911853
+        },
+        {
+          "ANNOTATION_ID": "a406",
+          "TIME_SLOT_REF1": "ts679",
+          "TIME_SLOT_REF2": "ts680",
+          "Start": 911853,
+          "End": 917723
+        },
+        {
+          "ANNOTATION_ID": "a407",
+          "TIME_SLOT_REF1": "ts681",
+          "TIME_SLOT_REF2": "ts682",
+          "Start": 918430,
+          "End": 919385
+        },
+        {
+          "ANNOTATION_ID": "a408",
+          "TIME_SLOT_REF1": "ts685",
+          "TIME_SLOT_REF2": "ts686",
+          "Start": 927679,
+          "End": 929772
+        },
+        {
+          "ANNOTATION_ID": "a409",
+          "TIME_SLOT_REF1": "ts687",
+          "TIME_SLOT_REF2": "ts688",
+          "Start": 929772,
+          "End": 938711
+        },
+        {
+          "ANNOTATION_ID": "a410",
+          "TIME_SLOT_REF1": "ts689",
+          "TIME_SLOT_REF2": "ts690",
+          "Start": 938721,
+          "End": 941579
+        },
+        {
+          "ANNOTATION_ID": "a916",
+          "TIME_SLOT_REF1": "ts691",
+          "TIME_SLOT_REF2": "ts693",
+          "Start": 941579,
+          "End": 941961
+        },
+        {
+          "ANNOTATION_ID": "a411",
+          "TIME_SLOT_REF1": "ts696",
+          "TIME_SLOT_REF2": "ts698",
+          "Start": 942806,
+          "End": 950668
+        },
+        {
+          "ANNOTATION_ID": "a412",
+          "TIME_SLOT_REF1": "ts699",
+          "TIME_SLOT_REF2": "ts700",
+          "Start": 950668,
+          "End": 956433
+        },
+        {
+          "ANNOTATION_ID": "a413",
+          "TIME_SLOT_REF1": "ts701",
+          "TIME_SLOT_REF2": "ts702",
+          "Start": 956436,
+          "End": 964103
+        },
+        {
+          "ANNOTATION_ID": "a414",
+          "TIME_SLOT_REF1": "ts703",
+          "TIME_SLOT_REF2": "ts704",
+          "Start": 964105,
+          "End": 971576
+        },
+        {
+          "ANNOTATION_ID": "a415",
+          "TIME_SLOT_REF1": "ts707",
+          "TIME_SLOT_REF2": "ts708",
+          "Start": 972709,
+          "End": 979472
+        },
+        {
+          "ANNOTATION_ID": "a416",
+          "TIME_SLOT_REF1": "ts709",
+          "TIME_SLOT_REF2": "ts711",
+          "Start": 980320,
+          "End": 989190
+        },
+        {
+          "ANNOTATION_ID": "a417",
+          "TIME_SLOT_REF1": "ts712",
+          "TIME_SLOT_REF2": "ts714",
+          "Start": 989190,
+          "End": 993793
+        },
+        {
+          "ANNOTATION_ID": "a418",
+          "TIME_SLOT_REF1": "ts715",
+          "TIME_SLOT_REF2": "ts716",
+          "Start": 993804,
+          "End": 995183
+        },
+        {
+          "ANNOTATION_ID": "a419",
+          "TIME_SLOT_REF1": "ts718",
+          "TIME_SLOT_REF2": "ts720",
+          "Start": 995183,
+          "End": 995789
+        },
+        {
+          "ANNOTATION_ID": "a420",
+          "TIME_SLOT_REF1": "ts721",
+          "TIME_SLOT_REF2": "ts723",
+          "Start": 995802,
+          "End": 999170
+        },
+        {
+          "ANNOTATION_ID": "a421",
+          "TIME_SLOT_REF1": "ts725",
+          "TIME_SLOT_REF2": "ts727",
+          "Start": 999756,
+          "End": 1004789
+        },
+        {
+          "ANNOTATION_ID": "a422",
+          "TIME_SLOT_REF1": "ts728",
+          "TIME_SLOT_REF2": "ts729",
+          "Start": 1004789,
+          "End": 1005254
+        },
+        {
+          "ANNOTATION_ID": "a423",
+          "TIME_SLOT_REF1": "ts730",
+          "TIME_SLOT_REF2": "ts732",
+          "Start": 1005266,
+          "End": 1007365
+        },
+        {
+          "ANNOTATION_ID": "a424",
+          "TIME_SLOT_REF1": "ts733",
+          "TIME_SLOT_REF2": "ts735",
+          "Start": 1007376,
+          "End": 1008039
+        },
+        {
+          "ANNOTATION_ID": "a425",
+          "TIME_SLOT_REF1": "ts737",
+          "TIME_SLOT_REF2": "ts738",
+          "Start": 1008052,
+          "End": 1011608
+        },
+        {
+          "ANNOTATION_ID": "a426",
+          "TIME_SLOT_REF1": "ts740",
+          "TIME_SLOT_REF2": "ts741",
+          "Start": 1011620,
+          "End": 1012650
+        },
+        {
+          "ANNOTATION_ID": "a427",
+          "TIME_SLOT_REF1": "ts742",
+          "TIME_SLOT_REF2": "ts744",
+          "Start": 1012650,
+          "End": 1016157
+        },
+        {
+          "ANNOTATION_ID": "a428",
+          "TIME_SLOT_REF1": "ts745",
+          "TIME_SLOT_REF2": "ts747",
+          "Start": 1016157,
+          "End": 1022922
+        },
+        {
+          "ANNOTATION_ID": "a429",
+          "TIME_SLOT_REF1": "ts748",
+          "TIME_SLOT_REF2": "ts752",
+          "Start": 1022922,
+          "End": 1027068
+        },
+        {
+          "ANNOTATION_ID": "a430",
+          "TIME_SLOT_REF1": "ts753",
+          "TIME_SLOT_REF2": "ts756",
+          "Start": 1027073,
+          "End": 1036677
+        },
+        {
+          "ANNOTATION_ID": "a431",
+          "TIME_SLOT_REF1": "ts757",
+          "TIME_SLOT_REF2": "ts759",
+          "Start": 1036677,
+          "End": 1043228
+        },
+        {
+          "ANNOTATION_ID": "a432",
+          "TIME_SLOT_REF1": "ts760",
+          "TIME_SLOT_REF2": "ts762",
+          "Start": 1043228,
+          "End": 1045062
+        },
+        {
+          "ANNOTATION_ID": "a433",
+          "TIME_SLOT_REF1": "ts763",
+          "TIME_SLOT_REF2": "ts764",
+          "Start": 1045066,
+          "End": 1046499
+        },
+        {
+          "ANNOTATION_ID": "a434",
+          "TIME_SLOT_REF1": "ts767",
+          "TIME_SLOT_REF2": "ts768",
+          "Start": 1046930,
+          "End": 1053998
+        },
+        {
+          "ANNOTATION_ID": "a448",
+          "TIME_SLOT_REF1": "ts772",
+          "TIME_SLOT_REF2": "ts774",
+          "Start": 1055905,
+          "End": 1056112
+        },
+        {
+          "ANNOTATION_ID": "a449",
+          "TIME_SLOT_REF1": "ts775",
+          "TIME_SLOT_REF2": "ts776",
+          "Start": 1056112,
+          "End": 1063154
+        },
+        {
+          "ANNOTATION_ID": "a450",
+          "TIME_SLOT_REF1": "ts777",
+          "TIME_SLOT_REF2": "ts778",
+          "Start": 1063995,
+          "End": 1068680
+        },
+        {
+          "ANNOTATION_ID": "a451",
+          "TIME_SLOT_REF1": "ts781",
+          "TIME_SLOT_REF2": "ts782",
+          "Start": 1069071,
+          "End": 1077686
+        },
+        {
+          "ANNOTATION_ID": "a452",
+          "TIME_SLOT_REF1": "ts783",
+          "TIME_SLOT_REF2": "ts784",
+          "Start": 1077686,
+          "End": 1081820
+        },
+        {
+          "ANNOTATION_ID": "a453",
+          "TIME_SLOT_REF1": "ts785",
+          "TIME_SLOT_REF2": "ts786",
+          "Start": 1081822,
+          "End": 1090004
+        },
+        {
+          "ANNOTATION_ID": "a457",
+          "TIME_SLOT_REF1": "ts787",
+          "TIME_SLOT_REF2": "ts788",
+          "Start": 1090412,
+          "End": 1099088
+        },
+        {
+          "ANNOTATION_ID": "a458",
+          "TIME_SLOT_REF1": "ts789",
+          "TIME_SLOT_REF2": "ts790",
+          "Start": 1099107,
+          "End": 1107501
+        },
+        {
+          "ANNOTATION_ID": "a459",
+          "TIME_SLOT_REF1": "ts791",
+          "TIME_SLOT_REF2": "ts792",
+          "Start": 1107577,
+          "End": 1110802
+        },
+        {
+          "ANNOTATION_ID": "a460",
+          "TIME_SLOT_REF1": "ts795",
+          "TIME_SLOT_REF2": "ts796",
+          "Start": 1111844,
+          "End": 1119625
+        },
+        {
+          "ANNOTATION_ID": "a461",
+          "TIME_SLOT_REF1": "ts798",
+          "TIME_SLOT_REF2": "ts800",
+          "Start": 1119625,
+          "End": 1120041
+        },
+        {
+          "ANNOTATION_ID": "a462",
+          "TIME_SLOT_REF1": "ts801",
+          "TIME_SLOT_REF2": "ts803",
+          "Start": 1120041,
+          "End": 1121498
+        },
+        {
+          "ANNOTATION_ID": "a463",
+          "TIME_SLOT_REF1": "ts804",
+          "TIME_SLOT_REF2": "ts806",
+          "Start": 1121498,
+          "End": 1121879
+        },
+        {
+          "ANNOTATION_ID": "a464",
+          "TIME_SLOT_REF1": "ts807",
+          "TIME_SLOT_REF2": "ts808",
+          "Start": 1121886,
+          "End": 1128223
+        },
+        {
+          "ANNOTATION_ID": "a465",
+          "TIME_SLOT_REF1": "ts810",
+          "TIME_SLOT_REF2": "ts812",
+          "Start": 1128223,
+          "End": 1128656
+        },
+        {
+          "ANNOTATION_ID": "a466",
+          "TIME_SLOT_REF1": "ts813",
+          "TIME_SLOT_REF2": "ts815",
+          "Start": 1128656,
+          "End": 1129063
+        },
+        {
+          "ANNOTATION_ID": "a468",
+          "TIME_SLOT_REF1": "ts817",
+          "TIME_SLOT_REF2": "ts818",
+          "Start": 1129431,
+          "End": 1132469
+        },
+        {
+          "ANNOTATION_ID": "a474",
+          "TIME_SLOT_REF1": "ts821",
+          "TIME_SLOT_REF2": "ts822",
+          "Start": 1133113,
+          "End": 1140345
+        },
+        {
+          "ANNOTATION_ID": "a475",
+          "TIME_SLOT_REF1": "ts823",
+          "TIME_SLOT_REF2": "ts824",
+          "Start": 1140345,
+          "End": 1150510
+        },
+        {
+          "ANNOTATION_ID": "a476",
+          "TIME_SLOT_REF1": "ts825",
+          "TIME_SLOT_REF2": "ts826",
+          "Start": 1151352,
+          "End": 1153428
+        },
+        {
+          "ANNOTATION_ID": "a477",
+          "TIME_SLOT_REF1": "ts827",
+          "TIME_SLOT_REF2": "ts829",
+          "Start": 1153797,
+          "End": 1162168
+        },
+        {
+          "ANNOTATION_ID": "a478",
+          "TIME_SLOT_REF1": "ts831",
+          "TIME_SLOT_REF2": "ts832",
+          "Start": 1163740,
+          "End": 1165092
+        },
+        {
+          "ANNOTATION_ID": "a479",
+          "TIME_SLOT_REF1": "ts836",
+          "TIME_SLOT_REF2": "ts838",
+          "Start": 1166020,
+          "End": 1166506
+        },
+        {
+          "ANNOTATION_ID": "a480",
+          "TIME_SLOT_REF1": "ts841",
+          "TIME_SLOT_REF2": "ts842",
+          "Start": 1168189,
+          "End": 1175504
+        },
+        {
+          "ANNOTATION_ID": "a486",
+          "TIME_SLOT_REF1": "ts845",
+          "TIME_SLOT_REF2": "ts846",
+          "Start": 1176670,
+          "End": 1179787
+        },
+        {
+          "ANNOTATION_ID": "a487",
+          "TIME_SLOT_REF1": "ts847",
+          "TIME_SLOT_REF2": "ts848",
+          "Start": 1180158,
+          "End": 1189213
+        },
+        {
+          "ANNOTATION_ID": "a488",
+          "TIME_SLOT_REF1": "ts851",
+          "TIME_SLOT_REF2": "ts852",
+          "Start": 1189823,
+          "End": 1194921
+        },
+        {
+          "ANNOTATION_ID": "a489",
+          "TIME_SLOT_REF1": "ts853",
+          "TIME_SLOT_REF2": "ts856",
+          "Start": 1194921,
+          "End": 1195684
+        },
+        {
+          "ANNOTATION_ID": "a490",
+          "TIME_SLOT_REF1": "ts857",
+          "TIME_SLOT_REF2": "ts858",
+          "Start": 1195703,
+          "End": 1202232
+        },
+        {
+          "ANNOTATION_ID": "a494",
+          "TIME_SLOT_REF1": "ts861",
+          "TIME_SLOT_REF2": "ts862",
+          "Start": 1202594,
+          "End": 1209564
+        },
+        {
+          "ANNOTATION_ID": "a495",
+          "TIME_SLOT_REF1": "ts865",
+          "TIME_SLOT_REF2": "ts866",
+          "Start": 1210113,
+          "End": 1212473
+        },
+        {
+          "ANNOTATION_ID": "a496",
+          "TIME_SLOT_REF1": "ts869",
+          "TIME_SLOT_REF2": "ts870",
+          "Start": 1212966,
+          "End": 1217836
+        },
+        {
+          "ANNOTATION_ID": "a510",
+          "TIME_SLOT_REF1": "ts871",
+          "TIME_SLOT_REF2": "ts873",
+          "Start": 1217836,
+          "End": 1218328
+        },
+        {
+          "ANNOTATION_ID": "a502",
+          "TIME_SLOT_REF1": "ts875",
+          "TIME_SLOT_REF2": "ts876",
+          "Start": 1218344,
+          "End": 1224506
+        },
+        {
+          "ANNOTATION_ID": "a512",
+          "TIME_SLOT_REF1": "ts877",
+          "TIME_SLOT_REF2": "ts878",
+          "Start": 1225322,
+          "End": 1232655
+        },
+        {
+          "ANNOTATION_ID": "a513",
+          "TIME_SLOT_REF1": "ts879",
+          "TIME_SLOT_REF2": "ts881",
+          "Start": 1232655,
+          "End": 1242206
+        },
+        {
+          "ANNOTATION_ID": "a514",
+          "TIME_SLOT_REF1": "ts885",
+          "TIME_SLOT_REF2": "ts886",
+          "Start": 1246854,
+          "End": 1247242
+        },
+        {
+          "ANNOTATION_ID": "a515",
+          "TIME_SLOT_REF1": "ts889",
+          "TIME_SLOT_REF2": "ts890",
+          "Start": 1247954,
+          "End": 1248696
+        },
+        {
+          "ANNOTATION_ID": "a516",
+          "TIME_SLOT_REF1": "ts893",
+          "TIME_SLOT_REF2": "ts894",
+          "Start": 1254137,
+          "End": 1255022
+        },
+        {
+          "ANNOTATION_ID": "a517",
+          "TIME_SLOT_REF1": "ts896",
+          "TIME_SLOT_REF2": "ts898",
+          "Start": 1255109,
+          "End": 1257141
+        },
+        {
+          "ANNOTATION_ID": "a522",
+          "TIME_SLOT_REF1": "ts899",
+          "TIME_SLOT_REF2": "ts900",
+          "Start": 1257194,
+          "End": 1266129
+        },
+        {
+          "ANNOTATION_ID": "a523",
+          "TIME_SLOT_REF1": "ts901",
+          "TIME_SLOT_REF2": "ts902",
+          "Start": 1267099,
+          "End": 1268004
+        },
+        {
+          "ANNOTATION_ID": "a524",
+          "TIME_SLOT_REF1": "ts903",
+          "TIME_SLOT_REF2": "ts905",
+          "Start": 1268042,
+          "End": 1268505
+        },
+        {
+          "ANNOTATION_ID": "a525",
+          "TIME_SLOT_REF1": "ts906",
+          "TIME_SLOT_REF2": "ts908",
+          "Start": 1268505,
+          "End": 1272154
+        },
+        {
+          "ANNOTATION_ID": "a526",
+          "TIME_SLOT_REF1": "ts911",
+          "TIME_SLOT_REF2": "ts913",
+          "Start": 1273425,
+          "End": 1274099
+        },
+        {
+          "ANNOTATION_ID": "a686",
+          "TIME_SLOT_REF1": "ts918",
+          "TIME_SLOT_REF2": "ts920",
+          "Start": 1283159,
+          "End": 1284295
+        },
+        {
+          "ANNOTATION_ID": "a528",
+          "TIME_SLOT_REF1": "ts921",
+          "TIME_SLOT_REF2": "ts922",
+          "Start": 1284295,
+          "End": 1284816
+        },
+        {
+          "ANNOTATION_ID": "a541",
+          "TIME_SLOT_REF1": "ts925",
+          "TIME_SLOT_REF2": "ts926",
+          "Start": 1285743,
+          "End": 1291638
+        },
+        {
+          "ANNOTATION_ID": "a542",
+          "TIME_SLOT_REF1": "ts927",
+          "TIME_SLOT_REF2": "ts928",
+          "Start": 1291643,
+          "End": 1300123
+        },
+        {
+          "ANNOTATION_ID": "a543",
+          "TIME_SLOT_REF1": "ts929",
+          "TIME_SLOT_REF2": "ts932",
+          "Start": 1300261,
+          "End": 1305626
+        },
+        {
+          "ANNOTATION_ID": "a530",
+          "TIME_SLOT_REF1": "ts933",
+          "TIME_SLOT_REF2": "ts935",
+          "Start": 1305636,
+          "End": 1307067
+        },
+        {
+          "ANNOTATION_ID": "a531",
+          "TIME_SLOT_REF1": "ts936",
+          "TIME_SLOT_REF2": "ts939",
+          "Start": 1307067,
+          "End": 1307681
+        },
+        {
+          "ANNOTATION_ID": "a532",
+          "TIME_SLOT_REF1": "ts940",
+          "TIME_SLOT_REF2": "ts942",
+          "Start": 1307681,
+          "End": 1308436
+        },
+        {
+          "ANNOTATION_ID": "a544",
+          "TIME_SLOT_REF1": "ts943",
+          "TIME_SLOT_REF2": "ts944",
+          "Start": 1308447,
+          "End": 1316276
+        },
+        {
+          "ANNOTATION_ID": "a546",
+          "TIME_SLOT_REF1": "ts945",
+          "TIME_SLOT_REF2": "ts948",
+          "Start": 1316276,
+          "End": 1321034
+        },
+        {
+          "ANNOTATION_ID": "a547",
+          "TIME_SLOT_REF1": "ts949",
+          "TIME_SLOT_REF2": "ts950",
+          "Start": 1321060,
+          "End": 1322941
+        },
+        {
+          "ANNOTATION_ID": "a548",
+          "TIME_SLOT_REF1": "ts953",
+          "TIME_SLOT_REF2": "ts954",
+          "Start": 1323441,
+          "End": 1329754
+        },
+        {
+          "ANNOTATION_ID": "a549",
+          "TIME_SLOT_REF1": "ts957",
+          "TIME_SLOT_REF2": "ts958",
+          "Start": 1331641,
+          "End": 1336145
+        },
+        {
+          "ANNOTATION_ID": "a550",
+          "TIME_SLOT_REF1": "ts961",
+          "TIME_SLOT_REF2": "ts962",
+          "Start": 1336742,
+          "End": 1339438
+        },
+        {
+          "ANNOTATION_ID": "a551",
+          "TIME_SLOT_REF1": "ts963",
+          "TIME_SLOT_REF2": "ts964",
+          "Start": 1339438,
+          "End": 1349466
+        },
+        {
+          "ANNOTATION_ID": "a552",
+          "TIME_SLOT_REF1": "ts965",
+          "TIME_SLOT_REF2": "ts966",
+          "Start": 1349722,
+          "End": 1357924
+        },
+        {
+          "ANNOTATION_ID": "a553",
+          "TIME_SLOT_REF1": "ts967",
+          "TIME_SLOT_REF2": "ts968",
+          "Start": 1357924,
+          "End": 1365487
+        },
+        {
+          "ANNOTATION_ID": "a554",
+          "TIME_SLOT_REF1": "ts969",
+          "TIME_SLOT_REF2": "ts970",
+          "Start": 1365487,
+          "End": 1375401
+        },
+        {
+          "ANNOTATION_ID": "a558",
+          "TIME_SLOT_REF1": "ts971",
+          "TIME_SLOT_REF2": "ts973",
+          "Start": 1375441,
+          "End": 1382981
+        },
+        {
+          "ANNOTATION_ID": "a559",
+          "TIME_SLOT_REF1": "ts974",
+          "TIME_SLOT_REF2": "ts976",
+          "Start": 1383423,
+          "End": 1390560
+        },
+        {
+          "ANNOTATION_ID": "a560",
+          "TIME_SLOT_REF1": "ts977",
+          "TIME_SLOT_REF2": "ts978",
+          "Start": 1390560,
+          "End": 1399120
+        },
+        {
+          "ANNOTATION_ID": "a561",
+          "TIME_SLOT_REF1": "ts979",
+          "TIME_SLOT_REF2": "ts982",
+          "Start": 1399120,
+          "End": 1404463
+        },
+        {
+          "ANNOTATION_ID": "a562",
+          "TIME_SLOT_REF1": "ts981",
+          "TIME_SLOT_REF2": "ts983",
+          "Start": 1404463,
+          "End": 1405051
+        },
+        {
+          "ANNOTATION_ID": "a565",
+          "TIME_SLOT_REF1": "ts984",
+          "TIME_SLOT_REF2": "ts986",
+          "Start": 1405051,
+          "End": 1407411
+        },
+        {
+          "ANNOTATION_ID": "a574",
+          "TIME_SLOT_REF1": "ts988",
+          "TIME_SLOT_REF2": "ts989",
+          "Start": 1407421,
+          "End": 1409862
+        },
+        {
+          "ANNOTATION_ID": "a575",
+          "TIME_SLOT_REF1": "ts990",
+          "TIME_SLOT_REF2": "ts993",
+          "Start": 1409862,
+          "End": 1411526
+        },
+        {
+          "ANNOTATION_ID": "a576",
+          "TIME_SLOT_REF1": "ts994",
+          "TIME_SLOT_REF2": "ts995",
+          "Start": 1411526,
+          "End": 1414235
+        },
+        {
+          "ANNOTATION_ID": "a577",
+          "TIME_SLOT_REF1": "ts996",
+          "TIME_SLOT_REF2": "ts998",
+          "Start": 1414235,
+          "End": 1420715
+        },
+        {
+          "ANNOTATION_ID": "a578",
+          "TIME_SLOT_REF1": "ts999",
+          "TIME_SLOT_REF2": "ts1002",
+          "Start": 1420715,
+          "End": 1421210
+        },
+        {
+          "ANNOTATION_ID": "a1008",
+          "TIME_SLOT_REF1": "ts1003",
+          "TIME_SLOT_REF2": "ts1004",
+          "Start": 1421210,
+          "End": 1424441
+        },
+        {
+          "ANNOTATION_ID": "a579",
+          "TIME_SLOT_REF1": "ts1007",
+          "TIME_SLOT_REF2": "ts1008",
+          "Start": 1431616,
+          "End": 1432145
+        },
+        {
+          "ANNOTATION_ID": "a580",
+          "TIME_SLOT_REF1": "ts1012",
+          "TIME_SLOT_REF2": "ts1016",
+          "Start": 1446963,
+          "End": 1448078
+        },
+        {
+          "ANNOTATION_ID": "a585",
+          "TIME_SLOT_REF1": "ts1018",
+          "TIME_SLOT_REF2": "ts1022",
+          "Start": 1449838,
+          "End": 1451123
+        },
+        {
+          "ANNOTATION_ID": "a588",
+          "TIME_SLOT_REF1": "ts1023",
+          "TIME_SLOT_REF2": "ts1024",
+          "Start": 1451125,
+          "End": 1461080
+        },
+        {
+          "ANNOTATION_ID": "a591",
+          "TIME_SLOT_REF1": "ts1025",
+          "TIME_SLOT_REF2": "ts1026",
+          "Start": 1461510,
+          "End": 1471225
+        },
+        {
+          "ANNOTATION_ID": "a592",
+          "TIME_SLOT_REF1": "ts1028",
+          "TIME_SLOT_REF2": "ts1030",
+          "Start": 1471736,
+          "End": 1480717
+        },
+        {
+          "ANNOTATION_ID": "a595",
+          "TIME_SLOT_REF1": "ts1031",
+          "TIME_SLOT_REF2": "ts1032",
+          "Start": 1481201,
+          "End": 1491114
+        },
+        {
+          "ANNOTATION_ID": "a593",
+          "TIME_SLOT_REF1": "ts1033",
+          "TIME_SLOT_REF2": "ts1035",
+          "Start": 1491114,
+          "End": 1491969
+        },
+        {
+          "ANNOTATION_ID": "a597",
+          "TIME_SLOT_REF1": "ts1037",
+          "TIME_SLOT_REF2": "ts1038",
+          "Start": 1492044,
+          "End": 1498863
+        },
+        {
+          "ANNOTATION_ID": "a598",
+          "TIME_SLOT_REF1": "ts1040",
+          "TIME_SLOT_REF2": "ts1042",
+          "Start": 1498863,
+          "End": 1499830
+        },
+        {
+          "ANNOTATION_ID": "a601",
+          "TIME_SLOT_REF1": "ts1043",
+          "TIME_SLOT_REF2": "ts1044",
+          "Start": 1499846,
+          "End": 1501195
+        },
+        {
+          "ANNOTATION_ID": "a602",
+          "TIME_SLOT_REF1": "ts1045",
+          "TIME_SLOT_REF2": "ts1046",
+          "Start": 1501195,
+          "End": 1511611
+        },
+        {
+          "ANNOTATION_ID": "a603",
+          "TIME_SLOT_REF1": "ts1049",
+          "TIME_SLOT_REF2": "ts1051",
+          "Start": 1512032,
+          "End": 1518297
+        },
+        {
+          "ANNOTATION_ID": "a610",
+          "TIME_SLOT_REF1": "ts1053",
+          "TIME_SLOT_REF2": "ts1055",
+          "Start": 1518935,
+          "End": 1526378
+        },
+        {
+          "ANNOTATION_ID": "a605",
+          "TIME_SLOT_REF1": "ts1057",
+          "TIME_SLOT_REF2": "ts1058",
+          "Start": 1527157,
+          "End": 1527866
+        },
+        {
+          "ANNOTATION_ID": "a606",
+          "TIME_SLOT_REF1": "ts1059",
+          "TIME_SLOT_REF2": "ts1061",
+          "Start": 1527879,
+          "End": 1528252
+        },
+        {
+          "ANNOTATION_ID": "a611",
+          "TIME_SLOT_REF1": "ts1064",
+          "TIME_SLOT_REF2": "ts1067",
+          "Start": 1529067,
+          "End": 1536922
+        },
+        {
+          "ANNOTATION_ID": "a613",
+          "TIME_SLOT_REF1": "ts1069",
+          "TIME_SLOT_REF2": "ts1070",
+          "Start": 1537493,
+          "End": 1541468
+        },
+        {
+          "ANNOTATION_ID": "a614",
+          "TIME_SLOT_REF1": "ts1073",
+          "TIME_SLOT_REF2": "ts1074",
+          "Start": 1542181,
+          "End": 1545700
+        },
+        {
+          "ANNOTATION_ID": "a617",
+          "TIME_SLOT_REF1": "ts1077",
+          "TIME_SLOT_REF2": "ts1078",
+          "Start": 1546604,
+          "End": 1551460
+        },
+        {
+          "ANNOTATION_ID": "a618",
+          "TIME_SLOT_REF1": "ts1079",
+          "TIME_SLOT_REF2": "ts1080",
+          "Start": 1551858,
+          "End": 1561687
+        },
+        {
+          "ANNOTATION_ID": "a619",
+          "TIME_SLOT_REF1": "ts1081",
+          "TIME_SLOT_REF2": "ts1082",
+          "Start": 1561687,
+          "End": 1568886
+        },
+        {
+          "ANNOTATION_ID": "a620",
+          "TIME_SLOT_REF1": "ts1084",
+          "TIME_SLOT_REF2": "ts1088",
+          "Start": 1569705,
+          "End": 1573388
+        },
+        {
+          "ANNOTATION_ID": "a622",
+          "TIME_SLOT_REF1": "ts1090",
+          "TIME_SLOT_REF2": "ts1092",
+          "Start": 1573398,
+          "End": 1575189
+        },
+        {
+          "ANNOTATION_ID": "a625",
+          "TIME_SLOT_REF1": "ts1093",
+          "TIME_SLOT_REF2": "ts1095",
+          "Start": 1575198,
+          "End": 1584221
+        },
+        {
+          "ANNOTATION_ID": "a627",
+          "TIME_SLOT_REF1": "ts1097",
+          "TIME_SLOT_REF2": "ts1098",
+          "Start": 1584761,
+          "End": 1586921
+        },
+        {
+          "ANNOTATION_ID": "a629",
+          "TIME_SLOT_REF1": "ts1099",
+          "TIME_SLOT_REF2": "ts1100",
+          "Start": 1586921,
+          "End": 1595393
+        },
+        {
+          "ANNOTATION_ID": "a630",
+          "TIME_SLOT_REF1": "ts1101",
+          "TIME_SLOT_REF2": "ts1102",
+          "Start": 1595393,
+          "End": 1604255
+        },
+        {
+          "ANNOTATION_ID": "a631",
+          "TIME_SLOT_REF1": "ts1103",
+          "TIME_SLOT_REF2": "ts1104",
+          "Start": 1605035,
+          "End": 1610267
+        },
+        {
+          "ANNOTATION_ID": "a632",
+          "TIME_SLOT_REF1": "ts1105",
+          "TIME_SLOT_REF2": "ts1106",
+          "Start": 1610267,
+          "End": 1617934
+        },
+        {
+          "ANNOTATION_ID": "a633",
+          "TIME_SLOT_REF1": "ts1109",
+          "TIME_SLOT_REF2": "ts1110",
+          "Start": 1618674,
+          "End": 1622280
+        },
+        {
+          "ANNOTATION_ID": "a634",
+          "TIME_SLOT_REF1": "ts1111",
+          "TIME_SLOT_REF2": "ts1112",
+          "Start": 1622752,
+          "End": 1631796
+        },
+        {
+          "ANNOTATION_ID": "a636",
+          "TIME_SLOT_REF1": "ts1115",
+          "TIME_SLOT_REF2": "ts1117",
+          "Start": 1632691,
+          "End": 1641938
+        },
+        {
+          "ANNOTATION_ID": "a639",
+          "TIME_SLOT_REF1": "ts1119",
+          "TIME_SLOT_REF2": "ts1120",
+          "Start": 1642446,
+          "End": 1649429
+        },
+        {
+          "ANNOTATION_ID": "a640",
+          "TIME_SLOT_REF1": "ts1121",
+          "TIME_SLOT_REF2": "ts1122",
+          "Start": 1649528,
+          "End": 1656259
+        },
+        {
+          "ANNOTATION_ID": "a641",
+          "TIME_SLOT_REF1": "ts1123",
+          "TIME_SLOT_REF2": "ts1125",
+          "Start": 1656259,
+          "End": 1664671
+        },
+        {
+          "ANNOTATION_ID": "a642",
+          "TIME_SLOT_REF1": "ts1129",
+          "TIME_SLOT_REF2": "ts1131",
+          "Start": 1677063,
+          "End": 1677655
+        },
+        {
+          "ANNOTATION_ID": "a643",
+          "TIME_SLOT_REF1": "ts1135",
+          "TIME_SLOT_REF2": "ts1137",
+          "Start": 1678285,
+          "End": 1679032
+        },
+        {
+          "ANNOTATION_ID": "a648",
+          "TIME_SLOT_REF1": "ts1141",
+          "TIME_SLOT_REF2": "ts1142",
+          "Start": 1685441,
+          "End": 1690143
+        },
+        {
+          "ANNOTATION_ID": "a650",
+          "TIME_SLOT_REF1": "ts1143",
+          "TIME_SLOT_REF2": "ts1144",
+          "Start": 1690143,
+          "End": 1696681
+        },
+        {
+          "ANNOTATION_ID": "a651",
+          "TIME_SLOT_REF1": "ts1145",
+          "TIME_SLOT_REF2": "ts1147",
+          "Start": 1696691,
+          "End": 1697120
+        },
+        {
+          "ANNOTATION_ID": "a659",
+          "TIME_SLOT_REF1": "ts1149",
+          "TIME_SLOT_REF2": "ts1150",
+          "Start": 1697149,
+          "End": 1706049
+        },
+        {
+          "ANNOTATION_ID": "a660",
+          "TIME_SLOT_REF1": "ts1151",
+          "TIME_SLOT_REF2": "ts1153",
+          "Start": 1706049,
+          "End": 1708952
+        },
+        {
+          "ANNOTATION_ID": "a697",
+          "TIME_SLOT_REF1": "ts1156",
+          "TIME_SLOT_REF2": "ts1159",
+          "Start": 1709093,
+          "End": 1709401
+        },
+        {
+          "ANNOTATION_ID": "a654",
+          "TIME_SLOT_REF1": "ts1161",
+          "TIME_SLOT_REF2": "ts1163",
+          "Start": 1710358,
+          "End": 1711103
+        },
+        {
+          "ANNOTATION_ID": "a661",
+          "TIME_SLOT_REF1": "ts1165",
+          "TIME_SLOT_REF2": "ts1166",
+          "Start": 1711103,
+          "End": 1715014
+        },
+        {
+          "ANNOTATION_ID": "a662",
+          "TIME_SLOT_REF1": "ts1168",
+          "TIME_SLOT_REF2": "ts1170",
+          "Start": 1715014,
+          "End": 1716129
+        },
+        {
+          "ANNOTATION_ID": "a664",
+          "TIME_SLOT_REF1": "ts1171",
+          "TIME_SLOT_REF2": "ts1172",
+          "Start": 1716129,
+          "End": 1719465
+        },
+        {
+          "ANNOTATION_ID": "a665",
+          "TIME_SLOT_REF1": "ts1173",
+          "TIME_SLOT_REF2": "ts1174",
+          "Start": 1719465,
+          "End": 1727911
+        },
+        {
+          "ANNOTATION_ID": "a667",
+          "TIME_SLOT_REF1": "ts1176",
+          "TIME_SLOT_REF2": "ts1179",
+          "Start": 1727911,
+          "End": 1728447
+        },
+        {
+          "ANNOTATION_ID": "a668",
+          "TIME_SLOT_REF1": "ts1178",
+          "TIME_SLOT_REF2": "ts1180",
+          "Start": 1728447,
+          "End": 1733408
+        },
+        {
+          "ANNOTATION_ID": "a669",
+          "TIME_SLOT_REF1": "ts1181",
+          "TIME_SLOT_REF2": "ts1182",
+          "Start": 1733408,
+          "End": 1739449
+        },
+        {
+          "ANNOTATION_ID": "a671",
+          "TIME_SLOT_REF1": "ts1185",
+          "TIME_SLOT_REF2": "ts1186",
+          "Start": 1739882,
+          "End": 1747893
+        },
+        {
+          "ANNOTATION_ID": "a699",
+          "TIME_SLOT_REF1": "ts1187",
+          "TIME_SLOT_REF2": "ts1188",
+          "Start": 1747893,
+          "End": 1757761
+        },
+        {
+          "ANNOTATION_ID": "a675",
+          "TIME_SLOT_REF1": "ts1192",
+          "TIME_SLOT_REF2": "ts1194",
+          "Start": 1763944,
+          "End": 1764601
+        },
+        {
+          "ANNOTATION_ID": "a676",
+          "TIME_SLOT_REF1": "ts1197",
+          "TIME_SLOT_REF2": "ts1199",
+          "Start": 1767311,
+          "End": 1768291
+        },
+        {
+          "ANNOTATION_ID": "a681",
+          "TIME_SLOT_REF1": "ts1201",
+          "TIME_SLOT_REF2": "ts1202",
+          "Start": 1769434,
+          "End": 1778737
+        },
+        {
+          "ANNOTATION_ID": "a682",
+          "TIME_SLOT_REF1": "ts1203",
+          "TIME_SLOT_REF2": "ts1205",
+          "Start": 1778737,
+          "End": 1783190
+        },
+        {
+          "ANNOTATION_ID": "a683",
+          "TIME_SLOT_REF1": "ts1206",
+          "TIME_SLOT_REF2": "ts1208",
+          "Start": 1783190,
+          "End": 1784229
+        },
+        {
+          "ANNOTATION_ID": "a702",
+          "TIME_SLOT_REF1": "ts1211",
+          "TIME_SLOT_REF2": "ts1212",
+          "Start": 1784689,
+          "End": 1790344
+        },
+        {
+          "ANNOTATION_ID": "a703",
+          "TIME_SLOT_REF1": "ts1213",
+          "TIME_SLOT_REF2": "ts1214",
+          "Start": 1790350,
+          "End": 1797367
+        },
+        {
+          "ANNOTATION_ID": "a704",
+          "TIME_SLOT_REF1": "ts1215",
+          "TIME_SLOT_REF2": "ts1216",
+          "Start": 1797854,
+          "End": 1802892
+        },
+        {
+          "ANNOTATION_ID": "a705",
+          "TIME_SLOT_REF1": "ts1217",
+          "TIME_SLOT_REF2": "ts1218",
+          "Start": 1802892,
+          "End": 1811371
+        },
+        {
+          "ANNOTATION_ID": "a706",
+          "TIME_SLOT_REF1": "ts1220",
+          "TIME_SLOT_REF2": "ts1221",
+          "Start": 1811405,
+          "End": 1811949
+        },
+        {
+          "ANNOTATION_ID": "a707",
+          "TIME_SLOT_REF1": "ts1222",
+          "TIME_SLOT_REF2": "ts1224",
+          "Start": 1811949,
+          "End": 1818003
+        },
+        {
+          "ANNOTATION_ID": "a708",
+          "TIME_SLOT_REF1": "ts1225",
+          "TIME_SLOT_REF2": "ts1226",
+          "Start": 1818047,
+          "End": 1823699
+        },
+        {
+          "ANNOTATION_ID": "a709",
+          "TIME_SLOT_REF1": "ts1228",
+          "TIME_SLOT_REF2": "ts1230",
+          "Start": 1824041,
+          "End": 1826550
+        },
+        {
+          "ANNOTATION_ID": "a710",
+          "TIME_SLOT_REF1": "ts1231",
+          "TIME_SLOT_REF2": "ts1233",
+          "Start": 1826550,
+          "End": 1835020
+        },
+        {
+          "ANNOTATION_ID": "a711",
+          "TIME_SLOT_REF1": "ts1235",
+          "TIME_SLOT_REF2": "ts1238",
+          "Start": 1835047,
+          "End": 1835929
+        },
+        {
+          "ANNOTATION_ID": "a712",
+          "TIME_SLOT_REF1": "ts1239",
+          "TIME_SLOT_REF2": "ts1240",
+          "Start": 1835934,
+          "End": 1837750
+        },
+        {
+          "ANNOTATION_ID": "a713",
+          "TIME_SLOT_REF1": "ts1242",
+          "TIME_SLOT_REF2": "ts1243",
+          "Start": 1837781,
+          "End": 1838423
+        },
+        {
+          "ANNOTATION_ID": "a714",
+          "TIME_SLOT_REF1": "ts1246",
+          "TIME_SLOT_REF2": "ts1249",
+          "Start": 1839584,
+          "End": 1848054
+        },
+        {
+          "ANNOTATION_ID": "a715",
+          "TIME_SLOT_REF1": "ts1251",
+          "TIME_SLOT_REF2": "ts1252",
+          "Start": 1848481,
+          "End": 1851156
+        },
+        {
+          "ANNOTATION_ID": "a723",
+          "TIME_SLOT_REF1": "ts1255",
+          "TIME_SLOT_REF2": "ts1256",
+          "Start": 1852357,
+          "End": 1857517
+        },
+        {
+          "ANNOTATION_ID": "a724",
+          "TIME_SLOT_REF1": "ts1259",
+          "TIME_SLOT_REF2": "ts1260",
+          "Start": 1862900,
+          "End": 1867170
+        },
+        {
+          "ANNOTATION_ID": "a725",
+          "TIME_SLOT_REF1": "ts1261",
+          "TIME_SLOT_REF2": "ts1262",
+          "Start": 1868038,
+          "End": 1868891
+        },
+        {
+          "ANNOTATION_ID": "a726",
+          "TIME_SLOT_REF1": "ts1263",
+          "TIME_SLOT_REF2": "ts1264",
+          "Start": 1869893,
+          "End": 1874921
+        },
+        {
+          "ANNOTATION_ID": "a727",
+          "TIME_SLOT_REF1": "ts1265",
+          "TIME_SLOT_REF2": "ts1266",
+          "Start": 1875050,
+          "End": 1880525
+        },
+        {
+          "ANNOTATION_ID": "a728",
+          "TIME_SLOT_REF1": "ts1268",
+          "TIME_SLOT_REF2": "ts1270",
+          "Start": 1880525,
+          "End": 1881738
+        },
+        {
+          "ANNOTATION_ID": "a729",
+          "TIME_SLOT_REF1": "ts1271",
+          "TIME_SLOT_REF2": "ts1272",
+          "Start": 1881739,
+          "End": 1882825
+        },
+        {
+          "ANNOTATION_ID": "a730",
+          "TIME_SLOT_REF1": "ts1274",
+          "TIME_SLOT_REF2": "ts1277",
+          "Start": 1882825,
+          "End": 1883968
+        },
+        {
+          "ANNOTATION_ID": "a731",
+          "TIME_SLOT_REF1": "ts1276",
+          "TIME_SLOT_REF2": "ts1278",
+          "Start": 1883968,
+          "End": 1887939
+        },
+        {
+          "ANNOTATION_ID": "a732",
+          "TIME_SLOT_REF1": "ts1279",
+          "TIME_SLOT_REF2": "ts1281",
+          "Start": 1887939,
+          "End": 1888496
+        },
+        {
+          "ANNOTATION_ID": "a733",
+          "TIME_SLOT_REF1": "ts1283",
+          "TIME_SLOT_REF2": "ts1284",
+          "Start": 1888539,
+          "End": 1897107
+        },
+        {
+          "ANNOTATION_ID": "a738",
+          "TIME_SLOT_REF1": "ts1285",
+          "TIME_SLOT_REF2": "ts1287",
+          "Start": 1897115,
+          "End": 1901230
+        },
+        {
+          "ANNOTATION_ID": "a740",
+          "TIME_SLOT_REF1": "ts1289",
+          "TIME_SLOT_REF2": "ts1291",
+          "Start": 1901695,
+          "End": 1906171
+        },
+        {
+          "ANNOTATION_ID": "a748",
+          "TIME_SLOT_REF1": "ts1293",
+          "TIME_SLOT_REF2": "ts1294",
+          "Start": 1906644,
+          "End": 1908580
+        },
+        {
+          "ANNOTATION_ID": "a749",
+          "TIME_SLOT_REF1": "ts1297",
+          "TIME_SLOT_REF2": "ts1298",
+          "Start": 1908843,
+          "End": 1911990
+        },
+        {
+          "ANNOTATION_ID": "a750",
+          "TIME_SLOT_REF1": "ts1300",
+          "TIME_SLOT_REF2": "ts1302",
+          "Start": 1914348,
+          "End": 1921267
+        },
+        {
+          "ANNOTATION_ID": "a751",
+          "TIME_SLOT_REF1": "ts1304",
+          "TIME_SLOT_REF2": "ts1306",
+          "Start": 1921278,
+          "End": 1921826
+        },
+        {
+          "ANNOTATION_ID": "a752",
+          "TIME_SLOT_REF1": "ts1309",
+          "TIME_SLOT_REF2": "ts1310",
+          "Start": 1923279,
+          "End": 1924250
+        },
+        {
+          "ANNOTATION_ID": "a1808",
+          "TIME_SLOT_REF1": "ts1313",
+          "TIME_SLOT_REF2": "ts1314",
+          "Start": 1924970,
+          "End": 1927304
+        },
+        {
+          "ANNOTATION_ID": "a754",
+          "TIME_SLOT_REF1": "ts1317",
+          "TIME_SLOT_REF2": "ts1318",
+          "Start": 1930226,
+          "End": 1930941
+        },
+        {
+          "ANNOTATION_ID": "a762",
+          "TIME_SLOT_REF1": "ts1329",
+          "TIME_SLOT_REF2": "ts1330",
+          "Start": 1964685,
+          "End": 1967870
+        },
+        {
+          "ANNOTATION_ID": "a763",
+          "TIME_SLOT_REF1": "ts1333",
+          "TIME_SLOT_REF2": "ts1334",
+          "Start": 1968509,
+          "End": 1974614
+        },
+        {
+          "ANNOTATION_ID": "a764",
+          "TIME_SLOT_REF1": "ts1335",
+          "TIME_SLOT_REF2": "ts1336",
+          "Start": 1974614,
+          "End": 1980295
+        },
+        {
+          "ANNOTATION_ID": "a765",
+          "TIME_SLOT_REF1": "ts1337",
+          "TIME_SLOT_REF2": "ts1339",
+          "Start": 1980295,
+          "End": 1988229
+        },
+        {
+          "ANNOTATION_ID": "a766",
+          "TIME_SLOT_REF1": "ts1341",
+          "TIME_SLOT_REF2": "ts1344",
+          "Start": 1989146,
+          "End": 1996908
+        },
+        {
+          "ANNOTATION_ID": "a767",
+          "TIME_SLOT_REF1": "ts1343",
+          "TIME_SLOT_REF2": "ts1345",
+          "Start": 1996908,
+          "End": 1997660
+        },
+        {
+          "ANNOTATION_ID": "a768",
+          "TIME_SLOT_REF1": "ts1347",
+          "TIME_SLOT_REF2": "ts1348",
+          "Start": 1997662,
+          "End": 1998464
+        },
+        {
+          "ANNOTATION_ID": "a894",
+          "TIME_SLOT_REF1": "ts1350",
+          "TIME_SLOT_REF2": "ts1353",
+          "Start": 1998464,
+          "End": 1999092
+        },
+        {
+          "ANNOTATION_ID": "a769",
+          "TIME_SLOT_REF1": "ts1351",
+          "TIME_SLOT_REF2": "ts1354",
+          "Start": 1999092,
+          "End": 2006603
+        },
+        {
+          "ANNOTATION_ID": "a770",
+          "TIME_SLOT_REF1": "ts1355",
+          "TIME_SLOT_REF2": "ts1356",
+          "Start": 2007177,
+          "End": 2010619
+        },
+        {
+          "ANNOTATION_ID": "a771",
+          "TIME_SLOT_REF1": "ts1357",
+          "TIME_SLOT_REF2": "ts1358",
+          "Start": 2010619,
+          "End": 2019700
+        },
+        {
+          "ANNOTATION_ID": "a772",
+          "TIME_SLOT_REF1": "ts1359",
+          "TIME_SLOT_REF2": "ts1360",
+          "Start": 2019700,
+          "End": 2025133
+        },
+        {
+          "ANNOTATION_ID": "a773",
+          "TIME_SLOT_REF1": "ts1362",
+          "TIME_SLOT_REF2": "ts1364",
+          "Start": 2025610,
+          "End": 2032522
+        },
+        {
+          "ANNOTATION_ID": "a774",
+          "TIME_SLOT_REF1": "ts1365",
+          "TIME_SLOT_REF2": "ts1367",
+          "Start": 2032522,
+          "End": 2037982
+        },
+        {
+          "ANNOTATION_ID": "a775",
+          "TIME_SLOT_REF1": "ts1369",
+          "TIME_SLOT_REF2": "ts1371",
+          "Start": 2039017,
+          "End": 2042564
+        },
+        {
+          "ANNOTATION_ID": "a777",
+          "TIME_SLOT_REF1": "ts1373",
+          "TIME_SLOT_REF2": "ts1374",
+          "Start": 2042936,
+          "End": 2048029
+        },
+        {
+          "ANNOTATION_ID": "a778",
+          "TIME_SLOT_REF1": "ts1375",
+          "TIME_SLOT_REF2": "ts1376",
+          "Start": 2048029,
+          "End": 2055748
+        },
+        {
+          "ANNOTATION_ID": "a779",
+          "TIME_SLOT_REF1": "ts1377",
+          "TIME_SLOT_REF2": "ts1378",
+          "Start": 2056463,
+          "End": 2062778
+        },
+        {
+          "ANNOTATION_ID": "a792",
+          "TIME_SLOT_REF1": "ts1381",
+          "TIME_SLOT_REF2": "ts1382",
+          "Start": 2063429,
+          "End": 2068073
+        },
+        {
+          "ANNOTATION_ID": "a793",
+          "TIME_SLOT_REF1": "ts1384",
+          "TIME_SLOT_REF2": "ts1386",
+          "Start": 2068084,
+          "End": 2069162
+        },
+        {
+          "ANNOTATION_ID": "a794",
+          "TIME_SLOT_REF1": "ts1387",
+          "TIME_SLOT_REF2": "ts1390",
+          "Start": 2069179,
+          "End": 2073765
+        },
+        {
+          "ANNOTATION_ID": "a795",
+          "TIME_SLOT_REF1": "ts1392",
+          "TIME_SLOT_REF2": "ts1394",
+          "Start": 2073765,
+          "End": 2074334
+        },
+        {
+          "ANNOTATION_ID": "a796",
+          "TIME_SLOT_REF1": "ts1395",
+          "TIME_SLOT_REF2": "ts1396",
+          "Start": 2074344,
+          "End": 2078620
+        },
+        {
+          "ANNOTATION_ID": "a896",
+          "TIME_SLOT_REF1": "ts1397",
+          "TIME_SLOT_REF2": "ts1398",
+          "Start": 2078620,
+          "End": 2088823
+        },
+        {
+          "ANNOTATION_ID": "a897",
+          "TIME_SLOT_REF1": "ts1399",
+          "TIME_SLOT_REF2": "ts1400",
+          "Start": 2088823,
+          "End": 2097689
+        },
+        {
+          "ANNOTATION_ID": "a797",
+          "TIME_SLOT_REF1": "ts1402",
+          "TIME_SLOT_REF2": "ts1404",
+          "Start": 2097719,
+          "End": 2098424
+        },
+        {
+          "ANNOTATION_ID": "a798",
+          "TIME_SLOT_REF1": "ts1405",
+          "TIME_SLOT_REF2": "ts1406",
+          "Start": 2098428,
+          "End": 2099149
+        },
+        {
+          "ANNOTATION_ID": "a799",
+          "TIME_SLOT_REF1": "ts1408",
+          "TIME_SLOT_REF2": "ts1409",
+          "Start": 2099149,
+          "End": 2099698
+        },
+        {
+          "ANNOTATION_ID": "a804",
+          "TIME_SLOT_REF1": "ts1410",
+          "TIME_SLOT_REF2": "ts1412",
+          "Start": 2099698,
+          "End": 2108509
+        },
+        {
+          "ANNOTATION_ID": "a805",
+          "TIME_SLOT_REF1": "ts1415",
+          "TIME_SLOT_REF2": "ts1417",
+          "Start": 2109134,
+          "End": 2110487
+        },
+        {
+          "ANNOTATION_ID": "a806",
+          "TIME_SLOT_REF1": "ts1418",
+          "TIME_SLOT_REF2": "ts1420",
+          "Start": 2110487,
+          "End": 2110956
+        },
+        {
+          "ANNOTATION_ID": "a807",
+          "TIME_SLOT_REF1": "ts1421",
+          "TIME_SLOT_REF2": "ts1422",
+          "Start": 2110968,
+          "End": 2119480
+        },
+        {
+          "ANNOTATION_ID": "a808",
+          "TIME_SLOT_REF1": "ts1424",
+          "TIME_SLOT_REF2": "ts1425",
+          "Start": 2119482,
+          "End": 2119882
+        },
+        {
+          "ANNOTATION_ID": "a812",
+          "TIME_SLOT_REF1": "ts1426",
+          "TIME_SLOT_REF2": "ts1428",
+          "Start": 2119882,
+          "End": 2122123
+        },
+        {
+          "ANNOTATION_ID": "a813",
+          "TIME_SLOT_REF1": "ts1429",
+          "TIME_SLOT_REF2": "ts1432",
+          "Start": 2122123,
+          "End": 2130697
+        },
+        {
+          "ANNOTATION_ID": "a814",
+          "TIME_SLOT_REF1": "ts1431",
+          "TIME_SLOT_REF2": "ts1434",
+          "Start": 2130697,
+          "End": 2131620
+        },
+        {
+          "ANNOTATION_ID": "a815",
+          "TIME_SLOT_REF1": "ts1436",
+          "TIME_SLOT_REF2": "ts1439",
+          "Start": 2140370,
+          "End": 2141047
+        },
+        {
+          "ANNOTATION_ID": "a816",
+          "TIME_SLOT_REF1": "ts1443",
+          "TIME_SLOT_REF2": "ts1445",
+          "Start": 2142293,
+          "End": 2143370
+        },
+        {
+          "ANNOTATION_ID": "a822",
+          "TIME_SLOT_REF1": "ts1449",
+          "TIME_SLOT_REF2": "ts1450",
+          "Start": 2145657,
+          "End": 2146327
+        },
+        {
+          "ANNOTATION_ID": "a823",
+          "TIME_SLOT_REF1": "ts1454",
+          "TIME_SLOT_REF2": "ts1456",
+          "Start": 2155056,
+          "End": 2155657
+        },
+        {
+          "ANNOTATION_ID": "a824",
+          "TIME_SLOT_REF1": "ts1457",
+          "TIME_SLOT_REF2": "ts1458",
+          "Start": 2155657,
+          "End": 2156361
+        },
+        {
+          "ANNOTATION_ID": "a828",
+          "TIME_SLOT_REF1": "ts1461",
+          "TIME_SLOT_REF2": "ts1463",
+          "Start": 2159040,
+          "End": 2159673
+        },
+        {
+          "ANNOTATION_ID": "a829",
+          "TIME_SLOT_REF1": "ts1467",
+          "TIME_SLOT_REF2": "ts1468",
+          "Start": 2160716,
+          "End": 2161057
+        },
+        {
+          "ANNOTATION_ID": "a830",
+          "TIME_SLOT_REF1": "ts1469",
+          "TIME_SLOT_REF2": "ts1471",
+          "Start": 2161057,
+          "End": 2162078
+        },
+        {
+          "ANNOTATION_ID": "a836",
+          "TIME_SLOT_REF1": "ts1473",
+          "TIME_SLOT_REF2": "ts1474",
+          "Start": 2162106,
+          "End": 2172508
+        },
+        {
+          "ANNOTATION_ID": "a837",
+          "TIME_SLOT_REF1": "ts1475",
+          "TIME_SLOT_REF2": "ts1476",
+          "Start": 2172508,
+          "End": 2179917
+        },
+        {
+          "ANNOTATION_ID": "a838",
+          "TIME_SLOT_REF1": "ts1479",
+          "TIME_SLOT_REF2": "ts1480",
+          "Start": 2180571,
+          "End": 2187959
+        },
+        {
+          "ANNOTATION_ID": "a839",
+          "TIME_SLOT_REF1": "ts1483",
+          "TIME_SLOT_REF2": "ts1484",
+          "Start": 2188593,
+          "End": 2194542
+        },
+        {
+          "ANNOTATION_ID": "a840",
+          "TIME_SLOT_REF1": "ts1485",
+          "TIME_SLOT_REF2": "ts1486",
+          "Start": 2194542,
+          "End": 2203188
+        },
+        {
+          "ANNOTATION_ID": "a841",
+          "TIME_SLOT_REF1": "ts1488",
+          "TIME_SLOT_REF2": "ts1491",
+          "Start": 2204032,
+          "End": 2204942
+        },
+        {
+          "ANNOTATION_ID": "a842",
+          "TIME_SLOT_REF1": "ts1490",
+          "TIME_SLOT_REF2": "ts1494",
+          "Start": 2204942,
+          "End": 2205688
+        },
+        {
+          "ANNOTATION_ID": "a843",
+          "TIME_SLOT_REF1": "ts1492",
+          "TIME_SLOT_REF2": "ts1495",
+          "Start": 2205688,
+          "End": 2206161
+        },
+        {
+          "ANNOTATION_ID": "a844",
+          "TIME_SLOT_REF1": "ts1497",
+          "TIME_SLOT_REF2": "ts1500",
+          "Start": 2206188,
+          "End": 2211060
+        },
+        {
+          "ANNOTATION_ID": "a845",
+          "TIME_SLOT_REF1": "ts1499",
+          "TIME_SLOT_REF2": "ts1502",
+          "Start": 2211060,
+          "End": 2211660
+        },
+        {
+          "ANNOTATION_ID": "a850",
+          "TIME_SLOT_REF1": "ts1503",
+          "TIME_SLOT_REF2": "ts1504",
+          "Start": 2211718,
+          "End": 2218387
+        },
+        {
+          "ANNOTATION_ID": "a851",
+          "TIME_SLOT_REF1": "ts1505",
+          "TIME_SLOT_REF2": "ts1506",
+          "Start": 2219175,
+          "End": 2225887
+        },
+        {
+          "ANNOTATION_ID": "a852",
+          "TIME_SLOT_REF1": "ts1507",
+          "TIME_SLOT_REF2": "ts1508",
+          "Start": 2225887,
+          "End": 2233685
+        },
+        {
+          "ANNOTATION_ID": "a853",
+          "TIME_SLOT_REF1": "ts1509",
+          "TIME_SLOT_REF2": "ts1512",
+          "Start": 2234110,
+          "End": 2240278
+        },
+        {
+          "ANNOTATION_ID": "a854",
+          "TIME_SLOT_REF1": "ts1511",
+          "TIME_SLOT_REF2": "ts1514",
+          "Start": 2240278,
+          "End": 2241332
+        },
+        {
+          "ANNOTATION_ID": "a857",
+          "TIME_SLOT_REF1": "ts1515",
+          "TIME_SLOT_REF2": "ts1516",
+          "Start": 2241393,
+          "End": 2247014
+        },
+        {
+          "ANNOTATION_ID": "a858",
+          "TIME_SLOT_REF1": "ts1517",
+          "TIME_SLOT_REF2": "ts1520",
+          "Start": 2247014,
+          "End": 2255968
+        },
+        {
+          "ANNOTATION_ID": "a1011",
+          "TIME_SLOT_REF1": "ts1521",
+          "TIME_SLOT_REF2": "ts1523",
+          "Start": 2255968,
+          "End": 2265439
+        },
+        {
+          "ANNOTATION_ID": "a860",
+          "TIME_SLOT_REF1": "ts1522",
+          "TIME_SLOT_REF2": "ts1524",
+          "Start": 2265439,
+          "End": 2272279
+        },
+        {
+          "ANNOTATION_ID": "a861",
+          "TIME_SLOT_REF1": "ts1525",
+          "TIME_SLOT_REF2": "ts1526",
+          "Start": 2272279,
+          "End": 2279799
+        },
+        {
+          "ANNOTATION_ID": "a862",
+          "TIME_SLOT_REF1": "ts1527",
+          "TIME_SLOT_REF2": "ts1528",
+          "Start": 2279799,
+          "End": 2285499
+        },
+        {
+          "ANNOTATION_ID": "a863",
+          "TIME_SLOT_REF1": "ts1529",
+          "TIME_SLOT_REF2": "ts1530",
+          "Start": 2285719,
+          "End": 2294679
+        },
+        {
+          "ANNOTATION_ID": "a864",
+          "TIME_SLOT_REF1": "ts1531",
+          "TIME_SLOT_REF2": "ts1532",
+          "Start": 2294679,
+          "End": 2303163
+        },
+        {
+          "ANNOTATION_ID": "a865",
+          "TIME_SLOT_REF1": "ts1535",
+          "TIME_SLOT_REF2": "ts1536",
+          "Start": 2304020,
+          "End": 2310719
+        },
+        {
+          "ANNOTATION_ID": "a866",
+          "TIME_SLOT_REF1": "ts1537",
+          "TIME_SLOT_REF2": "ts1538",
+          "Start": 2310719,
+          "End": 2319460
+        },
+        {
+          "ANNOTATION_ID": "a870",
+          "TIME_SLOT_REF1": "ts1540",
+          "TIME_SLOT_REF2": "ts1543",
+          "Start": 2319480,
+          "End": 2322180
+        },
+        {
+          "ANNOTATION_ID": "a867",
+          "TIME_SLOT_REF1": "ts1542",
+          "TIME_SLOT_REF2": "ts1544",
+          "Start": 2322180,
+          "End": 2322860
+        },
+        {
+          "ANNOTATION_ID": "a871",
+          "TIME_SLOT_REF1": "ts1546",
+          "TIME_SLOT_REF2": "ts1548",
+          "Start": 2322860,
+          "End": 2323960
+        },
+        {
+          "ANNOTATION_ID": "a872",
+          "TIME_SLOT_REF1": "ts1549",
+          "TIME_SLOT_REF2": "ts1550",
+          "Start": 2324012,
+          "End": 2329079
+        },
+        {
+          "ANNOTATION_ID": "a875",
+          "TIME_SLOT_REF1": "ts1551",
+          "TIME_SLOT_REF2": "ts1552",
+          "Start": 2329079,
+          "End": 2334599
+        },
+        {
+          "ANNOTATION_ID": "a876",
+          "TIME_SLOT_REF1": "ts1553",
+          "TIME_SLOT_REF2": "ts1554",
+          "Start": 2334599,
+          "End": 2342579
+        },
+        {
+          "ANNOTATION_ID": "a877",
+          "TIME_SLOT_REF1": "ts1555",
+          "TIME_SLOT_REF2": "ts1556",
+          "Start": 2342579,
+          "End": 2348849
+        },
+        {
+          "ANNOTATION_ID": "a878",
+          "TIME_SLOT_REF1": "ts1557",
+          "TIME_SLOT_REF2": "ts1558",
+          "Start": 2348849,
+          "End": 2358444
+        },
+        {
+          "ANNOTATION_ID": "a879",
+          "TIME_SLOT_REF1": "ts1559",
+          "TIME_SLOT_REF2": "ts1560",
+          "Start": 2359055,
+          "End": 2366119
+        },
+        {
+          "ANNOTATION_ID": "a880",
+          "TIME_SLOT_REF1": "ts1561",
+          "TIME_SLOT_REF2": "ts1562",
+          "Start": 2366119,
+          "End": 2376195
+        },
+        {
+          "ANNOTATION_ID": "a873",
+          "TIME_SLOT_REF1": "ts1564",
+          "TIME_SLOT_REF2": "ts1566",
+          "Start": 2376201,
+          "End": 2377521
+        },
+        {
+          "ANNOTATION_ID": "a881",
+          "TIME_SLOT_REF1": "ts1567",
+          "TIME_SLOT_REF2": "ts1568",
+          "Start": 2377541,
+          "End": 2378282
+        },
+        {
+          "ANNOTATION_ID": "a882",
+          "TIME_SLOT_REF1": "ts1570",
+          "TIME_SLOT_REF2": "ts1572",
+          "Start": 2378741,
+          "End": 2386461
+        },
+        {
+          "ANNOTATION_ID": "a884",
+          "TIME_SLOT_REF1": "ts1573",
+          "TIME_SLOT_REF2": "ts1574",
+          "Start": 2386668,
+          "End": 2390577
+        },
+        {
+          "ANNOTATION_ID": "a886",
+          "TIME_SLOT_REF1": "ts1575",
+          "TIME_SLOT_REF2": "ts1576",
+          "Start": 2390577,
+          "End": 2399455
+        },
+        {
+          "ANNOTATION_ID": "a887",
+          "TIME_SLOT_REF1": "ts1577",
+          "TIME_SLOT_REF2": "ts1579",
+          "Start": 2399455,
+          "End": 2404374
+        },
+        {
+          "ANNOTATION_ID": "a888",
+          "TIME_SLOT_REF1": "ts1580",
+          "TIME_SLOT_REF2": "ts1582",
+          "Start": 2404860,
+          "End": 2411718
+        },
+        {
+          "ANNOTATION_ID": "a889",
+          "TIME_SLOT_REF1": "ts1583",
+          "TIME_SLOT_REF2": "ts1584",
+          "Start": 2411718,
+          "End": 2414993
+        },
+        {
+          "ANNOTATION_ID": "a891",
+          "TIME_SLOT_REF1": "ts1589",
+          "TIME_SLOT_REF2": "ts1591",
+          "Start": 2416193,
+          "End": 2416949
+        }
+      ]
+    }
+  }
+}

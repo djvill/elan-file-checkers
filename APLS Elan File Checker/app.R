@@ -688,7 +688,7 @@ is.displayed <- function(x) {
 ## Standalone EAF-to-DF =====================================================
 
 ##To be used for interactive debugging, not in actual app
-xmllist_to_df <- function(xmllist, nST=nonSpkrTiers) {
+xmllist_to_df <- function(xmllist, singleDF=TRUE, nST=nonSpkrTiers) {
   tierInfo <- 
     xmllist %>% 
     map(xml_find_all, "//TIER") %>% 
@@ -697,41 +697,37 @@ xmllist_to_df <- function(xmllist, nST=nonSpkrTiers) {
     ##Add SpkrTier (is the tier a speaker tier?)
     mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(nST)))
   
-  imap(xmllist, getTimes, df=tierInfo) %>% 
-    map_dfr(~ map_dfr(.x, as_tibble, .id="Tier"), .id="File")
+  eaflist <- imap(xmllist, getTimes, df=tierInfo)
+  
+  if (singleDF) {
+    eaflist %>%
+      map_dfr(~ map_dfr(.x, as_tibble, .id="Tier"), .id="File")
+  } else {
+    eaflist
+  }
 }
 
 ##Get a dataframe from several paths to EAFs
-eafs_to_df <- function(..., nST=nonSpkrTiers) {
+eafs_to_df <- function(..., singleDF=TRUE, nST=nonSpkrTiers) {
   eaflist <- list(...) %>% 
     flatten_chr() %>% 
     set_names(make.names(basename(.), unique=TRUE)) %>% 
     map(read_xml)
   
-  xmllist_to_df(eaflist, nST=nST)
+  xmllist_to_df(eaflist, singleDF=singleDF, nST=nST)
 }
 
 ##Get a dataframe from a directory with several EAFs
-eafDir_to_df <- function(eafDir, pattern=".+\\.eaf", nST=nonSpkrTiers) {
+eafDir_to_df <- function(eafDir, pattern=".+\\.eaf$", 
+                         singleDF=TRUE, nST=nonSpkrTiers) {
   eaflist <- 
     dir(eafDir, pattern=pattern, full.names=TRUE) %>% 
     set_names(basename(.)) %>% 
     map(read_xml)
   
-  xmllist_to_df(eaflist, nST=nST)
+  xmllist_to_df(eaflist, singleDF=singleDF, nST=nST)
 }
 
-##Back to list of DFs
-# eafs_to_df("step3/HD06-1_GoodOnly.eaf", "~/Downloads/HD06-1_GoodOnly.eaf") %>% 
-#   split(.$File) %>% 
-#   map(~ split(.x, .x$Tier))
-
-# eafs_to_df("step3/HD06-1_GoodOnly.eaf", "~/Downloads/HD06-1_GoodOnly.eaf") %>% 
-#   select(-contains("TIME_SLOT")) %>% 
-#   pivot_longer(Start:End, names_to="Boundary") %>% 
-#   mutate(across(File, ~ if_else(endsWith(.x, "1"), "New", "Old"))) %>% 
-#   pivot_wider(names_from=File) %>% 
-#   filter(Old != New)
 
 # Server ------------------------------------------------------------------
 server <- function(input, output) {
