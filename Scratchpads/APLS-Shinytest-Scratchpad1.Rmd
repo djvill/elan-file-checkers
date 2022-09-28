@@ -1,17 +1,26 @@
 ---
-title: APLS shinytest Scratchpad 1
+title: "APLS shinytest Scratchpad 1: Fix overlap-fixing"
 output: 
   html_notebook:
     toc: yes
     toc_float: yes
     number_sections: yes
-    code_folding: hide
+    code_folding: show
     df_print: tibble
 ---
+
+```{css, echo=F}
+pre {
+  max-height: 300px;
+  overflow-y: auto;
+}
+```
+
 
 ```{r setup}
 knitr::opts_chunk$set(echo=T, include=T, comment=NA)
 library(tidyverse)
+library(magrittr)
 library(shiny)
 library(shinytest)
 library(xml2)
@@ -350,6 +359,8 @@ eafDir_to_df <- function(eafDir, pattern=".+\\.eaf$",
 
 Right, that's all!
 
+# What's causing the problem?
+
 Does putting the interviewer before the main speaker change how overlaps are fixed?
 
 ```{r}
@@ -386,7 +397,8 @@ newOld <-
   select(-IntFirst) %>% 
   rename(Output = HD06First) %>% 
   mutate(Change = Output - Orig)
-newOld
+newOld %>% 
+  head()
 ```
 
 No apparent pattern by Tier or Boundary:
@@ -412,6 +424,8 @@ In the first two rows, a 62ms overlap turns into a 62ms gap.
 But I want a 62ms overlap to turn into a 0ms gap.
 Maybe that's because of the vectorized implementation; the Southland ones used a for-loop.
 
+# Why the gap? Troubleshoot `fixOverlaps()`
+
 Try walking thru what `fixOverlaps()` does
 
 This is like a single `times[[.x]]` element within the `map()` in `overlapsIssues()`---the thing that goes into each `fixOverlaps()`
@@ -423,13 +437,863 @@ dfEAF <- eafs_to_df("../APLS Elan File Checker/tests/shinytest/step3/HD06-1_Good
 dfEAF %>% str(1)
 eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
   map(read_xml)
+eaflist %>% str(1)
 ```
 
 ```{r}
-fixO
+fixOverlaps(dfEAF, eaflist, "Orig")
+```
+
+Here's what we get for `overlapsInit` w/in `fixOverlaps()`
+
+```{r}
+dfEAF %>% 
+  names() %>% 
+  set_names(., .) %>% 
+  map(findOverlapsTier, dfEAF)
+dfEAF %>% 
+  findOverlaps()
+```
+
+It turns out the code doesn't actually call `findOverlaps()`. Whoops!
+Just changed that
+
+At first, `overlapsPost` is just `overlapsInit`
+
+```{r}
+overlapsPost <- 
+  dfEAF %>% 
+  findOverlaps()
+##Any >0 triggers the while loop
+map_int(overlapsPost, nrow)
+```
+
+At the start of each while-loop iteration, we get `overlapsPre` set to Post:
+
+```{r}
+overlapsPre <- overlapsPost
+```
+
+Then Post is just mapping Pre over `fixOverlapsTier()`:
+
+```{r}
+overlapsPre %>% 
+  map(fixOverlapsTier, eaflist, "Orig")
+overlapsPre %>% 
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  map("Resolved")
+```
+
+And then we get the gap problem:
+
+```{r}
+eaflist %>% 
+  xmllist_to_df(singleDF=T) %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+```
+
+Double-check: is it modifying eaflist in-situ? Yup!
+
+```{r}
+old_eaflist <- eaflist
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+identical(old_eaflist, eaflist)
+all.equal(old_eaflist %>% xmllist_to_df(),
+          eaflist %>% xmllist_to_df())
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+```
+
+How would that work in a for-loop instead of `map()`?
+
+```{r}
+counter <- 1
+oPost <- list()
+for (oP in overlapsPre) {
+  oPost[[counter]] <- fixOverlapsTier(oP, eaflist, "Orig")
+  counter <- counter + 1
+}
+oPost
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+```
+
+It reproduces the gap issue
+
+# A different approach to `fixOverlaps()`
+
+Right now the process is:
+
+```pseudocode
+for each file:
+    for each tier:
+        find overlaps
+    for each tier:
+        fix overlaps
+```
+
+Maybe the process should be:
+
+```pseudocode
+for each file:
+    for each tier:
+        find overlaps
+        fix overlaps
+```
+
+In other words, overlaps get re-assessed after each tier
+
+So reload eaflist (no need to reload dfEAF because it's unchanged)
+
+```{r}
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+```
+
+## Attempt setting HD06 to NA
+
+Now pretend there are no overlaps to be resolved for HD06:
+
+```{r}
+overlapsPre <- overlapsPost
+overlapsPre$HD06 <- overlapsPre$HD06 %>% 
+  filter(is.na(ANNOTATION_ID))
+overlapsPre %>% str(1)
+```
+
+This _should_ snap all the HD06 annotations to Interviewer HD06.
+If not, I can try using `fixOverlapsTier()` directly
+
+```{r}
+overlapsPre %>% 
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  map("Resolved")
+```
+
+Drumroll please!
+
+```{r}
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+```
+
+All right!! But funnily, it snapped HD06 to Interviewer HD06.
+This makes sense, actually, because each row in `findOverlaps()` is an annotation that is _overlapp**ed**_, not an annotation that _commits_ an overlap.
+
+How many overlaps remain?
+
+```{r}
+eaflist %>% 
+  xmllist_to_df(singleDF=F) %>%
+  pluck("Orig") %>% 
+  findOverlaps()
+```
+
+Try it the other way now
+
+```{r}
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+overlapsPre <- overlapsPost
+overlapsPre$`Interviewer HD06` <- overlapsPre$`Interviewer HD06` %>% 
+  filter(is.na(ANNOTATION_ID))
+overlapsPre %>% str(1)
+overlapsPre %>% 
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  map("Resolved")
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+```
+
+## Now both
+
+Now what happens if I switch it?
+
+I'll probably have to introduce an overlapsMid or something to avoid name-clashing
+
+```{r}
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+overlapsPre <- overlapsMid <- overlapsPost
+overlapsMid$`Interviewer HD06` <- overlapsMid$`Interviewer HD06` %>% 
+  filter(is.na(ANNOTATION_ID))
+##Go through another fixing round
+overlapsPost$HD06 <- 
+  overlapsMid %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("HD06") %>% 
+  filter(!Resolved)
+overlapsMid <- overlapsPre
+overlapsMid$HD06 <- overlapsMid$HD06 %>% 
+  filter(is.na(ANNOTATION_ID))
+overlapsPost$`Interviewer HD06` <-
+  overlapsMid %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("Interviewer HD06") %>% 
+  filter(!Resolved)
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+eaflist %>% 
+  xmllist_to_df(singleDF=F) %>%
+  pluck("Orig") %>% 
+  findOverlaps()
+overlapsPost
 ```
 
 
+Okay, I'm confused. Slower this time:
+
+```{r}
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+overlapsInit <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+overlapsPost <- overlapsInit
+overlapsPre <- overlapsMid <- overlapsPost
+overlapsMid$`Interviewer HD06` <- overlapsMid$`Interviewer HD06` %>% 
+  filter(is.na(ANNOTATION_ID))
+##Go through another fixing round
+overlapsPost$HD06 <- 
+  overlapsMid %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("HD06") %>% 
+  filter(!Resolved)
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+overlapsMid <- overlapsPre
+overlapsMid$HD06 <- overlapsMid$HD06 %>% 
+  filter(is.na(ANNOTATION_ID))
+overlapsPost$`Interviewer HD06` <-
+  overlapsMid %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("Interviewer HD06") %>% 
+  filter(!Resolved)
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+```
+
+Okay, so running it again actually _introduces_ the gap _after_ it's been fixed.
+
+It sounds like I really do need to fix-and-find by tier
+
+```{r}
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+overlapsPre <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+overlapsPost <- overlapsPre
+overlapsPre$`Interviewer HD06` <- overlapsPre$`Interviewer HD06` %>% 
+  filter(is.na(ANNOTATION_ID))
+##Go through another fixing round
+overlapsPost$HD06 <- 
+  overlapsPre %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("HD06") %>% 
+  filter(!Resolved)
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+##Get overlaps again
+overlapsPre <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+overlapsPre$HD06 <- overlapsPre$HD06 %>% 
+  filter(is.na(ANNOTATION_ID))
+overlapsPost$`Interviewer HD06` <-
+  overlapsPre %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("Interviewer HD06") %>% 
+  filter(!Resolved)
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+```
+
+
+Great! What do the overlaps look like in between & after?
+
+Also, I'm not convinced I'll need `overlapsPost` at all anymore, if I'm totally re-finding overlaps after each round
+
+```{r}
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+overlapsInit <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+overlapsPost <- overlapsInit
+overlapsPre <- overlapsPost
+overlapsPre$`Interviewer HD06` <- overlapsPre$`Interviewer HD06` %>% 
+  filter(is.na(ANNOTATION_ID))
+##Go through another fixing round
+overlapsPost$HD06 <- 
+  overlapsPre %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("HD06") %>% 
+  filter(!Resolved)
+##Get overlaps again
+overlapsPre <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+overlapsPre
+overlapsPre$HD06 <- overlapsPre$HD06 %>% 
+  filter(is.na(ANNOTATION_ID))
+overlapsPost$`Interviewer HD06` <-
+  overlapsPre %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("Interviewer HD06") %>% 
+  filter(!Resolved)
+overlapsPre <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+overlapsPre
+overlapsPost
+```
+
+(Later I realize: I _do_ need overlapsPost, so I can figure out whether to end the larger while-loop.)
+
+## One issue: `Warning: no non-missing arguments to min; returning Inf`
+
+That comes from `findOverlapsTier()`
+
+```{r}
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+overlapsInit <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+overlapsPost <- overlapsInit
+overlapsPre <- overlapsPost
+overlapsPre$`Interviewer HD06` <- overlapsPre$`Interviewer HD06` %>% 
+  filter(is.na(ANNOTATION_ID))
+##Go through another fixing round
+overlapsPost$HD06 <- 
+  overlapsPre %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("HD06") %>% 
+  filter(!Resolved)
+```
+
+
+```{r}
+eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+```
+
+Which tier triggers that?
+
+```{r}
+eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlapsTier("HD06", .)
+```
+
+Recreate that warning
+
+```{r}
+otherSpkrs <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  extract(names(.) != "HD06") %>% 
+  bind_rows()
+otherSpkrs
+```
+
+
+```{r}
+bounds <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig", "HD06") %>% 
+  rename(Time1 = Start, Time2 = End) %>% 
+  pivot_longer(-ANNOTATION_ID,
+               names_to=c(".value", "Side"), names_pattern="(.+)([12])") %>% 
+  rowwise() %>% 
+  mutate(ANNOTATION_ID_overlapped = otherSpkrs$ANNOTATION_ID %>% 
+           extract(which(Time > otherSpkrs$Start & Time < otherSpkrs$End)[1])) %>% 
+  ungroup()
+bounds %>% 
+  filter(!is.na(ANNOTATION_ID_overlapped))
+```
+
+Okay, so there's nothing but NAs. Is that the case when tiers are reversed?
+
+```{r}
+otherSpkrs <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  extract(names(.) != "Interviewer HD06") %>% 
+  bind_rows()
+bounds <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig", "Interviewer HD06") %>% 
+  rename(Time1 = Start, Time2 = End) %>% 
+  pivot_longer(-ANNOTATION_ID,
+               names_to=c(".value", "Side"), names_pattern="(.+)([12])") %>% 
+  rowwise() %>% 
+  mutate(ANNOTATION_ID_overlapped = otherSpkrs$ANNOTATION_ID %>% 
+           extract(which(Time > otherSpkrs$Start & Time < otherSpkrs$End)[1])) %>% 
+  ungroup()
+bounds %>% 
+  filter(!is.na(ANNOTATION_ID_overlapped))
+```
+
+Seems simple enough: just check if there's any rows remaining, and if not, skip the next bit
+
+```{r}
+findOverlapsTier <- function(tierName, timesEAF) {
+  ##Get annotation timing DF for selected speaker
+  spkr <- timesEAF %>% pluck(tierName)
+  ##Get annotation timing DF that combines all other speakers
+  otherSpkrs <-
+    timesEAF %>%
+    extract(names(.) != tierName) %>%
+    bind_rows()
+  
+  ##For each boundary in selected tier, return the first annotation that the
+  ##  boundary overlaps with, if any
+  ##Currently isn't guaranteed to work with 3+ speaker tiers (because
+  ##  which(x)[1] only selects the first result, not necessarily the result
+  ##  closest to the boundary)
+  bounds <- 
+    spkr %>%
+    ##One row per boundary (new columns Side, TIME_SLOT_REF, Time)
+    rename(Time1 = Start, Time2 = End) %>% 
+    pivot_longer(-ANNOTATION_ID, 
+                 names_to=c(".value", "Side"), names_pattern="(.+)([12])") %>% 
+    ##Check row-by-row (otherwise comparison in which() doesn't work)
+    rowwise() %>% 
+    ##Add overlap annotation ID
+    ##N.B. This works because if which(x) is integer(0), which(x)[1] is NA
+    mutate(ANNOTATION_ID_overlapped = otherSpkrs$ANNOTATION_ID %>% 
+             extract(which(Time > otherSpkrs$Start & Time < otherSpkrs$End)[1])) %>% 
+    ungroup()
+  
+  ##Restrict to boundaries with overlaps
+  overlapBounds <- 
+    bounds %>%
+    ##Only the boundaries that overlap another annotation
+    filter(!is.na(ANNOTATION_ID_overlapped))
+  
+  ##Only proceed if there are any overlaps
+  if (nrow(overlapBounds) > 0) {
+    ##Add information about overlapped annotations
+    overlapBounds <- overlapBounds %>% 
+      ##Add info about overlapped annotation
+      left_join(otherSpkrs %>%
+                  rename_with(~ paste0(.x, "_overlapped")),
+                by="ANNOTATION_ID_overlapped") %>% 
+      ##Determine whether the nearest boundary is close enough (rowwise for min())
+      rowwise() %>%
+      mutate(StartDiff = abs(Start_overlapped - Time),
+             EndDiff = abs(End_overlapped - Time),
+             CloseEnough = min(StartDiff, EndDiff) < overlapThresh) %>%
+      ungroup()
+    
+    ##Add new timeslot ID: if not close enough, "Too far"; if close enough, closer
+    ##  boundary (tie goes to start boundary); anything else is unexpected so it
+    ##  triggers an error below
+    overlapBounds <- overlapBounds %>% 
+      mutate(NewTS = case_when(
+        !CloseEnough ~ "Too far",
+        StartDiff <= EndDiff ~ TIME_SLOT_REF1_overlapped,
+        StartDiff > EndDiff ~ TIME_SLOT_REF2_overlapped,
+        TRUE ~ NA_character_),
+        ##Add node path for fixing overlap
+        NodePath = str_glue("//ALIGNABLE_ANNOTATION[@ANNOTATION_ID='{ANNOTATION_ID}']"))
+  }
+  
+  ##Return dataframe (which may be 0-row)
+  overlapBounds
+}
+```
+
+Still works?
+
+```{r}
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+overlapsPre <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+overlapsPost <- overlapsPre
+overlapsPre$`Interviewer HD06` <- overlapsPre$`Interviewer HD06` %>% 
+  filter(is.na(ANNOTATION_ID))
+##Go through another fixing round
+overlapsPost$HD06 <- 
+  overlapsPre %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("HD06") %>% 
+  filter(!Resolved)
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+overlapsPre <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+overlapsPre$HD06 <- overlapsPre$HD06 %>% 
+  filter(is.na(ANNOTATION_ID))
+overlapsPost$`Interviewer HD06` <-
+  overlapsPre %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("Interviewer HD06") %>% 
+  filter(!Resolved)
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+```
+
+How about just doing `na.rm` in `min()`?
+
+```{r}
+findOverlapsTier <- function(tierName, timesEAF) {
+  ##Get annotation timing DF for selected speaker
+  spkr <- timesEAF %>% pluck(tierName)
+  ##Get annotation timing DF that combines all other speakers
+  otherSpkrs <-
+    timesEAF %>%
+    extract(names(.) != tierName) %>%
+    bind_rows()
+  
+  ##For each boundary in selected tier, return the first annotation that the
+  ##  boundary overlaps with, if any
+  ##Currently isn't guaranteed to work with 3+ speaker tiers (because
+  ##  which(x)[1] only selects the first result, not necessarily the result
+  ##  closest to the boundary)
+  bounds <- 
+    spkr %>%
+    ##One row per boundary (new columns Side, TIME_SLOT_REF, Time)
+    rename(Time1 = Start, Time2 = End) %>% 
+    pivot_longer(-ANNOTATION_ID, 
+                 names_to=c(".value", "Side"), names_pattern="(.+)([12])") %>% 
+    ##Check row-by-row (otherwise comparison in which() doesn't work)
+    rowwise() %>% 
+    ##Add overlap annotation ID
+    ##N.B. This works because if which(x) is integer(0), which(x)[1] is NA
+    mutate(ANNOTATION_ID_overlapped = otherSpkrs$ANNOTATION_ID %>% 
+             extract(which(Time > otherSpkrs$Start & Time < otherSpkrs$End)[1])) %>% 
+    ungroup()
+  
+  ##Restrict to boundaries with overlaps
+  overlapBounds <- 
+    bounds %>%
+    ##Only the boundaries that overlap another annotation
+    filter(!is.na(ANNOTATION_ID_overlapped))
+  
+  ##Only proceed if there are any overlaps
+  # if (nrow(overlapBounds) > 0) {
+    ##Add information about overlapped annotations
+    overlapBounds <- overlapBounds %>% 
+      ##Add info about overlapped annotation
+      left_join(otherSpkrs %>%
+                  rename_with(~ paste0(.x, "_overlapped")),
+                by="ANNOTATION_ID_overlapped") %>% 
+      ##Determine whether the nearest boundary is close enough (rowwise for min())
+      rowwise() %>%
+      mutate(StartDiff = abs(Start_overlapped - Time),
+             EndDiff = abs(End_overlapped - Time),
+             CloseEnough = min(StartDiff, EndDiff, na.rm=TRUE) < overlapThresh) %>%
+      ungroup()
+    
+    ##Add new timeslot ID: if not close enough, "Too far"; if close enough, closer
+    ##  boundary (tie goes to start boundary); anything else is unexpected so it
+    ##  triggers an error below
+    overlapBounds <- overlapBounds %>% 
+      mutate(NewTS = case_when(
+        !CloseEnough ~ "Too far",
+        StartDiff <= EndDiff ~ TIME_SLOT_REF1_overlapped,
+        StartDiff > EndDiff ~ TIME_SLOT_REF2_overlapped,
+        TRUE ~ NA_character_),
+        ##Add node path for fixing overlap
+        NodePath = str_glue("//ALIGNABLE_ANNOTATION[@ANNOTATION_ID='{ANNOTATION_ID}']"))
+  # }
+  
+  ##Return dataframe (which may be 0-row)
+  overlapBounds
+}
+```
+
+```{r}
+overlapsPre <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+overlapsPre$HD06 <- overlapsPre$HD06 %>% 
+  filter(is.na(ANNOTATION_ID))
+overlapsPost$`Interviewer HD06` <-
+  overlapsPre %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("Interviewer HD06") %>% 
+  filter(!Resolved)
+```
+
+Okay, maybe just be smarter about adding new cols
+
+```{r}
+findOverlapsTier <- function(tierName, timesEAF) {
+  ##Get annotation timing DF for selected speaker
+  spkr <- timesEAF %>% pluck(tierName)
+  ##Get annotation timing DF that combines all other speakers
+  otherSpkrs <-
+    timesEAF %>%
+    extract(names(.) != tierName) %>%
+    bind_rows()
+  
+  ##For each boundary in selected tier, return the first annotation that the
+  ##  boundary overlaps with, if any
+  ##Currently isn't guaranteed to work with 3+ speaker tiers (because
+  ##  which(x)[1] only selects the first result, not necessarily the result
+  ##  closest to the boundary)
+  bounds <- 
+    spkr %>%
+    ##One row per boundary (new columns Side, TIME_SLOT_REF, Time)
+    rename(Time1 = Start, Time2 = End) %>% 
+    pivot_longer(-ANNOTATION_ID, 
+                 names_to=c(".value", "Side"), names_pattern="(.+)([12])") %>% 
+    ##Check row-by-row (otherwise comparison in which() doesn't work)
+    rowwise() %>% 
+    ##Add overlap annotation ID
+    ##N.B. This works because if which(x) is integer(0), which(x)[1] is NA
+    mutate(ANNOTATION_ID_overlapped = otherSpkrs$ANNOTATION_ID %>% 
+             extract(which(Time > otherSpkrs$Start & Time < otherSpkrs$End)[1])) %>% 
+    ungroup()
+  
+  ##Restrict to boundaries with overlaps & add information about overlapped
+  ##  annotations
+  overlapBounds <- 
+    bounds %>%
+    ##Only the boundaries that overlap another annotation
+    filter(!is.na(ANNOTATION_ID_overlapped)) %>% 
+    ##Add info about overlapped annotations
+    left_join(otherSpkrs %>%
+                rename_with(~ paste0(.x, "_overlapped")),
+              by="ANNOTATION_ID_overlapped")
+  
+  ##Only proceed if there are any overlaps
+  if (nrow(overlapBounds) > 0) {
+    ##Add information about overlapped annotations
+    overlapBounds <- overlapBounds %>% 
+      ##Determine whether the nearest boundary is close enough (rowwise for min())
+      rowwise() %>%
+      mutate(StartDiff = abs(Start_overlapped - Time),
+             EndDiff = abs(End_overlapped - Time),
+             CloseEnough = min(StartDiff, EndDiff) < overlapThresh) %>%
+      ungroup()
+    
+    ##Add new timeslot ID: if not close enough, "Too far"; if close enough, closer
+    ##  boundary (tie goes to start boundary); anything else is unexpected so it
+    ##  triggers an error below
+    overlapBounds <- overlapBounds %>% 
+      mutate(NewTS = case_when(
+          !CloseEnough ~ "Too far",
+          StartDiff <= EndDiff ~ TIME_SLOT_REF1_overlapped,
+          StartDiff > EndDiff ~ TIME_SLOT_REF2_overlapped,
+          TRUE ~ NA_character_),
+        ##Add node path for fixing overlap
+        NodePath = str_glue("//ALIGNABLE_ANNOTATION[@ANNOTATION_ID='{ANNOTATION_ID}']") %>% 
+          as.character())
+  } else {
+    overlapBounds <- overlapBounds %>% 
+      mutate(StartDiff = double(0L),
+             EndDiff = double(0L),
+             CloseEnough = logical(0L),
+             NewTS = character(0L),
+             NodePath = character(0L))
+  }
+  
+  ##Return dataframe (which may be 0-row)
+  overlapBounds
+}
+```
+
+```{r}
+overlapsPre <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+overlapsPre$HD06 <- overlapsPre$HD06 %>% 
+  filter(is.na(ANNOTATION_ID))
+overlapsPost$`Interviewer HD06` <-
+  overlapsPre %>%
+  map(fixOverlapsTier, eaflist, "Orig") %>% 
+  pluck("Interviewer HD06") %>% 
+  filter(!Resolved)
+```
+
+```{r}
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+```
+
+Bingo.
+
+## Another thing: programmatically do the setting-other-tiers-to-NA thing
+
+```{r}
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+overlapsPre <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+
+overlapsPre <- overlapsPre %>% 
+  modify_in(list("Interviewer HD06"), ~ .x %>% 
+              filter(is.na(ANNOTATION_ID)))
+overlapsPre %>% 
+  str(1)
+```
+
+And with multiple tiers:
+
+```{r}
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+overlapsPre <- 
+  eaflist %>% 
+  xmllist_to_df(singleDF=F) %>% 
+  pluck("Orig") %>% 
+  findOverlaps()
+
+for (otherSpkr in setdiff(names(overlapsPre), "HD06")) {
+  overlapsPre <- overlapsPre %>% 
+  modify_in(list(otherSpkr), ~ .x %>% 
+              filter(is.na(ANNOTATION_ID)))
+}
+
+overlapsPre %>% 
+  str(1)
+```
+
+
+# Finally, re-write `fixOverlaps()`
+
+Eventually rewrite to replace `xmllist_to_df()` with `getTimes()` w/ `tierInfo()` as an arg (to avoid regenerating `tierInfo()` every time)
+
+```{r}
+# fixOverlaps <- function(eafName, tierOrder, eaflist, tierInfo) {
+fixOverlaps <- function(eafName, tierOrder, eaflist) {
+  ##Get initial overlaps
+  overlapsInit <- 
+    ##Get tier names
+    eaflist %>%
+    xmllist_to_df(singleDF=F) %>% 
+    pluck(eafName) %>% 
+    findOverlaps(eafName)
+  
+  ##Ensure tierOrder matches overlapsInit names
+  if (!identical(sort(names(overlapsInit)),
+                 sort(tierOrder))) {
+    stop("tierOrder")
+  }
+  
+  ##Initialize looping variables
+  overlapsPre <- NULL
+  overlapsPost <- overlapsInit
+  iters <- 0
+  maxIter <- 10
+  
+  ##Continue until there are no remaining overlaps, either because all
+  ##  overlaps have been fixed, or because things have stablized
+  while (any(map_int(overlapsPost, nrow) > 0) && !identical(overlapsPre, overlapsPost)) {
+    ##Increment iteration counter & stop if above maxIter
+    iters <- iters + 1
+    if (iters > maxIter) {
+      stop("Overlap fixing reached max iterations (", maxIter, ")")
+    }
+    
+    ##Old post is new pre
+    overlapsPre <- overlapsPost
+    
+    ##Fix each tier in turn
+    for (tier in tierOrder) {
+    # for (tier in rev(tierOrder)) {
+      message(tier)
+      ##Re-assess overlaps now that eaflist has been modified
+      overlapsCurr <- 
+        eaflist %>%
+        xmllist_to_df(singleDF=F) %>% 
+        pluck(eafName) %>% 
+        findOverlaps(eafName)
+      
+      ##Hide overlaps in all other tiers from fixOverlapsTier()
+      for (otherSpkr in setdiff(names(overlapsPre), tier)) {
+        overlapsCurr <- overlapsCurr %>% 
+          modify_in(list(otherSpkr), ~ .x %>% filter(is.na(ANNOTATION_ID)))
+      }
+      
+      ##Fix overlaps for *other* tiers, keeping current tier
+      overlapsPost[[tier]] <-
+        overlapsMid %>% 
+        map(fixOverlapsTier, eaflist, eafName) %>% 
+        pluck(tier) %>% 
+        filter(!Resolved)
+    }
+    
+    message("iters: ", iters)
+    message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
+    message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
+  }
+  
+  ##Return overlapsPost
+  overlapsPost
+}
+```
+
+```{r}
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+fixOverlaps("Orig", c("HD06", "Interviewer HD06"), eaflist)
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+```
+
+Hmmm. 
+Regardless of which tier goes first, both boundaries are snapped to 9362 r/t 9300.
+
+Well, this is a decent stopping-point for now.
+And hey, good job to the SRW for keeping this notebook going strong despite its length!
 
 
 # Session info
