@@ -1,5 +1,7 @@
 ---
 title: "APLS shinytest Scratchpad 1: Fix overlap-fixing"
+author: Dan Villarreal
+date: Original 28 Sep 2022
 output: 
   html_notebook:
     toc: yes
@@ -36,7 +38,7 @@ From my TODO:
   
 First, the necessary functions:
 
-```{r}
+```{r funcs-from-app}
 nonSpkrTiers <- c("Comment","Noise","Redaction")
 overlapThresh <- 500
 
@@ -1066,7 +1068,7 @@ overlapsPost$`Interviewer HD06` <-
 
 Okay, maybe just be smarter about adding new cols
 
-```{r}
+```{r rewrite-findOverlapsTier}
 findOverlapsTier <- function(tierName, timesEAF) {
   ##Get annotation timing DF for selected speaker
   spkr <- timesEAF %>% pluck(tierName)
@@ -1210,7 +1212,7 @@ overlapsPre %>%
 
 Eventually rewrite to replace `xmllist_to_df()` with `getTimes()` w/ `tierInfo()` as an arg (to avoid regenerating `tierInfo()` every time)
 
-```{r}
+```{r rewrite-fixOverlaps-1}
 # fixOverlaps <- function(eafName, tierOrder, eaflist, tierInfo) {
 fixOverlaps <- function(eafName, tierOrder, eaflist) {
   ##Get initial overlaps
