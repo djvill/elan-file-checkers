@@ -912,7 +912,163 @@ With a few caveats:
 
 Okay, without comprehensively checking all 200-odd overlaps, I'm satisfied!
 
+### Reverse the tier order?
+
+I'm going to just try reversing the tier order and see what happens!
+Also, I'm adding a `monitor` switch to optionally suppress printing iterations info
+
+```{r rewrite-fixOverlaps-3}
+fixOverlaps <- function(eafName, tierOrder, eaflist, monitor=TRUE) {
+  ##Get initial overlaps
+  overlapsInit <- 
+    ##Get tier names
+    eaflist %>%
+    xmllist_to_df(singleDF=F) %>% 
+    pluck(eafName) %>% 
+    findOverlaps(eafName)
+  
+  ##Ensure tierOrder matches overlapsInit names
+  if (!identical(sort(names(overlapsInit)),
+                 sort(tierOrder))) {
+    stop("tierOrder")
+  }
+  
+  ##Initialize looping variables
+  overlapsPre <- NULL
+  overlapsPost <- overlapsInit
+  iters <- 0
+  maxIter <- 10
+  
+  ##Continue until there are no remaining overlaps, either because all
+  ##  overlaps have been fixed, or because things have stablized
+  while (any(map_int(overlapsPost, nrow) > 0) && !identical(overlapsPre, overlapsPost)) {
+    ##Increment iteration counter & stop if above maxIter
+    iters <- iters + 1
+    if (iters > maxIter) {
+      stop("Overlap fixing reached max iterations (", maxIter, ")")
+    }
+    
+    ##Old post is new pre
+    overlapsPre <- overlapsPost
+    
+    ##Fix each tier in turn
+    # for (tier in tierOrder) {
+    for (tier in rev(tierOrder)) {
+      message(tier)
+      ##Re-assess overlaps now that eaflist has been modified
+      overlapsCurr <- 
+        eaflist %>%
+        xmllist_to_df(singleDF=F) %>% 
+        pluck(eafName) %>% 
+        findOverlaps(eafName)
+      
+      ##Hide overlaps in all other tiers from fixOverlapsTier()
+      for (otherSpkr in setdiff(names(overlapsPre), tier)) {
+        overlapsCurr <- overlapsCurr %>% 
+          modify_in(list(otherSpkr), ~ .x %>% filter(is.na(ANNOTATION_ID)))
+      }
+      
+      ##Fix overlaps for *other* tiers, keeping current tier
+      overlapsPost[[tier]] <-
+        overlapsCurr %>% 
+        map(fixOverlapsTier, eaflist, eafName) %>% 
+        pluck(tier) %>% 
+        filter(!Resolved)
+    }
+    
+    if (monitor) {
+      message("iters: ", iters)
+      message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
+      message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
+    }
+  }
+  
+  ##Return overlapsPost
+  overlapsPost
+}
+```
+
+
+```{r}
+eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+invisible(fixOverlaps("Orig", c("HD06", "Interviewer HD06"), eaflist))
+eaflist %>% 
+  xmllist_to_df() %>% 
+  filter(ANNOTATION_ID %in% c("a7", "a10"))
+```
+
+Great! Now Int has been snapped to HD06
+
+Check that it looks okay:
+
+```{r}
+##Make sure the ... thing works
+##... is eafName=eafPath
+compareEAFs <- function(..., tiers=c("HD06", "Interviewer HD06")) {
+  paths <- list(...)
+  paths
+}
+##Yup:
+compareEAFs(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf",
+            Bad = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_BadContainment.eaf")
+```
+
+
+```{r}
+compareEAFs <- function(..., eafDir=".", outFile=NULL, tiers=c("HD06", "Interviewer HD06")) {
+  ##Read eaflist (two copies)
+  paths <- list(...)
+  eaflist_new <- eaflist_old <- paths %>% 
+    map(~ paste0(eafDir, "/", .x) %>% 
+          read_xml)
+  
+  ##Tag eaflist_old tiers w/ -old suffix
+  for (eaf in eaflist_old) { ##Sorry not sorry
+    tiers %>% 
+      walk(~ eaf %>% 
+             xml_find_all(str_glue("//TIER[@TIER_ID='{.x}']")) %>% 
+             xml_set_attr("TIER_ID", str_glue("{.x}-old")))
+  }
+  ##Get just those tiers from eaflist_old
+  oldTiers <- map(eaflist_old, xml_find_all, "//TIER[contains(@TIER_ID, '-old')]")
+  
+  ##Fix overlaps in eaflist_new
+  iwalk(eaflist_new, ~ fixOverlaps(.y, tiers, .x))
+  
+  ##Tag eaflist_new tiers w/ -new suffix
+  for (eaf in eaflist_new) { ##Sorry not sorry
+    tiers %>% 
+      walk(~ eaf %>% 
+             xml_find_all(str_glue("//TIER[@TIER_ID='{.x}']")) %>% 
+             xml_set_attr("TIER_ID", str_glue("{.x}-new")))
+  }
+  
+  ##Add -old tiers to eaflist_new elements
+  # With just one element in eaflist_new it's:
+  # oldTiers %>% 
+  #   iwalk(~ eaflist_new %>% 
+  #           pluck("Orig") %>% 
+  #           xml_find_all("/ANNOTATION_DOCUMENT") %>% 
+  #           xml_add_child(.x, .where=2*.y))
+}
+```
+
+And here I ran out of steam trying to figure out how to make eaflist_new & tiers cross one another.
+`purrr::cross2()` looks promising for both this bit and the for-loops.
+It's time to hang it up for today, though
+
+
 ## Now try it with "bad-overlaps" files
+
+File-by-file
+
+```{r}
+# eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+#   map(read_xml)
+# invisible(fixOverlaps("Orig", c("HD06", "Interviewer HD06"), eaflist))
+```
+
 
 
 
