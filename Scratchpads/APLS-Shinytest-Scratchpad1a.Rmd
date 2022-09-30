@@ -451,7 +451,8 @@ fixOverlaps <- function(eafName, tierOrder, eaflist) {
   ##Ensure tierOrder matches overlapsInit names
   if (!identical(sort(names(overlapsInit)),
                  sort(tierOrder))) {
-    stop("tierOrder")
+    stop("names(overlapsInit): ", names(overlapsInit), 
+         "\ntierOrder: ", tierOrder)
   }
   
   ##Initialize looping variables
@@ -1058,18 +1059,114 @@ And here I ran out of steam trying to figure out how to make eaflist_new & tiers
 `purrr::cross2()` looks promising for both this bit and the for-loops.
 It's time to hang it up for today, though
 
-
-## Now try it with "bad-overlaps" files
-
-File-by-file
+### Getting back at it (30 Sep)
 
 ```{r}
-# eaflist <- c(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
-#   map(read_xml)
-# invisible(fixOverlaps("Orig", c("HD06", "Interviewer HD06"), eaflist))
+paths <- list(Orig = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf",
+              Bad = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_BadContainment.eaf")
+eaflist_new <- eaflist_old <- paths %>%
+  map(read_xml)
+tiers <- c("HD06", "Interviewer HD06")
+cross2(eaflist_old, tiers) %>% 
+  str(2)
+```
+
+I guess `cross2()` doesn't preserve names, BOO.
+`?cross` recommends "encapsulate the arguments in a named list before crossing to get named components".
+But that doesn't produce the result I'd expect:
+
+```{r}
+list(vers = eaflist_old, tier = tiers) %>% 
+  cross() %>% 
+  str(2)
+```
+
+Actually, do I need names per se?
+
+```{r}
+list(eaf = eaflist_old, tier = tiers) %>% 
+  cross() %>% 
+  pmap(function(eaf, tier) {
+    eaf %>% 
+      xml_find_all(str_glue("//TIER[@TIER_ID='{tier}']")) %>% 
+      xml_set_attr("TIER_ID", str_glue("{tier}-old"))
+  })
+eaflist_old %>%
+  map(~ .x %>% 
+        xml_find_all("/ANNOTATION_DOCUMENT/TIER") %>% 
+        map_chr(xml_attr, "TIER_ID")
+  )
+```
+
+Yeah, to hell with this.
+Make a function that works for one file, then I can just `map()` over it!
+
+```{r}
+compareEAF <- function(x, save=FALSE, tiers=c("HD06", "Interviewer HD06")) {
+  ##Read eaf (two copies)
+  eaf_new <- read_xml(x)
+  eaf_old <- read_xml(x)
+  
+  ##Fix overlaps in eaf_new
+  invisible(fixOverlaps("eaf", tiers, list(eaf = eaf_new), monitor=FALSE))
+  
+  ##Tag eaf_old tiers with -old suffix
+  tiers %>% 
+    walk(~ eaf_old %>% 
+           xml_find_all(str_glue("//TIER[@TIER_ID='{.x}']")) %>% 
+           xml_set_attr("TIER_ID", str_glue("{.x}-old")))
+  
+  ##Get just those tiers from eaf_old
+  oldTiers <- xml_find_all(eaf_old, "//TIER[contains(@TIER_ID, '-old')]")
+  
+  ##Tag eaf_new tiers with -new suffix
+  tiers %>% 
+    walk(~ eaf_new %>% 
+           xml_find_all(str_glue("//TIER[@TIER_ID='{.x}']")) %>% 
+           xml_set_attr("TIER_ID", str_glue("{.x}-new")))
+  
+  ##Add -old tiers to eaf_new elements
+  oldTiers %>%
+    iwalk(~ eaf_new %>%
+            xml_find_all("/ANNOTATION_DOCUMENT") %>%
+            xml_add_child(.x, .where=2*.y))
+  
+  if (save) {
+    write_xml(eaf_new, str_replace(x, "\\.eaf$", "_oldnew.eaf"))
+  } else {
+    eaf_new
+  }
+}
+```
+
+```{r}
+compareEAF("../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf")
+```
+
+Wait, why are both tiers `-old`?
+It turns out it's because I needed to read the eaf twice so it wouldn't just be the same thing
+
+Does it work with `map()`?
+
+```{r}
+dir("../APLS Elan File Checker/tests/shinytest/step3/", pattern="Bad.+eaf", full.names=TRUE) %>% 
+  map(compareEAF) %>% 
+  map(~ .x %>% 
+        xml_find_all("//TIER") %>% 
+        map_chr(xml_attr, "TIER_ID"))
 ```
 
 
+
+## Now try it with "bad-overlaps" files
+
+
+```{r}
+dir("../APLS Elan File Checker/tests/shinytest/step3/", pattern="Bad.+eaf", full.names=TRUE) %>% 
+  map(compareEAF, save=TRUE)
+```
+
+Looks solid!
 
 
 # Session info
