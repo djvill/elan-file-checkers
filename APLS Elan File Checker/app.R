@@ -520,7 +520,7 @@ findOverlaps <- function(timesEAF, eafName) {
 ##  annotation times (one file's worth) and a single EAF name (meant to be used
 ##  with output of getTimes() and imap()), and rotates through tiers, fixing
 ##  overlaps, until it reaches a stable state
-fixOverlaps <- function(timesEAF, eaflist, eafName) {
+fixOverlaps <- function(timesEAF, eafName, eaflist) {
   # ##Initialize empty overlap log
   # overlapLog <- data.frame(Tier = character(), 
   #                          NumBounds = character(),
@@ -592,18 +592,17 @@ overlapsIssues <- function(x, df) {
   
   ##Fix overlaps & format output for display
   fixed <- 
-    x %>% 
-    names() %>% 
-    set_names(., .) %>% 
+    times %>% 
     ##Fix overlaps
-    map(~ fixOverlaps(times[[.x]], x, .x) %>% 
+    imap(fixOverlaps, eaflist=x) %>% 
+    ##Get fixed-overlap times
+    map(~ .x %>% 
           ##All in one DF
-          bind_rows(.id="Tier")) %>% 
-    imap(~ .x %>%
-           ##One row per annotation (nicer labels)
-           select(ANNOTATION_ID, Tier, Side, Time) %>%
-           mutate(Side = if_else(Side==1, "Start", "End")) %>%
-           pivot_wider(names_from=Side, values_from=Time))
+          bind_rows(.id="Tier") %>%
+          ##One row per annotation (nicer labels)
+          select(ANNOTATION_ID, Tier, Side, Time) %>%
+          mutate(Side = if_else(Side==1, "Start", "End")) %>%
+          pivot_wider(names_from=Side, values_from=Time))
   ##Remove empty entries from times and fixed
   nonempty <- map_int(fixed, nrow) > 0
   times <- times[nonempty]
