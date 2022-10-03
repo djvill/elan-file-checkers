@@ -329,7 +329,7 @@ getTimesTier <- function(tierName, eaf, timeSlots) {
 ##  list of dataframes of annotation times (files at level one, tier DFs at
 ##  level two for speaker tiers only)
 ##N.B. This function outputs a list of DFs rather than a single DF because the
-##  list structure makes it easier to detect overlaps in findOverlaps() (by
+##  list structure makes it easier to detect overlaps in fixOverlaps() (by
 ##  comparing the timings on a given speaker tier to all other speaker tiers)
 getTimes <- function(eaf, eafName, df) {
   ##Timeslots (maps time slot ID to actual time, in milliseconds)
@@ -365,13 +365,10 @@ getTimes <- function(eaf, eafName, df) {
 ##  columns (left, right, both), where TRUE means there is at least one
 ##  annotation on another tier whose (e.g.) left boundary is within the
 ##  annotation
-findOverlapsTier <- function(tierName, timesEAF) {
-  ##Get annotation timing DF for selected speaker
-  spkr <- timesEAF %>% pluck(tierName)
-  ##Get annotation timing DF that combines all other speakers
-  otherSpkrs <-
-    timesEAF %>%
-    extract(names(.) != tierName) %>%
+findOverlapsTier <- function(timesTier, tierName, timesEAF) {
+  ##Pull timing dataframes
+  timesOtherTiers <- 
+    timesEAF[names(timesEAF)!=tierName] %>% 
     bind_rows()
   
   ##For each boundary in selected tier, return the first annotation that the
@@ -389,8 +386,8 @@ findOverlapsTier <- function(tierName, timesEAF) {
     rowwise() %>% 
     ##Add overlap annotation ID
     ##N.B. This works because if which(x) is integer(0), which(x)[1] is NA
-    mutate(ANNOTATION_ID_overlapped = otherSpkrs$ANNOTATION_ID %>% 
-             extract(which(Time > otherSpkrs$Start & Time < otherSpkrs$End)[1])) %>% 
+    mutate(ANNOTATION_ID_overlapped = timesOtherTiers$ANNOTATION_ID %>% 
+             extract(which(Time > timesOtherTiers$Start & Time < timesOtherTiers$End)[1])) %>% 
     ungroup()
   
   ##Restrict to boundaries with overlaps, and add information about overlapped
@@ -400,7 +397,7 @@ findOverlapsTier <- function(tierName, timesEAF) {
     ##Only the boundaries that overlap another annotation
     filter(!is.na(ANNOTATION_ID_overlapped)) %>% 
     ##Add info about overlapped annotation
-    left_join(otherSpkrs %>%
+    left_join(timesOtherTiers %>%
                 rename_with(~ paste0(.x, "_overlapped")),
               by="ANNOTATION_ID_overlapped") %>% 
     ##Determine whether the nearest boundary is close enough (rowwise for min())
@@ -504,37 +501,15 @@ fixOverlapsTier <- function(overlapBounds, eaflist, eafName) {
   overlapBounds
 }
 
-##Wrapper function around getTimesTier() that takes a *list* of DFs of
-##  annotation times (one files' worth) and a single EAF name (meant to be used
-##  with output of getTimes() and imap()), and outputs a *single* DF with 
-##  annotation times plus overlaps columns
-findOverlaps <- function(timesEAF, eafName) {
-  ##Loop over tiers within this file to get overlaps
-  timesEAF %>%
-    names() %>%
-    set_names(., .) %>%
-    map(findOverlapsTier, timesEAF=timesEAF)
-}
-
 ##Wrapper function around fixOverlapsTier() that takes a *list* of DFs of
 ##  annotation times (one file's worth) and a single EAF name (meant to be used
 ##  with output of getTimes() and imap()), and rotates through tiers, fixing
-##  overlaps, until it reaches a stable state
+##  overlaps, until it reaches a stable state; modifies original eaflist
 fixOverlaps <- function(timesEAF, eafName, eaflist) {
-  # ##Initialize empty overlap log
-  # overlapLog <- data.frame(Tier = character(), 
-  #                          NumBounds = character(),
-  #                          NumOverlaps = character(),
-  #                          NumFixed = character())
-  
   ##Get initial overlaps
-  overlapsInit <- 
-    ##Get tier names
-    timesEAF %>%
-    names() %>% 
-    set_names(., .) %>%
-    ##Loop over tier names to find overlaps
-    map(findOverlapsTier, timesEAF)
+  ##  findOverlapsTier() needs a single tier's times DF, the name of that tier,
+  ##  and the entire file's times DF
+  overlapsInit <- imap(timesEAF, findOverlapsTier, timesEAF=timesEAF)
   
   ##Initialize looping variables
   overlapsPre <- NULL

@@ -1174,10 +1174,22 @@ I've hit a few snags trying to integrate the new fixO:
 
 - The conflict between the old and new arguments means it's not a drop-in replacement.
 - In this scratchpad I've been supplying tierOrder manually, but the app should do it dynamically (potentially with a parameter controlling the default order).
-- I tried to add Redaction in one go, and it's possible there was an issue with the rewritten findOverlapsTier.
+- I tried to add Redaction in one go, and...
+  - It's possible there was an issue with the rewritten findOverlapsTier (because of how it handles 0-row `overlapsBounds`)
+  - I also had to rewrite getTimes() so it wouldn't exclude Redaction, but I don't think it worked
 
 In short, I bit off more than I could chew!
 (Right now the result of my flailing-about is being stowed away in the branch `fix-fixoverlaps`.)
+
+To come up with a to-do list of sorts, I'm saving the diff file with coloring for Notepad++ by running (in the `apls` branch)
+
+```bash
+# Thanks, https://stackoverflow.com/a/28307437/5432121!
+git diff HEAD..fix-fixoverlaps > fixO.diff
+```
+
+I then modify the file to delete changes once I'm happy with them.
+
 
 ## Use old arguments
 
@@ -1228,6 +1240,9 @@ In `overlapsIssues()`, there's the following chain before fixO:
 So it's just looping over eaflist names.
 
 Um, why not just `imap()` over `times`?
+
+(Later, do this in other spots where I'm mapping over names.)
+
 I just integrated that into the app, and it _appears_ to work.
 Now I'm going to try it more formally with test-step3.R...and sweet! No changes.
 
@@ -1235,83 +1250,54 @@ Now I'm going to try it more formally with test-step3.R...and sweet! No changes.
 
 I could actually use this to bridge the gap between old and new args sooner r/t later, maybe?
 
+Okay, now I've rewritten findOTier args to be better imap-able.
+Does it still work?
 
+```{r}
+times %>% 
+  pluck(1) %>% 
+  names()
 
-```{r rewrite-fixoverlaps-4, eval=FALSE, include=FALSE}
-HASN'T BEEN REWRITTEN YET!
-
-# fixOverlaps <- function(eafName, tierOrder, eaflist, monitor=TRUE) {
-fixOverlaps <- function(timesEAF, eaflist, eafName, 
-                        ##Temporarily 'hard-wired' args
-                        tierOrder=c("HD06", "Interviewer HD06"), monitor=TRUE) {
-  ##Get initial overlaps
-  overlapsInit <- 
-    ##Get tier names
-    eaflist %>%
-    xmllist_to_df(singleDF=F) %>% 
-    pluck(eafName) %>% 
-    findOverlaps(eafName)
-  
-  ##Ensure tierOrder matches overlapsInit names
-  if (!identical(sort(names(overlapsInit)),
-                 sort(tierOrder))) {
-    stop("tierOrder")
-  }
-  
-  ##Initialize looping variables
-  overlapsPre <- NULL
-  overlapsPost <- overlapsInit
-  iters <- 0
-  maxIter <- 10
-  
-  ##Continue until there are no remaining overlaps, either because all
-  ##  overlaps have been fixed, or because things have stablized
-  while (any(map_int(overlapsPost, nrow) > 0) && !identical(overlapsPre, overlapsPost)) {
-    ##Increment iteration counter & stop if above maxIter
-    iters <- iters + 1
-    if (iters > maxIter) {
-      stop("Overlap fixing reached max iterations (", maxIter, ")")
-    }
-    
-    ##Old post is new pre
-    overlapsPre <- overlapsPost
-    
-    ##Fix each tier in turn
-    # for (tier in tierOrder) {
-    for (tier in rev(tierOrder)) {
-      message(tier)
-      ##Re-assess overlaps now that eaflist has been modified
-      overlapsCurr <- 
-        eaflist %>%
-        xmllist_to_df(singleDF=F) %>% 
-        pluck(eafName) %>% 
-        findOverlaps(eafName)
-      
-      ##Hide overlaps in all other tiers from fixOverlapsTier()
-      for (otherSpkr in setdiff(names(overlapsPre), tier)) {
-        overlapsCurr <- overlapsCurr %>% 
-          modify_in(list(otherSpkr), ~ .x %>% filter(is.na(ANNOTATION_ID)))
-      }
-      
-      ##Fix overlaps for *other* tiers, keeping current tier
-      overlapsPost[[tier]] <-
-        overlapsCurr %>% 
-        map(fixOverlapsTier, eaflist, eafName) %>% 
-        pluck(tier) %>% 
-        filter(!Resolved)
-    }
-    
-    if (monitor) {
-      message("iters: ", iters)
-      message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
-      message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
-    }
-  }
-  
-  ##Return overlapsPost
-  overlapsPost
-}
+times %>% 
+  pluck(1) %>% 
+  imap(~ which(names(.x)==.y))
 ```
+
+Oh, I see why it doesn't work for imap.
+Okay, use the current somewhat janky but workable solution
+
+
+Wait, actually, why don't I just map over timesEAF _and_ include timesEAF as an arg?
+Oh, short answer: I'd still have to awkwardly partition it so the rest of the timesTier elements still could be clumped together, so just passing the name is the most straightforward way to do it.
+Wait, or I could imap over both timesTier & each name!
+
+Great---no changes.
+
+## Add "Only proceed if there are any overlaps" (0-row `overlapBounds`) to `findOverlapsTier()`
+
+
+
+
+## Modify `getTimes()` to use `tiers` arg r/t `df`
+
+- `tiers`: character vector of tier names to include (default: `NULL`, for "all tiers")
+- `df`: `tierInfo()`, always including only `spkrTier==TRUE`
+
+
+
+
+## Add "Ensure tierOrder matches overlapsInit names" to `fixOverlaps()`
+
+
+## Add "Fix each tier in turn" to `fixOverlaps()`, **which will change test-step3 results**
+
+
+## Dynamically determine `tierOrder`
+
+
+
+## Add Redaction to overlap finding & fixing
+
 
 
 
