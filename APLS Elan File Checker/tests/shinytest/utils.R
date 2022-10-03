@@ -215,3 +215,40 @@ snapDownload <- function(app, name=NULL, path=getwd(),
   
   invisible(req$content)
 }
+
+##Compare an EAF before and after fixing overlaps
+compareEAF <- function(x, save=FALSE, tiers) {
+  ##Read eaf (two copies)
+  eaf_new <- read_xml(x)
+  eaf_old <- read_xml(x)
+  
+  ##Fix overlaps in eaf_new
+  invisible(fixOverlaps("eaf", tiers, list(eaf = eaf_new), monitor=FALSE))
+  
+  ##Tag eaf_old tiers with -old suffix
+  tiers %>% 
+    walk(~ eaf_old %>% 
+           xml_find_all(str_glue("//TIER[@TIER_ID='{.x}']")) %>% 
+           xml_set_attr("TIER_ID", str_glue("{.x}-old")))
+  
+  ##Get just those tiers from eaf_old
+  oldTiers <- xml_find_all(eaf_old, "//TIER[contains(@TIER_ID, '-old')]")
+  
+  ##Tag eaf_new tiers with -new suffix
+  tiers %>% 
+    walk(~ eaf_new %>% 
+           xml_find_all(str_glue("//TIER[@TIER_ID='{.x}']")) %>% 
+           xml_set_attr("TIER_ID", str_glue("{.x}-new")))
+  
+  ##Add -old tiers to eaf_new elements
+  oldTiers %>%
+    iwalk(~ eaf_new %>%
+            xml_find_all("/ANNOTATION_DOCUMENT") %>%
+            xml_add_child(.x, .where=2*.y))
+  
+  if (save) {
+    write_xml(eaf_new, str_replace(x, "\\.eaf$", "_oldnew.eaf"))
+  } else {
+    eaf_new
+  }
+}

@@ -27,7 +27,8 @@ spkrNumExtractRegex <- "([A-Z]{2})(\\d+)(?:and\\d+)?"
 
 ##Tier checking
 ##Required non-speaker tiers
-nonSpkrTiers <- c("Comment","Noise","Redaction")
+# nonSpkrTiers <- c("Comment","Noise","Redaction")
+nonSpkrTiers <- c("Comment","Noise")
 # nonSpkrTiers <- c("Comment","Comments","Noise","Noises","Redaction","Redactions")
 
 ##Dictionary checking
@@ -331,7 +332,7 @@ getTimesTier <- function(tierName, eaf, timeSlots) {
 ##N.B. This function outputs a list of DFs rather than a single DF because the
 ##  list structure makes it easier to detect overlaps in findOverlaps() (by
 ##  comparing the timings on a given speaker tier to all other speaker tiers)
-getTimes <- function(eaf, eafName, df) {
+getTimes <- function(eaf, eafName, tiers) {
   ##Timeslots (maps time slot ID to actual time, in milliseconds)
   timeSlots <- 
     ##Get TIME_SLOT nodes
@@ -342,21 +343,23 @@ getTimes <- function(eaf, eafName, df) {
     bind_rows() %>% 
     ##Make actual time numeric
     mutate(across(TIME_VALUE, as.numeric))
-  
-  ##Get speaker tier names
-  spkrTierNames <- 
-    ##df intended to be tierInfo() reactive
-    df %>% 
-    filter(File==eafName, SpkrTier) %>% 
-    pull(TIER_ID)
+  # 
+  # ##Get speaker tier names
+  # spkrTierNames <- 
+  #   ##df intended to be tierInfo() reactive
+  #   df %>% 
+  #   filter(File==eafName, SpkrTier) %>% 
+  #   pull(TIER_ID)
   
   ##Get times for speaker tiers (list of dataframes)
   spkrTimes <- 
-    spkrTierNames %>% 
+    tiers %>% 
     set_names(., .) %>% 
     map(getTimesTier, eaf, timeSlots) %>%
     ##Only nonempty tiers
     discard(is.null)
+  
+  spkrTimes
 }
 
 ##Function that takes a single tier name and a nested list of annotation time
@@ -393,36 +396,50 @@ findOverlapsTier <- function(tierName, timesEAF) {
              extract(which(Time > otherSpkrs$Start & Time < otherSpkrs$End)[1])) %>% 
     ungroup()
   
-  ##Restrict to boundaries with overlaps, and add information about overlapped
+  ##Restrict to boundaries with overlaps & add information about overlapped
   ##  annotations
   overlapBounds <- 
     bounds %>%
     ##Only the boundaries that overlap another annotation
     filter(!is.na(ANNOTATION_ID_overlapped)) %>% 
-    ##Add info about overlapped annotation
+    ##Add info about overlapped annotations
     left_join(otherSpkrs %>%
                 rename_with(~ paste0(.x, "_overlapped")),
-              by="ANNOTATION_ID_overlapped") %>% 
-    ##Determine whether the nearest boundary is close enough (rowwise for min())
-    rowwise() %>%
-    mutate(StartDiff = abs(Start_overlapped - Time),
-           EndDiff = abs(End_overlapped - Time),
-           CloseEnough = min(StartDiff, EndDiff) < overlapThresh) %>%
-    ungroup()
+              by="ANNOTATION_ID_overlapped")
   
-  ##Add new timeslot ID: if not close enough, "Too far"; if close enough, closer
-  ##  boundary (tie goes to start boundary); anything else is unexpected so it
-  ##  triggers an error below
-  overlapBounds <- overlapBounds %>% 
-    mutate(NewTS = case_when(
-      !CloseEnough ~ "Too far",
-      StartDiff <= EndDiff ~ TIME_SLOT_REF1_overlapped,
-      StartDiff > EndDiff ~ TIME_SLOT_REF2_overlapped,
-      TRUE ~ NA_character_),
-      ##Add node path for fixing overlap
-      NodePath = str_glue("//ALIGNABLE_ANNOTATION[@ANNOTATION_ID='{ANNOTATION_ID}']"))
+  ##Only proceed if there are any overlaps
+  if (nrow(overlapBounds) > 0) {
+    ##Add information about overlapped annotations
+    overlapBounds <- overlapBounds %>% 
+      ##Determine whether the nearest boundary is close enough (rowwise for min())
+      rowwise() %>%
+      mutate(StartDiff = abs(Start_overlapped - Time),
+             EndDiff = abs(End_overlapped - Time),
+             CloseEnough = min(StartDiff, EndDiff) < overlapThresh) %>%
+      ungroup()
+    
+    ##Add new timeslot ID: if not close enough, "Too far"; if close enough, closer
+    ##  boundary (tie goes to start boundary); anything else is unexpected so it
+    ##  triggers an error below
+    overlapBounds <- overlapBounds %>% 
+      mutate(NewTS = case_when(
+        !CloseEnough ~ "Too far",
+        StartDiff <= EndDiff ~ TIME_SLOT_REF1_overlapped,
+        StartDiff > EndDiff ~ TIME_SLOT_REF2_overlapped,
+        TRUE ~ NA_character_),
+        ##Add node path for fixing overlap
+        NodePath = str_glue("//ALIGNABLE_ANNOTATION[@ANNOTATION_ID='{ANNOTATION_ID}']") %>% 
+          as.character())
+  } else {
+    overlapBounds <- overlapBounds %>% 
+      mutate(StartDiff = double(0L),
+             EndDiff = double(0L),
+             CloseEnough = logical(0L),
+             NewTS = character(0L),
+             NodePath = character(0L))
+  }
   
-  ##Return dataframe
+  ##Return dataframe (which may be 0-row)
   overlapBounds
 }
 
@@ -520,21 +537,21 @@ findOverlaps <- function(timesEAF, eafName) {
 ##  annotation times (one file's worth) and a single EAF name (meant to be used
 ##  with output of getTimes() and imap()), and rotates through tiers, fixing
 ##  overlaps, until it reaches a stable state
-fixOverlaps <- function(timesEAF, eaflist, eafName) {
-  # ##Initialize empty overlap log
-  # overlapLog <- data.frame(Tier = character(), 
-  #                          NumBounds = character(),
-  #                          NumOverlaps = character(),
-  #                          NumFixed = character())
-  
+fixOverlaps <- function(eafName, tierOrder, eaflist, monitor=TRUE) {
   ##Get initial overlaps
   overlapsInit <- 
-    ##Get tier names
-    timesEAF %>%
-    names() %>% 
-    set_names(., .) %>%
-    ##Loop over tier names to find overlaps
-    map(findOverlapsTier, timesEAF)
+    eaflist %>%
+    pluck(eafName) %>% 
+    getTimes(eafName=eafName, tiers=tierOrder) %>% 
+    findOverlaps(eafName)
+  
+  ##Ensure tierOrder matches overlapsInit names
+  if (!identical(sort(names(overlapsInit)),
+                 sort(tierOrder))) {
+    stop("names(overlapsInit): ", names(overlapsInit),
+         "\ntierOrder: ", tierOrder,
+         "\nnonSpkrTiers: ", nonSpkrTiers)
+  }
   
   ##Initialize looping variables
   overlapsPre <- NULL
@@ -554,15 +571,34 @@ fixOverlaps <- function(timesEAF, eaflist, eafName) {
     ##Old post is new pre
     overlapsPre <- overlapsPost
     
-    ##Go through another fixing round
-    overlapsPost <- 
-      overlapsPre %>%
-      map(fixOverlapsTier, eaflist, eafName) %>% 
-      map(filter, !Resolved)
+    ##Fix each tier in turn
+    for (tier in rev(tierOrder)) {
+      ##Re-assess overlaps now that eaflist has been modified
+      overlapsCurr <- 
+        eaflist %>%
+        pluck(eafName) %>% 
+        getTimes(eafName=eafName, tiers=tierOrder) %>% 
+        findOverlaps(eafName)
+      
+      ##Hide overlaps in all other tiers from fixOverlapsTier()
+      for (otherSpkr in setdiff(names(overlapsPre), tier)) {
+        overlapsCurr <- overlapsCurr %>% 
+          modify_in(list(otherSpkr), ~ .x %>% filter(is.na(ANNOTATION_ID)))
+      }
+      
+      ##Fix overlaps for *other* tiers, keeping current tier
+      overlapsPost[[tier]] <-
+        overlapsCurr %>% 
+        map(fixOverlapsTier, eaflist, eafName) %>% 
+        pluck(tier) %>% 
+        filter(!Resolved)
+    }
     
-    message("iters: ", iters)
-    message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
-    message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
+    if (monitor) {
+      message("iters: ", iters)
+      message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
+      message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
+    }
   }
   
   ##Return overlapsPost
@@ -587,8 +623,26 @@ formatTimes <- function(time, type=c("S","HMS")[2]) {
 ##  nicely for printing
 ##x should be eaflist(), df should be tierInfo()
 overlapsIssues <- function(x, df) {
+  ##Get tier order by file
+  tierOrder <- df %>% 
+    mutate(OverlapTier = case_when(
+      TIER_ID=="Redaction" ~ "Redaction",
+      TIER_ID==SpkrCode ~ "Main speaker",
+      Neighborhood=="HD" & TIER_ID=="Trista Pennington" ~ "Interviewer",
+      Neighborhood!="HD" & TIER_ID=="Barbara Johnstone" ~ "Interviewer",
+      startsWith(TIER_ID, "Interviewer") ~ "Interviewer",
+      SpkrTier ~ "Bystander",
+      TRUE ~ NA_character_
+    )) %>% 
+    filter(!is.na(OverlapTier)) %>% 
+    arrange(desc(OverlapTier)) %>% 
+    select(File, TIER_ID) %>% 
+    nest(tierOrder = TIER_ID) %>% 
+    pull(tierOrder, File) %>% 
+    map("TIER_ID")
+  
   ##Get timing data
-  times <- imap(x, getTimes, df=df)
+  times <- imap(x, ~ getTimes(.x, .y, tiers=tierOrder[[.y]]))
   
   ##Fix overlaps & format output for display
   fixed <- 
@@ -596,7 +650,7 @@ overlapsIssues <- function(x, df) {
     names() %>% 
     set_names(., .) %>% 
     ##Fix overlaps
-    map(~ fixOverlaps(times[[.x]], x, .x) %>% 
+    map(~ fixOverlaps(.x, tierOrder[[.x]], x) %>% 
           ##All in one DF
           bind_rows(.id="Tier")) %>% 
     imap(~ .x %>%
@@ -821,10 +875,10 @@ server <- function(input, output) {
       require(jsonlite)
       undisplay(tags$div(prettify(toJSON(x), 2), id=nm))
     }
-    ##Turn eaflist into DF
-    eaflist_to_df <- function(x, df=tierInfo()) {
-      imap(x, getTimes, df=df)
-    }
+    # ##Turn eaflist into DF
+    # eaflist_to_df <- function(x, df=tierInfo()) {
+    #   imap(x, getTimes, df=df)
+    # }
     
     ##First element: fileDF()
     export <- list(pack_val(fileDF() %>% select(-datapath), "fileDF"))
@@ -832,8 +886,9 @@ server <- function(input, output) {
     ##If step 0 passed, add tierInfo() & at least one eaflist()
     if (all(fileDF()$FileExtValid)) {
       tagList(export,
-              pack_val(tierInfo() %>% select(-datapath), "tierInfo"),
-              pack_val(eaflist() %>% eaflist_to_df(), "eaflist"))
+              pack_val(tierInfo() %>% select(-datapath), "tierInfo")#,
+              # pack_val(eaflist() %>% eaflist_to_df(), "eaflist")
+              )
     } else {
       ##If failing step0, export just fileDF()
       tagList(export)
