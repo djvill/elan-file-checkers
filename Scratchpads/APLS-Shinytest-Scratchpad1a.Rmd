@@ -1345,8 +1345,54 @@ Re-running test-step3...no changes.
 
 ## Add "Ensure tierOrder matches overlapsInit names" to `fixOverlaps()`
 
+What if I just drop it in?
+
+Oh, I have to hard-code `tierOrder`, but it seems to work (with `fixOverlapRedact` both T & F).
+
+Ran test-step3, no changes.
+
 
 ## Add "Fix each tier in turn" to `fixOverlaps()`, **which will change test-step3 results**
+
+Hmm, I'm realizing I need to move more stuff from `overlapsIssues()` to `fixOverlaps()`.
+Like, since I need to rerun `getTimes()` after each round, `fixOverlaps()` needs `tierInfo()` so it can run `getOverlapTiers()`.
+
+As with last week, I'm really struggling to find the source of "no applicable method for 'xml_find_all' applied to an object of class "NULL""
+
+Try it interactively
+
+```{r}
+eaflist <- 
+  list(`HD06-1_GoodOnly.eaf` = "../APLS Elan File Checker/tests/shinytest/step3/HD06-1_GoodOnly.eaf") %>% 
+  map(read_xml)
+tierInfo <- fromJSON("../APLS Elan File Checker/tests/shinytest/test-step3-expected/HD06-1_GoodOnly.eaf.json") %>% 
+  pluck("export", "tierInfo")
+tierNames <- getOverlapTiers(tierInfo, FALSE)
+eafName <- names(eaflist)[1]
+tierNames ; eafName
+```
+
+
+```{r}
+getTimes(eaflist %>% pluck(eafName), eafName, tierNames %>% pluck(eafName))
+```
+
+Oh, I was confusing eaf & eaflist for the millionth time. ARGH.
+
+Anyway, it looks like it works now.
+
+Rerun test-step3; results should change.
+They do, and the output files themselves have no overlaps. Wahoo!
+
+And, as predicted, IntFirst has different results, since it's taken the in-file tier order as the hierarchy:
+
+```{r}
+dir("../APLS Elan File Checker/tests/shinytest/test-step3-expected/", "Good.+eaf$", full.names=TRUE) %>% 
+  set_names(basename(.)) %>% 
+  map(read_lines) %>% 
+  map(str_subset, "\"ts1[23]\"")
+```
+
 
 
 ## Dynamically determine `tierOrder`

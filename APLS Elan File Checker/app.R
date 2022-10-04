@@ -310,7 +310,7 @@ getOverlapTiers <- function(df, inclRedact=fixOverlapRedact) {
     pull(tierNames, name=File)
   
   ##Optionally add Redaction
-  if (fixOverlapRedact) {
+  if (inclRedact) {
     tierNames <- map(spkrTierNames, append, "Redaction")
   } else {
     tierNames <- spkrTierNames
@@ -537,12 +537,24 @@ fixOverlapsTier <- function(overlapBounds, eaflist, eafName) {
 ##  annotation times (one file's worth) and a single EAF name (meant to be used
 ##  with output of getTimes() and imap()), and rotates through tiers, fixing
 ##  overlaps, until it reaches a stable state; modifies original eaflist
-fixOverlaps <- function(timesEAF, eafName, eaflist, 
+##Feeds into overlapsIssues()
+fixOverlaps <- function(tierNamesFile, eafName, eaflist, 
+                        # tierOrder=c("HD06", "Interviewer HD06"), 
                         monitor=monitorOverlaps) {
+  ##Get initial timing data
+  timesEAF <- getTimes(eaflist %>% pluck(eafName), eafName, tierNamesFile)
+  
   ##Get initial overlaps
   ##  findOverlapsTier() needs a single tier's times DF, the name of that tier,
   ##  and the entire file's times DF
   overlapsInit <- imap(timesEAF, findOverlapsTier, timesEAF=timesEAF)
+  
+  ##Ensure tierNamesFile matches overlapsInit names
+  if (!identical(sort(names(overlapsInit)),
+                 sort(tierNamesFile))) {
+    stop("names(overlapsInit): ", names(overlapsInit),
+         "\ntierOrder: ", tierNamesFile)
+  }
   
   ##Initialize looping variables
   overlapsPre <- NULL
@@ -567,11 +579,28 @@ fixOverlaps <- function(timesEAF, eafName, eaflist,
     ##Old post is new pre
     overlapsPre <- overlapsPost
     
-    ##Go through another fixing round
-    overlapsPost <- 
-      overlapsPre %>%
-      map(fixOverlapsTier, eaflist, eafName) %>% 
-      map(filter, !Resolved)
+    ##Fix each tier in turn
+    for (tier in rev(tierNamesFile)) {
+      ##Re-assess overlaps now that eaflist has been modified
+      newTimesEAF <- 
+        eaflist %>%
+        pluck(eafName) %>% 
+        getTimes(eafName=eafName, tiers=tierNamesFile)
+      overlapsCurr <- imap(newTimesEAF, findOverlapsTier, timesEAF=newTimesEAF)
+      
+      ##Hide overlaps in all other tiers from fixOverlapsTier()
+      for (otherSpkr in setdiff(names(overlapsPre), tier)) {
+        overlapsCurr <- overlapsCurr %>% 
+          modify_in(list(otherSpkr), ~ .x %>% filter(is.na(ANNOTATION_ID)))
+      }
+      
+      ##Fix overlaps for *other* tiers, keeping current tier
+      overlapsPost[[tier]] <-
+        overlapsCurr %>% 
+        map(fixOverlapsTier, eaflist, eafName) %>% 
+        pluck(tier) %>% 
+        filter(!Resolved)
+    }
     
     if (monitor) {
       message("iters: ", iters)
@@ -600,12 +629,12 @@ formatTimes <- function(time, type=c("S","HMS")[2]) {
 
 ##Fix overlaps in all files, returning any unresolved overlaps, formatted
 ##  nicely for printing
-##x should be eaflist(), df should be tierInfo()
+##x should be eaflist(), df should be tierInfo() (passed down to fixOverlaps())
 overlapsIssues <- function(x, df) {
   ##Get list of each file's tier names to check
   tierNames <- getOverlapTiers(df=df)
   
-  ##Get timing data
+  ##Get initial timing data
   times <- list(eaf = x,
                 eafName = names(x),
                 tiers = tierNames) %>%
@@ -613,7 +642,7 @@ overlapsIssues <- function(x, df) {
   
   ##Fix overlaps & format output for display
   fixed <- 
-    times %>% 
+    tierNames %>% 
     ##Fix overlaps
     imap(fixOverlaps, eaflist=x) %>% 
     ##Get fixed-overlap times
@@ -725,8 +754,8 @@ xmllist_to_df <- function(xmllist, singleDF=TRUE, nST=nonSpkrTiers) {
   tierNames <- getOverlapTiers(df=tierInfo)
   
   ##Get timing data
-  times <- list(eaf = x, 
-                eafName = names(x),
+  times <- list(eaf = xmllist, 
+                eafName = names(xmllist),
                 tiers = tierNames) %>% 
     pmap(getTimes)
   
@@ -825,6 +854,7 @@ server <- function(input, output) {
   output$debugPrint <-
     renderPrint({
       list(
+        # fixO = fixOverlaps(names(eaflist())[1], eaflist(), tierInfo())
         ##To use:
         ## 1. Set showDebug to TRUE
         ## 2. Put reactive objects here with name from environment or expression, such as
@@ -856,11 +886,11 @@ server <- function(input, output) {
     eaflist_to_df <- function(x, df=tierInfo()) {
       ##Get list of each file's tier names to check
       tierNames <- getOverlapTiers(df=df)
-      
+
       ##Get timing data
-      times <- list(eaf = x, 
+      times <- list(eaf = x,
                     eafName = names(x),
-                    tiers = tierNames) %>% 
+                    tiers = tierNames) %>%
         pmap(getTimes)
     }
     
