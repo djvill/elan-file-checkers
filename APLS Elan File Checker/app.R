@@ -14,8 +14,10 @@ library(magrittr)
 versDate <- "22 September 2022"
 
 ##Debugging
-##Show additional UI element(s) at top of main panel for debugging?
+##Show additional UI element "debugPrint" at top of main panel for debugging?
 showDebug <- FALSE
+##Print info about overlaps to console (not visible in app or snapshots)?
+monitorOverlaps <- TRUE
 
 ##File structures
 ##Regex for extracting SpkrCode and FileSuffix columns using tidyr::extract();
@@ -377,7 +379,7 @@ findOverlapsTier <- function(timesTier, tierName, timesEAF) {
   ##  which(x)[1] only selects the first result, not necessarily the result
   ##  closest to the boundary)
   bounds <- 
-    spkr %>%
+    timesTier %>%
     ##One row per boundary (new columns Side, TIME_SLOT_REF, Time)
     rename(Time1 = Start, Time2 = End) %>% 
     pivot_longer(-ANNOTATION_ID, 
@@ -396,30 +398,42 @@ findOverlapsTier <- function(timesTier, tierName, timesEAF) {
     bounds %>%
     ##Only the boundaries that overlap another annotation
     filter(!is.na(ANNOTATION_ID_overlapped)) %>% 
-    ##Add info about overlapped annotation
+    ##Add info about overlapped annotations
     left_join(timesOtherTiers %>%
                 rename_with(~ paste0(.x, "_overlapped")),
-              by="ANNOTATION_ID_overlapped") %>% 
-    ##Determine whether the nearest boundary is close enough (rowwise for min())
-    rowwise() %>%
-    mutate(StartDiff = abs(Start_overlapped - Time),
-           EndDiff = abs(End_overlapped - Time),
-           CloseEnough = min(StartDiff, EndDiff) < overlapThresh) %>%
-    ungroup()
+              by="ANNOTATION_ID_overlapped")
   
-  ##Add new timeslot ID: if not close enough, "Too far"; if close enough, closer
-  ##  boundary (tie goes to start boundary); anything else is unexpected so it
-  ##  triggers an error below
-  overlapBounds <- overlapBounds %>% 
-    mutate(NewTS = case_when(
-      !CloseEnough ~ "Too far",
-      StartDiff <= EndDiff ~ TIME_SLOT_REF1_overlapped,
-      StartDiff > EndDiff ~ TIME_SLOT_REF2_overlapped,
-      TRUE ~ NA_character_),
-      ##Add node path for fixing overlap
-      NodePath = str_glue("//ALIGNABLE_ANNOTATION[@ANNOTATION_ID='{ANNOTATION_ID}']"))
+  ##Only proceed if there are any overlaps
+  if (nrow(overlapBounds) > 0) {
+    ##Add information about overlapped annotations
+    overlapBounds <- overlapBounds %>% 
+      ##Determine whether the nearest boundary is close enough (rowwise for min())
+      rowwise() %>%
+      mutate(StartDiff = abs(Start_overlapped - Time),
+             EndDiff = abs(End_overlapped - Time),
+             CloseEnough = min(StartDiff, EndDiff) < overlapThresh) %>%
+      ungroup() %>% 
+      ##Add new timeslot ID: if not close enough, "Too far"; if close enough, closer
+      ##  boundary (tie goes to start boundary); anything else is unexpected so it
+      ##  triggers an error below
+      mutate(NewTS = case_when(
+        !CloseEnough ~ "Too far",
+        StartDiff <= EndDiff ~ TIME_SLOT_REF1_overlapped,
+        StartDiff > EndDiff ~ TIME_SLOT_REF2_overlapped,
+        TRUE ~ NA_character_),
+        ##Add node path for fixing overlap
+        NodePath = str_glue("//ALIGNABLE_ANNOTATION[@ANNOTATION_ID='{ANNOTATION_ID}']"))
+  } else {
+    ##If no overlaps, add empty columns anyway
+    overlapBounds <- overlapBounds %>% 
+      mutate(StartDiff = double(0L),
+             EndDiff = double(0L),
+             CloseEnough = logical(0L),
+             NewTS = character(0L),
+             NodePath = character(0L))
+  }
   
-  ##Return dataframe
+  ##Return dataframe (which may be 0-row)
   overlapBounds
 }
 
@@ -505,7 +519,8 @@ fixOverlapsTier <- function(overlapBounds, eaflist, eafName) {
 ##  annotation times (one file's worth) and a single EAF name (meant to be used
 ##  with output of getTimes() and imap()), and rotates through tiers, fixing
 ##  overlaps, until it reaches a stable state; modifies original eaflist
-fixOverlaps <- function(timesEAF, eafName, eaflist) {
+fixOverlaps <- function(timesEAF, eafName, eaflist, 
+                        monitor=monitorOverlaps) {
   ##Get initial overlaps
   ##  findOverlapsTier() needs a single tier's times DF, the name of that tier,
   ##  and the entire file's times DF
@@ -516,6 +531,11 @@ fixOverlaps <- function(timesEAF, eafName, eaflist) {
   overlapsPost <- overlapsInit
   iters <- 0
   maxIter <- 10
+  
+  ##If no overlaps initially, write a message
+  if (monitor && all(map_int(overlapsPost, nrow)==0)) {
+    message("No overlaps.")
+  }
   
   ##Continue until there are no remaining overlaps, either because all
   ##  overlaps have been fixed, or because things have stablized
@@ -535,9 +555,11 @@ fixOverlaps <- function(timesEAF, eafName, eaflist) {
       map(fixOverlapsTier, eaflist, eafName) %>% 
       map(filter, !Resolved)
     
-    message("iters: ", iters)
-    message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
-    message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
+    if (monitor) {
+      message("iters: ", iters)
+      message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
+      message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
+    }
   }
   
   ##Return overlapsPost
@@ -582,6 +604,10 @@ overlapsIssues <- function(x, df) {
   nonempty <- map_int(fixed, nrow) > 0
   times <- times[nonempty]
   fixed <- fixed[nonempty]
+  # times <- times %>% 
+  #   discard(~ nrow(.x)==0)
+  # fixed <- fixed %>% 
+  #   discard(~ nrow(.x)==0)
   
   ##If any NAs in Start/End, patch rows
   if (any(fixed %>% 
@@ -601,11 +627,11 @@ overlapsIssues <- function(x, df) {
   }
   
   ##Sort by start time, remove annotation ID, nicer Start/End formatting, & return
-  fixed %>% 
-    map(~ .x %>% 
-          arrange(Start) %>% 
-          select(-ANNOTATION_ID) %>% 
-          rowwise() %>% 
+  fixed %>%
+    map(~ .x %>%
+          arrange(Start) %>%
+          select(-ANNOTATION_ID) %>%
+          rowwise() %>%
           mutate(across(c(Start,End), formatTimes, type=timeDisp)))
 }
 
@@ -769,7 +795,7 @@ server <- function(input, output) {
     renderPrint({
       list(
         ##To use:
-        ## 1. Set debugPrint to TRUE
+        ## 1. Set showDebug to TRUE
         ## 2. Put reactive objects here with name from environment or expression, such as
         ##      `eaflist()` = eaflist()
         ##      `tierInfo()$TIER_ID` = tierInfo()$TIER_ID,
@@ -994,7 +1020,7 @@ server <- function(input, output) {
     if (!exitEarly || overrideExit$dict) {
       ##Get overlaps issues
       overlapsIss <- overlapsIssues(eaflist(), tierInfo())
-      ##If no dictionary issues, don't display anything & make step heading green
+      ##If no overlaps issues, don't display anything & make step heading green
       if (length(overlapsIss)==0) {
         overlapsSubhead <- undisplay(overlapsSubhead)
         overlapsDetails <- undisplay(overlapsDetails)

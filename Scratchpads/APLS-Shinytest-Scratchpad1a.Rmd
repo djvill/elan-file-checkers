@@ -1275,8 +1275,43 @@ Great---no changes.
 
 ## Add "Only proceed if there are any overlaps" (0-row `overlapBounds`) to `findOverlapsTier()`
 
+I _think_ this is working, but surprisingly, it's still showing overlaps-to-fix even when I run the file thru the file checker and it supposedly reduces overlaps to 0.
+Some of that is the fact that I didn't actually implement multiple rounds of fixing.
+
+But even after running the file through, there are 2 overlaps per tier still showing.
+This is just one overlap per tier: a boundary shared by two side-by-side annotations.
+Oh, and because the snapping-to-boundary is simultaneous r/t sequential, they swap places every time.
+So that'll be fixed soon.
+
+I figured this out by adding this to `overlapsIssues()`:
+
+```{r, eval=FALSE}
+ol <- times %>% 
+  imap(~ imap(.x, findOverlapsTier, timesEAF=.x))
+
+return(ol)
+```
+
+And this to debugPrint:
+
+```{r, eval=FALSE}
+list(
+  overlapsIssues1 = overlapsIssues(eaflist(), tierInfo()) %>% 
+    map_depth(2, ~ select(.x, 1:7)),
+  overlapsIssues1 = overlapsIssues(eaflist(), tierInfo()) %>% 
+    map_depth(2, ~ select(.x, 8:14))
+)
+```
 
 
+In the meantime, I need to know if this works!
+Modify `step3/HD06-1_OverlapsResolved.eaf` so it _actually_ has all overlaps resolved
+
+Okay, testing it now, I don't get any problems if there are no overlaps in the input.
+
+Finally, add the monitor switch to overlapsIssues.
+
+That updated the OverlapsResolved.eaf results and All results, but nothing else. Great!
 
 ## Modify `getTimes()` to use `tiers` arg r/t `df`
 

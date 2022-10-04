@@ -53,72 +53,6 @@ index c872c9e..067f862 100644
  }
  
  ##Function that takes a single tier name and a nested list of annotation time
-@@ -393,36 +396,50 @@ findOverlapsTier <- function(tierName, timesEAF) {
-   ##  annotations
-   overlapBounds <- 
-     bounds %>%
-     ##Only the boundaries that overlap another annotation
-     filter(!is.na(ANNOTATION_ID_overlapped)) %>% 
--    ##Add info about overlapped annotation
-+    ##Add info about overlapped annotations
-     left_join(otherSpkrs %>%
-                 rename_with(~ paste0(.x, "_overlapped")),
--              by="ANNOTATION_ID_overlapped") %>% 
--    ##Determine whether the nearest boundary is close enough (rowwise for min())
--    rowwise() %>%
--    mutate(StartDiff = abs(Start_overlapped - Time),
--           EndDiff = abs(End_overlapped - Time),
--           CloseEnough = min(StartDiff, EndDiff) < overlapThresh) %>%
--    ungroup()
-+              by="ANNOTATION_ID_overlapped")
-   
--  ##Add new timeslot ID: if not close enough, "Too far"; if close enough, closer
--  ##  boundary (tie goes to start boundary); anything else is unexpected so it
--  ##  triggers an error below
--  overlapBounds <- overlapBounds %>% 
--    mutate(NewTS = case_when(
--      !CloseEnough ~ "Too far",
--      StartDiff <= EndDiff ~ TIME_SLOT_REF1_overlapped,
--      StartDiff > EndDiff ~ TIME_SLOT_REF2_overlapped,
--      TRUE ~ NA_character_),
--      ##Add node path for fixing overlap
--      NodePath = str_glue("//ALIGNABLE_ANNOTATION[@ANNOTATION_ID='{ANNOTATION_ID}']"))
-+  ##Only proceed if there are any overlaps
-+  if (nrow(overlapBounds) > 0) {
-+    ##Add information about overlapped annotations
-+    overlapBounds <- overlapBounds %>% 
-+      ##Determine whether the nearest boundary is close enough (rowwise for min())
-+      rowwise() %>%
-+      mutate(StartDiff = abs(Start_overlapped - Time),
-+             EndDiff = abs(End_overlapped - Time),
-+             CloseEnough = min(StartDiff, EndDiff) < overlapThresh) %>%
-+      ungroup()
-+    
-+    ##Add new timeslot ID: if not close enough, "Too far"; if close enough, closer
-+    ##  boundary (tie goes to start boundary); anything else is unexpected so it
-+    ##  triggers an error below
-+    overlapBounds <- overlapBounds %>% 
-+      mutate(NewTS = case_when(
-+        !CloseEnough ~ "Too far",
-+        StartDiff <= EndDiff ~ TIME_SLOT_REF1_overlapped,
-+        StartDiff > EndDiff ~ TIME_SLOT_REF2_overlapped,
-+        TRUE ~ NA_character_),
-+        ##Add node path for fixing overlap
-+        NodePath = str_glue("//ALIGNABLE_ANNOTATION[@ANNOTATION_ID='{ANNOTATION_ID}']") %>% 
-+          as.character())
-+  } else {
-+    overlapBounds <- overlapBounds %>% 
-+      mutate(StartDiff = double(0L),
-+             EndDiff = double(0L),
-+             CloseEnough = logical(0L),
-+             NewTS = character(0L),
-+             NodePath = character(0L))
-+  }
-   
--  ##Return dataframe
-+  ##Return dataframe (which may be 0-row)
-   overlapBounds
- }
  
 @@ -520,21 +537,21 @@ findOverlaps <- function(timesEAF, eafName) {
  ##  annotation times (one file's worth) and a single EAF name (meant to be used
@@ -126,8 +60,6 @@ index c872c9e..067f862 100644
  ##  overlaps, until it reaches a stable state
 -fixOverlaps <- function(timesEAF, eafName, eaflist) {
 -  
-+fixOverlaps <- function(eafName, tierOrder, eaflist, monitor=TRUE) {
-
 [...]
 
 +  ##Ensure tierOrder matches overlapsInit names
@@ -172,14 +104,6 @@ index c872c9e..067f862 100644
 +        filter(!Resolved)
 +    }
      
--    message("iters: ", iters)
--    message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
--    message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
-+    if (monitor) {
-+      message("iters: ", iters)
-+      message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
-+      message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
-+    }
    }
    
    ##Return overlapsPost
