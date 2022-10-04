@@ -1318,7 +1318,29 @@ That updated the OverlapsResolved.eaf results and All results, but nothing else.
 - `tiers`: character vector of tier names to include (default: `NULL`, for "all tiers")
 - `df`: `tierInfo()`, always including only `spkrTier==TRUE`
 
+So I have to move the identification of spkrTiers out to `overlapsIssues()`, which calls `getTimes()` directly.
+Check that this little bit works:
 
+```{r}
+list(a = c("HD06", "Interviewer HD06"), 
+     b = c("CB01", "Interviewer CB01")) %>% 
+  map(append, "Redaction")
+```
+
+Actually, I can just move this out to a separate function that overlapsIssues calls once (and also gets called in output$export)
+
+```{r}
+library(jsonlite)
+tierInfo <- fromJSON("../APLS Elan File Checker/tests/shinytest/test-step3-expected/All.json") %>% 
+  pluck("export", "tierInfo")
+tierInfo %>% 
+  filter(SpkrTier) %>% 
+  nest(data = -File) %>% 
+  mutate(tierNames = map(data, "TIER_ID")) %>% 
+  pull(tierNames, name=File)
+```
+
+Re-running test-step3...no changes.
 
 
 ## Add "Ensure tierOrder matches overlapsInit names" to `fixOverlaps()`

@@ -47,6 +47,8 @@ overlapThresh <- 500
 ##Time display type: "S" (seconds, useful for Praat TextGrids), or "HMS" (useful
 ##  for ELAN)
 timeDisp <- "HMS"
+##Include Redaction tier in overlap-fixing?
+fixOverlapRedact <- FALSE
 
 ##Exit-early overrides, for debugging
 overrideExit <- list(fileExt = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
@@ -296,10 +298,31 @@ dictCheck <- function(df, x) {
 
 ## Overlaps ===================================================================
 
+##Function that returns a list of tiers to overlap-check for each file.
+##  df should be tierInfo() reactive
+getOverlapTiers <- function(df, inclRedact=fixOverlapRedact) {
+  ##Get speaker tiers for each file
+  spkrTierNames <-
+    df %>% 
+    filter(SpkrTier) %>% 
+    nest(data = -File) %>% 
+    mutate(tierNames = map(data, "TIER_ID")) %>% 
+    pull(tierNames, name=File)
+  
+  ##Optionally add Redaction
+  if (fixOverlapRedact) {
+    tierNames <- map(spkrTierNames, append, "Redaction")
+  } else {
+    tierNames <- spkrTierNames
+  }
+  
+  tierNames
+}
+
 ##Function that takes a tier name, eaf file, and file-wide time slot DF as
 ##  input and outputs actual times for annotations
 getTimesTier <- function(tierName, eaf, timeSlots) {
-  tierTimes <-
+  timesTier <-
     ##Get all ALIGNABLE_ANNOTATION tags
     str_glue("//TIER[@TIER_ID='{tierName}']//ALIGNABLE_ANNOTATION") %>%
     xml_find_all(eaf, .) %>% 
@@ -308,8 +331,8 @@ getTimesTier <- function(tierName, eaf, timeSlots) {
     bind_rows()
   
   ##Add actual times, only if tier is nonempty
-  if (nrow(tierTimes) > 0) {
-    tierTimes <- tierTimes %>% 
+  if (nrow(timesTier) > 0) {
+    timesTier <- timesTier %>% 
       ##Add actual times
       left_join(timeSlots %>%
                   rename(TIME_SLOT_REF1 = TIME_SLOT_ID,
@@ -333,7 +356,7 @@ getTimesTier <- function(tierName, eaf, timeSlots) {
 ##N.B. This function outputs a list of DFs rather than a single DF because the
 ##  list structure makes it easier to detect overlaps in fixOverlaps() (by
 ##  comparing the timings on a given speaker tier to all other speaker tiers)
-getTimes <- function(eaf, eafName, df) {
+getTimes <- function(eaf, eafName, tiers) {
   ##Timeslots (maps time slot ID to actual time, in milliseconds)
   timeSlots <- 
     ##Get TIME_SLOT nodes
@@ -345,20 +368,15 @@ getTimes <- function(eaf, eafName, df) {
     ##Make actual time numeric
     mutate(across(TIME_VALUE, as.numeric))
   
-  ##Get speaker tier names
-  spkrTierNames <- 
-    ##df intended to be tierInfo() reactive
-    df %>% 
-    filter(File==eafName, SpkrTier) %>% 
-    pull(TIER_ID)
-  
-  ##Get times for speaker tiers (list of dataframes)
-  spkrTimes <- 
-    spkrTierNames %>% 
+  ##Get times for tiers (list of dataframes)
+  timesEAF <- 
+    tiers %>% 
     set_names(., .) %>% 
     map(getTimesTier, eaf, timeSlots) %>%
     ##Only nonempty tiers
     discard(is.null)
+  
+  timesEAF
 }
 
 ##Function that takes a single tier name and a nested list of annotation time
@@ -584,8 +602,14 @@ formatTimes <- function(time, type=c("S","HMS")[2]) {
 ##  nicely for printing
 ##x should be eaflist(), df should be tierInfo()
 overlapsIssues <- function(x, df) {
+  ##Get list of each file's tier names to check
+  tierNames <- getOverlapTiers(df=df)
+  
   ##Get timing data
-  times <- imap(x, getTimes, df=df)
+  times <- list(eaf = x,
+                eafName = names(x),
+                tiers = tierNames) %>%
+    pmap(getTimes)
   
   ##Fix overlaps & format output for display
   fixed <- 
@@ -697,13 +721,20 @@ xmllist_to_df <- function(xmllist, singleDF=TRUE, nST=nonSpkrTiers) {
     ##Add SpkrTier (is the tier a speaker tier?)
     mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(nST)))
   
-  eaflist <- imap(xmllist, getTimes, df=tierInfo)
+  ##Get list of each file's tier names to check
+  tierNames <- getOverlapTiers(df=tierInfo)
+  
+  ##Get timing data
+  times <- list(eaf = x, 
+                eafName = names(x),
+                tiers = tierNames) %>% 
+    pmap(getTimes)
   
   if (singleDF) {
-    eaflist %>%
+    times %>%
       map_dfr(~ map_dfr(.x, as_tibble, .id="Tier"), .id="File")
   } else {
-    eaflist
+    times
   }
 }
 
@@ -823,7 +854,14 @@ server <- function(input, output) {
     }
     ##Turn eaflist into DF
     eaflist_to_df <- function(x, df=tierInfo()) {
-      imap(x, getTimes, df=df)
+      ##Get list of each file's tier names to check
+      tierNames <- getOverlapTiers(df=df)
+      
+      ##Get timing data
+      times <- list(eaf = x, 
+                    eafName = names(x),
+                    tiers = tierNames) %>% 
+        pmap(getTimes)
     }
     
     ##First element: fileDF()
