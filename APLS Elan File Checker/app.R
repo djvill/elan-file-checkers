@@ -48,7 +48,7 @@ overlapThresh <- 500
 ##  for ELAN)
 timeDisp <- "HMS"
 ##Include Redaction tier in overlap-fixing?
-fixOverlapRedact <- FALSE
+fixOverlapRedact <- TRUE
 
 ##Exit-early overrides, for debugging
 overrideExit <- list(fileExt = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
@@ -562,12 +562,9 @@ fixOverlaps <- function(tierNamesFile, eafName, eaflist,
   ##  and the entire file's times DF
   overlapsInit <- imap(timesEAF, findOverlapsTier, timesEAF=timesEAF)
   
-  ##Ensure tierNamesFile matches overlapsInit names
-  if (!identical(sort(names(overlapsInit)),
-                 sort(tierNamesFile))) {
-    stop("names(overlapsInit): ", names(overlapsInit),
-         "\ntierOrder: ", tierNamesFile)
-  }
+  ##If there's a blank tier, tierNamesFile won't have it, so just use 
+  ##  overlapsInit names
+  tierNamesFile <- names(overlapsInit)
   
   ##Initialize looping variables
   overlapsPre <- NULL
@@ -666,6 +663,7 @@ overlapsIssues <- function(x, df) {
           select(ANNOTATION_ID, Tier, Side, Time) %>%
           mutate(Side = if_else(Side==1, "Start", "End")) %>%
           pivot_wider(names_from=Side, values_from=Time))
+  
   ##Remove empty entries from times and fixed
   nonempty <- map_int(fixed, nrow) > 0
   times <- times[nonempty]
@@ -867,7 +865,9 @@ server <- function(input, output) {
   output$debugPrint <-
     renderPrint({
       list(
-        # fixO = fixOverlaps(names(eaflist())[1], eaflist(), tierInfo())
+        # fixO = fixOverlaps(getOverlapTiers(df=tierInfo())[[1]],
+        #                    names(eaflist())[1],
+        #                    eaflist())
         ##To use:
         ## 1. Set showDebug to TRUE
         ## 2. Put reactive objects here with name from environment or expression, such as

@@ -1,7 +1,7 @@
 ---
 title: "APLS file checker shinytest scratchpad 1a: Finish fixOverlaps()"
 author: Dan Villarreal
-date: Original 29 Sep 2022
+date: "29 Sep--4 Oct 2022"
 output: 
   html_notebook:
     toc: yes
@@ -1440,8 +1440,27 @@ dir("../APLS Elan File Checker/tests/shinytest/test-step3-current/", "Good.+eaf$
 
 ## Add Redaction to overlap finding & fixing
 
+If I've set this up right, it's as easy as setting `fixOverlapRedact <- TRUE`.
+
+It seems to work, sorta, but it looks like it's really just widening out the annotations.
+I guess that's because in a situation where (e.g.) the entire HD06 annotation is off the Redactions annotation by (say) +50ms, the HD06 left boundary will overlap with Redaction, and the Redaction right boundary will overlap with HD06, but the 'outer' boundaries won't.
+So only the 'inner' boundaries get snapped.
+I think that's fine.
+
+Re-run the test!
+
+Oh shoot, I'm getting the error: "names(overlapsInit): HD06Interviewer HD06. tierOrder: RedactionHD06Interviewer HD06".
+That's for the files w/ no Redaction annotations.
+
+So, if there's an empty tier, `getTimesTier()` makes it NULL, which means it doesn't get returned by `getTimes()`.
+It doesn't work to just keep the NULLs, bec that messes up stg else.
+So just overwrite: `tierNamesFile <- names(overlapsInit)`.
+I checked, and `names(overlapsInit)` does retain the preferred order.
 
 
+# That's enough fixing for now.
+
+Time to close out this scratchpad.
 
 # Session info
 
