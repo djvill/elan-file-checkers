@@ -301,20 +301,34 @@ dictCheck <- function(df, x) {
 ##Function that returns a list of tiers to overlap-check for each file.
 ##  df should be tierInfo() reactive
 getOverlapTiers <- function(df, inclRedact=fixOverlapRedact) {
-  ##Get speaker tiers for each file
-  spkrTierNames <-
-    df %>% 
-    filter(SpkrTier) %>% 
-    nest(data = -File) %>% 
-    mutate(tierNames = map(data, "TIER_ID")) %>% 
-    pull(tierNames, name=File)
+  ##Prioritize Redaction > Main speaker(s) > Interviewer > Bystander(s)
+  df <- df %>% 
+    mutate(OverlapTier = case_when(
+      TIER_ID=="Redaction" ~ "Redaction",
+      TIER_ID==SpkrCode ~ "Main speaker",
+      Neighborhood=="HD" & TIER_ID=="Trista Pennington" ~ "Interviewer",
+      Neighborhood!="HD" & TIER_ID=="Barbara Johnstone" ~ "Interviewer",
+      startsWith(TIER_ID, "Interviewer") ~ "Interviewer",
+      SpkrTier ~ "Bystander",
+      TRUE ~ NA_character_
+    )) %>% 
+    filter(!is.na(OverlapTier)) %>% 
+    arrange(desc(OverlapTier),
+            ##If multiple main speakers or bystanders, break ties with name order
+            TIER_ID)
   
-  ##Optionally add Redaction
-  if (inclRedact) {
-    tierNames <- map(spkrTierNames, append, "Redaction")
-  } else {
-    tierNames <- spkrTierNames
+  ##Optionally exclude Redaction
+  if (!inclRedact) {
+    df <- df %>% 
+      filter(TIER_ID != "Redaction")
   }
+  
+  ##Get tiers for each file
+  tierNames <-
+    df %>% 
+    nest(data = -File) %>% 
+    mutate(TierOrder = map(data, "TIER_ID")) %>% 
+    pull(TierOrder, name=File)
   
   tierNames
 }
@@ -539,7 +553,6 @@ fixOverlapsTier <- function(overlapBounds, eaflist, eafName) {
 ##  overlaps, until it reaches a stable state; modifies original eaflist
 ##Feeds into overlapsIssues()
 fixOverlaps <- function(tierNamesFile, eafName, eaflist, 
-                        # tierOrder=c("HD06", "Interviewer HD06"), 
                         monitor=monitorOverlaps) {
   ##Get initial timing data
   timesEAF <- getTimes(eaflist %>% pluck(eafName), eafName, tierNamesFile)

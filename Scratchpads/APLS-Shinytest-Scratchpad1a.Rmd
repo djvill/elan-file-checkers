@@ -1397,6 +1397,45 @@ dir("../APLS Elan File Checker/tests/shinytest/test-step3-expected/", "Good.+eaf
 
 ## Dynamically determine `tierOrder`
 
+I previously tried something like:
+
+```{r}
+tierInfo <- fromJSON("../APLS Elan File Checker/tests/shinytest/test-step3-expected/All.json") %>% 
+  pluck("export", "tierInfo")
+tierInfo %>% 
+  mutate(OverlapTier = case_when(
+    TIER_ID=="Redaction" ~ "Redaction",
+    TIER_ID==SpkrCode ~ "Main speaker",
+    Neighborhood=="HD" & TIER_ID=="Trista Pennington" ~ "Interviewer",
+    Neighborhood!="HD" & TIER_ID=="Barbara Johnstone" ~ "Interviewer",
+    startsWith(TIER_ID, "Interviewer") ~ "Interviewer",
+    SpkrTier ~ "Bystander",
+    TRUE ~ NA_character_
+  )) %>% 
+  filter(!is.na(OverlapTier)) %>% 
+  arrange(desc(OverlapTier)) %>% 
+  nest(data = -File) %>% 
+  mutate(TierOrder = map(data, "TIER_ID")) %>% 
+  pull(TierOrder, name=File)
+```
+
+Okay great!
+Add this to `getOverlapTiers()`
+
+```{r}
+getOverlapTiers(tierInfo, TRUE)
+getOverlapTiers(tierInfo, FALSE)
+```
+
+Excellent! If all goes well, step3 should change GoodOnly_IntFirst but not GoodOnly.
+Indeed it does!
+
+```{r}
+dir("../APLS Elan File Checker/tests/shinytest/test-step3-current/", "Good.+eaf$", full.names=TRUE) %>% 
+  set_names(basename(.)) %>% 
+  map(read_lines) %>% 
+  map(str_subset, "\"ts1[23]\"")
+```
 
 
 ## Add Redaction to overlap finding & fixing
