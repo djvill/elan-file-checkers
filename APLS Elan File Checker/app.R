@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version date
-versDate <- "22 September 2022"
+versDate <- "5 October 2022"
 
 ##Debugging
 ##Show additional UI element "debugPrint" at top of main panel for debugging?
