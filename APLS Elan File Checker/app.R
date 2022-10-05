@@ -1145,7 +1145,7 @@ server <- function(input, output) {
     ##Content
     downloadHead <- h1("The file(s) passed all checks. Great job!",
                        id="downloadHead")
-    downloadSubhead <- h3("Please download the corrected file(s) and upload to the server",
+    downloadSubhead <- h3("Please download the corrected file(s) and upload to the Completed folder",
                           id="downloadSubhead")
     downloadBtn <- downloadButton("OutputFile", "Download corrected file(s)")
     

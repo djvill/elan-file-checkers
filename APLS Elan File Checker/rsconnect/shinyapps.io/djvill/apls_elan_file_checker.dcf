@@ -1,0 +1,11 @@
+name: apls_elan_file_checker
+title: APLS Elan File Checker
+username:
+account: djvill
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7217953
+bundleId: 6371845
+url: https://djvill.shinyapps.io/apls_elan_file_checker/
+when: 1664978913.1126
+lastSyncTime: 1664978913.11261
