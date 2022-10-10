@@ -12,7 +12,7 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
-        "size": 339368,
+        "size": 345765,
         "type": ""
       }
     ],
@@ -29,7 +29,7 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
-        "size": 339368,
+        "size": 345765,
         "type": ""
       },
       {
@@ -42,7 +42,7 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
-        "size": 339368,
+        "size": 345765,
         "type": "",
         "PARTICIPANT": "Interviewer HD06"
       },
@@ -57,7 +57,7 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
-        "size": 339368,
+        "size": 345765,
         "type": "",
         "PARTICIPANT": "Comment"
       },
@@ -73,7 +73,7 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
-        "size": 339368,
+        "size": 345765,
         "type": "",
         "PARTICIPANT": "Noise"
       },
@@ -89,7 +89,7 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
-        "size": 339368,
+        "size": 345765,
         "type": "",
         "PARTICIPANT": "Redaction"
       }

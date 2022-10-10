@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version date
-versDate <- "5 October 2022"
+versDate <- "10 October 2022"
 
 ##Debugging
 ##Show additional UI element "debugPrint" at top of main panel for debugging?
@@ -67,7 +67,12 @@ ui <- fluidPage(
                 label="Drag and drop Elan files in the box below",
                 buttonLabel="Browse...",
                 placeholder="Box outline must turn green",
-                multiple = TRUE)),
+                multiple = TRUE),
+      p("Source code for this app on", 
+        a("GitHub", 
+          href="https://github.com/djvill/elan-file-checkers/",
+          target="_blank"))
+    ),
     
     mainPanel(uiOutput("debug"),
               uiOutput("export"), ##Never shown
@@ -105,9 +110,10 @@ tierIssuesOneFile <- function(df, filename) {
   
   ##Interviewers can be named either Interviewer [SpkrCode] or actual name
   interviewerTier <- c(paste("Interviewer", unique(df$SpkrCode)),
-                       if_else(unique(df$Neighborhood)=="HD", 
-                               "Trista Pennington", 
-                               "Barbara Johnstone"))
+                       case_when(
+                         unique(df$Neighborhood)=="HD" ~ "Trista Pennington", 
+                         unique(df$SpkrCode)=="CB18" ~ "Jennifer Andrus",
+                         TRUE ~ "Barbara Johnstone"))
   ##Detect missing interviewer tier
   if (!hasTierID || !any(interviewerTier %in% df$TIER_ID)) {
     issues <- c(issues, paste("There are no tiers with tier name", 
@@ -336,10 +342,16 @@ getOverlapTiers <- function(df, inclRedact=fixOverlapRedact) {
 ##Function that takes a tier name, eaf file, and file-wide time slot DF as
 ##  input and outputs actual times for annotations
 getTimesTier <- function(tierName, eaf, timeSlots) {
+  ##Construct xpath to account for missing TIER_ID
+  if (is.numeric(tierName)) {
+    xpath <- str_glue("//TIER[{tierName}]//ALIGNABLE_ANNOTATION")
+  } else {
+    xpath <- str_glue("//TIER[@TIER_ID='{tierName}']//ALIGNABLE_ANNOTATION")
+  }
+  
   timesTier <-
     ##Get all ALIGNABLE_ANNOTATION tags
-    str_glue("//TIER[@TIER_ID='{tierName}']//ALIGNABLE_ANNOTATION") %>%
-    xml_find_all(eaf, .) %>% 
+    xml_find_all(eaf, xpath) %>% 
     ##Get attributes as a dataframe
     xml_attrs() %>% 
     bind_rows()
@@ -762,7 +774,11 @@ xmllist_to_df <- function(xmllist, singleDF=TRUE, nST=nonSpkrTiers) {
     mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(nST)))
   
   ##Get list of each file's tier names to check
-  tierNames <- getOverlapTiers(df=tierInfo)
+  if ("TIER_ID" %in% colnames(tierInfo)) {
+    tierNames <- getOverlapTiers(df=tierInfo)
+  } else {
+    tierNames <- seq_len(nrow(tierInfo))
+  }
   
   ##Get timing data
   times <- list(eaf = xmllist, 
@@ -865,9 +881,6 @@ server <- function(input, output) {
   output$debugPrint <-
     renderPrint({
       list(
-        # fixO = fixOverlaps(getOverlapTiers(df=tierInfo())[[1]],
-        #                    names(eaflist())[1],
-        #                    eaflist())
         ##To use:
         ## 1. Set showDebug to TRUE
         ## 2. Put reactive objects here with name from environment or expression, such as
@@ -898,7 +911,11 @@ server <- function(input, output) {
     ##Turn eaflist into DF
     eaflist_to_df <- function(x, df=tierInfo()) {
       ##Get list of each file's tier names to check
-      tierNames <- getOverlapTiers(df=df)
+      if ("TIER_ID" %in% colnames(df)) {
+        tierNames <- getOverlapTiers(df=df)
+      } else {
+        tierNames <- seq_len(nrow(df))
+      }
 
       ##Get timing data
       times <- list(eaf = x,
@@ -1013,7 +1030,7 @@ server <- function(input, output) {
           )
         
         ##Style headers
-        stepHeads$tiers <- stepHeads$tiers %>% 
+        stepHeads$tiers <- stepHeads$tiers %>%
           tagAppendAttributes(class="bad")
         stepHeads[2:3] <- stepHeads[2:3] %>% 
           map(tagAppendAttributes, class="grayout")

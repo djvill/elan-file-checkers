@@ -1,20 +1,15 @@
 # Todo
 
-## In logical order
+## Basic functionality
 
+- In `eaflist_to_df()`, `tierNames <- seq_len(nrow(df))` doesn't work as expected if `tierInfo()$TIER_ID` exists but has NAs (multiple files, or just some tier IDs missing)
+- Handle multiple main speakers in tier checker
 - Add step 4 for Redaction checking
   - All speaker-tier annotations that are (str-trimmed) only "REDACT" must coincide with an annotation on the Redaction tier, and vice versa. Create test files for failure modes:
     - "REDACT" but no Redaction annotation
     - "REDACT" with other (non-whitespace) chars
-    - ~"REDACT" with Redaction annotation but the times don't align~ Handled in step 3
     - Empty Redaction annotation
     - Redaction annotation with speaker annotation but the speaker annotation isn't "REDACT" (could be additional chars, or something completely different)
-
-
-## Basic functionality
-
-- Handle multiple main speakers in tier checker
-- Redaction annotations formatted correctly (potentially as step 4): standalone annotation on speaker tier with just "REDACT", matching annotation on Redaction tier
 
 
 ## Testing
