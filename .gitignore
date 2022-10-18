@@ -3,6 +3,7 @@
 .RData
 .Ruserdata
 Celex English
+Unisyn GAM
 Elan File Checkers.Rproj
 CB Elan File Checker/dict/userDict.txt
 JH Elan File Checker/dict/userDict.txt
@@ -12,4 +13,5 @@ SouthlandCBElanFileCheckerZIP/
 UnzipTest/
 Test/
 celexDict.txt
+unisynDict.txt
 **test*-current/
