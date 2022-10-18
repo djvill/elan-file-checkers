@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version date
-versDate <- "10 October 2022"
+versDate <- "18 October 2022"
 
 ##Debugging
 ##Show additional UI element "debugPrint" at top of main panel for debugging?
@@ -36,7 +36,7 @@ nonSpkrTiers <- c("Comment","Noise","Redaction")
 ##Permit angle brackets for single-word interruptions?
 permitAngleBrackets <- FALSE
 ##Characters to accept in pronounce codes
-pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE\\{VQU@i$u312456789]"
+pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE\\{VQU@i$u312456789#]"
 ##Case-sensitive?
 caseSens <- FALSE
 
@@ -196,7 +196,6 @@ tierIssues <- function(df) {
 ##Generate dictionary
 dict <-
   ##Read dictionary file(s)
-  # list.files(here("dict/"), pattern="\\.txt", full.names=TRUE) %>% 
   list.files("dict/", pattern="\\.txt", full.names=TRUE) %>% 
   map(readLines) %>% 
   ##As single character vector
@@ -220,13 +219,14 @@ dictCheckTier <- function(tierName, eaf) {
     ##Unstrand valid punctuation within angle brackets
     str_replace_all("([[:alpha:]]~?) ([?.-])>", "\\1\\2>") %>% 
     ##Ignore text within curly braces (comments about speech or behavior)
-    str_subset("\\{.*?\\}", negate=TRUE) %>% 
-    ##Strip matched brackets
-    str_replace_all("(?<![\\w~])\\[(.+?)\\](?!\\w)", "\\1") %>%
+    str_replace_all("\\{.*?\\}", "") %>%
+    ##Ignore text within brackets, not counting pronounce codes
+    str_replace_all("(?<= )\\[.*?\\]", "") %>% 
+    str_replace_all("^\\[.*?\\]", "") %>% 
     ##Remove extra whitespace
     str_trim("both") %>% 
     str_squish() %>% 
-    ##Separate into words (as a vector)
+    ##Separate into words (as a character vector)
     str_split(" ") %>% 
     flatten_chr() %>% 
     ##Unique words only
@@ -1043,9 +1043,14 @@ server <- function(input, output) {
     
     # Step 2: Dictionary check ------------------------------------------------
     ##Content
-    dictSubhead <- h3(paste("The following word(s) are not currently in the dictionary.",
-                            "Please correct misspellings, fix punctuation, and/or add pronunciation codes.",
-                            "Notify Dan of any words that should be added to the dictionary."),
+    dictSubhead <- h3("The following word(s) are not currently in the", 
+                      a("corpus dictionary", 
+                        href="https://raw.githubusercontent.com/djvill/elan-file-checkers/main/APLS%20Elan%20File%20Checker/dict/aplsDict.txt",
+                        target="_blank",
+                        .noWS="after"),
+                      ".",
+                      "Please correct misspellings, fix punctuation, and/or add pronunciation codes.",
+                      "Notify Dan of any words that should be added to the dictionary.",
                       id="dictSubhead") %>% 
       ##By default, don't display
       undisplay()

@@ -2,6 +2,7 @@
 
 ## Basic functionality
 
+- Step 1: Fail if there's a "recheck" tier
 - In `eaflist_to_df()`, `tierNames <- seq_len(nrow(df))` doesn't work as expected if `tierInfo()$TIER_ID` exists but has NAs (multiple files, or just some tier IDs missing)
 - Handle multiple main speakers in tier checker
 - Add step 4 for Redaction checking

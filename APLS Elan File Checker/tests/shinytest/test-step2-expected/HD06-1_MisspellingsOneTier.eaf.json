@@ -153,7 +153,7 @@
       {
         "id": "dictDetails",
         "hasContent": true,
-        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MisspellingsOneTier.eaf:\n    <ul class=\"file-headed\">\n<li>\n        On tier HD06:\n        <ul class=\"tier-headed\">\n<li>Muhammed<\/li>\n          <li>i[I]~<\/li>\n          <li>becuase<\/li>\n          <li>universiity<\/li>\n          <li>til<\/li>\n          <li>um~<\/li>\n          <li>wo~(w@)<\/li>\n          <li>contuinty<\/li>\n        <\/ul>\n<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MisspellingsOneTier.eaf:\n    <ul class=\"file-headed\">\n<li>\n        On tier HD06:\n        <ul class=\"tier-headed\">\n<li>i[I]~<\/li>\n          <li>becuase<\/li>\n          <li>universiity<\/li>\n          <li>um~<\/li>\n          <li>wo~(w@)<\/li>\n          <li>contuinty<\/li>\n        <\/ul>\n<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
       },
       {
         "id": "overlapsDetails",
@@ -167,11 +167,9 @@
     "dictDetails": {
       "HD06-1_MisspellingsOneTier.eaf": {
         "HD06": [
-          "Muhammed",
           "i[I]~",
           "becuase",
           "universiity",
-          "til",
           "um~",
           "wo~(w@)",
           "contuinty"
