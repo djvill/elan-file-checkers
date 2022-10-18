@@ -1,6 +1,7 @@
 ##APLS custom dictionary
-##DO NOT EDIT IN EXCEL--IT WILL ADD EXTRA CHARACTERS
 
+##Secondary-stress markers immediately after a comma need to be escaped
+##DO NOT EDIT IN EXCEL--IT WILL ADD EXTRA CHARACTERS
 ##N.B. Rows with just one entry are ignored by LaBB-CAT; these can be used for comments
 
 
@@ -34,7 +35,7 @@ Glenshaw,'glEn-"sh$
 Pittsburgher,'pIts-b3r-g@r
 Waynesburg,'w1nz-"b3rg
 Fernway,'f3rn-"w1
-Pennsylvanian,"pEn-sP-'v1n-jH
+Pennsylvanian,\"pEn-sP-'v1n-jH
 McMunn,mIk-'mVn
 
 
@@ -42,7 +43,7 @@ McMunn,mIk-'mVn
 nebby,'nE-bi
 yinz,'jInz
 yinzer,'jIn-z@r
-Pittsburghese,"pIts-b3r-'giz
+Pittsburghese,\"pIts-b3r-'giz
 WAMO,'w{-m5
 gumband,'gVm-b{nd
 n'at,H-'{t
@@ -53,8 +54,8 @@ n'at,'n{t
 Jo,'_5
 Deener,'di-n@r
 Kwanzaa,'kwQn-z@
-Juneteenth,"_un-'tinT
-Shawntae,"S$n-'t1
+Juneteenth,\"_un-'tinT
+Shawntae,\"S$n-'t1
 Applebee,'{-pP-bi
 homie,'h5-mi
 'n,H
@@ -64,7 +65,7 @@ Zehner,'z1-n@r
 impatien,Im-'p1-SH
 y'all,'j$l
 artsy,'#rt-si
-bachelorette,"b{J-l@r-'Et
+bachelorette,\"b{J-l@r-'Et
 worldview,'w3rld-"vju
 
 
