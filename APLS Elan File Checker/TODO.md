@@ -2,9 +2,14 @@
 
 ## Basic functionality
 
-- Step 1: Fail if there's a "recheck" tier
+- Step 1: Fail if there's a "recheck" or "text" tier
+
+- Convert "smart quotes" to straight quotes
+
 - In `eaflist_to_df()`, `tierNames <- seq_len(nrow(df))` doesn't work as expected if `tierInfo()$TIER_ID` exists but has NAs (multiple files, or just some tier IDs missing)
+
 - Handle multiple main speakers in tier checker
+
 - Add step 4 for Redaction checking
   - All speaker-tier annotations that are (str-trimmed) only "REDACT" must coincide with an annotation on the Redaction tier, and vice versa. Create test files for failure modes:
     - "REDACT" but no Redaction annotation

@@ -8,9 +8,6 @@
 ##Pittsburgh/SWPA geographic names
 Wilkinsburg,'wIl-kInz-"b3rg
 Wilkinsburg,'wIl-kHz-"b3rg
-Carnegie,'k#r-n@-gi
-Carnegie,k#r-'n1-gi
-Mellon,'mE-lH
 Duquesne,du-'k1n
 Mon,'mQn
 Mon,'m$n
@@ -37,6 +34,15 @@ Waynesburg,'w1nz-"b3rg
 Fernway,'f3rn-"w1
 Pennsylvanian,\"pEn-sP-'v1n-jH
 McMunn,mIk-'mVn
+S'Liberty,'slI-b@r-ti
+Lawrenceville,'l$-rHs-"vIl
+McKeesport,m@-'kiz-"p5rt
+Renfrew,'rEn-fru
+Sharpsburg,'S#rps-"b3rg
+Shaler,'S2-l@r
+sucky,'sV-ki
+collab,k@-'l{b
+Blige,'bl2_
 
 
 ##Pittsburgh lexicon
@@ -48,6 +54,8 @@ WAMO,'w{-m5
 gumband,'gVm-b{nd
 n'at,H-'{t
 n'at,'n{t
+redd,'rEd
+grinny,'grI-ni
 
 
 ##Other
@@ -60,17 +68,29 @@ Applebee,'{-pP-bi
 homie,'h5-mi
 'n,H
 Amiesite,'{-mI-s2t
-'nother,'nV-D@r
 Zehner,'z1-n@r
 impatien,Im-'p1-SH
 y'all,'j$l
 artsy,'#rt-si
 bachelorette,\"b{J-l@r-'Et
 worldview,'w3rld-"vju
+Loews,'l5z
+Kaufer,'k$-f@r
+meister,'m2s-t@r
+balled,'b$ld
+righty,'r2-ti
+Sambo,'s{m-b5
+Wiggin,'wI-gH
+
+
+##Allowable colloquial spellings
+lotta,'lQ-t@
+'til,'tIl
+'nother,'nV-D@r
+I'mma,'2-m@
 
 
 ##Allowable interjections
-'til,'tIl
 yup,'jVp
 mmm,'F
 uh,'V
