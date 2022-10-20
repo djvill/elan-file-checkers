@@ -1,5 +1,13 @@
 # Todo
 
+## Bugfixes
+
+- Overlaps: If an overlapping annotation has a boundary that lines up exactly with another tier, `fixOverlapsTier()` throws an error with `overlapBoundsFixed %>% ... %>% filter(NewTS1==NewTS2)`
+  - One of the NewTSs is missing because the long version of `overlapBoundsFixed` only has one boundary for that annotation. That comes from `findOverlapsTier()`'s `mutate(ANNOTATION_ID_overlapped = timesOtherTiers$ANNOTATION_ID %>% extract(which(Time > timesOtherTiers$Start & Time < timesOtherTiers$End)[1]))`
+
+- Dictionary check: If _X's_ is in the dictionary but not _X_, _X's_ in the transcript will get flagged as not in the dictionary
+
+
 ## Basic functionality
 
 - Step 1: Fail if there's a "recheck" or "text" tier
@@ -25,7 +33,6 @@
 
 ## Refactoring
 
-- Reduce the number of file structure objects created (some are unnecessary intermediate steps)
 - In shinytest utils: Create a separate function to set up savename, because there's duplicated code between snap() and snapDownload()
 - In snapDownload(): Move success checking into the function itself (it's safer that way)
 
