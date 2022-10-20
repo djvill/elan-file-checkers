@@ -961,8 +961,10 @@ server <- function(input, output) {
     ##If step 0 passed, add tierDF() & at least one eaflist()
     if (all(fileDF()$FileExtValid)) {
       tagList(export,
-              pack_val(tierDF() %>% select(-datapath), "tierDF"),
-              pack_val(eaflist() %>% xmllist_to_df(), "eaflist"))
+              pack_val(tierDF() %>% 
+                         select(-datapath), "tierDF"),
+              pack_val(eaflist() %>% 
+                         xmllist_to_df(singleDF=FALSE), "eaflist"))
     } else {
       ##If failing step0, export just fileDF()
       tagList(export)
