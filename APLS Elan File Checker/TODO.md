@@ -2,15 +2,15 @@
 
 ## Bugfixes
 
-- Overlaps: If an overlapping annotation has a boundary that lines up exactly with another tier, `fixOverlapsTier()` throws an error with `overlapBoundsFixed %>% ... %>% filter(NewTS1==NewTS2)`
-  - One of the NewTSs is missing because the long version of `overlapBoundsFixed` only has one boundary for that annotation. That comes from `findOverlapsTier()`'s `mutate(ANNOTATION_ID_overlapped = timesOtherTiers$ANNOTATION_ID %>% extract(which(Time > timesOtherTiers$Start & Time < timesOtherTiers$End)[1]))`
-
 - Dictionary check: If _X's_ is in the dictionary but not _X_, _X's_ in the transcript will get flagged as not in the dictionary
 
 
 ## Basic functionality
 
+- Add better narrative on when and how to suggest new dictionary entries
+
 - Step 1: Fail if there's a "recheck" or "text" tier
+  - Add a parameter for prohibited tier names
 
 - Convert "smart quotes" to straight quotes
 
@@ -25,6 +25,9 @@
     - Empty Redaction annotation
     - Redaction annotation with speaker annotation but the speaker annotation isn't "REDACT" (could be additional chars, or something completely different)
 
+- Overlaps: If an overlapping annotation has a boundary that lines up exactly with another tier, `fixOverlapsTier()` throws an error with `overlapBoundsFixed %>% ... %>% filter(NewTS1==NewTS2)`
+  - One of the NewTSs is missing because the long version of `overlapBoundsFixed` only has one boundary for that annotation. That comes from `findOverlapsTier()`'s `mutate(ANNOTATION_ID_overlapped = timesOtherTiers$ANNOTATION_ID %>% extract(which(Time > timesOtherTiers$Start & Time < timesOtherTiers$End)[1]))`
+  - Patched by turning off zero-width checking by default---this will need a more durable solution down the line
 
 ## Testing
 

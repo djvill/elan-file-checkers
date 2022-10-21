@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version date
-versDate <- "18 October 2022"
+versDate <- "19 October 2022"
 
 ##Debugging
 ##Show additional UI element "debugPrint" at top of main panel for debugging?
@@ -49,6 +49,8 @@ overlapThresh <- 500
 timeDisp <- "HMS"
 ##Include Redaction tier in overlap-fixing?
 fixOverlapRedact <- TRUE
+##Check for zero-width post-fixing annotations (can cause issues)
+checkZeroWidth <- FALSE
 
 ##Exit-early overrides, for debugging
 overrideExit <- list(fileExt = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
@@ -600,20 +602,34 @@ fixOverlapsTier <- function(overlapBounds, eaflist, eafName) {
   ##This could happen if the annotation is less than overlapThresh wide and
   ##  is fully contained within another annotation on another tier. Could
   ##  mitigate this by re-running with a smaller overlapThresh
-  zeroWidth <- 
-    overlapBoundsFixed %>%
-    select(ANNOTATION_ID:Time, NewTS) %>%
-    pivot_wider(names_from=Side, names_glue="{.value}{Side}",
-                values_from=TIME_SLOT_REF:NewTS) %>%
-    filter(NewTS1==NewTS2)
-  if (nrow(zeroWidth) > 0) {
-    stop("On tier ", tierName, 
-         ", at least one annotation was fixed to zero width:\n",
-         "ANN_ID  Start   End\n",
-         paste0(str_pad(zeroWidth$ANNOTATION_ID, 8, 'right'),
-                str_pad(round(zeroWidth$Time1 / 1000, 1), 8, 'right'),
-                str_pad(round(zeroWidth$Time2 / 1000, 1), 8, 'right'),
-                "\n"))
+  if (checkZeroWidth) {
+    zeroWidth <- 
+      overlapBoundsFixed %>%
+      ##Remove annotations that only have one boundary in overlapBoundsFixed
+      ##This happens when an overlapping annotation has a boundary that lines up
+      ##  exactly with another tier (due to findOverlapsTier()'s code for creating
+      ##  ANNOTATION_ID_overlapped)
+      ##But this doesn't appear to be working as of now
+      group_by(ANNOTATION_ID) %>% 
+      filter(n()==2) %>% 
+      ungroup() %>% 
+      ##One row per annotation
+      select(ANNOTATION_ID:Time, NewTS) %>%
+      pivot_wider(names_from=Side, names_glue="{.value}{Side}",
+                  values_from=TIME_SLOT_REF:NewTS) %>%
+      ##Only annotations that are zero-width
+      filter(NewTS1==NewTS2)
+    
+    ##Error out for zero-width
+    if (nrow(zeroWidth) > 0) {
+      stop("On tier ", tierName, 
+           ", at least one annotation was fixed to zero width:\n",
+           "ANN_ID  Start   End\n",
+           paste0(str_pad(zeroWidth$ANNOTATION_ID, 8, 'right'),
+                  str_pad(round(zeroWidth$Time1 / 1000, 1), 8, 'right'),
+                  str_pad(round(zeroWidth$Time2 / 1000, 1), 8, 'right'),
+                  "\n"))
+    }
   }
   
   ##Fix overlaps in eaflist()
@@ -872,9 +888,8 @@ is.displayed <- function(x) {
 ##Get a dataframe from several paths to EAFs
 eafs_to_df <- function(..., singleDF=TRUE, nST=nonSpkrTiers) {
   eaflist <- list(...) %>% 
-    flatten_chr() %>% 
-    set_names(make.names(basename(.), unique=TRUE)) %>% 
-    read_eafs()
+    flatten_chr()
+  eaflist <- read_eafs(eaflist, make.names(basename(eaflist), unique=TRUE))
   
   xmllist_to_df(eaflist, singleDF=singleDF, nST=nST)
 }
