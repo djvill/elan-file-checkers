@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version date
-versDate <- "19 October 2022"
+versDate <- "24 October 2022"
 
 ##Debugging
 ##Show additional UI element "debugPrint" at top of main panel for debugging?
@@ -1091,14 +1091,37 @@ server <- function(input, output) {
     
     # Step 2: Dictionary check ------------------------------------------------
     ##Content
-    dictSubhead <- h3("The following word(s) are not currently in the", 
-                      a("corpus dictionary", 
-                        href="https://raw.githubusercontent.com/djvill/elan-file-checkers/main/APLS%20Elan%20File%20Checker/dict/aplsDict.txt",
-                        target="_blank",
-                        .noWS="after"),
-                      ".",
-                      "Please correct misspellings, fix punctuation, and/or add pronunciation codes.",
-                      "Notify Dan of any words that should be added to the dictionary.",
+    dictSubhead <- h3("The following word(s) are not currently in the corpus dictionary.", 
+                      "These could be:",
+                      tags$ul(
+                        tags$li(
+                          strong("Misspellings/typos:"),
+                          "Check commonly misspelled words like", em("embarrassed"),
+                          "or", em("conscious")
+                        ),
+                        tags$li(
+                          strong("Incorrect punctuation:"),
+                          "For example,", em("that."), "(need a space between word and period)",
+                          "or", em("bec~(bIk)"), "(pronounce code goes in [], not ())"
+                        ),
+                        tags$li(
+                          strong("Words that should be in APLS's phonemic dictionary:"),
+                          "To look up phonemic representations, APLS uses the Unisyn English dictionary plus ",
+                          a("custom entries", 
+                            href="https://raw.githubusercontent.com/djvill/elan-file-checkers/main/APLS%20Elan%20File%20Checker/dict/aplsDict.txt",
+                            target="_blank",
+                            .noWS="after"),
+                          ". If any words should be added to the dictionary, send Dan the words and their DISC codes.",
+                          "If you're not sure whether a word should be added to the dictionary, ask Dan"
+                        ),
+                        tags$li(
+                          strong("Words that need an inline pronounce code:"),
+                          "Words made up on the spot (e.g., ", em("yinzerific", .noWS="after"), "),",
+                          "words unlikely to come up in any other interview (e.g., a specific schoolteacher's name),",
+                          "obvious misprounciations (e.g., \"havring\" for", em("having", .noWS="after"), "),",
+                          "and hesitations (e.g., \"hesi~\")"
+                        )
+                      ),
                       id="dictSubhead") %>% 
       ##By default, don't display
       undisplay()

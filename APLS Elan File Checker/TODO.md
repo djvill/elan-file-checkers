@@ -7,8 +7,6 @@
 
 ## Basic functionality
 
-- Add better narrative on when and how to suggest new dictionary entries
-
 - Step 1: Fail if there's a "recheck" or "text" tier
   - Add a parameter for prohibited tier names
 
