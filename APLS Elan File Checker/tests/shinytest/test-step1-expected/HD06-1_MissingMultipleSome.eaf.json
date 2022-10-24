@@ -22,20 +22,6 @@
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "TIER_ID": "HD06",
-        "SpkrTier": true,
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingMultipleSome",
-        "size": 345765,
-        "type": ""
-      },
-      {
-        "File": "HD06-1_MissingMultipleSome.eaf",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
@@ -44,13 +30,26 @@
         "FileSuffix": "-1_MissingMultipleSome",
         "size": 345765,
         "type": "",
+        "SpkrTier": true
+      },
+      {
+        "File": "HD06-1_MissingMultipleSome.eaf",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_MissingMultipleSome",
+        "size": 345765,
+        "type": "",
+        "SpkrTier": true,
         "PARTICIPANT": "Interviewer HD06"
       },
       {
         "File": "HD06-1_MissingMultipleSome.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
@@ -59,6 +58,7 @@
         "FileSuffix": "-1_MissingMultipleSome",
         "size": 345765,
         "type": "",
+        "SpkrTier": false,
         "PARTICIPANT": "Comment"
       },
       {
@@ -66,7 +66,6 @@
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "TIER_ID": "Noise",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
@@ -75,6 +74,7 @@
         "FileSuffix": "-1_MissingMultipleSome",
         "size": 345765,
         "type": "",
+        "SpkrTier": false,
         "PARTICIPANT": "Noise"
       },
       {
@@ -82,7 +82,6 @@
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "TIER_ID": "Redaction",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
@@ -91,6 +90,7 @@
         "FileSuffix": "-1_MissingMultipleSome",
         "size": 345765,
         "type": "",
+        "SpkrTier": false,
         "PARTICIPANT": "Redaction"
       }
     ]

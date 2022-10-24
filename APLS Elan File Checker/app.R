@@ -149,14 +149,20 @@ tierInfo <- function(x, df, nST=nonSpkrTiers) {
     df <- fileInfo(tibble(File = names(x)))
   }
   
-  x %>% 
+  x <- x %>% 
     map(xml_find_all, "//TIER") %>% 
     ##One row per tier, with file info
     map_dfr(~ map_dfr(.x, xml_attrs), .id="File") %>% 
-    ##Add SpkrTier (is the tier a speaker tier?)
-    mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(nST))) %>% 
     ##Add info from fileDF
     left_join(df, by="File")
+  
+  if (!is.null(x$PARTICIPANT)) {
+    x <- x %>% 
+      ##Add SpkrTier (is the tier a speaker tier?)
+      mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(nST)))
+  }
+  
+  x
 }
 
 
@@ -384,6 +390,11 @@ dictCheck <- function(df, x) {
 ##Function that returns a list of tiers to overlap-check for each file.
 ##  df should be tierDF() reactive
 getOverlapTiers <- function(df, inclRedact=fixOverlapRedact) {
+  ##Account for missing Participant attribute (which blocks SpkrTier)
+  if (is.null(df$PARTICIPANT)) {
+    df$SpkrTier <- FALSE
+  }
+  
   ##Prioritize Redaction > Main speaker(s) > Interviewer > Bystander(s)
   df <- df %>% 
     mutate(OverlapTier = case_when(
@@ -963,6 +974,7 @@ server <- function(input, output) {
         ##    or if that's too cumbersome, just give it a temporary name, such as
         ##      jon = tierDF()$TIER_ID %>% 
         ##        unique()
+        # `overlapsIssues(eaflist(), tierDF())` = overlapsIssues(eaflist(), tierDF())
       )
     })
   

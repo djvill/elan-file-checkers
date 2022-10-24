@@ -23,7 +23,6 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Terri Baltimore",
         "TIER_ID": "Terri Baltimore",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
@@ -31,7 +30,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadSpkrTierNames",
         "size": 345899,
-        "type": ""
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_BadSpkrTierNames.eaf",
@@ -39,7 +39,6 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Interviewer Terri Baltimore",
         "TIER_ID": "Interviewer Terri Baltimore",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
@@ -47,7 +46,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadSpkrTierNames",
         "size": 345899,
-        "type": ""
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_BadSpkrTierNames.eaf",
@@ -55,7 +55,6 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Comment",
         "TIER_ID": "Comment",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
@@ -63,7 +62,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadSpkrTierNames",
         "size": 345899,
-        "type": ""
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_BadSpkrTierNames.eaf",
@@ -71,7 +71,6 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Noise",
         "TIER_ID": "Noise",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
@@ -79,7 +78,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadSpkrTierNames",
         "size": 345899,
-        "type": ""
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_BadSpkrTierNames.eaf",
@@ -87,7 +87,6 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Redaction",
         "TIER_ID": "Redaction",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCode": "HD06",
@@ -95,7 +94,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadSpkrTierNames",
         "size": 345899,
-        "type": ""
+        "type": "",
+        "SpkrTier": false
       }
     ]
   },
