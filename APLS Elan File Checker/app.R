@@ -659,6 +659,10 @@ fixOverlaps <- function(tierNamesFile, eafName, eaflist,
                         monitor=monitorOverlaps) {
   ##Get initial timing data
   timesEAF <- getTimes(eaflist %>% pluck(eafName), eafName, tierNamesFile)
+  ##If just one tier, skip overlap-checking for this file
+  if (length(timesEAF)==1) {
+    return(NULL)
+  }
   
   ##Get initial overlaps
   ##  findOverlapsTier() needs a single tier's times DF, the name of that tier,
@@ -752,6 +756,12 @@ overlapsIssues <- function(x, df) {
                 eafName = names(x),
                 tiers = tierNames) %>%
     pmap(getTimes)
+  
+  ##If all files have just one tier, skip overlap-checking
+  nTiers <- map_int(times, length)
+  if (all(nTiers==1)) {
+    return(list())
+  }
   
   ##Fix overlaps & format output for display
   fixed <- 

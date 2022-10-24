@@ -48,6 +48,7 @@ Avonworth,'{-vH-"w3rT
 Emsworth,'Emz-"w3rT
 Warrendale,'w$-rH-"d1l
 Roche,'r5S
+Crider,'kr2-d@r
 Crider's,'kr2-d@rz
 McKnightmare,mIk-'n2t-m8r
 Wexford,'wEks-f@rd
@@ -78,6 +79,7 @@ n'at,H-'{t
 n'at,'n{t
 redd,'rEd
 grinny,'grI-ni
+grinnies,'grI-niz
 Trib,trIb
 Eat'n,'it-H
 N',H
@@ -112,16 +114,20 @@ anchorwomen,'{N-k@r-"wI-mH
 coanchor,'k5-"{N-k@r
 microbrew,'m2-kr5-bru
 stogie,'st5-gi
+Stroh,'str5
 Stroh's,'str5z
+Poli,'p5-l2
 Poli's,'p5-l2z
 McGruder,mI-'gru-d@r
 sucky,'sV-ki
 collab,k@-'l{b
 Blige,'bl2_
+Gullifty,g@-'lIf-ti
 Gullifty's,g@-'lIf-tiz
 kook,'kuk
 dietitian,\"d2-@-'tI-SH
 Highmark,'h2-"m#rk
+tarp,'t#rp
 
 
 ##Allowable colloquial spellings
@@ -129,6 +135,8 @@ lotta,'lQ-t@
 'til,'tIl
 'nother,'nV-D@r
 I'mma,'2-m@
+outta,'6-t@
+tryna,'tr2-n@
 
 
 ##Allowable interjections
