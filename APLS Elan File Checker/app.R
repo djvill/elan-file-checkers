@@ -661,7 +661,10 @@ fixOverlaps <- function(tierNamesFile, eafName, eaflist,
   timesEAF <- getTimes(eaflist %>% pluck(eafName), eafName, tierNamesFile)
   ##If just one tier, skip overlap-checking for this file
   if (length(timesEAF)==1) {
-    return(NULL)
+    return(tibble(ANNOTATION_ID = character(0L), 
+                  Tier = character(0L), 
+                  Side = integer(0L), 
+                  Time = double(0L)))
   }
   
   ##Get initial overlaps

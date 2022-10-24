@@ -1,0 +1,242 @@
+{
+  "success": [
+    true
+  ],
+  "export": {
+    "fileDF": [
+      {
+        "File": "HD01-reading1b_JustOneTier.eaf",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD01",
+        "Neighborhood": "HD",
+        "SpeakerNum": 1,
+        "FileSuffix": "-reading1b_JustOneTier",
+        "size": 6056,
+        "type": ""
+      }
+    ],
+    "tierDF": [
+      {
+        "File": "HD01-reading1b_JustOneTier.eaf",
+        "ANNOTATOR": "James Lawler",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "HD01",
+        "TIER_ID": "HD01",
+        "SpkrTier": true,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD01",
+        "Neighborhood": "HD",
+        "SpeakerNum": 1,
+        "FileSuffix": "-reading1b_JustOneTier",
+        "size": 6056,
+        "type": ""
+      },
+      {
+        "File": "HD01-reading1b_JustOneTier.eaf",
+        "ANNOTATOR": "James Lawler",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Trista Pennington",
+        "TIER_ID": "Trista Pennington",
+        "SpkrTier": true,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD01",
+        "Neighborhood": "HD",
+        "SpeakerNum": 1,
+        "FileSuffix": "-reading1b_JustOneTier",
+        "size": 6056,
+        "type": ""
+      },
+      {
+        "File": "HD01-reading1b_JustOneTier.eaf",
+        "ANNOTATOR": "James Lawler",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Noise",
+        "TIER_ID": "Noise",
+        "SpkrTier": false,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD01",
+        "Neighborhood": "HD",
+        "SpeakerNum": 1,
+        "FileSuffix": "-reading1b_JustOneTier",
+        "size": 6056,
+        "type": ""
+      },
+      {
+        "File": "HD01-reading1b_JustOneTier.eaf",
+        "ANNOTATOR": "James Lawler",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Redaction",
+        "TIER_ID": "Redaction",
+        "SpkrTier": false,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD01",
+        "Neighborhood": "HD",
+        "SpeakerNum": 1,
+        "FileSuffix": "-reading1b_JustOneTier",
+        "size": 6056,
+        "type": ""
+      },
+      {
+        "File": "HD01-reading1b_JustOneTier.eaf",
+        "ANNOTATOR": "James Lawler",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Comment",
+        "TIER_ID": "Comment",
+        "SpkrTier": false,
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCode": "HD01",
+        "Neighborhood": "HD",
+        "SpeakerNum": 1,
+        "FileSuffix": "-reading1b_JustOneTier",
+        "size": 6056,
+        "type": ""
+      }
+    ]
+  },
+  "elements": {
+    "stepHeads": [
+      {
+        "id": "noEafHead",
+        "displayed": false
+      },
+      {
+        "id": "tierHead",
+        "class": "good",
+        "displayed": true
+      },
+      {
+        "id": "dictHead",
+        "class": "good",
+        "displayed": true
+      },
+      {
+        "id": "overlapsHead",
+        "class": "good",
+        "displayed": true
+      }
+    ],
+    "stepSubheads": [
+      {
+        "id": "tierSubhead",
+        "displayed": false
+      },
+      {
+        "id": "dictSubhead",
+        "displayed": false
+      },
+      {
+        "id": "overlapsSubhead",
+        "displayed": false
+      },
+      {
+        "id": "downloadSubhead",
+        "displayed": true
+      }
+    ],
+    "stepDetails": [
+      {
+        "id": "checkDetails",
+        "hasContent": true,
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li>HD01-reading1b_JustOneTier.eaf<\/li>\n<\/ul>\n"
+      },
+      {
+        "id": "tierDetails",
+        "hasContent": false,
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "dictDetails",
+        "hasContent": false,
+        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "overlapsDetails",
+        "hasContent": false,
+        "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      }
+    ],
+    "lastDetailID": [
+      "checkDetails"
+    ],
+    "checkDetails": [
+      "HD01-reading1b_JustOneTier.eaf"
+    ]
+  },
+  "eaflist": {
+    "HD01-reading1b_JustOneTier.eaf": {
+      "HD01": [
+        {
+          "ANNOTATION_ID": "a1",
+          "TIME_SLOT_REF1": "ts4",
+          "TIME_SLOT_REF2": "ts5",
+          "Start": 10180,
+          "End": 10860
+        },
+        {
+          "ANNOTATION_ID": "a2",
+          "TIME_SLOT_REF1": "ts7",
+          "TIME_SLOT_REF2": "ts8",
+          "Start": 10866,
+          "End": 11340
+        },
+        {
+          "ANNOTATION_ID": "a3",
+          "TIME_SLOT_REF1": "ts13",
+          "TIME_SLOT_REF2": "ts14",
+          "Start": 20994,
+          "End": 28521
+        },
+        {
+          "ANNOTATION_ID": "a4",
+          "TIME_SLOT_REF1": "ts15",
+          "TIME_SLOT_REF2": "ts16",
+          "Start": 28521,
+          "End": 36786
+        }
+      ],
+      "Trista Pennington": [
+        {
+          "ANNOTATION_ID": "a5",
+          "TIME_SLOT_REF1": "ts1",
+          "TIME_SLOT_REF2": "ts2",
+          "Start": 1050,
+          "End": 10180
+        },
+        {
+          "ANNOTATION_ID": "a6",
+          "TIME_SLOT_REF1": "ts3",
+          "TIME_SLOT_REF2": "ts6",
+          "Start": 10180,
+          "End": 10866
+        },
+        {
+          "ANNOTATION_ID": "a7",
+          "TIME_SLOT_REF1": "ts9",
+          "TIME_SLOT_REF2": "ts10",
+          "Start": 11340,
+          "End": 18020
+        },
+        {
+          "ANNOTATION_ID": "a8",
+          "TIME_SLOT_REF1": "ts11",
+          "TIME_SLOT_REF2": "ts12",
+          "Start": 18235,
+          "End": 20994
+        },
+        {
+          "ANNOTATION_ID": "a9",
+          "TIME_SLOT_REF1": "ts17",
+          "TIME_SLOT_REF2": "ts18",
+          "Start": 36786,
+          "End": 44884
+        }
+      ]
+    }
+  }
+}
