@@ -4,14 +4,21 @@ Avonworth
 Beechview
 Brashear
 Brookline
+Clarion
+Crider
 Crider's
 Duquesne
+Eastvale
 Emsworth
 Fernway
+Glassport
 Glenshaw
+Greensburg
+Haine
 Hazelwood
 Homewood
 Indiantown
+Karns
 Larimer
 Lawrenceville
 Leetsdale
@@ -25,6 +32,8 @@ Mon
 Monroeville
 Morganza
 Oakmont
+Overbrook
+Passavant
 Penn
 Pennsylvanian
 Pittsburgher
@@ -44,6 +53,8 @@ Weil
 Wexford
 Wiley
 Wilkinsburg
+Zelie
+Zelienople
 
 
 ##Pittsburgh personal names
@@ -56,13 +67,17 @@ Wiggin
 
 ##Pittsburgh lexicon
 Eat'n
+grinnies
 grinny
 gumband
 N'
 n'at
 nebby
+outen
 Pittsburghese
 redd
+redder
+redding
 Trib
 WAMO
 yinz
@@ -75,35 +90,50 @@ Amiesite
 anchorpeople
 anchorwoman
 anchorwomen
+aneurysm
 Applebee
+Arby's
 artsy
+babushka
 bachelorette
 balled
 Blige
+bungee
 coanchor
 collab
 Deener
 dietitian
+disrespecting
+Grier
+Gullifty
 Gullifty's
 Highmark
 homie
 impatien
 Jo
 Juneteenth
+kind-hearted
 kook
 Kwanzaa
 Loews
 McGruder
 meister
 microbrew
+moonshot
 Panera
+Pittsburghy
+Poli
 Poli's
 righty
 Sambo
 Shawntae
+soft-hearted
+stepdad
 stogie
+Stroh
 Stroh's
 sucky
+tarp
 there're
 worldview
 y'all
@@ -115,6 +145,8 @@ Zehner
 'til
 I'mma
 lotta
+outta
+tryna
 
 
 ##Allowable interjections
