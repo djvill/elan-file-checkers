@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version date
-versDate <- "24 October 2022"
+versDate <- "31 October 2022"
 
 ##Debugging
 ##Show additional UI element "debugPrint" at top of main panel for debugging?
@@ -33,6 +33,10 @@ nonSpkrTiers <- c("Comment","Noise","Redaction")
 # nonSpkrTiers <- c("Comment","Comments","Noise","Noises","Redaction","Redactions")
 
 ##Dictionary checking
+##Include local version of aplsDict.txt?
+##  Only works on Dan's machine, useful for testing new entries without
+##  committing each time
+inclLocalDict <- FALSE
 ##Permit angle brackets for single-word interruptions?
 permitAngleBrackets <- FALSE
 ##Characters to accept in pronounce codes
@@ -276,11 +280,23 @@ tierIssues <- function(df) {
 
 ## Dictionaries ===============================================================
 
-##Generate dictionary
+##Get local dictionary filepaths
+dictFiles <- list.files("dict/", pattern="\\.txt", full.names=TRUE)
+##Add APLS dictionary, either locally (Dan's machine only) or from GitHub
+localAPLSDict <- "../../APLS/files/custom-dictionary/aplsDict.txt"
+remoteAPLSDict <- "https://github.com/djvill/APLS/raw/main/files/custom-dictionary/aplsDict.txt"
+if (inclLocalDict && file.exists(localAPLSDict)) {
+  message("Using local APLS dictionary")
+  dictFiles <- c(dictFiles, localAPLSDict)
+} else {
+  message("Using remote APLS dictionary")
+  dictFiles <- c(dictFiles, remoteAPLSDict)
+}
+
+##Put dictionary together
 dict <-
   ##Read dictionary file(s)
-  list.files("dict/", pattern="\\.txt", full.names=TRUE) %>% 
-  map(readLines) %>% 
+  map(dictFiles, readLines) %>% 
   ##As single character vector
   reduce(c) %>% 
   ##Ignore lines starting with "#" or empty lines
@@ -1131,13 +1147,17 @@ server <- function(input, output) {
                         ),
                         tags$li(
                           strong("Words that should be in APLS's phonemic dictionary:"),
-                          "To look up phonemic representations, APLS uses the Unisyn English dictionary plus ",
+                          "To look up phonemic representations, APLS uses: (1) the Unisyn English dictionary, and (2)",
                           a("custom entries", 
-                            href="https://raw.githubusercontent.com/djvill/elan-file-checkers/main/APLS%20Elan%20File%20Checker/dict/aplsDict.txt",
+                            href="https://raw.githubusercontent.com/djvill/APLS/main/files/custom-dictionary/aplsDict.txt",
                             target="_blank",
                             .noWS="after"),
-                          ". If any words should be added to the dictionary, send Dan the words and their DISC codes.",
-                          "If you're not sure whether a word should be added to the dictionary, ask Dan"
+                          ". If any words should be added to the dictionary, send suggestions to Dan, including ",
+                          a("DISC representations",
+                            href="https://djvill.github.io/APLS/doc/Phonemic-Transcription.html#Suggesting_new_dictionary_entries",
+                            target="_blank",
+                            .noWS="after"),
+                          ". If you're not sure whether a word should be added to the dictionary, ask Dan"
                         ),
                         tags$li(
                           strong("Words that need an inline pronounce code:"),
