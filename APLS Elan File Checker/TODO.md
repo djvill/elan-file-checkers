@@ -2,6 +2,8 @@
 
 ## Bugfixes
 
+- Dictionary check: Incorrect parsing for an annotation where a `{` in a pronounce code precedes a `}` for an inline comment
+- Dictionary check: False negatives caused by hyphens (e.g., _hand-in-hadd_ doesn't get flagged)
 - Dictionary check: If _X's_ is in the dictionary but not _X_, _X's_ in the transcript will get flagged as not in the dictionary
 
 
