@@ -286,10 +286,12 @@ dictFiles <- list.files("dict/", pattern="\\.txt", full.names=TRUE)
 localAPLSDict <- "../../APLS/files/custom-dictionary/aplsDict.txt"
 remoteAPLSDict <- "https://github.com/djvill/APLS/raw/main/files/custom-dictionary/aplsDict.txt"
 if (inclLocalDict && file.exists(localAPLSDict)) {
-  message("Using local APLS dictionary")
+  nLines <- length(readLines(localAPLSDict))
+  message("Using local APLS dictionary - ", nLines, " lines")
   dictFiles <- c(dictFiles, localAPLSDict)
 } else {
-  message("Using remote APLS dictionary")
+  nLines <- length(readLines(remoteAPLSDict))
+  message("Using remote APLS dictionary - ", nLines, " lines")
   dictFiles <- c(dictFiles, remoteAPLSDict)
 }
 
