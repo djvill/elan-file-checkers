@@ -199,7 +199,7 @@ tierIssuesOneFile <- function(df, filename) {
   interviewerTier <- c(paste("Interviewer", unique(df$SpkrCode)),
                        case_when(
                          unique(df$Neighborhood)=="HD" ~ "Trista Pennington", 
-                         unique(df$SpkrCode)=="CB18" ~ "Jennifer Andrus",
+                         unique(df$SpkrCode) %in% c("CB02", "CB18") ~ "Jennifer Andrus",
                          TRUE ~ "Barbara Johnstone"))
   ##Detect missing interviewer tier
   if (!hasTierID || !any(interviewerTier %in% df$TIER_ID)) {
@@ -419,7 +419,7 @@ getOverlapTiers <- function(df, inclRedact=fixOverlapRedact) {
       TIER_ID=="Redaction" ~ "Redaction",
       TIER_ID==SpkrCode ~ "Main speaker",
       Neighborhood=="HD" & TIER_ID=="Trista Pennington" ~ "Interviewer",
-      Neighborhood!="HD" & TIER_ID=="Barbara Johnstone" ~ "Interviewer",
+      Neighborhood!="HD" & TIER_ID %in% c("Barbara Johnstone", "Jennifer Andrus") ~ "Interviewer",
       startsWith(TIER_ID, "Interviewer") ~ "Interviewer",
       SpkrTier ~ "Bystander",
       TRUE ~ NA_character_

@@ -2,9 +2,15 @@
 
 ## Bugfixes
 
+- File check: Enforce filenames starting with speaker code
+  - Right now, it gets passed to Step 1 and causes an error because it looks for speaker named NA
 - Dictionary check: Incorrect parsing for an annotation where a `{` in a pronounce code precedes a `}` for an inline comment
 - Dictionary check: False negatives caused by hyphens (e.g., _hand-in-hadd_ doesn't get flagged)
 - Dictionary check: If _X's_ is in the dictionary but not _X_, _X's_ in the transcript will get flagged as not in the dictionary
+
+- Overlaps: If an overlapping annotation has a boundary that lines up exactly with another tier, `fixOverlapsTier()` throws an error with `overlapBoundsFixed %>% ... %>% filter(NewTS1==NewTS2)`
+  - One of the NewTSs is missing because the long version of `overlapBoundsFixed` only has one boundary for that annotation. That comes from `findOverlapsTier()`'s `mutate(ANNOTATION_ID_overlapped = timesOtherTiers$ANNOTATION_ID %>% extract(which(Time > timesOtherTiers$Start & Time < timesOtherTiers$End)[1]))`
+  - Patched by turning off zero-width checking by default---this will need a more durable solution down the line
 
 
 ## Basic functionality
@@ -16,18 +22,12 @@
 
 - In `eaflist_to_df()`, `tierNames <- seq_len(nrow(df))` doesn't work as expected if `tierInfo()$TIER_ID` exists but has NAs (multiple files, or just some tier IDs missing)
 
-- Handle multiple main speakers in tier checker
-
 - Add step 4 for Redaction checking
   - All speaker-tier annotations that are (str-trimmed) only "REDACT" must coincide with an annotation on the Redaction tier, and vice versa. Create test files for failure modes:
     - "REDACT" but no Redaction annotation
     - "REDACT" with other (non-whitespace) chars
     - Empty Redaction annotation
     - Redaction annotation with speaker annotation but the speaker annotation isn't "REDACT" (could be additional chars, or something completely different)
-
-- Overlaps: If an overlapping annotation has a boundary that lines up exactly with another tier, `fixOverlapsTier()` throws an error with `overlapBoundsFixed %>% ... %>% filter(NewTS1==NewTS2)`
-  - One of the NewTSs is missing because the long version of `overlapBoundsFixed` only has one boundary for that annotation. That comes from `findOverlapsTier()`'s `mutate(ANNOTATION_ID_overlapped = timesOtherTiers$ANNOTATION_ID %>% extract(which(Time > timesOtherTiers$Start & Time < timesOtherTiers$End)[1]))`
-  - Patched by turning off zero-width checking by default---this will need a more durable solution down the line
 
 ## Testing
 
@@ -43,6 +43,11 @@
 ## Extensions
 
 - Add number-of-fixed-overlaps counter (either just a total or by-file)
-- If transcript passes all checks, have it upload (automatically? optionally?) to server or email to Dan
-- Option to fill in dictionary entries (if transcript fails step 2, download txt file with words and have transcribers delete lines or fill in DISC representations, which transcribers then re-upload)
+- ~If transcript passes all checks, have it upload (automatically? optionally?) to server or email to Dan~
+  - Current system works fine
+- ~Option to fill in dictionary entries (if transcript fails step 2, download txt file with words and have transcribers delete lines or fill in DISC representations, which transcribers then re-upload)~
+  - Current system works fine
 
+### Post-APLS Phase 1
+
+- Handle multiple main speakers in tier checker
