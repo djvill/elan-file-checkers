@@ -8,6 +8,8 @@
         "File": "HD06-1_BadFileExt.eaff",
         "FileExt": "eaff",
         "FileExtValid": false,
+        "SpkrCodeValid": true,
+        "FileNameValid": false,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
@@ -19,10 +21,21 @@
         "File": "HD06-1_NoIssues.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
+        "size": 346402,
+        "type": ""
+      },
+      {
+        "File": "SpeakerCodeNonInitial_HD06-1.eaf",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": false,
+        "FileNameValid": false,
         "size": 346402,
         "type": ""
       }
@@ -31,7 +44,7 @@
   "elements": {
     "stepHeads": [
       {
-        "id": "noEafHead",
+        "id": "fileNameHead",
         "class": "bad",
         "displayed": true
       },
@@ -53,6 +66,10 @@
     ],
     "stepSubheads": [
       {
+        "id": "fileNameSubhead",
+        "displayed": true
+      },
+      {
         "id": "tierSubhead",
         "displayed": false
       },
@@ -73,7 +90,7 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"bad\">HD06-1_BadFileExt.eaff<\/li>\n  <li>HD06-1_NoIssues.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"bad\">HD06-1_BadFileExt.eaff<\/li>\n  <li class=\"\">HD06-1_NoIssues.eaf<\/li>\n  <li class=\"bad\">SpeakerCodeNonInitial_HD06-1.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
@@ -96,7 +113,8 @@
     ],
     "checkDetails": [
       "HD06-1_BadFileExt.eaff",
-      "HD06-1_NoIssues.eaf"
+      "HD06-1_NoIssues.eaf",
+      "SpeakerCodeNonInitial_HD06-1.eaf"
     ]
   }
 }

@@ -5,16 +5,12 @@
   "export": {
     "fileDF": [
       {
-        "File": "HD06-1_BadFileExt.eaff",
-        "FileExt": "eaff",
-        "FileExtValid": false,
-        "SpkrCodeValid": true,
+        "File": "SpeakerCodeNonInitial_HD06-1.eaf",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": false,
         "FileNameValid": false,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_BadFileExt",
-        "size": 345779,
+        "size": 346402,
         "type": ""
       }
     ]
@@ -68,7 +64,7 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"bad\">HD06-1_BadFileExt.eaff<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"bad\">SpeakerCodeNonInitial_HD06-1.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
@@ -90,7 +86,7 @@
       "checkDetails"
     ],
     "checkDetails": [
-      "HD06-1_BadFileExt.eaff"
+      "SpeakerCodeNonInitial_HD06-1.eaf"
     ]
   }
 }

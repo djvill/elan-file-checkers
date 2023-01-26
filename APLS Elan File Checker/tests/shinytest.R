@@ -7,4 +7,4 @@ library(shinytest)
 ##All steps
 # testApp("../", testnames=dir("shinytest/", "test.+R$"))
 ##Single step
-testApp("../", testnames=dir("shinytest/", "test-step3.R$"))
+testApp("../", testnames=dir("shinytest/", "test-step0.R$"))

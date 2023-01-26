@@ -57,7 +57,7 @@ fixOverlapRedact <- TRUE
 checkZeroWidth <- FALSE
 
 ##Exit-early overrides, for debugging
-overrideExit <- list(fileExt = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
+overrideExit <- list(fileName = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
 
 # UI ----------------------------------------------------------------------
 ui <- fluidPage(
@@ -80,6 +80,7 @@ ui <- fluidPage(
           target="_blank"))
     ),
     
+    ##UI details are complicated, so they all take place in output$out
     mainPanel(uiOutput("debug"),
               uiOutput("export"), ##Never shown
               uiOutput("out"))
@@ -110,6 +111,8 @@ fileInfo <- function(x, regex1=spkrExtractRegex, regex2=spkrNumExtractRegex) {
     ##Add file extension
     mutate(FileExt = str_extract(File, "[^\\.]+$"),
            FileExtValid = FileExt=="eaf",
+           SpkrCodeValid = !is.na(SpkrCode),
+           FileNameValid = FileExtValid & SpkrCodeValid,
            .after=File) %>% 
     ##Sort
     arrange(Neighborhood, SpeakerNum, FileSuffix, File)
@@ -118,7 +121,7 @@ fileInfo <- function(x, regex1=spkrExtractRegex, regex2=spkrNumExtractRegex) {
 ##From a character vector of paths, creates a list of XML objects w/ the file
 ##  basenames as element names
 ##Doesn't check for valid paths, because in the app that's handled by
-##  req(all(fileDF()$FileExtValid))
+##  req(all(fileDF()$FileNameValid))
 read_eafs <- function(filename, datapath) {
   if (!is.character(filename)) {
     stop("filename must be a character vector")
@@ -874,7 +877,7 @@ xmllist_to_df <- function(x, singleDF=TRUE, nST=nonSpkrTiers) {
   }
 }
 
-## UI display =================================================================
+## UI convenience functions ===================================================
 
 ##Convenience functions to display/undisplay HTML elements
 display <- function(x) {
@@ -915,12 +918,7 @@ is.displayed <- function(x) {
          paste(class(x), collapse="/"), " objects.")
   }
   
-  # if ("shiny.tag" %in% class(x)) {
   sty <- x$attribs$style
-  # } else {
-  #   sty <- xml_attr(x, "style")
-  # }
-  
   !grepl("display:\\s*none", sty)
 }
 
@@ -957,7 +955,7 @@ server <- function(input, output) {
   
   ##Read files: Get a list that's nrow(fileDF()) long, each element an xml_document
   eaflist <- reactive({
-    req(all(fileDF()$FileExtValid) || overrideExit$fileExt)
+    req(all(fileDF()$FileNameValid) || overrideExit$fileName)
     read_eafs(fileDF()$File, fileDF()$datapath)
   })
   
@@ -984,6 +982,7 @@ server <- function(input, output) {
   output$debugPrint <-
     renderPrint({
       list(
+        `fileDF()` = fileDF()
         ##To use:
         ## 1. Set showDebug to TRUE
         ## 2. Put reactive objects here with name from environment or expression, such as
@@ -1017,7 +1016,7 @@ server <- function(input, output) {
     export <- list(pack_val(fileDF() %>% select(-datapath), "fileDF"))
     
     ##If step 0 passed, add tierDF() & at least one eaflist()
-    if (all(fileDF()$FileExtValid)) {
+    if (all(fileDF()$FileNameValid)) {
       tagList(export,
               pack_val(tierDF() %>% 
                          select(-datapath), "tierDF"),
@@ -1050,30 +1049,44 @@ server <- function(input, output) {
     exitEarly <- FALSE
     
     
-    # Step 0: File extension check --------------------------------------------
+    # Step 0: File name check -------------------------------------------------
     checkHead <- h1("Checking the following files...",
                     id="checkHead")
     
     ##Get bullet-list of filenames (styling bad ones in red)
     checkDetails <- tags$ul(
-      map_if(fileDF()$File,
-             ~ !endsWith(.x, "eaf"),
-             ~ tags$li(.x, class="bad"),
-             .else=tags$li),
+      fileDF() %>% 
+        mutate(Class = if_else(FileNameValid, "", "bad")) %>% 
+        pull(Class, File) %>% 
+        imap(~ tags$li(.y, class=.x)),
       id="checkDetails", class="details"
     )
     
-    ##Style headings based on whether file extensions are valid
-    noEafHead <- h2("The checker only works on files with an .eaf file extension",
-                    id="noEafHead")
-    fileExtValid <- all(fileDF()$FileExtValid)
-    if (fileExtValid) {
-      noEafHead <- undisplay(noEafHead)
+    ##Style headings based on whether filenames are valid
+    fileNameHead <- h2("Correct file names and re-upload",
+                       id="fileNameHead")
+    fileNameValid <- all(fileDF()$FileNameValid)
+    if (fileNameValid) {
+      fileNameHead <- undisplay(fileNameHead)
+      fileNameSubhead <- h3("", id="fileNameSubhead") %>% 
+        undisplay()
     } else {
-      noEafHead <- display(noEafHead) %>%
+      fileNameHead <- display(fileNameHead) %>%
         tagAppendAttributes(class="bad")
       stepHeads <- stepHeads %>%
         map(tagAppendAttributes, class="grayout")
+      ##Extra-informative error message
+      fileNameTips <- character(0L)
+      if (any(!fileDF()$SpkrCodeValid)) {
+        fileNameTips <- c(fileNameTips, "begin with a speaker code")
+      }
+      if (any(!fileDF()$FileExtValid)) {
+        fileNameTips <- c(fileNameTips, "end with the .eaf file extension")
+      }
+      fileNameSubhead <- h3(paste("Files must", 
+                                  paste(fileNameTips, collapse=" and ")), 
+                            id="fileNameSubhead") %>% 
+        display()
       
       ##Exit early
       exitEarly <- TRUE
@@ -1093,7 +1106,7 @@ server <- function(input, output) {
       undisplay()
     
     ##If not exiting early yet, check for tier issues
-    if (!exitEarly || overrideExit$fileExt) {
+    if (!exitEarly || overrideExit$fileName) {
       ##Get tier issues
       tierIss <- tierIssues(tierDF())
       ##If no tier issues, don't display anything & make step heading green
@@ -1307,30 +1320,39 @@ server <- function(input, output) {
       downloadBtn <- display(downloadBtn)
     }
     
+    ##PAGE FUNCTIONALITY:
+    ##  At page load, all that's visible in mainPanel is checkHead and stepHeads
+    ##  If a step passes, stepHead styled as .good (except step 0, which only displays if failed)
+    ##  If a step fails, stepHead styled as .bad, and subhead+details display (plus reuploadHead)
+    ##  If a step is not reached, stepHead styled as .grayout
     ##Construct tag list
     tagList(
-      ##Checking head: display bullet-list of files, marking non-eaf as bad
+      ##"Checking the following files" and bullet-list (styling bad files)
       checkHead,
-      ##Bullet-list
       checkDetails,
-      ##Display message if there are non-eaf files
-      noEafHead,
+      ##Step 0: Check file names (only displays if failed)
+      fileNameHead,
+      fileNameSubhead,
+      ##Step 1: Check tiers
       stepHeads$tiers,
       tierSubhead,
       tierDetails,
+      ##Step 2: Check dictionary
       stepHeads$dict,
       dictSubhead,
       dictDetails,
+      ##Step 3: Check & fix overlaps
       stepHeads$overlaps,
       overlapsSubhead,
       overlapsDetails,
+      ##If not all files passed, display "Please fix issues and re-upload."
       reuploadHead,
+      ##If all files passed, instructions to download
       downloadHead,
       downloadSubhead,
       downloadBtn
     )
-    ##End output$out <- renderUI({})
-  })
+  }) ##End output$out <- renderUI({})
   
   
   # Create output file(s) ---------------------------------------------------
