@@ -8,6 +8,8 @@
         "File": "HD01-reading1b_JustOneTier.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
         "SpeakerNum": 1,
@@ -23,15 +25,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "HD01",
         "TIER_ID": "HD01",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "size": 6056,
-        "type": ""
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
@@ -39,15 +43,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Trista Pennington",
         "TIER_ID": "Trista Pennington",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "size": 6056,
-        "type": ""
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
@@ -55,15 +61,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Noise",
         "TIER_ID": "Noise",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "size": 6056,
-        "type": ""
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
@@ -71,15 +79,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Redaction",
         "TIER_ID": "Redaction",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "size": 6056,
-        "type": ""
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
@@ -87,22 +97,24 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Comment",
         "TIER_ID": "Comment",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "size": 6056,
-        "type": ""
+        "type": "",
+        "SpkrTier": false
       }
     ]
   },
   "elements": {
     "stepHeads": [
       {
-        "id": "noEafHead",
+        "id": "fileNameHead",
         "displayed": false
       },
       {
@@ -122,6 +134,10 @@
       }
     ],
     "stepSubheads": [
+      {
+        "id": "fileNameSubhead",
+        "displayed": false
+      },
       {
         "id": "tierSubhead",
         "displayed": false
@@ -143,7 +159,7 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li>HD01-reading1b_JustOneTier.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD01-reading1b_JustOneTier.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",

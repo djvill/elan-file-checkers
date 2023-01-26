@@ -8,6 +8,8 @@
         "File": "HD06-1_MissingParticipantSome.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
@@ -24,6 +26,8 @@
         "TIER_ID": "HD06",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
@@ -39,6 +43,8 @@
         "TIER_ID": "Interviewer HD06",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
@@ -55,6 +61,8 @@
         "TIER_ID": "Comment",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
@@ -71,6 +79,8 @@
         "TIER_ID": "Noise",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
@@ -86,6 +96,8 @@
         "TIER_ID": "Redaction",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
@@ -100,7 +112,7 @@
   "elements": {
     "stepHeads": [
       {
-        "id": "noEafHead",
+        "id": "fileNameHead",
         "displayed": false
       },
       {
@@ -120,6 +132,10 @@
       }
     ],
     "stepSubheads": [
+      {
+        "id": "fileNameSubhead",
+        "displayed": false
+      },
       {
         "id": "tierSubhead",
         "displayed": true
@@ -141,7 +157,7 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li>HD06-1_MissingParticipantSome.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_MissingParticipantSome.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",

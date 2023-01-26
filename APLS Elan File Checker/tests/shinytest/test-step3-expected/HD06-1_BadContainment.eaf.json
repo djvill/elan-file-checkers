@@ -8,11 +8,13 @@
         "File": "HD06-1_BadContainment.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadContainment",
-        "size": 344229,
+        "size": 344233,
         "type": ""
       }
     ],
@@ -23,15 +25,17 @@
         "TIER_ID": "HD06",
         "PARTICIPANT": "HD06",
         "ANNOTATOR": "Emma McKibbin",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadContainment",
-        "size": 344229,
-        "type": ""
+        "size": 344233,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_BadContainment.eaf",
@@ -39,15 +43,17 @@
         "TIER_ID": "Interviewer HD06",
         "PARTICIPANT": "Interviewer HD06",
         "ANNOTATOR": "Emma McKibbin",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadContainment",
-        "size": 344229,
-        "type": ""
+        "size": 344233,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_BadContainment.eaf",
@@ -55,15 +61,17 @@
         "TIER_ID": "Comment",
         "PARTICIPANT": "Comment",
         "ANNOTATOR": "Emma McKibbin",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadContainment",
-        "size": 344229,
-        "type": ""
+        "size": 344233,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_BadContainment.eaf",
@@ -71,15 +79,17 @@
         "TIER_ID": "Noise",
         "PARTICIPANT": "Noise",
         "ANNOTATOR": "Emma McKibbin",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadContainment",
-        "size": 344229,
-        "type": ""
+        "size": 344233,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_BadContainment.eaf",
@@ -87,22 +97,24 @@
         "TIER_ID": "Redaction",
         "PARTICIPANT": "Redaction",
         "ANNOTATOR": "Emma McKibbin",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadContainment",
-        "size": 344229,
-        "type": ""
+        "size": 344233,
+        "type": "",
+        "SpkrTier": false
       }
     ]
   },
   "elements": {
     "stepHeads": [
       {
-        "id": "noEafHead",
+        "id": "fileNameHead",
         "displayed": false
       },
       {
@@ -122,6 +134,10 @@
       }
     ],
     "stepSubheads": [
+      {
+        "id": "fileNameSubhead",
+        "displayed": false
+      },
       {
         "id": "tierSubhead",
         "displayed": false
@@ -143,7 +159,7 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li>HD06-1_BadContainment.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_BadContainment.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",

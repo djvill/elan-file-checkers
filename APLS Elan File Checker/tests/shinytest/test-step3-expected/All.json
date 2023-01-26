@@ -8,6 +8,8 @@
         "File": "HD01-reading1b_JustOneTier.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
         "SpeakerNum": 1,
@@ -19,66 +21,78 @@
         "File": "HD06-1_BadContainment.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadContainment",
-        "size": 344229,
+        "size": 344233,
         "type": ""
       },
       {
         "File": "HD06-1_BadNonContainment.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonContainment",
-        "size": 344988,
+        "size": 344992,
         "type": ""
       },
       {
         "File": "HD06-1_GoodOnly.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnly",
-        "size": 346402,
+        "size": 346406,
         "type": ""
       },
       {
         "File": "HD06-1_GoodOnlyIntFirst.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnlyIntFirst",
-        "size": 346402,
+        "size": 346406,
         "type": ""
       },
       {
         "File": "HD06-1_GoodOnlyRedact.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnlyRedact",
-        "size": 349358,
+        "size": 349362,
         "type": ""
       },
       {
         "File": "HD06-1_OverlapsResolved.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_OverlapsResolved",
-        "size": 304048,
+        "size": 304052,
         "type": ""
       }
     ],
@@ -89,15 +103,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "HD01",
         "TIER_ID": "HD01",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "size": 6056,
-        "type": ""
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
@@ -105,15 +121,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Trista Pennington",
         "TIER_ID": "Trista Pennington",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "size": 6056,
-        "type": ""
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
@@ -121,15 +139,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Noise",
         "TIER_ID": "Noise",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "size": 6056,
-        "type": ""
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
@@ -137,15 +157,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Redaction",
         "TIER_ID": "Redaction",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "size": 6056,
-        "type": ""
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
@@ -153,15 +175,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Comment",
         "TIER_ID": "Comment",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "size": 6056,
-        "type": ""
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_BadContainment.eaf",
@@ -169,15 +193,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "HD06",
         "TIER_ID": "HD06",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadContainment",
-        "size": 344229,
-        "type": ""
+        "size": 344233,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_BadContainment.eaf",
@@ -185,15 +211,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Interviewer HD06",
         "TIER_ID": "Interviewer HD06",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadContainment",
-        "size": 344229,
-        "type": ""
+        "size": 344233,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_BadContainment.eaf",
@@ -201,15 +229,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Comment",
         "TIER_ID": "Comment",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadContainment",
-        "size": 344229,
-        "type": ""
+        "size": 344233,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_BadContainment.eaf",
@@ -217,15 +247,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Noise",
         "TIER_ID": "Noise",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadContainment",
-        "size": 344229,
-        "type": ""
+        "size": 344233,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_BadContainment.eaf",
@@ -233,15 +265,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Redaction",
         "TIER_ID": "Redaction",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadContainment",
-        "size": 344229,
-        "type": ""
+        "size": 344233,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_BadNonContainment.eaf",
@@ -249,15 +283,17 @@
         "LINGUISTIC_TYPE_REF": "praat",
         "PARTICIPANT": "HD06",
         "TIER_ID": "HD06",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonContainment",
-        "size": 344988,
-        "type": ""
+        "size": 344992,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_BadNonContainment.eaf",
@@ -265,15 +301,17 @@
         "LINGUISTIC_TYPE_REF": "praat",
         "PARTICIPANT": "Interviewer HD06",
         "TIER_ID": "Interviewer HD06",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonContainment",
-        "size": 344988,
-        "type": ""
+        "size": 344992,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_BadNonContainment.eaf",
@@ -281,15 +319,17 @@
         "LINGUISTIC_TYPE_REF": "praat",
         "PARTICIPANT": "Comment",
         "TIER_ID": "Comment",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonContainment",
-        "size": 344988,
-        "type": ""
+        "size": 344992,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_BadNonContainment.eaf",
@@ -297,15 +337,17 @@
         "LINGUISTIC_TYPE_REF": "praat",
         "PARTICIPANT": "Noise",
         "TIER_ID": "Noise",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonContainment",
-        "size": 344988,
-        "type": ""
+        "size": 344992,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_BadNonContainment.eaf",
@@ -313,15 +355,17 @@
         "LINGUISTIC_TYPE_REF": "praat",
         "PARTICIPANT": "Redaction",
         "TIER_ID": "Redaction",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonContainment",
-        "size": 344988,
-        "type": ""
+        "size": 344992,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_GoodOnly.eaf",
@@ -329,15 +373,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "HD06",
         "TIER_ID": "HD06",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnly",
-        "size": 346402,
-        "type": ""
+        "size": 346406,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_GoodOnly.eaf",
@@ -345,15 +391,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Interviewer HD06",
         "TIER_ID": "Interviewer HD06",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnly",
-        "size": 346402,
-        "type": ""
+        "size": 346406,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_GoodOnly.eaf",
@@ -361,15 +409,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Comment",
         "TIER_ID": "Comment",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnly",
-        "size": 346402,
-        "type": ""
+        "size": 346406,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_GoodOnly.eaf",
@@ -377,15 +427,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Noise",
         "TIER_ID": "Noise",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnly",
-        "size": 346402,
-        "type": ""
+        "size": 346406,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_GoodOnly.eaf",
@@ -393,15 +445,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Redaction",
         "TIER_ID": "Redaction",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnly",
-        "size": 346402,
-        "type": ""
+        "size": 346406,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_GoodOnlyIntFirst.eaf",
@@ -409,15 +463,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Interviewer HD06",
         "TIER_ID": "Interviewer HD06",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnlyIntFirst",
-        "size": 346402,
-        "type": ""
+        "size": 346406,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_GoodOnlyIntFirst.eaf",
@@ -425,15 +481,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "HD06",
         "TIER_ID": "HD06",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnlyIntFirst",
-        "size": 346402,
-        "type": ""
+        "size": 346406,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_GoodOnlyIntFirst.eaf",
@@ -441,15 +499,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Comment",
         "TIER_ID": "Comment",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnlyIntFirst",
-        "size": 346402,
-        "type": ""
+        "size": 346406,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_GoodOnlyIntFirst.eaf",
@@ -457,15 +517,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Noise",
         "TIER_ID": "Noise",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnlyIntFirst",
-        "size": 346402,
-        "type": ""
+        "size": 346406,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_GoodOnlyIntFirst.eaf",
@@ -473,15 +535,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Redaction",
         "TIER_ID": "Redaction",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnlyIntFirst",
-        "size": 346402,
-        "type": ""
+        "size": 346406,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_GoodOnlyRedact.eaf",
@@ -489,15 +553,17 @@
         "LINGUISTIC_TYPE_REF": "praat",
         "PARTICIPANT": "HD06",
         "TIER_ID": "HD06",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnlyRedact",
-        "size": 349358,
-        "type": ""
+        "size": 349362,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_GoodOnlyRedact.eaf",
@@ -505,15 +571,17 @@
         "LINGUISTIC_TYPE_REF": "praat",
         "PARTICIPANT": "Interviewer HD06",
         "TIER_ID": "Interviewer HD06",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnlyRedact",
-        "size": 349358,
-        "type": ""
+        "size": 349362,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_GoodOnlyRedact.eaf",
@@ -521,15 +589,17 @@
         "LINGUISTIC_TYPE_REF": "praat",
         "PARTICIPANT": "Comment",
         "TIER_ID": "Comment",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnlyRedact",
-        "size": 349358,
-        "type": ""
+        "size": 349362,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_GoodOnlyRedact.eaf",
@@ -537,15 +607,17 @@
         "LINGUISTIC_TYPE_REF": "praat",
         "PARTICIPANT": "Noise",
         "TIER_ID": "Noise",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnlyRedact",
-        "size": 349358,
-        "type": ""
+        "size": 349362,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_GoodOnlyRedact.eaf",
@@ -553,15 +625,17 @@
         "LINGUISTIC_TYPE_REF": "praat",
         "PARTICIPANT": "Redaction",
         "TIER_ID": "Redaction",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_GoodOnlyRedact",
-        "size": 349358,
-        "type": ""
+        "size": 349362,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_OverlapsResolved.eaf",
@@ -569,15 +643,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "HD06",
         "TIER_ID": "HD06",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_OverlapsResolved",
-        "size": 304048,
-        "type": ""
+        "size": 304052,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_OverlapsResolved.eaf",
@@ -585,15 +661,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Interviewer HD06",
         "TIER_ID": "Interviewer HD06",
-        "SpkrTier": true,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_OverlapsResolved",
-        "size": 304048,
-        "type": ""
+        "size": 304052,
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_OverlapsResolved.eaf",
@@ -601,15 +679,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Comment",
         "TIER_ID": "Comment",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_OverlapsResolved",
-        "size": 304048,
-        "type": ""
+        "size": 304052,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_OverlapsResolved.eaf",
@@ -617,15 +697,17 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Noise",
         "TIER_ID": "Noise",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_OverlapsResolved",
-        "size": 304048,
-        "type": ""
+        "size": 304052,
+        "type": "",
+        "SpkrTier": false
       },
       {
         "File": "HD06-1_OverlapsResolved.eaf",
@@ -633,22 +715,24 @@
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Redaction",
         "TIER_ID": "Redaction",
-        "SpkrTier": false,
         "FileExt": "eaf",
         "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_OverlapsResolved",
-        "size": 304048,
-        "type": ""
+        "size": 304052,
+        "type": "",
+        "SpkrTier": false
       }
     ]
   },
   "elements": {
     "stepHeads": [
       {
-        "id": "noEafHead",
+        "id": "fileNameHead",
         "displayed": false
       },
       {
@@ -668,6 +752,10 @@
       }
     ],
     "stepSubheads": [
+      {
+        "id": "fileNameSubhead",
+        "displayed": false
+      },
       {
         "id": "tierSubhead",
         "displayed": false
@@ -689,7 +777,7 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li>HD01-reading1b_JustOneTier.eaf<\/li>\n  <li>HD06-1_BadContainment.eaf<\/li>\n  <li>HD06-1_BadNonContainment.eaf<\/li>\n  <li>HD06-1_GoodOnly.eaf<\/li>\n  <li>HD06-1_GoodOnlyIntFirst.eaf<\/li>\n  <li>HD06-1_GoodOnlyRedact.eaf<\/li>\n  <li>HD06-1_OverlapsResolved.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD01-reading1b_JustOneTier.eaf<\/li>\n  <li class=\"\">HD06-1_BadContainment.eaf<\/li>\n  <li class=\"\">HD06-1_BadNonContainment.eaf<\/li>\n  <li class=\"\">HD06-1_GoodOnly.eaf<\/li>\n  <li class=\"\">HD06-1_GoodOnlyIntFirst.eaf<\/li>\n  <li class=\"\">HD06-1_GoodOnlyRedact.eaf<\/li>\n  <li class=\"\">HD06-1_OverlapsResolved.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",

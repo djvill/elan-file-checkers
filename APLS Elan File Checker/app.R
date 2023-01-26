@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version date
-versDate <- "31 October 2022"
+versDate <- gsub(" 0", " ", format(Sys.Date(), "%B %d, %Y"))
 
 ##Debugging
 ##Show additional UI element "debugPrint" at top of main panel for debugging?
