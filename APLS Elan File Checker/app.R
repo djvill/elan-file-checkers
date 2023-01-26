@@ -33,10 +33,11 @@ nonSpkrTiers <- c("Comment","Noise","Redaction")
 # nonSpkrTiers <- c("Comment","Comments","Noise","Noises","Redaction","Redactions")
 
 ##Dictionary checking
-##Include local version of aplsDict.txt?
+##Include local version of aplsDict.txt? Include ONLY local version?
 ##  Only works on Dan's machine, useful for testing new entries without
 ##  committing each time
 inclLocalDict <- FALSE
+onlyLocalDict <- FALSE
 ##Permit angle brackets for single-word interruptions?
 permitAngleBrackets <- FALSE
 ##Characters to accept in pronounce codes
@@ -283,31 +284,67 @@ tierIssues <- function(df) {
 
 ## Dictionaries ===============================================================
 
-##Get local dictionary filepaths
-dictFiles <- list.files("dict/", pattern="\\.txt", full.names=TRUE)
+##Possible dictionary paths
+##Get Unisyn dictionary filepath
+##N.B. unisynDict.txt is gitignored for copyright purposes, but its entries get
+##  packaged in the deployed Shiny app
+dictOptions <- c(Unisyn = "dict/unisynDict.txt",
+                 local = "../../APLS/files/custom-dictionary/aplsDict.txt",
+                 remote = "https://github.com/djvill/APLS/raw/main/files/custom-dictionary/aplsDict.txt")
+##Include Unisyn
+dictFiles <- dictOptions["Unisyn"]
+
 ##Add APLS dictionary, either locally (Dan's machine only) or from GitHub
-localAPLSDict <- "../../APLS/files/custom-dictionary/aplsDict.txt"
-remoteAPLSDict <- "https://github.com/djvill/APLS/raw/main/files/custom-dictionary/aplsDict.txt"
-if (inclLocalDict && file.exists(localAPLSDict)) {
-  nLines <- length(readLines(localAPLSDict))
-  message("Using local APLS dictionary - ", nLines, " lines")
-  dictFiles <- c(dictFiles, localAPLSDict)
-} else {
-  nLines <- length(readLines(remoteAPLSDict))
-  message("Using remote APLS dictionary - ", nLines, " lines")
-  dictFiles <- c(dictFiles, remoteAPLSDict)
+if (inclLocalDict && onlyLocalDict) {
+  stop("Choose either inclLocalDict or onlyLocalDict, not both")
+}
+if (inclLocalDict || onlyLocalDict) {
+  if (!file.exists(dictOptions["local"])) {
+    stop("Can't include local dict because it doesn't exist")
+  }
+  dictFiles <- c(dictFiles, dictOptions["local"])
+}
+if (!onlyLocalDict) {
+  dictFiles <- c(dictFiles, dictOptions["remote"])
+}
+
+##Import dictionary(ies)
+dict <-
+  dictFiles %>% 
+  map(~ .x %>% 
+        readLines() %>% 
+        ##Ignore lines starting with "#" or empty lines
+        str_subset("^(#.*|)$", negate=TRUE) %>% 
+        ##Strip possessive 's clitic
+        ##  N.B. If X's is in the custom dictionary, LaBB-CAT correctly finds
+        ##  the phonemic representation for X
+        str_remove("'s$") %>% 
+        unique())
+
+##Print dict info to R console
+dictInfo <- 
+  dict %>% 
+  map_int(length) %>%
+  {str_glue("{names(.)} ({.} entries)")} %>%
+  paste(collapse=", ")
+message("Dictionaries: ", dictInfo)
+##Info on extra local dict entries
+if (inclLocalDict) {
+  localNotRemote <- setdiff(dict$local, dict$remote)
+  locInfo <- if_else(length(localNotRemote)==0,
+                     "No additional entries in local w/rt remote",
+                     paste("Additional entries in local w/rt remote:",
+                           paste(localNotRemote, collapse=" ")))
+  message(locInfo)
 }
 
 ##Put dictionary together
-dict <-
-  ##Read dictionary file(s)
-  map(dictFiles, readLines) %>% 
+dict <- dict %>% 
   ##As single character vector
   reduce(c) %>% 
-  ##Ignore lines starting with "#" or empty lines
-  str_subset("^(#.*|)$", negate=TRUE) %>% 
   ##Unique
   unique()
+message(length(dict), " total unique entries")
 
 ##Function that takes a tier name and eaf file as input and outputs
 ##  non-dictionary words
