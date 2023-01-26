@@ -27,7 +27,7 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsOneTier",
-        "size": 346165,
+        "size": 346191,
         "type": ""
       },
       {
@@ -59,7 +59,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
-        "size": 345859,
         "type": "",
         "SpkrTier": true
       },
@@ -77,7 +76,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
-        "size": 345859,
         "type": "",
         "SpkrTier": true
       },
@@ -95,7 +93,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
-        "size": 345859,
         "type": "",
         "SpkrTier": false
       },
@@ -113,7 +110,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
-        "size": 345859,
         "type": "",
         "SpkrTier": false
       },
@@ -131,7 +127,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
-        "size": 345859,
         "type": "",
         "SpkrTier": false
       },
@@ -149,7 +144,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsOneTier",
-        "size": 346165,
         "type": "",
         "SpkrTier": true
       },
@@ -167,7 +161,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsOneTier",
-        "size": 346165,
         "type": "",
         "SpkrTier": true
       },
@@ -185,7 +178,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsOneTier",
-        "size": 346165,
         "type": "",
         "SpkrTier": false
       },
@@ -203,7 +195,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsOneTier",
-        "size": 346165,
         "type": "",
         "SpkrTier": false
       },
@@ -221,7 +212,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsOneTier",
-        "size": 346165,
         "type": "",
         "SpkrTier": false
       },
@@ -239,7 +229,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
-        "size": 346406,
         "type": "",
         "SpkrTier": true
       },
@@ -257,7 +246,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
-        "size": 346406,
         "type": "",
         "SpkrTier": true
       },
@@ -275,7 +263,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
-        "size": 346406,
         "type": "",
         "SpkrTier": false
       },
@@ -293,7 +280,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
-        "size": 346406,
         "type": "",
         "SpkrTier": false
       },
@@ -311,7 +297,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
-        "size": 346406,
         "type": "",
         "SpkrTier": false
       }

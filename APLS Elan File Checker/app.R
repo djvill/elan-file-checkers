@@ -1056,7 +1056,7 @@ server <- function(input, output) {
     if (all(fileDF()$FileNameValid)) {
       tagList(export,
               pack_val(tierDF() %>% 
-                         select(-datapath), "tierDF"),
+                         select(-c(datapath, size)), "tierDF"),
               pack_val(eaflist() %>% 
                          xmllist_to_df(singleDF=FALSE), "eaflist"))
     } else {

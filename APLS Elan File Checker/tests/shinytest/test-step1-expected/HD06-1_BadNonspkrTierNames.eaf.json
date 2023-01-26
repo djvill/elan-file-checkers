@@ -33,7 +33,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
-        "size": 345855,
         "type": "",
         "SpkrTier": true
       },
@@ -51,7 +50,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
-        "size": 345855,
         "type": "",
         "SpkrTier": true
       },
@@ -69,7 +67,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
-        "size": 345855,
         "type": "",
         "SpkrTier": true
       },
@@ -87,7 +84,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
-        "size": 345855,
         "type": "",
         "SpkrTier": false
       },
@@ -105,7 +101,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
-        "size": 345855,
         "type": "",
         "SpkrTier": true
       }
