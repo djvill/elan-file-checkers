@@ -29,6 +29,18 @@
         "type": ""
       },
       {
+        "File": "HD06-1_HasRecheckTier.eaf",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_HasRecheckTier",
+        "type": ""
+      },
+      {
         "File": "HD06-1_MissingAnnotatorAll.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
@@ -227,8 +239,8 @@
         "File": "HD06-1_BadSpkrTierNames.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Terri Baltimore",
-        "TIER_ID": "Terri Baltimore",
+        "PARTICIPANT": "Heidi Gorbachev",
+        "TIER_ID": "Heidi Gorbachev",
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCodeValid": true,
@@ -244,8 +256,8 @@
         "File": "HD06-1_BadSpkrTierNames.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Interviewer Terri Baltimore",
-        "TIER_ID": "Interviewer Terri Baltimore",
+        "PARTICIPANT": "Interviewer Heidi Gorbachev",
+        "TIER_ID": "Interviewer Heidi Gorbachev",
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCodeValid": true,
@@ -307,6 +319,108 @@
         "FileSuffix": "-1_BadSpkrTierNames",
         "type": "",
         "SpkrTier": false
+      },
+      {
+        "File": "HD06-1_HasRecheckTier.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "HD06",
+        "TIER_ID": "HD06",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_HasRecheckTier",
+        "type": "",
+        "SpkrTier": true
+      },
+      {
+        "File": "HD06-1_HasRecheckTier.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Trista Pennington",
+        "TIER_ID": "Trista Pennington",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_HasRecheckTier",
+        "type": "",
+        "SpkrTier": true
+      },
+      {
+        "File": "HD06-1_HasRecheckTier.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Comment",
+        "TIER_ID": "Comment",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_HasRecheckTier",
+        "type": "",
+        "SpkrTier": false
+      },
+      {
+        "File": "HD06-1_HasRecheckTier.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Noise",
+        "TIER_ID": "Noise",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_HasRecheckTier",
+        "type": "",
+        "SpkrTier": false
+      },
+      {
+        "File": "HD06-1_HasRecheckTier.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Redaction",
+        "TIER_ID": "Redaction",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_HasRecheckTier",
+        "type": "",
+        "SpkrTier": false
+      },
+      {
+        "File": "HD06-1_HasRecheckTier.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Recheck",
+        "TIER_ID": "Recheck",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_HasRecheckTier",
+        "type": "",
+        "SpkrTier": true
       },
       {
         "File": "HD06-1_MissingAnnotatorAll.eaf",
@@ -1080,12 +1194,12 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_BadNonspkrTierNames.eaf<\/li>\n  <li class=\"\">HD06-1_BadSpkrTierNames.eaf<\/li>\n  <li class=\"\">HD06-1_MissingAnnotatorAll.eaf<\/li>\n  <li class=\"\">HD06-1_MissingAnnotatorSome.eaf<\/li>\n  <li class=\"\">HD06-1_MissingMultipleSome.eaf<\/li>\n  <li class=\"\">HD06-1_MissingParticipantAll.eaf<\/li>\n  <li class=\"\">HD06-1_MissingParticipantSome.eaf<\/li>\n  <li class=\"\">HD06-1_MissingRedact.eaf<\/li>\n  <li class=\"\">HD06-1_MissingTierIDAll.eaf<\/li>\n  <li class=\"\">HD06-1_MissingTierIDSome.eaf<\/li>\n  <li class=\"\">HD06-1_NoIssues.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_BadNonspkrTierNames.eaf<\/li>\n  <li class=\"\">HD06-1_BadSpkrTierNames.eaf<\/li>\n  <li class=\"\">HD06-1_HasRecheckTier.eaf<\/li>\n  <li class=\"\">HD06-1_MissingAnnotatorAll.eaf<\/li>\n  <li class=\"\">HD06-1_MissingAnnotatorSome.eaf<\/li>\n  <li class=\"\">HD06-1_MissingMultipleSome.eaf<\/li>\n  <li class=\"\">HD06-1_MissingParticipantAll.eaf<\/li>\n  <li class=\"\">HD06-1_MissingParticipantSome.eaf<\/li>\n  <li class=\"\">HD06-1_MissingRedact.eaf<\/li>\n  <li class=\"\">HD06-1_MissingTierIDAll.eaf<\/li>\n  <li class=\"\">HD06-1_MissingTierIDSome.eaf<\/li>\n  <li class=\"\">HD06-1_NoIssues.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
         "hasContent": true,
-        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_BadNonspkrTierNames.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>Mismatched tier name (Comment) &amp; Participant attribute (Coment)<\/li>\n      <li>Mismatched tier name (Noie) &amp; Participant attribute (Noise)<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_BadSpkrTierNames.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingAnnotatorAll.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing an Annotator attribute: HD06<\/li>\n      <li>Tier missing an Annotator attribute: Interviewer HD06<\/li>\n      <li>Tier missing an Annotator attribute: Comment<\/li>\n      <li>Tier missing an Annotator attribute: Noise<\/li>\n      <li>Tier missing an Annotator attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingAnnotatorSome.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing an Annotator attribute: Interviewer HD06<\/li>\n      <li>Tier missing an Annotator attribute: Noise<\/li>\n      <li>Tier missing an Annotator attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingMultipleSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing an Annotator attribute: Tier 2<\/li>\n      <li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingParticipantAll.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Participant attribute: Interviewer HD06<\/li>\n      <li>Tier missing a Participant attribute: Comment<\/li>\n      <li>Tier missing a Participant attribute: Noise<\/li>\n      <li>Tier missing a Participant attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingParticipantSome.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Participant attribute: Noise<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingRedact.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingTierIDAll.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier name attribute: Tier 1<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n      <li>Tier missing a Tier name attribute: Tier 4<\/li>\n      <li>Tier missing a Tier name attribute: Tier 5<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingTierIDSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_BadNonspkrTierNames.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>Mismatched tier name (Comment) &amp; Participant attribute (Coment)<\/li>\n      <li>Mismatched tier name (Noie) &amp; Participant attribute (Noise)<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_BadSpkrTierNames.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_HasRecheckTier.eaf:\n    <ul class=\"file-headed\">\n<li>The completed file should not have a tier named Recheck<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingAnnotatorAll.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing an Annotator attribute: HD06<\/li>\n      <li>Tier missing an Annotator attribute: Interviewer HD06<\/li>\n      <li>Tier missing an Annotator attribute: Comment<\/li>\n      <li>Tier missing an Annotator attribute: Noise<\/li>\n      <li>Tier missing an Annotator attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingAnnotatorSome.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing an Annotator attribute: Interviewer HD06<\/li>\n      <li>Tier missing an Annotator attribute: Noise<\/li>\n      <li>Tier missing an Annotator attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingMultipleSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing an Annotator attribute: Tier 2<\/li>\n      <li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingParticipantAll.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Participant attribute: Interviewer HD06<\/li>\n      <li>Tier missing a Participant attribute: Comment<\/li>\n      <li>Tier missing a Participant attribute: Noise<\/li>\n      <li>Tier missing a Participant attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingParticipantSome.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Participant attribute: Noise<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingRedact.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingTierIDAll.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier name attribute: Tier 1<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n      <li>Tier missing a Tier name attribute: Tier 4<\/li>\n      <li>Tier missing a Tier name attribute: Tier 5<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingTierIDSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
       },
       {
         "id": "dictDetails",
@@ -1111,6 +1225,9 @@
       "HD06-1_BadSpkrTierNames.eaf": [
         "There are no tiers with tier name HD06",
         "There are no tiers with tier name Interviewer HD06 or Trista Pennington"
+      ],
+      "HD06-1_HasRecheckTier.eaf": [
+        "The completed file should not have a tier named Recheck"
       ],
       "HD06-1_MissingAnnotatorAll.eaf": [
         "Tier missing an Annotator attribute: HD06",

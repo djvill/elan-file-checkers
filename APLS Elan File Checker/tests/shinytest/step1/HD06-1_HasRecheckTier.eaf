@@ -1602,7 +1602,7 @@
         <TIME_SLOT TIME_SLOT_ID="ts1590" TIME_VALUE="2416949"/>
     </TIME_ORDER>
     <TIER ANNOTATOR="Emma McKibbin" LINGUISTIC_TYPE_REF="default-lt"
-        PARTICIPANT="Heidi Gorbachev" TIER_ID="Heidi Gorbachev">
+        PARTICIPANT="HD06" TIER_ID="HD06">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a7"
                 TIME_SLOT_REF1="ts11" TIME_SLOT_REF2="ts12">
@@ -4539,7 +4539,7 @@
         </ANNOTATION>
     </TIER>
     <TIER ANNOTATOR="Emma McKibbin" LINGUISTIC_TYPE_REF="default-lt"
-        PARTICIPANT="Interviewer Heidi Gorbachev" TIER_ID="Interviewer Heidi Gorbachev">
+        PARTICIPANT="Trista Pennington" TIER_ID="Trista Pennington">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1"
                 TIME_SLOT_REF1="ts5" TIME_SLOT_REF2="ts6">
@@ -6385,6 +6385,8 @@
     </TIER>
     <TIER ANNOTATOR="Emma McKibbin" LINGUISTIC_TYPE_REF="default-lt"
         PARTICIPANT="Redaction" TIER_ID="Redaction"/>
+	<TIER ANNOTATOR="Emma McKibbin" LINGUISTIC_TYPE_REF="default-lt"
+        PARTICIPANT="Recheck" TIER_ID="Recheck"/>
 	<LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
         LINGUISTIC_TYPE_ID="default-lt" TIME_ALIGNABLE="true"/>
     <CONSTRAINT

@@ -30,7 +30,8 @@ spkrNumExtractRegex <- "([A-Z]{2})(\\d+)(?:and\\d+)?"
 ##Tier checking
 ##Required non-speaker tiers
 nonSpkrTiers <- c("Comment","Noise","Redaction")
-# nonSpkrTiers <- c("Comment","Comments","Noise","Noises","Redaction","Redactions")
+##Tiers that should never be present
+prohibTiers <- c("Text", "Recheck")
 
 ##Dictionary checking
 ##Include local version of aplsDict.txt? Include ONLY local version?
@@ -187,6 +188,16 @@ tierIssuesOneFile <- function(df, filename) {
   df <- df %>% 
     mutate(tierNum = paste("Tier", row_number()))
   
+  ##Handle prohibited tiers
+  if (hasTierID) {
+    issues <- c(issues,
+                prohibTiers %>% 
+                  map_if(~ any(str_detect(tolower(df$TIER_ID), tolower(.x)), na.rm=TRUE),
+                         ~ paste("The completed file should not have a tier named", .x),
+                         .else = ~ character(0L)) %>% 
+                  flatten_chr())
+  }
+  
   ##Handle missing tiers (non-interviewer)
   checkTiers <- c(unique(df$SpkrCode), nonSpkrTiers)
   if (hasTierID) {
@@ -211,8 +222,6 @@ tierIssuesOneFile <- function(df, filename) {
                               ##Format for printing
                               paste(interviewerTier, collapse=" or ")))
   }
-  
-  
   
   ##Handle missing attributes
   checkAttrs <- c("ANNOTATOR", "PARTICIPANT", "TIER_ID")

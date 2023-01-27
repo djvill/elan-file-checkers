@@ -5,7 +5,7 @@
   "export": {
     "fileDF": [
       {
-        "File": "HD06-1_BadSpkrTierNames.eaf",
+        "File": "HD06-1_HasRecheckTier.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCodeValid": true,
@@ -13,17 +13,17 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_BadSpkrTierNames",
+        "FileSuffix": "-1_HasRecheckTier",
         "type": ""
       }
     ],
     "tierDF": [
       {
-        "File": "HD06-1_BadSpkrTierNames.eaf",
+        "File": "HD06-1_HasRecheckTier.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Heidi Gorbachev",
-        "TIER_ID": "Heidi Gorbachev",
+        "PARTICIPANT": "HD06",
+        "TIER_ID": "HD06",
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCodeValid": true,
@@ -31,16 +31,16 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_BadSpkrTierNames",
+        "FileSuffix": "-1_HasRecheckTier",
         "type": "",
         "SpkrTier": true
       },
       {
-        "File": "HD06-1_BadSpkrTierNames.eaf",
+        "File": "HD06-1_HasRecheckTier.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Interviewer Heidi Gorbachev",
-        "TIER_ID": "Interviewer Heidi Gorbachev",
+        "PARTICIPANT": "Trista Pennington",
+        "TIER_ID": "Trista Pennington",
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCodeValid": true,
@@ -48,12 +48,12 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_BadSpkrTierNames",
+        "FileSuffix": "-1_HasRecheckTier",
         "type": "",
         "SpkrTier": true
       },
       {
-        "File": "HD06-1_BadSpkrTierNames.eaf",
+        "File": "HD06-1_HasRecheckTier.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Comment",
@@ -65,12 +65,12 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_BadSpkrTierNames",
+        "FileSuffix": "-1_HasRecheckTier",
         "type": "",
         "SpkrTier": false
       },
       {
-        "File": "HD06-1_BadSpkrTierNames.eaf",
+        "File": "HD06-1_HasRecheckTier.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Noise",
@@ -82,12 +82,12 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_BadSpkrTierNames",
+        "FileSuffix": "-1_HasRecheckTier",
         "type": "",
         "SpkrTier": false
       },
       {
-        "File": "HD06-1_BadSpkrTierNames.eaf",
+        "File": "HD06-1_HasRecheckTier.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Redaction",
@@ -99,9 +99,26 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_BadSpkrTierNames",
+        "FileSuffix": "-1_HasRecheckTier",
         "type": "",
         "SpkrTier": false
+      },
+      {
+        "File": "HD06-1_HasRecheckTier.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Recheck",
+        "TIER_ID": "Recheck",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_HasRecheckTier",
+        "type": "",
+        "SpkrTier": true
       }
     ]
   },
@@ -153,12 +170,12 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_BadSpkrTierNames.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_HasRecheckTier.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
         "hasContent": true,
-        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_BadSpkrTierNames.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_HasRecheckTier.eaf:\n    <ul class=\"file-headed\">\n<li>The completed file should not have a tier named Recheck<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
       },
       {
         "id": "dictDetails",
@@ -175,9 +192,8 @@
       "tierDetails"
     ],
     "tierDetails": {
-      "HD06-1_BadSpkrTierNames.eaf": [
-        "There are no tiers with tier name HD06",
-        "There are no tiers with tier name Interviewer HD06 or Trista Pennington"
+      "HD06-1_HasRecheckTier.eaf": [
+        "The completed file should not have a tier named Recheck"
       ]
     }
   }
