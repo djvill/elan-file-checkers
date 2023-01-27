@@ -14,7 +14,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
-        "size": 345859,
         "type": ""
       }
     ],
@@ -164,7 +163,7 @@
       {
         "id": "dictDetails",
         "hasContent": true,
-        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MisspellingsMultipleTiers.eaf:\n    <ul class=\"file-headed\">\n<li>\n        On tier HD06:\n        <ul class=\"tier-headed\">\n<li>i[I]~<\/li>\n          <li>becuase<\/li>\n          <li>universiity<\/li>\n          <li>um~<\/li>\n          <li>wo~(w@)<\/li>\n          <li>contuinty<\/li>\n        <\/ul>\n<\/li>\n      <li>\n        On tier Interviewer HD06:\n        <ul class=\"tier-headed\">\n<li>adolesence<\/li>\n          <li>nuture<\/li>\n          <li>or`<\/li>\n        <\/ul>\n<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MisspellingsMultipleTiers.eaf:\n    <ul class=\"file-headed\">\n<li>\n        On tier HD06:\n        <ul class=\"tier-headed\">\n<li>yup[yVpyVp]<\/li>\n          <li>hand-in-hadd<\/li>\n          <li>year?<\/li>\n          <li>i[I]~<\/li>\n          <li>becuase<\/li>\n          <li>universiity<\/li>\n          <li>um~<\/li>\n          <li>wo~(w@)<\/li>\n          <li>contuinty<\/li>\n        <\/ul>\n<\/li>\n      <li>\n        On tier Interviewer HD06:\n        <ul class=\"tier-headed\">\n<li>like.<\/li>\n          <li>adolesence<\/li>\n          <li>nuture<\/li>\n          <li>or`<\/li>\n        <\/ul>\n<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
       },
       {
         "id": "overlapsDetails",
@@ -178,6 +177,9 @@
     "dictDetails": {
       "HD06-1_MisspellingsMultipleTiers.eaf": {
         "HD06": [
+          "yup[yVpyVp]",
+          "hand-in-hadd",
+          "year?",
           "i[I]~",
           "becuase",
           "universiity",
@@ -186,6 +188,7 @@
           "contuinty"
         ],
         "Interviewer HD06": [
+          "like.",
           "adolesence",
           "nuture",
           "or`"

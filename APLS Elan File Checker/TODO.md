@@ -2,9 +2,6 @@
 
 ## Bugfixes
 
-- Dictionary check: Incorrect parsing for an annotation where a `{` in a pronounce code precedes a `}` for an inline comment
-- Dictionary check: False negatives caused by hyphens (e.g., _hand-in-hadd_ doesn't get flagged)
-
 - Overlaps: If an overlapping annotation has a boundary that lines up exactly with another tier, `fixOverlapsTier()` throws an error with `overlapBoundsFixed %>% ... %>% filter(NewTS1==NewTS2)`
   - One of the NewTSs is missing because the long version of `overlapBoundsFixed` only has one boundary for that annotation. That comes from `findOverlapsTier()`'s `mutate(ANNOTATION_ID_overlapped = timesOtherTiers$ANNOTATION_ID %>% extract(which(Time > timesOtherTiers$Start & Time < timesOtherTiers$End)[1]))`
   - Patched by turning off zero-width checking by default---this will need a more durable solution down the line
@@ -16,6 +13,7 @@
   - Add a parameter for prohibited tier names
 
 - Convert "smart quotes" to straight quotes
+  - Add a text preprocessing subtask, probably at the start of Step 2
 
 - In `eaflist_to_df()`, `tierNames <- seq_len(nrow(df))` doesn't work as expected if `tierInfo()$TIER_ID` exists but has NAs (multiple files, or just some tier IDs missing)
 

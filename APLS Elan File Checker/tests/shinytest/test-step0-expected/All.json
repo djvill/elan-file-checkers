@@ -14,7 +14,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadFileExt",
-        "size": 345779,
         "type": ""
       },
       {
@@ -27,7 +26,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
-        "size": 346402,
         "type": ""
       },
       {
@@ -36,7 +34,6 @@
         "FileExtValid": true,
         "SpkrCodeValid": false,
         "FileNameValid": false,
-        "size": 346402,
         "type": ""
       }
     ]

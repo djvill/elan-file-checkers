@@ -17,7 +17,7 @@ versDate <- gsub(" 0", " ", format(Sys.Date(), "%B %d, %Y"))
 ##Show additional UI element "debugPrint" at top of main panel for debugging?
 showDebug <- FALSE
 ##Print info about overlaps to console (not visible in app or snapshots)?
-monitorOverlaps <- TRUE
+monitorOverlaps <- FALSE
 
 ##File structures
 ##Regex for extracting SpkrCode and FileSuffix columns using tidyr::extract();
@@ -41,7 +41,7 @@ onlyLocalDict <- FALSE
 ##Permit angle brackets for single-word interruptions?
 permitAngleBrackets <- FALSE
 ##Characters to accept in pronounce codes
-pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE\\{VQU@i$u312456789#]"
+pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE{VQU@i$u312456789#]"
 ##Case-sensitive?
 caseSens <- FALSE
 
@@ -346,32 +346,34 @@ dict <- dict %>%
   unique()
 message(length(dict), " total unique entries")
 
+
 ##Function that takes a tier name and eaf file as input and outputs
 ##  non-dictionary words
 dictCheckTier <- function(tierName, eaf) {
+  ##Tokenizing function
+  tokenize <- function(x) {
+    x %>% 
+      ##Unstrand valid punctuation within angle brackets
+      str_replace_all("([[:alpha:]]~?) ([?.-])>", "\\1\\2>") %>% 
+      ##Ignore text within curly braces (comments about speech or behavior)
+      str_remove_all("\\{[^{]*?\\}") %>%
+      ##Ignore text within brackets, not counting pronounce codes
+      str_remove_all("(?<= )\\[.*?\\]") %>% 
+      str_remove_all("^\\[[^\\[]*?\\]") %>% 
+      ##Remove extra whitespace
+      str_trim("both") %>% 
+      ##Separate into words (as a character vector)
+      str_split(" +") %>% 
+      flatten_chr()
+  }
+  
   ##Get all lines in tier
   tierLines <- str_glue("//TIER[@TIER_ID='{tierName}']//ANNOTATION_VALUE") %>%
     xml_find_all(eaf, .) %>%
     xml_text()
   
   ##Get all unique words 
-  tierWords <- 
-    tierLines %>% 
-    ##Unstrand valid punctuation within angle brackets
-    str_replace_all("([[:alpha:]]~?) ([?.-])>", "\\1\\2>") %>% 
-    ##Ignore text within curly braces (comments about speech or behavior)
-    str_replace_all("\\{.*?\\}", "") %>%
-    ##Ignore text within brackets, not counting pronounce codes
-    str_replace_all("(?<= )\\[.*?\\]", "") %>% 
-    str_replace_all("^\\[.*?\\]", "") %>% 
-    ##Remove extra whitespace
-    str_trim("both") %>% 
-    str_squish() %>% 
-    ##Separate into words (as a character vector)
-    str_split(" ") %>% 
-    flatten_chr() %>% 
-    ##Unique words only
-    unique()
+  tierWords <- unique(tokenize(tierLines))
   
   ##Optionally strip matched angle brackets (single-word interruptions)
   if (permitAngleBrackets) {
@@ -382,11 +384,12 @@ dictCheckTier <- function(tierName, eaf) {
   
   ##Single-word ignores
   tierWords <- tierWords %>% 
-    ##Ignore words with valid bracket pronounce codes (sui generis words)
+    ##Ignore words with valid bracket pronounce codes (hesitations, sui generis words)
     str_subset(paste0("^[[:alpha:]']+~?\\[", pronChars, "+\\]$"),
                negate=TRUE) %>% 
     ##Ignore standalone valid punctuation
-    str_subset("[.?-]|--", negate=TRUE) %>% 
+    str_subset("^[.?-]$", negate=TRUE) %>% 
+    str_subset("^--$", negate=TRUE) %>% 
     ##Ignore empty words
     str_subset("^$", negate=TRUE)
   
@@ -395,8 +398,8 @@ dictCheckTier <- function(tierName, eaf) {
     Word = tierWords,
     ##First checking form
     CheckWord1 = Word %>%
-      ##Strip attached valid punctuation
-      str_remove("(\\s[.?-]|--)$") %>%
+      # ##Strip attached valid punctuation
+      # str_remove("(\\s[.?-]|--)$") %>%
       ##For words with paren codes, use the paren code for checking
       str_replace(".+\\((.+)\\)$", "\\1") %>%
       ##Strip clitics for checking
@@ -1050,7 +1053,7 @@ server <- function(input, output) {
     }
     
     ##First element: fileDF() (datapath is just a temporary path)
-    export <- list(pack_val(fileDF() %>% select(-datapath), "fileDF"))
+    export <- list(pack_val(fileDF() %>% select(-c(datapath, size)), "fileDF"))
     
     ##If step 0 passed, add tierDF() & at least one eaflist()
     if (all(fileDF()$FileNameValid)) {
@@ -1198,6 +1201,15 @@ server <- function(input, output) {
                           "or", em("bec~(bIk)"), "(pronounce code goes in [], not ())"
                         ),
                         tags$li(
+                          strong("Incorrect DISC characters:"),
+                          "Make sure you're not using any characters that aren't in the", 
+                          a("DISC phonemic alphabet",
+                            href="https://djvill.github.io/APLS/doc/Phonemic-Transcription.html",
+                            target="_blank"),
+                          "(e.g., IPA /j/ is DISC", code("j", .noWS="after"), 
+                          ", not ", code("y", .noWS="after"), ")"
+                        ),
+                        tags$li(
                           strong("Words that should be in APLS's phonemic dictionary:"),
                           "To look up phonemic representations, APLS uses: (1) the Unisyn English dictionary, and (2)",
                           a("custom entries", 
@@ -1212,7 +1224,7 @@ server <- function(input, output) {
                           ". If you're not sure whether a word should be added to the dictionary, ask Dan"
                         ),
                         tags$li(
-                          strong("Words that need an inline pronounce code:"),
+                          strong("Words that need an inline pronounce code (aka DISC code):"),
                           "Words made up on the spot (e.g., ", em("yinzerific", .noWS="after"), "),",
                           "words unlikely to come up in any other interview (e.g., a specific schoolteacher's name),",
                           "obvious misprounciations (e.g., \"havring\" for", em("having", .noWS="after"), "),",

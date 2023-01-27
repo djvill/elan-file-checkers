@@ -14,20 +14,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
-        "size": 345859,
-        "type": ""
-      },
-      {
-        "File": "HD06-1_MisspellingsOneTier.eaf",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_MisspellingsOneTier",
-        "size": 346191,
         "type": ""
       },
       {
@@ -40,7 +26,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
-        "size": 346406,
         "type": ""
       }
     ],
@@ -127,91 +112,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
-        "type": "",
-        "SpkrTier": false
-      },
-      {
-        "File": "HD06-1_MisspellingsOneTier.eaf",
-        "ANNOTATOR": "Emma McKibbin",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "HD06",
-        "TIER_ID": "HD06",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_MisspellingsOneTier",
-        "type": "",
-        "SpkrTier": true
-      },
-      {
-        "File": "HD06-1_MisspellingsOneTier.eaf",
-        "ANNOTATOR": "Emma McKibbin",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Interviewer HD06",
-        "TIER_ID": "Interviewer HD06",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_MisspellingsOneTier",
-        "type": "",
-        "SpkrTier": true
-      },
-      {
-        "File": "HD06-1_MisspellingsOneTier.eaf",
-        "ANNOTATOR": "Emma McKibbin",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Comment",
-        "TIER_ID": "Comment",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_MisspellingsOneTier",
-        "type": "",
-        "SpkrTier": false
-      },
-      {
-        "File": "HD06-1_MisspellingsOneTier.eaf",
-        "ANNOTATOR": "Emma McKibbin",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Noise",
-        "TIER_ID": "Noise",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_MisspellingsOneTier",
-        "type": "",
-        "SpkrTier": false
-      },
-      {
-        "File": "HD06-1_MisspellingsOneTier.eaf",
-        "ANNOTATOR": "Emma McKibbin",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Redaction",
-        "TIER_ID": "Redaction",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_MisspellingsOneTier",
         "type": "",
         "SpkrTier": false
       },
@@ -350,7 +250,7 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_MisspellingsMultipleTiers.eaf<\/li>\n  <li class=\"\">HD06-1_MisspellingsOneTier.eaf<\/li>\n  <li class=\"\">HD06-1_NoIssues.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_MisspellingsMultipleTiers.eaf<\/li>\n  <li class=\"\">HD06-1_NoIssues.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
@@ -360,7 +260,7 @@
       {
         "id": "dictDetails",
         "hasContent": true,
-        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MisspellingsMultipleTiers.eaf:\n    <ul class=\"file-headed\">\n<li>\n        On tier HD06:\n        <ul class=\"tier-headed\">\n<li>i[I]~<\/li>\n          <li>becuase<\/li>\n          <li>universiity<\/li>\n          <li>um~<\/li>\n          <li>wo~(w@)<\/li>\n          <li>contuinty<\/li>\n        <\/ul>\n<\/li>\n      <li>\n        On tier Interviewer HD06:\n        <ul class=\"tier-headed\">\n<li>adolesence<\/li>\n          <li>nuture<\/li>\n          <li>or`<\/li>\n        <\/ul>\n<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MisspellingsOneTier.eaf:\n    <ul class=\"file-headed\">\n<li>\n        On tier HD06:\n        <ul class=\"tier-headed\">\n<li>i[I]~<\/li>\n          <li>becuase<\/li>\n          <li>universiity<\/li>\n          <li>um~<\/li>\n          <li>wo~(w@)<\/li>\n          <li>contuinty<\/li>\n        <\/ul>\n<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MisspellingsMultipleTiers.eaf:\n    <ul class=\"file-headed\">\n<li>\n        On tier HD06:\n        <ul class=\"tier-headed\">\n<li>yup[yVpyVp]<\/li>\n          <li>hand-in-hadd<\/li>\n          <li>year?<\/li>\n          <li>i[I]~<\/li>\n          <li>becuase<\/li>\n          <li>universiity<\/li>\n          <li>um~<\/li>\n          <li>wo~(w@)<\/li>\n          <li>contuinty<\/li>\n        <\/ul>\n<\/li>\n      <li>\n        On tier Interviewer HD06:\n        <ul class=\"tier-headed\">\n<li>like.<\/li>\n          <li>adolesence<\/li>\n          <li>nuture<\/li>\n          <li>or`<\/li>\n        <\/ul>\n<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
       },
       {
         "id": "overlapsDetails",
@@ -374,6 +274,9 @@
     "dictDetails": {
       "HD06-1_MisspellingsMultipleTiers.eaf": {
         "HD06": [
+          "yup[yVpyVp]",
+          "hand-in-hadd",
+          "year?",
           "i[I]~",
           "becuase",
           "universiity",
@@ -382,19 +285,10 @@
           "contuinty"
         ],
         "Interviewer HD06": [
+          "like.",
           "adolesence",
           "nuture",
           "or`"
-        ]
-      },
-      "HD06-1_MisspellingsOneTier.eaf": {
-        "HD06": [
-          "i[I]~",
-          "becuase",
-          "universiity",
-          "um~",
-          "wo~(w@)",
-          "contuinty"
         ]
       }
     }

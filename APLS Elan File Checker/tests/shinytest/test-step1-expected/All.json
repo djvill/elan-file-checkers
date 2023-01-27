@@ -14,7 +14,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
-        "size": 345855,
         "type": ""
       },
       {
@@ -27,7 +26,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadSpkrTierNames",
-        "size": 345899,
         "type": ""
       },
       {
@@ -40,7 +38,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingAnnotatorAll",
-        "size": 345725,
         "type": ""
       },
       {
@@ -53,7 +50,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingAnnotatorSome",
-        "size": 345777,
         "type": ""
       },
       {
@@ -66,7 +62,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
-        "size": 345765,
         "type": ""
       },
       {
@@ -79,7 +74,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantAll",
-        "size": 345739,
         "type": ""
       },
       {
@@ -92,7 +86,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantSome",
-        "size": 345816,
         "type": ""
       },
       {
@@ -105,7 +98,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingRedact",
-        "size": 345734,
         "type": ""
       },
       {
@@ -118,7 +110,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDAll",
-        "size": 345759,
         "type": ""
       },
       {
@@ -131,7 +122,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDSome",
-        "size": 345810,
         "type": ""
       },
       {
@@ -144,7 +134,6 @@
         "Neighborhood": "HD",
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
-        "size": 346406,
         "type": ""
       }
     ],

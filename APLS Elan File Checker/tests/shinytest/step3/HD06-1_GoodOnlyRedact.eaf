@@ -1659,7 +1659,7 @@
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a7"
                 TIME_SLOT_REF1="ts42" TIME_SLOT_REF2="ts44">
-                <ANNOTATION_VALUE>when was I what year?</ANNOTATION_VALUE>
+                <ANNOTATION_VALUE>when was I what year ?</ANNOTATION_VALUE>
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
         <ANNOTATION>
@@ -4638,7 +4638,7 @@
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a501"
                 TIME_SLOT_REF1="ts41" TIME_SLOT_REF2="ts43">
-                <ANNOTATION_VALUE>okay . when was that like. when were you</ANNOTATION_VALUE>
+                <ANNOTATION_VALUE>okay . when was that like . when were you</ANNOTATION_VALUE>
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
         <ANNOTATION>
