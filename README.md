@@ -1,4 +1,6 @@
-# Elan File Checkers
+# Elan File Checkers (`southland` branch)
+
+This branch of the `elan-file-checkers` repo is preserved for archival purposes. It reflects the state of the repo after my time at NZILBB. The Southland apps have been removed from the `main` branch as of version [apls-v1.1.0](https://github.com/djvill/elan-file-checkers/releases/tag/apls-v1.1.0).
 
 This is the source for two Shiny apps ([here](https://djvill.shinyapps.io/SouthlandElanFileChecker/ "Southland-CB Elan File Checker") and [here](https://djvill.shinyapps.io/SouthlandJHElanFileChecker/ "Southland-JH Elan File Checker")) that help transcribers conform their Elan files to [LaBB-CAT](https://labbcat.canterbury.ac.nz/system/) specifications. They were developed by [Dan Villarreal](https://canterbury-nz.academia.edu/DanVillarreal) for the [New Zealand Institute of Language, Brain, and Behaviour](https://www.canterbury.ac.nz/nzilbb/).
 
