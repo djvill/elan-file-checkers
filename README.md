@@ -2,7 +2,7 @@
 
 [Dan Villarreal](https://www.linguistics.pitt.edu/people/dan-villarreal), University of Pittsburgh Linguistics
 
-This is the source for several Shiny apps that help transcribers conform their Elan files to [LaBB-CAT](https://labbcat.canterbury.ac.nz/system/) specifications. They were developed by Dan Villarreal, originally for the [New Zealand Institute of Language, Brain, and Behaviour](https://www.canterbury.ac.nz/nzilbb/) and more recently for the [Archive of Pittsburgh Language and Speech (APLS)](https://labb-cat.linguistics.pitt.edu/labbcat/). The APLS file checker can be found at https://djvill.shinyapps.io/apls_elan_file_checker/.
+This is the source for a Shiny app that helps transcribers conform their Elan files to [LaBB-CAT](https://labbcat.canterbury.ac.nz/system/) specifications. It was developed by Dan Villarreal, originally for the [New Zealand Institute of Language, Brain, and Behaviour](https://www.canterbury.ac.nz/nzilbb/) and more recently for the [Archive of Pittsburgh Language and Speech (APLS)](https://labb-cat.linguistics.pitt.edu/labbcat/). The APLS file checker can be found at https://djvill.shinyapps.io/apls_elan_file_checker/. The code for the original apps has been archived to the [`southland` branch](https://github.com/djvill/elan-file-checkers/tree/southland).
 
 
 ## Why Elan File Checkers?
@@ -13,40 +13,52 @@ Elan is a free, flexible software tool for annotating linguistic data. LaBB-CAT 
 
 - Elan allows users to name tiers and speakers however they wish. In turn, LaBB-CAT allows the user to merge or rename speaker records, which may be necessary to ensure conformity to corpus conventions; the resulting disagreement between LaBB-CAT's version of a file and the original file can create major issues if the file is re-uploaded somewhere down the line (e.g., to add topic-tagged tiers).
 
-- Elan includes a spell-checker, but this doesn't include the myriad words that will inevitably need to be added to any corpus's dictionary (e.g., *Coraopolis*), and updating a custom dictionary across research assistants' computers is onerous. Without spell-checking capabilities, the responsibility for correcting bona fide misspellings (e.g., *Coropulis*) is downstreamed to the corpus manager. The presence of out-of-dictionary words in a transcript interferes with automatic phonetic alignment in LaBB-CAT, as any annotation that can't be mapped to a phonemic representation prevents the alignment of the turn in which this annotation is found.
+<a id="elan-spell-check">
+- Elan includes a spell-checker, but this doesn't include the myriad words that will inevitably need to be added to any corpus's dictionary (e.g., _Coraopolis_), and updating a custom dictionary across research assistants' computers is onerous. Without spell-checking capabilities, the responsibility for correcting bona fide misspellings (e.g., _Coropulis_) is downstreamed to the corpus manager. The presence of out-of-dictionary words in a transcript interferes with automatic phonetic alignment in LaBB-CAT, as any annotation that can't be mapped to a phonemic representation prevents the alignment of the turn in which this annotation is found.
 
+<a id="elan-hard-to-align">
 - Elan's user interface makes it rather difficult to align turn boundaries on multiple tiers (unlike Praat, which provides an easy way to duplicate alignments on multiple tiers; or Transcriber, in which time intervals are explicitly mapped to one or more tiers); this can result in short overlaps that are imperceptible to the Elan GUI user. These easily created overlaps make a mess in LaBB-CAT, where they become short orphan turns.
 
-- Elan also allows for turns to overlap in a way that messes with LaBB-CAT's automatic phonetic alignment performed via HTK or MFA. For example, if the main speaker's utterances from 0:40 to 0:55 are transcribed in a single turn and an interviewer's backchannel is transcribed from 0:46 to 0:47, htk refuses to align the entire main-speaker turn from 0:40 to 0:55.
+- Elan also allows for turns to overlap in a way that messes with LaBB-CAT's automatic phonetic alignment performed via HTK or MFA. For example, if the main speaker's utterances from 0:40 to 0:55 are transcribed in a single turn and an interviewer's backchannel is transcribed from 0:46 to 0:47, LaBB-CAT refuses to align the entire main-speaker turn from 0:40 to 0:55.
 
 
 ## What do they do?
 
 Once users drag-and-drop one or more files, the checker ensures that all files are Elan file format (`.eaf`). If so, the files go through up to three sequential steps; Step 2 only engages if all files pass Step 1, etc.
 
-1. **Validating tier names and attributes...**: This step (a) ensures that all tiers have an Annotator attribute; and (b) checks that the names and Participant attributes for speaker tiers (those not named "Noise", "Comment", or "Reading Task") conform to the conventions for that corpus. For example, in the Southland-CB corpus, all audio and transcription files consist of the interviewer's initials, the speaker number, a hyphen, and the tape number (e.g., `KF3-04.eaf`); the transcription conventions dictate that there be a speaker tier called "KF3" and an interviewer tier called "Interviewer KF". Messages to the user are generated for any files that don't conform to these requirements (if any).
-
-2. **Checking for out-of-dictionary words...**: This step looks through all annotations on speaker tiers and generates messages to the user containing any annotations that aren't in a dictionary supplied by the app builder. This step thus performs both a spell-check and a convention-conformity-check in one fell swoop, with convention conformity narrowly tailored to how LaBB-CAT reads annotations. For example, even though the string `thr~[Tr]` isn't a valid entry in a standard or custom dictionary (or isn't likely to be), LaBB-CAT knows to interpret it as a hesitation with the phonetic material \[θɹ\] (rendered as `Tr` in the DISC phonetic alphabet used by LaBB-CAT), so this step interprets `thr~[Tr]` (and other entries ending in brackets) as valid.
-
-3. **Checking for overlaps...**: This step tries to resolve overlaps that result from shortfalls in Elan's UI (as mentioned above) in two ways: it 'snaps' near-enough boundaries to the same time-point and generates messages to the user about any overlaps that it couldn't automatically resolve. By default, 'near-enough' means two boundaries are within 500 milliseconds of one another (though this is configurable), which usually gobbles up the majority of overlaps, including virtually all of the unintended ones. The remaining overlaps that the user must resolve are usually of the type described in the 4th bullet point above, which would otherwise prevent the automatic alignment (and thus the phonetic analysis) of larger chunks of speech. 
-	- The APLS app also includes the "Redaction" tier in overlap checking. It prioritizes tiers in this order: redaction > main speaker(s) > interviewer > bystander(s) (ties broken by alphabetical order). That is, if there are conflicting boundaries between a main speaker and an interviewer, it snaps the interviewer's boundary to the main speaker's. 
-
-If the checker completes Step 3, users are prompted to upload their completed file(s) to the appropriate location. A download button may appear so the user can update the file(s) on their local system or on the server; this returns a `zip` file if multiple files were uploaded (regardless of how many were actually modified) or an `eaf` file if just one file was uploaded. 
-
-	- In the APLS app, the download button appears anytime the checker completes Step 3.
-	- In the CB/JH apps, if all files pass through Step 3 with no modifications needed, a message informs the user that their file has passed muster and is ready to be uploaded to the server. The download button appears only if any files were modified in the overlap-checking step.
+1. [Validating tier names and attributes...](#step-1-tier-check)
+2. [Checking for out-of-dictionary words...](#step-2-dictionary-check)
+3. [Checking for overlaps...](#step-3-overlap-check)
 
 
-## What are the different apps?
+### Step 0: File name check
 
-There are three apps, though only the APLS app is in use now. The APLS app contains updated code and additional overlap-checking features. The CB/JH apps were set up as separate apps due to different file-naming conventions in the original data sources.
+This step ensures that all files (a) begin with a valid APLS speaker code; and (b) end with `.eaf`.
+
+### Step 1: Tier check
+
+This step (a) ensures that all tiers have an Annotator attribute; and (b) checks that the names and attributes for speaker tiers (those not named "Noise", "Comment", or "Redaction") conform to naming conventions. Messages to the user are generated for any files that don't conform to these requirements.
 
 
-## CB/JH default dictionaries
+### Step 2: Dictionary check
 
-This repository also includes a 'default' dictionary in the CB/JH apps, `/dict/defaultDict.txt`, which is based on the freely available British English dictionary from Linux. Users may want to use a custom dictionary instead. For example, the real versions of these apps use a custom dictionary; I've excluded this 'real' custom dictionary from this repository for copyright reasons, as they're mostly populated by information from CELEX (NZILBB members can access CELEX files on the NZILBB server). 
+This step looks through all annotations on speaker tiers and generates messages to the user containing any annotations that aren't in a dictionary supplied by the app builder. This step thus performs both a spell-check and a convention-conformity-check in one fell swoop, with convention conformity narrowly tailored to how LaBB-CAT parses annotations. For example, even though the string `thr~[Tr]` isn't a valid entry in a standard or custom dictionary (or isn't likely to be), LaBB-CAT knows to interpret it as a hesitation with the phonetic material \[θɹ\] (rendered as `Tr` in the [DISC phonemic alphabet](https://djvill.github.io/APLS/doc/Phonemic-Transcription.html) used by LaBB-CAT), so this step interprets `thr~[Tr]` (and other entries ending in brackets) as valid.
 
-In addition to CELEX entries, this 'real' custom dictionary includes nearly 20 thousand additional entries that have been added to NZILBB LaBB-CAT custom dictionaries over the years. One obstacle to the use of these apps is that this custom dictionary grows all the time---fortunately, it can be quickly and easily downloaded from LaBB-CAT by users with admin privileges as a `csv` file. As a result, this repository includes an R script ([UpdateElanCheckerDict.R]) that combines the baseline CELEX dictionary with this `csv` file, plus a set list of about 200 hesitation codes that are hard-coded into LaBB-CAT (e.g., `sh~`), and creates new versions of the `dict/dict.txt` files for you. If you're responsible for maintaining a LaBB-CAT instance that has a custom dictionary that grows, ideally you'll re-download this file and re-run the script every time you update the custom dictionary so the corresponding Elan File Checker app has the most up-to-date possible version of the dictionary.
+The app uses two dictionaries, the [Unisyn](https://www.cstr.ed.ac.uk/projects/unisyn/) lexicon for American English and a [custom APLS dictionary](https://github.com/djvill/APLS/tree/main/files/custom-dictionary). The latter is continually updated and synced with the APLS LaBB-CAT's dictionary to avoid the [Elan spell-check issue](#elan-spell-check). For copyright reasons, the Unisyn dictionary is not available in this repo. 
+
+
+### Step 3: Overlap check
+
+This step tries to resolve overlaps that result from [shortfalls in Elan's UI](#elan-hard-to-align) in two ways: it 'snaps' near-enough boundaries to the same time-point and generates messages to the user about any overlaps that it couldn't automatically resolve. The threshold for 'near-enough' is configurable, defaulting to 500 milliseconds. This default threshold usually gobbles up the majority of overlaps, including virtually all of the unintended ones. The remaining overlaps that the user must resolve are usually of the type described [above](#elan-hard-to-align), which would otherwise prevent the automatic alignment (and thus the phonetic analysis) of larger chunks of speech.
+
+This step includes all speaker tiers, plus the "Redaction" tier. It prioritizes tiers in this order: redaction > main speaker(s) > interviewer > bystander(s) (ties broken by alphabetical order). That is, if there are conflicting boundaries between a main speaker and an interviewer, it snaps the interviewer's boundary to the main speaker's.
+
+
+### All files successful
+
+If the checker completes Step 3, users are prompted to download the modified `.eaf` file(s) and upload them to the appropriate location. For simplicity's sake, the download button appears even if no files were actually modified. The download is a `.zip` file if multiple files were uploaded (regardless of how many were actually modified), and a single `.eaf` file otherwise. 
+
+
 
 ## How can I help?
 

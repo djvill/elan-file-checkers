@@ -298,7 +298,7 @@ tierIssues <- function(df) {
 ##N.B. unisynDict.txt is gitignored for copyright purposes, but its entries get
 ##  packaged in the deployed Shiny app
 dictOptions <- c(Unisyn = "dict/unisynDict.txt",
-                 local = "../../APLS/files/custom-dictionary/aplsDict.txt",
+                 local = "../APLS/files/custom-dictionary/aplsDict.txt",
                  remote = "https://github.com/djvill/APLS/raw/main/files/custom-dictionary/aplsDict.txt")
 ##Include Unisyn
 dictFiles <- dictOptions["Unisyn"]
