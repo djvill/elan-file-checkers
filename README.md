@@ -17,7 +17,7 @@ Elan is a free, flexible software tool for annotating linguistic data. LaBB-CAT 
 
 - <a id="elan-hard-to-align"> Elan's user interface makes it rather difficult to align turn boundaries on multiple tiers (unlike Praat, which provides an easy way to duplicate alignments on multiple tiers; or Transcriber, in which time intervals are explicitly mapped to one or more tiers); this can result in short overlaps that are imperceptible to the Elan GUI user. These easily created overlaps make a mess in LaBB-CAT, where they become short orphan turns.
 
-- Elan also allows for turns to overlap in a way that messes with LaBB-CAT's automatic phonetic alignment performed via HTK or MFA. For example, if the main speaker's utterances from 0:40 to 0:55 are transcribed in a single turn and an interviewer's backchannel is transcribed from 0:46 to 0:47, LaBB-CAT refuses to align the entire main-speaker turn from 0:40 to 0:55.
+- <a id="elan-overlaps"> Elan also allows for turns to overlap in a way that messes with LaBB-CAT's automatic phonetic alignment performed via HTK or MFA. For example, if the main speaker's utterances from 0:40 to 0:55 are transcribed in a single turn and an interviewer's backchannel is transcribed from 0:46 to 0:47, LaBB-CAT refuses to align the entire main-speaker turn from 0:40 to 0:55.
 
 
 ## What do they do?
@@ -48,7 +48,7 @@ The app uses two dictionaries, the [Unisyn](https://www.cstr.ed.ac.uk/projects/u
 
 ### Step 3: Overlap check
 
-This step tries to resolve overlaps that result from [shortfalls in Elan's UI](#elan-hard-to-align) in two ways: it 'snaps' near-enough boundaries to the same time-point and generates messages to the user about any overlaps that it couldn't automatically resolve. The threshold for 'near-enough' is configurable, defaulting to 500 milliseconds. This default threshold usually gobbles up the majority of overlaps, including virtually all of the unintended ones. The remaining overlaps that the user must resolve are usually of the type described [above](#elan-hard-to-align), which would otherwise prevent the automatic alignment (and thus the phonetic analysis) of larger chunks of speech.
+This step tries to resolve overlaps that result from [shortfalls in Elan's UI](#elan-hard-to-align) in two ways: it 'snaps' near-enough boundaries to the same time-point and generates messages to the user about any overlaps that it couldn't automatically resolve. The threshold for 'near-enough' is configurable, defaulting to 500 milliseconds. This default threshold usually gobbles up the majority of overlaps, including virtually all of the unintended ones. The remaining overlaps that the user must resolve are usually of the type described [above](#elan-overlaps), which would otherwise prevent the automatic alignment (and thus the phonetic analysis) of larger chunks of speech.
 
 This step includes all speaker tiers, plus the "Redaction" tier. It prioritizes tiers in this order: redaction > main speaker(s) > interviewer > bystander(s) (ties broken by alphabetical order). That is, if there are conflicting boundaries between a main speaker and an interviewer, it snaps the interviewer's boundary to the main speaker's.
 
