@@ -2,7 +2,7 @@
 
 [Dan Villarreal](https://www.linguistics.pitt.edu/people/dan-villarreal), University of Pittsburgh Linguistics
 
-This is the source for the [APLS Elan file checker](https://djvill.shinyapps.io/apls_elan_file_checker/), a Shiny app that helps transcribers conform their Elan files to [LaBB-CAT](https://labbcat.canterbury.ac.nz/system/) specifications. It was developed by Dan Villarreal, originally for the [New Zealand Institute of Language, Brain, and Behaviour](https://www.canterbury.ac.nz/nzilbb/) and more recently for the [Archive of Pittsburgh Language and Speech (APLS)](https://labb-cat.linguistics.pitt.edu/labbcat/). The code for the original apps has been archived to the [`southland` branch](https://github.com/djvill/elan-file-checkers/tree/southland).
+This repo contains code for the [APLS Elan file checker](https://djvill.shinyapps.io/apls_elan_file_checker/), a Shiny app that helps transcribers conform their Elan files to [LaBB-CAT](https://labbcat.canterbury.ac.nz/system/) specifications. It was developed by Dan Villarreal, originally for the [New Zealand Institute of Language, Brain, and Behaviour](https://www.canterbury.ac.nz/nzilbb/) and more recently for the [Archive of Pittsburgh Language and Speech (APLS)](https://labb-cat.linguistics.pitt.edu/labbcat/). The code for the original apps has been archived to the [`southland` branch](https://github.com/djvill/elan-file-checkers/tree/southland).
 
 
 ## Why an Elan file checker?

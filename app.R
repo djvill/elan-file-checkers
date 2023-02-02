@@ -10,8 +10,8 @@ library(magrittr)
 
 # Parameters ------------------------------------------------------------------
 
-##Version date
-versDate <- gsub(" 0", " ", format(Sys.Date(), "%B %d, %Y"))
+##Version
+vers <- "1.1.0"
 
 ##Debugging
 ##Show additional UI element "debugPrint" at top of main panel for debugging?
@@ -64,11 +64,18 @@ overrideExit <- list(fileName = FALSE, tiers = FALSE, dict = FALSE, overlaps = F
 # UI ----------------------------------------------------------------------
 ui <- fluidPage(
   tags$head(
-    tags$link(rel = "stylesheet", type = "text/css", href = "file-checker.css")
+    tags$title("Elan File Checker | APLS"),
+    tags$link(rel="stylesheet", type="text/css", href="file-checker.css"),
+    # tags$link(rel="stylesheet", type="text/css", href="https://github.com/djvill/APLS/raw/main/site-assets/css/doc.css"),
+    tags$link(rel="stylesheet", type="text/css", href="doc.css"),
+    tags$link(rel="icon", type="image/svg", href="https://github.com/djvill/APLS/raw/main/site-assets/img/1f34e.svg")
   ),
-  titlePanel("Elan File Checker for APLS"),
-  p("Created by Dan Villarreal"),
-  p(paste("Updated", versDate)),
+  div(id="header",
+    h1("Elan File Checker", class="title"),
+    h3("Archive of Pittsburgh Language and Speech (APLS)", class="subtitle"),
+    h4("Dan Villarreal", class="author"),
+    h4(paste("Version", vers), class="version")
+  ),
   sidebarLayout(
     sidebarPanel(
       fileInput("files",
@@ -1058,7 +1065,7 @@ server <- function(input, output) {
     ##Package a value into a <div>
     pack_val <- function(x, nm) {
       require(jsonlite)
-      undisplay(tags$div(prettify(toJSON(x), 2), id=nm))
+      undisplay(div(prettify(toJSON(x), 2), id=nm))
     }
     
     ##First element: fileDF() (datapath is just a temporary path)
