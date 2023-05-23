@@ -11,9 +11,10 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "1.1.0"
+vers <- "1.1.1"
 
 ##Debugging
+##  (See also info about "interactive use" below)
 ##Show additional UI element "debugPrint" at top of main panel for debugging?
 showDebug <- FALSE
 ##Print info about overlaps to console (not visible in app or snapshots)?
@@ -154,7 +155,7 @@ read_eafs <- function(filename, datapath) {
 ##- df is fileDF() reactive (output of fileInfo(input$files)); fileDF() has to 
 ##  come first to trigger read_eafs() to create eaflist()
 ##In interactive use:
-##- x can be output of <file name vector> %>% set_names(basename(.)) %>% read_eafs()
+##- x can be output of <file name vector> %>% set_names(basename(.)) %>% read_eafs(., .)
 ##- df can be omitted (in which case fileInfo() is called inside this function)
 tierInfo <- function(x, df, nST=nonSpkrTiers) {
   if (is.null(names(x))) {
@@ -872,10 +873,12 @@ overlapsIssues <- function(x, df) {
   nonempty <- map_int(fixed, nrow) > 0
   times <- times[nonempty]
   fixed <- fixed[nonempty]
-  # times <- times %>% 
-  #   discard(~ nrow(.x)==0)
-  # fixed <- fixed %>% 
-  #   discard(~ nrow(.x)==0)
+  
+  ##Add empty End columns to fixed if needed
+  ##This circumvents an error in weird edge casess
+  fixed <- fixed %>% 
+    map_if(~ !("End" %in% colnames(.x)),
+           ~ .x %>% mutate(End = NA_real_))
   
   ##If any NAs in Start/End, patch rows
   if (any(fixed %>% 
@@ -1038,7 +1041,6 @@ server <- function(input, output) {
   output$debugPrint <-
     renderPrint({
       list(
-        `fileDF()` = fileDF()
         ##To use:
         ## 1. Set showDebug to TRUE
         ## 2. Put reactive objects here with name from environment or expression, such as
