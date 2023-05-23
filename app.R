@@ -420,7 +420,7 @@ dictCheckTier <- function(tierName, eaf) {
       ##For words with paren codes, use the paren code for checking
       str_replace(".+\\((.+)\\)$", "\\1") %>%
       ##Strip clitics for checking
-      str_remove_all("'(d|ve|s)") %>%
+      str_remove_all("'(d|ll|s)") %>%
       str_replace("s'$", "s"),
     ##Second form (without final -s)
     CheckWord2 = CheckWord1 %>%
