@@ -17,9 +17,17 @@ is.displayed <- function(x) {
   !grepl("display:\\s*none", sty)
 }
 
-##shinytest:::write_utf8() clone
-write_utf8 <- function (text, ...) {
-  writeBin(charToRaw(enc2utf8(text)), ...)
+##xfun::write_utf8() clone
+write_utf8 <- function (text, con, ...) {
+  if (is.null(text)) 
+      text = character(0)
+  if (identical(con, "")) {
+      cat(text, sep = "\n", file = con)
+  } else {
+      opts = options(encoding = "native.enc")
+      on.exit(options(opts), add = TRUE)
+      writeLines(enc2utf8(text), con, ..., useBytes = TRUE)
+  }
 }
 
 ##Take snapshot: compare to shinytest:::sd_snapshot()
