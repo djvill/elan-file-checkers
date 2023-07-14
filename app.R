@@ -132,12 +132,14 @@ fileInfo <- function(x, regex1=spkrExtractRegex, regex2=spkrNumExtractRegex) {
 ##  basenames as element names
 ##Doesn't check for valid paths, because in the app that's handled by
 ##  req(all(fileDF()$FileNameValid))
-read_eafs <- function(filename, datapath) {
+##path and filename are separate because when files are uploaded, Shiny creates
+##  pointers to temporary paths, which *don't* use the original filename
+read_eafs <- function(path, filename) {
+  if (!is.character(path)) {
+    stop("datapath must be a character vector")
+  }
   if (!is.character(filename)) {
     stop("filename must be a character vector")
-  }
-  if (!is.character(datapath)) {
-    stop("datapath must be a character vector")
   }
   if (any(duplicated(filename))) {
     stop("filenames (not paths) must be unique")
@@ -145,13 +147,13 @@ read_eafs <- function(filename, datapath) {
   
   # x %>% 
   #   set_names(make.names(basename(.), unique=TRUE)) %>% 
-  set_names(datapath, filename) %>% 
+  set_names(path, filename) %>% 
     map(read_xml)
 }
 
 ##Dataframe of tier information
 ##In app:
-##- x is eaflist() reactive (output of read_eafs(fileDF()$File, fileDF()$datapath))
+##- x is eaflist() reactive (output of read_eafs(fileDF()$datapath, fileDF()$File))
 ##- df is fileDF() reactive (output of fileInfo(input$files)); fileDF() has to 
 ##  come first to trigger read_eafs() to create eaflist()
 ##In interactive use:
@@ -298,6 +300,7 @@ tierIssues <- function(df) {
     ##Only keep files with issues
     keep(~ length(.x) > 0)
 }
+
 
 ## Dictionaries ===============================================================
 
@@ -505,70 +508,67 @@ getOverlapTiers <- function(df, inclRedact=fixOverlapRedact) {
   tierNames
 }
 
-##Function that takes a tier name, eaf file, and file-wide time slot DF as
-##  input and outputs actual times for annotations
-getTimesTier <- function(tierName, eaf, timeSlots) {
-  ##Construct xpath to account for missing TIER_ID
-  if (is.numeric(tierName)) {
-    xpath <- str_glue("//TIER[{tierName}]//ALIGNABLE_ANNOTATION")
-  } else {
-    xpath <- str_glue("//TIER[@TIER_ID='{tierName}']//ALIGNABLE_ANNOTATION")
-  }
-  
-  timesTier <-
-    ##Get all ALIGNABLE_ANNOTATION tags
-    xml_find_all(eaf, xpath) %>% 
-    ##Get attributes as a dataframe
-    xml_attrs() %>% 
-    bind_rows()
-  
-  ##Add actual times, only if tier is nonempty
-  if (nrow(timesTier) > 0) {
-    timesTier <- timesTier %>% 
-      ##Add actual times
-      left_join(timeSlots %>%
-                  rename(TIME_SLOT_REF1 = TIME_SLOT_ID,
-                         Start = TIME_VALUE),
-                by="TIME_SLOT_REF1") %>%
-      left_join(timeSlots %>%
-                  rename(TIME_SLOT_REF2 = TIME_SLOT_ID,
-                         End = TIME_VALUE),
-                by="TIME_SLOT_REF2")
-  } else {
-    ##If tier is empty, return NULL (will be immediately discard()ed)
-    NULL
-  }
-}
-
-##Wrapper function around getTimesTier() that takes a single EAF file and name
-##  (meant to be used with eaflist() reactive and imap()) plus multi-file tier
-##  df (meant to be used with tierDF() reactive) as input, and outputs nested
-##  list of dataframes of annotation times (files at level one, tier DFs at
-##  level two for speaker tiers only)
-##N.B. This function outputs a list of DFs rather than a single DF because the
-##  list structure makes it easier to detect overlaps in fixOverlaps() (by
+##Function that converts an XML object representing a single .eaf file to a
+##  dataframe representation of annotations (incl. timing & annotation text),
+##  either a single DF or a list of DFs (one for each tier)
+##
+##In app:
+##- x is single element of eaflist() reactive 
+##  (output of read_eafs(fileDF()$datapath, fileDF()$File))
+##
+##In interactive use:
+##- x can be output of read_xml(<path to eaf>)
+##
+##N.B. List structure makes it easier to detect overlaps in fixOverlaps() (by
 ##  comparing the timings on a given speaker tier to all other speaker tiers)
-getTimes <- function(eaf, eafName, tiers) {
-  ##Timeslots (maps time slot ID to actual time, in milliseconds)
+getTimes <- function(x, singleDF=FALSE) {
+  ##Get tier nodes (excluding empty tiers)
+  tierNodes <- x %>% 
+    xml_find_all("//TIER[*]")
+  
+  ##Loop over tier nodes to get annotation info
+  df <- 
+    tierNodes %>% 
+    ##Get annotation info
+    map(~ xml_find_all(.x, ".//ALIGNABLE_ANNOTATION")) %>% 
+    map(~ .x %>% 
+          map_dfr(xml_attrs) %>% 
+          cbind(Text = xml_text(.x))) %>% 
+    ##Add names (TIER_ID if present, index if not)
+    set_names(xml_attr(tierNodes, "TIER_ID"))
+  
+  ##Get actual times
   timeSlots <- 
     ##Get TIME_SLOT nodes
-    eaf %>% 
+    x %>% 
     xml_find_all("//TIME_SLOT") %>% 
     ##Get attributes as a dataframe
-    xml_attrs() %>% 
-    bind_rows() %>% 
+    map_dfr(xml_attrs) %>% 
     ##Make actual time numeric
     mutate(across(TIME_VALUE, as.numeric))
   
-  ##Get times for tiers (list of dataframes)
-  timesEAF <- 
-    tiers %>% 
-    set_names(., .) %>% 
-    map(getTimesTier, eaf, timeSlots) %>%
-    ##Only nonempty tiers
-    discard(is.null)
+  ##Add actual times
+  df <- df %>% 
+    map(~ .x %>% 
+          ##This is ugly but pivoting would be uglier
+          left_join(timeSlots %>%
+                      rename(TIME_SLOT_REF1 = TIME_SLOT_ID,
+                             Start = TIME_VALUE),
+                    by="TIME_SLOT_REF1") %>%
+          left_join(timeSlots %>%
+                      rename(TIME_SLOT_REF2 = TIME_SLOT_ID,
+                             End = TIME_VALUE),
+                    by="TIME_SLOT_REF2") %>% 
+          relocate(Text, .after=last_col())
+    )
   
-  timesEAF
+  ##Optionally collapse to single DF
+  if (singleDF) {
+    df <- bind_rows(df, .id="Tier")
+  }
+  
+  ##Return
+  df
 }
 
 ##Function that takes a single tier name and a nested list of annotation time
@@ -744,10 +744,14 @@ fixOverlapsTier <- function(overlapBounds, eaflist, eafName) {
 ##  with output of getTimes() and imap()), and rotates through tiers, fixing
 ##  overlaps, until it reaches a stable state; modifies original eaflist
 ##Feeds into overlapsIssues()
-fixOverlaps <- function(tierNamesFile, eafName, eaflist, 
+fixOverlaps <- function(overlapTiersFile, eafName, eaflist, 
                         monitor=monitorOverlaps) {
   ##Get initial timing data
-  timesEAF <- getTimes(eaflist %>% pluck(eafName), eafName, tierNamesFile)
+  timesEAF <- 
+    eaflist %>% 
+    pluck(eafName) %>% 
+    getTimes() %>% 
+    keep_at(overlapTiersFile)
   ##If just one tier, skip overlap-checking for this file
   if (length(timesEAF)==1) {
     return(tibble(ANNOTATION_ID = character(0L), 
@@ -761,9 +765,9 @@ fixOverlaps <- function(tierNamesFile, eafName, eaflist,
   ##  and the entire file's times DF
   overlapsInit <- imap(timesEAF, findOverlapsTier, timesEAF=timesEAF)
   
-  ##If there's a blank tier, tierNamesFile won't have it, so just use 
+  ##If there's a blank tier, overlapTiersFile won't have it, so just use 
   ##  overlapsInit names
-  tierNamesFile <- names(overlapsInit)
+  overlapTiersFile <- names(overlapsInit)
   
   ##Initialize looping variables
   overlapsPre <- NULL
@@ -789,12 +793,13 @@ fixOverlaps <- function(tierNamesFile, eafName, eaflist,
     overlapsPre <- overlapsPost
     
     ##Fix each tier in turn
-    for (tier in rev(tierNamesFile)) {
+    for (tier in rev(overlapTiersFile)) {
       ##Re-assess overlaps now that eaflist has been modified
       newTimesEAF <- 
-        eaflist %>%
+        eaflist %>% 
         pluck(eafName) %>% 
-        getTimes(eafName=eafName, tiers=tierNamesFile)
+        getTimes() %>% 
+        keep_at(overlapTiersFile)
       overlapsCurr <- imap(newTimesEAF, findOverlapsTier, timesEAF=newTimesEAF)
       
       ##Hide overlaps in all other tiers from fixOverlapsTier()
@@ -841,13 +846,12 @@ formatTimes <- function(time, type=c("S","HMS")[2]) {
 ##x should be eaflist(), df should be tierDF() (passed down to fixOverlaps())
 overlapsIssues <- function(x, df) {
   ##Get list of each file's tier names to check
-  tierNames <- getOverlapTiers(df=df)
+  overlapTiers <- getOverlapTiers(df=df)
   
   ##Get initial timing data
-  times <- list(eaf = x,
-                eafName = names(x),
-                tiers = tierNames) %>%
-    pmap(getTimes)
+  times <- x %>% 
+    map(getTimes) %>% 
+    map2(overlapTiers, keep_at)
   
   ##If all files have just one tier, skip overlap-checking
   nTiers <- map_int(times, length)
@@ -857,7 +861,7 @@ overlapsIssues <- function(x, df) {
   
   ##Fix overlaps & format output for display
   fixed <- 
-    tierNames %>% 
+    overlapTiers %>% 
     ##Fix overlaps
     imap(fixOverlaps, eaflist=x) %>% 
     ##Get fixed-overlap times
@@ -914,19 +918,8 @@ xmllist_to_df <- function(x, singleDF=TRUE, nST=nonSpkrTiers) {
     stop("All elements of x must be an XML document")
   }
   
-  ##Get list of each file's tier names to include
-  tierDF <- tierInfo(x)
-  if ("TIER_ID" %in% colnames(tierDF)) {
-    tierNames <- getOverlapTiers(df=tierDF)
-  } else {
-    tierNames <- seq_len(nrow(tierDF))
-  }
-  
   ##Get timing data
-  times <- list(eaf = x, 
-                eafName = names(x),
-                tiers = tierNames) %>% 
-    pmap(getTimes)
+  times <- map(x, getTimes)
   
   if (singleDF) {
     times %>%
@@ -1015,75 +1008,13 @@ server <- function(input, output) {
   ##Read files: Get a list that's nrow(fileDF()) long, each element an xml_document
   eaflist <- reactive({
     req(all(fileDF()$FileNameValid) || overrideExit$fileName)
-    read_eafs(fileDF()$File, fileDF()$datapath)
+    read_eafs(fileDF()$datapath, fileDF()$File)
   })
   
   ##Get tier info as a single dataframe
   tierDF <- reactive({
     req(eaflist())
     tierInfo(eaflist(), fileDF())
-  })
-  
-  # Debugging output --------------------------------------------------------
-  ##Wrapper to include verbatim debugging text in UI or UI elements
-  output$debug <- renderUI({
-    out <- verbatimTextOutput("debugPrint")
-    
-    ##Optionally display or undisplay
-    if (showDebug) {
-      display(out)
-    } else {
-      undisplay(out)
-    }
-  })
-  
-  ##Verbatim debugging text (to 'peek into' environment)
-  output$debugPrint <-
-    renderPrint({
-      list(
-        ##To use:
-        ## 1. Set showDebug to TRUE
-        ## 2. Put reactive objects here with name from environment or expression, such as
-        ##      `eaflist()` = eaflist()
-        ##      `tierDF()$TIER_ID` = tierDF()$TIER_ID,
-        ##    or if that's too cumbersome, just give it a temporary name, such as
-        ##      jon = tierDF()$TIER_ID %>% 
-        ##        unique()
-        # `overlapsIssues(eaflist(), tierDF())` = overlapsIssues(eaflist(), tierDF())
-      )
-    })
-  
-  ##Export test values (packed away in 1+ <div>s)
-  ##To unpack in shinytest, use the following: 
-  ##  app <- ShinyDriver$new()
-  ##  fileDF <- ##for example
-  ##    app$getAllValues() %>%
-  ##    pluck("output", "export", "html") %>%
-  ##    read_html() %>%
-  ##    rvest::html_element("#fileDF") %>% 
-  ##    html_text() %>% 
-  ##    jsonlite::fromJSON()
-  output$export <- renderUI({
-    ##Package a value into a <div>
-    pack_val <- function(x, nm) {
-      require(jsonlite)
-      undisplay(div(prettify(toJSON(x), 2), id=nm))
-    }
-    
-    ##First element: fileDF() (datapath is just a temporary path)
-    export <- list(pack_val(fileDF() %>% select(-c(datapath, size)), "fileDF"))
-    
-    ##If step 0 passed, add tierDF() & at least one eaflist()
-    if (all(fileDF()$FileNameValid)) {
-      tagList(export,
-              pack_val(tierDF() %>% 
-                         select(-c(datapath, size)), "tierDF"),
-              pack_val(eaflist() %>% 
-                         xmllist_to_df(singleDF=FALSE), "eaflist"))
-    } else {
-      ##If failing step0, export just fileDF()
-      tagList(export)
-    }
   })
   
   # Output: UI --------------------------------------------------------------
@@ -1441,6 +1372,68 @@ server <- function(input, output) {
       }
     }
   )
+  
+  # Debugging output --------------------------------------------------------
+  ##Export test values (packed away in 1+ <div>s)
+  ##To unpack in shinytest, use the following: 
+  ##  app <- ShinyDriver$new()
+  ##  fileDF <- ##for example
+  ##    app$getAllValues() %>%
+  ##    pluck("output", "export", "html") %>%
+  ##    read_html() %>%
+  ##    rvest::html_element("#fileDF") %>% 
+  ##    html_text() %>% 
+  ##    jsonlite::fromJSON()
+  output$export <- renderUI({
+    ##Package a value into a <div>
+    pack_val <- function(x, nm) {
+      require(jsonlite)
+      undisplay(div(prettify(toJSON(x), 2), id=nm))
+    }
+    
+    ##First element: fileDF() (datapath is just a temporary path)
+    export <- list(pack_val(fileDF() %>% select(-c(datapath, size)), "fileDF"))
+    
+    ##If step 0 passed, add tierDF() & at least one eaflist()
+    if (all(fileDF()$FileNameValid)) {
+      tagList(export,
+              pack_val(tierDF() %>% 
+                         select(-c(datapath, size)), "tierDF"),
+              pack_val(eaflist() %>% 
+                         xmllist_to_df(singleDF=FALSE), "eaflist"))
+    } else {
+      ##If failing step0, export just fileDF()
+      tagList(export)
+    }
+  })
+  
+  ##Wrapper to include verbatim debugging text in UI or UI elements
+  output$debug <- renderUI({
+    out <- verbatimTextOutput("debugPrint")
+    
+    ##Optionally display or undisplay
+    if (showDebug) {
+      display(out)
+    } else {
+      undisplay(out)
+    }
+  })
+  
+  ##Verbatim debugging text (to 'peek into' environment)
+  output$debugPrint <-
+    renderPrint({
+      list(
+        ##To use:
+        ## 1. Set showDebug to TRUE
+        ## 2. Put reactive objects here with name from environment or expression, such as
+        ##      `eaflist()` = eaflist()
+        ##      `tierDF()$TIER_ID` = tierDF()$TIER_ID,
+        ##    or if that's too cumbersome, just give it a temporary name, such as
+        ##      jon = tierDF()$TIER_ID %>% 
+        ##        unique()
+        # `overlapsIssues(eaflist(), tierDF())` = overlapsIssues(eaflist(), tierDF())
+      )
+    })
 }
 
 shinyApp(ui = ui, server = server)
