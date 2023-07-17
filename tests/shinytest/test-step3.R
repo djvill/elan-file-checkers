@@ -1,6 +1,11 @@
 ##Test the files for step 3
 source("utils.R")
-app <- ShinyDriver$new("../../")
+tryCatch(app <- ShinyDriver$new("../../"),
+         error = function(e) {
+           if (grepl("Cannot find shiny port number", e$message)) {
+             stop("Try again or kill the PhantomJS process.\nCannot find shiny port number.")
+           }
+         })
 testPath <- paste0("test-step3", "-current/")
 testFiles <- dir("step3", ".+eaf", full.names=TRUE)
 fileCounter <<- 0
