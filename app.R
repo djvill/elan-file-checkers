@@ -1400,7 +1400,8 @@ server <- function(input, output) {
               pack_val(tierDF() %>% 
                          select(-c(datapath, size)), "tierDF"),
               pack_val(eaflist() %>% 
-                         xmllist_to_df(singleDF=FALSE), "eaflist"))
+                         xmllist_to_df(singleDF=FALSE) %>% 
+                         map_depth(2, ~ .x %>% select(-Text)), "eaflist"))
     } else {
       ##If failing step0, export just fileDF()
       tagList(export)
