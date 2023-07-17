@@ -380,7 +380,7 @@ dictCheckTier <- function(tierName, eaf) {
       ##Remove extra whitespace
       str_trim("both") %>% 
       ##Separate into words (as a character vector)
-      str_split(" +") %>% 
+      str_split("\\s+") %>% 
       flatten_chr()
   }
   
