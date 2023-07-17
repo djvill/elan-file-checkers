@@ -383,7 +383,7 @@ dictCheckTier <- function(tierName, eaf) {
       ##Remove extra whitespace
       str_trim("both") %>% 
       ##Separate into words (as a character vector)
-      str_split(" +") %>% 
+      str_split("\\s+") %>% 
       flatten_chr()
   }
   
@@ -442,6 +442,76 @@ dictCheckTier <- function(tierName, eaf) {
     filter(!if_any(-Word, ~ .x %in% dict)) %>% 
     pull(Word)
 }
+
+##- timesEAF is timing file
+dictCheckFile <- function(timesEAF) {
+  ##Tokenizing function
+  tokenize <- function(x) {
+    x %>% 
+      ##Unstrand valid punctuation within angle brackets
+      str_replace_all("([[:alpha:]]~?) ([?.-])>", "\\1\\2>") %>% 
+      ##Ignore text within curly braces (comments about speech or behavior)
+      str_remove_all("\\{[^{]*?\\}") %>%
+      ##Ignore text within brackets, not counting pronounce codes
+      str_remove_all("(?<= )\\[.*?\\]") %>% 
+      str_remove_all("^\\[[^\\[]*?\\]") %>% 
+      ##Remove extra whitespace
+      str_trim("both") %>% 
+      ##Separate into words (as a character vector)
+      str_split("\\s+")
+  }
+  
+  ##Get tokenized Word column
+  timesEAF <- timesEAF %>% 
+    mutate(Word = Text %>% 
+             tokenize() %>% 
+             map(unique))
+  
+  ##Single-word ignores
+  timesEAF <- timesEAF %>% 
+    mutate(across(Word, ~ .x %>%
+                    ##Ignore words with valid bracket pronounce codes (hesitations, sui generis words)
+                    map(str_subset,
+                        paste0("^[[:alpha:]']+~?\\[", pronChars, "+\\]$"),
+                        negate=TRUE) %>%
+                    ##Ignore standalone valid punctuation
+                    map(str_subset, "^[.?-]$", negate=TRUE) %>%
+                    map(str_subset, "^--$", negate=TRUE) %>%
+                    ##Ignore empty words
+                    map(str_subset,"^$", negate=TRUE)))
+  
+  ##One row per word
+  timesEAF <- timesEAF %>% 
+    unnest(Word)
+  
+  ##Get forms of words for checking
+  timesEAF <- timesEAF %>% 
+    ##First checking form
+    mutate(CheckWord1 = Word %>%
+             # ##Strip attached valid punctuation
+             # str_remove("(\\s[.?-]|--)$") %>%
+             ##For words with paren codes, use the paren code for checking
+             str_replace(".+\\((.+)\\)$", "\\1") %>%
+             ##Strip clitics for checking
+             str_remove_all("'(d|ll|ve|s)") %>%
+             str_replace("s'$", "s"),
+           ##Second form (without final -s)
+           CheckWord2 = CheckWord1 %>%
+             str_remove("s$"))
+  
+  ##Optionally convert checking forms to lowercase
+  if (!caseSens) {
+    timesEAF <- timesEAF %>% 
+      mutate(across(starts_with("CheckWord"), str_to_lower))
+    dict <- str_to_lower(dict)
+  }
+  
+  ##Return words that aren't in the dictionary in either form
+  timesEAF %>%
+    filter(!if_any(starts_with("CheckWord"), ~ .x %in% dict)) %>% 
+    pull(Word)
+}
+
 
 ##Wrapper function around dictCheckTier() that takes a multi-file tier df
 ##  and a list of EAF files as input (meant to be used with tierDF() &
