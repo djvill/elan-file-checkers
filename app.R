@@ -488,7 +488,7 @@ getOverlapTiers <- function(df, inclRedact=fixOverlapRedact) {
       TRUE ~ NA_character_
     )) %>% 
     filter(!is.na(OverlapTier)) %>% 
-    arrange(desc(OverlapTier),
+    arrange(desc(OverlapTier), #R > M > I > B
             ##If multiple main speakers or bystanders, break ties with name order
             TIER_ID)
   
@@ -580,7 +580,8 @@ getTimes <- function(x, singleDF=FALSE) {
 findOverlapsTier <- function(timesTier, tierName, timesEAF) {
   ##Pull timing dataframes
   timesOtherTiers <- 
-    timesEAF[names(timesEAF)!=tierName] %>% 
+    timesEAF %>% 
+    discard_at(tierName) %>% 
     bind_rows()
   
   ##For each boundary in selected tier, return the first annotation that the
@@ -751,7 +752,9 @@ fixOverlaps <- function(overlapTiersFile, eafName, eaflist,
     eaflist %>% 
     pluck(eafName) %>% 
     getTimes() %>% 
-    keep_at(overlapTiersFile)
+    ##Put tiers in overlapTiers order, discarding empty tiers
+    extract(overlapTiersFile) %>% 
+    discard(is.null)
   ##If just one tier, skip overlap-checking for this file
   if (length(timesEAF)==1) {
     return(tibble(ANNOTATION_ID = character(0L), 
@@ -799,7 +802,9 @@ fixOverlaps <- function(overlapTiersFile, eafName, eaflist,
         eaflist %>% 
         pluck(eafName) %>% 
         getTimes() %>% 
-        keep_at(overlapTiersFile)
+        ##Put tiers in overlapTiers order, discarding empty tiers
+        extract(overlapTiersFile) %>% 
+        discard(is.null)
       overlapsCurr <- imap(newTimesEAF, findOverlapsTier, timesEAF=newTimesEAF)
       
       ##Hide overlaps in all other tiers from fixOverlapsTier()
@@ -851,7 +856,9 @@ overlapsIssues <- function(x, df) {
   ##Get initial timing data
   times <- x %>% 
     map(getTimes) %>% 
-    map2(overlapTiers, keep_at)
+    ##Put tiers in overlapTiers order, discarding empty tiers
+    map2(overlapTiers, extract) %>% 
+    map(~ discard(.x, is.null))
   
   ##If all files have just one tier, skip overlap-checking
   nTiers <- map_int(times, length)
@@ -992,7 +999,7 @@ eafDir_to_df <- function(eafDir, pattern=".+\\.eaf$",
   eaflist <- 
     dir(eafDir, pattern=pattern, full.names=TRUE) %>% 
     set_names(make.names(basename(.), unique=TRUE)) %>% 
-    read_eafs()
+    read_eafs(names(.))
   
   xmllist_to_df(eaflist, singleDF=singleDF, nST=nST)
 }
