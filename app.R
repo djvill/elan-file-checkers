@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "1.1.1"
+vers <- "1.1.2"
 
 ##Debugging
 ##  (See also info about "interactive use" below)
