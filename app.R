@@ -591,20 +591,18 @@ getOverlapTiers <- function(df, inclRedact=fixOverlapRedact) {
 ##
 ##N.B. List structure makes it easier to detect overlaps in fixOverlaps() (by
 ##  comparing the timings on a given speaker tier to all other speaker tiers)
-getTimes <- function(x, singleDF=FALSE) {
+getTimes <- function(x, singleDF=FALSE, textCol=TRUE) {
   ##Get tier nodes (excluding empty tiers)
   tierNodes <- x %>% 
     xml_find_all("//TIER[*]")
+  annNodes <- map(tierNodes,
+                  ~ xml_find_all(.x, ".//ALIGNABLE_ANNOTATION"))
   
-  ##Loop over tier nodes to get annotation info
+  ##Get annotation info
   df <- 
-    tierNodes %>% 
-    ##Get annotation info
-    map(~ xml_find_all(.x, ".//ALIGNABLE_ANNOTATION")) %>% 
+    annNodes %>% 
     map(~ .x %>% 
-          map_dfr(xml_attrs) %>% 
-          cbind(Text = xml_text(.x))) %>% 
-    ##Add names (TIER_ID if present, index if not)
+          map_dfr(xml_attrs)) %>% 
     set_names(xml_attr(tierNodes, "TIER_ID"))
   
   ##Get actual times
@@ -628,9 +626,14 @@ getTimes <- function(x, singleDF=FALSE) {
           left_join(timeSlots %>%
                       rename(TIME_SLOT_REF2 = TIME_SLOT_ID,
                              End = TIME_VALUE),
-                    by="TIME_SLOT_REF2") %>% 
-          relocate(Text, .after=last_col())
+                    by="TIME_SLOT_REF2")
     )
+  
+  ##Optionally add text nodes at end of df
+  if (textCol) {
+    df <- df %>% 
+      map2(annNodes, ~ cbind(.x, Text=xml_text(.y)))
+  }
   
   ##Optionally collapse to single DF
   if (singleDF) {
