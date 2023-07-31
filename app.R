@@ -410,31 +410,28 @@ dictCheckTier <- function(tierName, eaf) {
     ##Ignore empty words
     str_subset("^$", negate=TRUE)
   
-  ##Get forms of words for checking
+  ##Get form of words for checking
   wordDF <- tibble(
     Word = tierWords,
-    ##First checking form
-    CheckWord1 = Word %>%
+    ##Checking form
+    CheckWord = Word %>%
       # ##Strip attached valid punctuation
       # str_remove("(\\s[.?-]|--)$") %>%
       ##For words with paren codes, use the paren code for checking
       str_replace(".+\\((.+)\\)$", "\\1") %>%
       ##Strip clitics for checking
       str_remove_all("'(d|ll|ve|s)") %>%
-      str_replace("s'$", "s"),
-    ##Second form (without final -s)
-    CheckWord2 = CheckWord1 %>%
-      str_remove("s$")
+      str_replace("s'$", "s")
   )
   
-  ##Optionally convert checking forms to lowercase
+  ##Optionally convert checking form to lowercase
   if (!caseSens) {
     wordDF <- wordDF %>% 
       mutate(across(-Word, str_to_lower))
     dict <- str_to_lower(dict)
   }
   
-  ##Return words that aren't in the dictionary in either form
+  ##Return words that aren't in the dictionary
   wordDF %>%
     filter(!if_any(-Word, ~ .x %in% dict)) %>% 
     pull(Word)
