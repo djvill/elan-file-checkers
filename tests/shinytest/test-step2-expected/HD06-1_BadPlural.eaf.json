@@ -1,0 +1,182 @@
+{
+  "success": [
+    true
+  ],
+  "export": {
+    "fileDF": [
+      {
+        "File": "HD06-1_BadPlural.eaf",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadPlural",
+        "type": ""
+      }
+    ],
+    "tierDF": [
+      {
+        "File": "HD06-1_BadPlural.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "HD06",
+        "TIER_ID": "HD06",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadPlural",
+        "type": "",
+        "SpkrTier": true
+      },
+      {
+        "File": "HD06-1_BadPlural.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Interviewer HD06",
+        "TIER_ID": "Interviewer HD06",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadPlural",
+        "type": "",
+        "SpkrTier": true
+      },
+      {
+        "File": "HD06-1_BadPlural.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Comment",
+        "TIER_ID": "Comment",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadPlural",
+        "type": "",
+        "SpkrTier": false
+      },
+      {
+        "File": "HD06-1_BadPlural.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Noise",
+        "TIER_ID": "Noise",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadPlural",
+        "type": "",
+        "SpkrTier": false
+      },
+      {
+        "File": "HD06-1_BadPlural.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Redaction",
+        "TIER_ID": "Redaction",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadPlural",
+        "type": "",
+        "SpkrTier": false
+      }
+    ]
+  },
+  "elements": {
+    "stepHeads": [
+      {
+        "id": "fileNameHead",
+        "displayed": false
+      },
+      {
+        "id": "tierHead",
+        "class": "good",
+        "displayed": true
+      },
+      {
+        "id": "dictHead",
+        "class": "good",
+        "displayed": true
+      },
+      {
+        "id": "overlapsHead",
+        "class": "good",
+        "displayed": true
+      }
+    ],
+    "stepSubheads": [
+      {
+        "id": "fileNameSubhead",
+        "displayed": false
+      },
+      {
+        "id": "tierSubhead",
+        "displayed": false
+      },
+      {
+        "id": "dictSubhead",
+        "displayed": false
+      },
+      {
+        "id": "overlapsSubhead",
+        "displayed": false
+      },
+      {
+        "id": "downloadSubhead",
+        "displayed": true
+      }
+    ],
+    "stepDetails": [
+      {
+        "id": "checkDetails",
+        "hasContent": true,
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_BadPlural.eaf<\/li>\n<\/ul>\n"
+      },
+      {
+        "id": "tierDetails",
+        "hasContent": false,
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "dictDetails",
+        "hasContent": false,
+        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "overlapsDetails",
+        "hasContent": false,
+        "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      }
+    ],
+    "lastDetailID": [
+      "checkDetails"
+    ],
+    "checkDetails": [
+      "HD06-1_BadPlural.eaf"
+    ]
+  }
+}
+

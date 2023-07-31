@@ -5,6 +5,18 @@
   "export": {
     "fileDF": [
       {
+        "File": "HD06-1_BadPlural.eaf",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadPlural",
+        "type": ""
+      },
+      {
         "File": "HD06-1_MisspellingsMultipleTiers.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
@@ -42,6 +54,91 @@
       }
     ],
     "tierDF": [
+      {
+        "File": "HD06-1_BadPlural.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "HD06",
+        "TIER_ID": "HD06",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadPlural",
+        "type": "",
+        "SpkrTier": true
+      },
+      {
+        "File": "HD06-1_BadPlural.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Interviewer HD06",
+        "TIER_ID": "Interviewer HD06",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadPlural",
+        "type": "",
+        "SpkrTier": true
+      },
+      {
+        "File": "HD06-1_BadPlural.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Comment",
+        "TIER_ID": "Comment",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadPlural",
+        "type": "",
+        "SpkrTier": false
+      },
+      {
+        "File": "HD06-1_BadPlural.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Noise",
+        "TIER_ID": "Noise",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadPlural",
+        "type": "",
+        "SpkrTier": false
+      },
+      {
+        "File": "HD06-1_BadPlural.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Redaction",
+        "TIER_ID": "Redaction",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_BadPlural",
+        "type": "",
+        "SpkrTier": false
+      },
       {
         "File": "HD06-1_MisspellingsMultipleTiers.eaf",
         "ANNOTATOR": "Emma McKibbin",
@@ -347,7 +444,7 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_MisspellingsMultipleTiers.eaf<\/li>\n  <li class=\"\">HD06-1_NewlineInAnnotation.eaf<\/li>\n  <li class=\"\">HD06-1_NoIssues.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_BadPlural.eaf<\/li>\n  <li class=\"\">HD06-1_MisspellingsMultipleTiers.eaf<\/li>\n  <li class=\"\">HD06-1_NewlineInAnnotation.eaf<\/li>\n  <li class=\"\">HD06-1_NoIssues.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
