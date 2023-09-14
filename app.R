@@ -17,8 +17,6 @@ vers <- "1.1.3"
 ##  (See also info about "interactive use" below)
 ##Show additional UI element "debugPrint" at top of main panel for debugging?
 showDebug <- FALSE
-##Print info about overlaps to console (not visible in app or snapshots)?
-monitorOverlaps <- FALSE
 
 ##File structures
 ##Regex for extracting SpkrCode and FileSuffix columns using tidyr::extract();
@@ -32,32 +30,32 @@ spkrNumExtractRegex <- "([A-Z]{2})(\\d+)(?:and\\d+)?"
 ##Required non-speaker tiers
 nonSpkrTiers <- c("Comment","Noise","Redaction")
 ##Tiers that should never be present
-prohibTiers <- c("Text", "Recheck")
+prohibTiers <- c("Text","Recheck")
 
 ##Dictionary checking
 ##Include local version of aplsDict.txt? Include ONLY local version?
 ##  Only works on Dan's machine, useful for testing new entries without
 ##  committing each time
-inclLocalDict <- FALSE
-onlyLocalDict <- FALSE
+inclLocalDict <- FALSE						# Not yet modularized
+onlyLocalDict <- FALSE						# Not yet modularized
 ##Permit angle brackets for single-word interruptions?
-permitAngleBrackets <- FALSE
+permitAngleBrackets <- FALSE						# Not yet modularized
 ##Characters to accept in pronounce codes
-pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE{VQU@i$u312456789#]"
+pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE{VQU@i$u312456789#]"						# Not yet modularized
 ##Case-sensitive?
-caseSens <- FALSE
+caseSens <- FALSE						# Not yet modularized
 
 ##Overlap fixing
 ##Maximum cross-tier misalignment (in ms) to 'snap together'. Set lower to be
 ##  more conservative about what counts as an intended cross-tier alignment
-overlapThresh <- 500
+overlapThresh <- 500						# Not yet modularized
 ##Time display type: "S" (seconds, useful for Praat TextGrids), or "HMS" (useful
 ##  for ELAN)
-timeDisp <- "HMS"
+timeDisp <- "HMS"						# Not yet modularized
 ##Include Redaction tier in overlap-fixing?
 fixOverlapRedact <- TRUE
 ##Check for zero-width post-fixing annotations (can cause issues)
-checkZeroWidth <- FALSE
+checkZeroWidth <- FALSE						# Not yet modularized
 
 ##Exit-early overrides, for debugging
 overrideExit <- list(fileName = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
@@ -101,7 +99,12 @@ ui <- fluidPage(
 
 ## File setup =============================================================
 ##Dataframe of file information
-fileInfo <- function(x, regex1=spkrExtractRegex, regex2=spkrNumExtractRegex) {
+fileInfo <- function(x, 
+                     spkrRE="^((?:CB|FH|HD|LV)\\d+(?:and\\d+)?)\\.?(.+)\\..+?$",
+                     spkrNumRE="([A-Z]{2})(\\d+)(?:and\\d+)?") {
+  library(dplyr)
+  library(tidyr)
+  
   if (!is.data.frame(x) || nrow(x)==0 || all(!(c("File","name") %in% colnames(x)))) {
     stop("x must be a dataframe with at least one row & column called either File or name")
   }
@@ -115,8 +118,8 @@ fileInfo <- function(x, regex1=spkrExtractRegex, regex2=spkrNumExtractRegex) {
   x %>% 
     ##Add neighborhood, speaker number, and file number
     ##Will need to be extended to multiple speakers, non-interview tasks, etc.
-    tidyr::extract(File, c("SpkrCode", "FileSuffix"), regex1, FALSE, TRUE) %>% 
-    tidyr::extract(SpkrCode, c("Neighborhood", "SpeakerNum"), regex2, FALSE, TRUE) %>% 
+    tidyr::extract(File, c("SpkrCode", "FileSuffix"), spkrRE, FALSE, TRUE) %>% 
+    tidyr::extract(SpkrCode, c("Neighborhood", "SpeakerNum"), spkrNumRE, FALSE, TRUE) %>% 
     ##Add file extension
     mutate(FileExt = str_extract(File, "[^\\.]+$"),
            FileExtValid = FileExt=="eaf",
@@ -132,6 +135,9 @@ fileInfo <- function(x, regex1=spkrExtractRegex, regex2=spkrNumExtractRegex) {
 ##Doesn't check for valid paths, because in the app that's handled by
 ##  req(all(fileDF()$FileNameValid))
 read_eafs <- function(filename, datapath) {
+  library(purrr)
+  library(xml2)
+  
   if (!is.character(filename)) {
     stop("filename must be a character vector")
   }
@@ -142,8 +148,6 @@ read_eafs <- function(filename, datapath) {
     stop("filenames (not paths) must be unique")
   }
   
-  # x %>% 
-  #   set_names(make.names(basename(.), unique=TRUE)) %>% 
   set_names(datapath, filename) %>% 
     map(read_xml)
 }
@@ -156,15 +160,19 @@ read_eafs <- function(filename, datapath) {
 ##In interactive use:
 ##- x can be output of <file name vector> %>% set_names(basename(.)) %>% read_eafs(., .)
 ##- df can be omitted (in which case fileInfo() is called inside this function)
-tierInfo <- function(x, df, ignoreTiers) {
+tierInfo <- function(x, df, nonSpeakerTiers=NULL) {
+  library(xml2)
+  library(purrr)
+  library(dplyr)
+  
   if (is.null(names(x))) {
     stop("x must have names")
   }
   
-	if (missing(df)) {
-		df <- fileInfo(tibble(File = names(x)))
+  if (missing(df)) {
+    df <- fileInfo(data.frame(File = names(x)))
   }
-	
+  
   x <- x %>% 
     map(xml_find_all, "//TIER") %>% 
     ##One row per tier, with file info
@@ -173,9 +181,13 @@ tierInfo <- function(x, df, ignoreTiers) {
     left_join(df, by="File")
   
   if (!is.null(x$PARTICIPANT)) {
-    x <- x %>% 
-      ##Add SpkrTier (is the tier a speaker tier?)
-      mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(ignoreTiers)))
+    ##Add SpkrTier (is the tier a speaker tier?)
+    if (!is.null(nonSpeakerTiers)) {
+      x <- x %>% 
+        mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(nonSpeakerTiers)))
+    } else {
+      x$SpkrTier <- TRUE
+    }
   }
   
   x
@@ -186,7 +198,11 @@ tierInfo <- function(x, df, ignoreTiers) {
 ##Function that takes a one-file tier df as input (meant to be used with a
 ##  subset of rows in tierDF() reactive) and outputs nested list of tier 
 ##  issues
-tierIssuesOneFile <- function(df, filename) {
+tierIssuesOneFile <- function(df, filename, prohibTiers=NULL) {
+  library(dplyr)
+  library(purrr)
+  library(stringr)
+  
   ##Initialize empty issues character vector
   issues <- character(0L)
   
@@ -196,7 +212,7 @@ tierIssuesOneFile <- function(df, filename) {
     mutate(tierNum = paste("Tier", row_number()))
   
   ##Handle prohibited tiers
-  if (hasTierID) {
+  if (hasTierID && !is.null(prohibTiers)) {
     issues <- c(issues,
                 prohibTiers %>% 
                   map_if(~ any(str_detect(tolower(df$TIER_ID), tolower(.x)), na.rm=TRUE),
@@ -287,11 +303,14 @@ tierIssuesOneFile <- function(df, filename) {
 ##Wrapper function around tierIssuesOneFile() that takes a multi-file tier df as
 ##  input (meant to be used with tierDF() reactive) and outputs tier issues if
 ##  any; if no issues, outputs an empty list
-tierIssues <- function(df) {
+tierIssues <- function(df, prohibTiers=NULL) {
+  library(dplyr)
+  library(purrr)
+  
   df %>%
     ##Look for tier issues for each file
     nest(data = -File) %>% 
-    mutate(issues = map(data, tierIssuesOneFile)) %>% 
+    mutate(issues = map(data, tierIssuesOneFile, prohibTiers=prohibTiers)) %>% 
     ##Turn into list with one element for each file
     pull(issues, name=File) %>% 
     ##Only keep files with issues
@@ -366,6 +385,11 @@ message(length(dict), " total unique entries")
 ##Function that takes a tier name and eaf file as input and outputs
 ##  non-dictionary words
 dictCheckTier <- function(tierName, eaf) {
+  library(stringr)
+  library(purrr)
+  library(xml2)
+  library(dplyr)
+  
   ##Tokenizing function
   tokenize <- function(x) {
     x %>% 
@@ -441,6 +465,9 @@ dictCheckTier <- function(tierName, eaf) {
 ##  eaflist() reactives) and outputs non-dictionary words if any (in a
 ##  nested list); if no issues, outputs an empty list
 dictCheck <- function(df, x) {
+  library(dplyr)
+  library(purrr)
+  
   ##Get nested list of speaker tier names
   spkrTierNames <- 
     df %>% 
@@ -463,7 +490,10 @@ dictCheck <- function(df, x) {
 
 ##Function that returns a list of tiers to overlap-check for each file.
 ##  df should be tierDF() reactive
-getOverlapTiers <- function(df, inclRedact=fixOverlapRedact) {
+getOverlapTiers <- function(df, inclRedact=TRUE) {
+  library(dplyr)
+  library(purrr)
+  
   ##Account for missing Participant attribute (which blocks SpkrTier)
   if (is.null(df$PARTICIPANT)) {
     df$SpkrTier <- FALSE
@@ -504,6 +534,10 @@ getOverlapTiers <- function(df, inclRedact=fixOverlapRedact) {
 ##Function that takes a tier name, eaf file, and file-wide time slot DF as
 ##  input and outputs actual times for annotations
 getTimesTier <- function(tierName, eaf, timeSlots) {
+  library(stringr)
+  library(xml2)
+  library(dplyr)
+  
   ##Construct xpath to account for missing TIER_ID
   if (is.numeric(tierName)) {
     xpath <- str_glue("//TIER[{tierName}]//ALIGNABLE_ANNOTATION")
@@ -545,6 +579,10 @@ getTimesTier <- function(tierName, eaf, timeSlots) {
 ##  list structure makes it easier to detect overlaps in fixOverlaps() (by
 ##  comparing the timings on a given speaker tier to all other speaker tiers)
 getTimes <- function(eaf, tiers) {
+  library(xml2)
+  library(dplyr)
+  library(purrr)
+  
   ##Timeslots (maps time slot ID to actual time, in milliseconds)
   timeSlots <- 
     ##Get TIME_SLOT nodes
@@ -574,6 +612,9 @@ getTimes <- function(eaf, tiers) {
 ##  annotation on another tier whose (e.g.) left boundary is within the
 ##  annotation
 findOverlapsTier <- function(timesTier, tierName, timesEAF) {
+  library(dplyr)
+  library(tidyr)
+  
   ##Pull timing dataframes
   timesOtherTiers <- 
     timesEAF[names(timesEAF)!=tierName] %>% 
@@ -646,6 +687,12 @@ findOverlapsTier <- function(timesTier, tierName, timesEAF) {
 ##Check for problems with overlapBounds, fix any overlaps by modifying eaflist(),
 ##  and return overlapBounds with info about fixed boundaries
 fixOverlapsTier <- function(overlapBounds, eaflist, eafName) {
+  library(dplyr)
+  library(purrr)
+  library(xml2)
+  library(tidyr)
+  library(stringr)
+  
   ##Check for boundaries where NewTS is NA
   if (any(is.na(overlapBounds$NewTS))) {
     stop("On tier ", tierName, 
@@ -740,16 +787,18 @@ fixOverlapsTier <- function(overlapBounds, eaflist, eafName) {
 ##  with output of getTimes() and imap()), and rotates through tiers, fixing
 ##  overlaps, until it reaches a stable state; modifies original eaflist
 ##Feeds into overlapsIssues()
-fixOverlaps <- function(tierNamesFile, eafName, eaflist, 
-                        monitor=monitorOverlaps) {
+fixOverlaps <- function(tierNamesFile, eafName, eaflist) {
+  library(purrr)
+  library(dplyr)
+  
   ##Get initial timing data
   timesEAF <- getTimes(eaflist %>% pluck(eafName), tierNamesFile)
   ##If just one tier, skip overlap-checking for this file
   if (length(timesEAF)==1) {
-    return(tibble(ANNOTATION_ID = character(0L), 
-                  Tier = character(0L), 
-                  Side = integer(0L), 
-                  Time = double(0L)))
+    return(data.frame(ANNOTATION_ID = character(0L), 
+                      Tier = character(0L), 
+                      Side = integer(0L), 
+                      Time = double(0L)))
   }
   
   ##Get initial overlaps
@@ -766,11 +815,6 @@ fixOverlaps <- function(tierNamesFile, eafName, eaflist,
   overlapsPost <- overlapsInit
   iters <- 0
   maxIter <- 10
-  
-  ##If no overlaps initially, write a message
-  if (monitor && all(map_int(overlapsPost, nrow)==0)) {
-    message("No overlaps.")
-  }
   
   ##Continue until there are no remaining overlaps, either because all
   ##  overlaps have been fixed, or because things have stablized
@@ -806,12 +850,6 @@ fixOverlaps <- function(tierNamesFile, eafName, eaflist,
         pluck(tier) %>% 
         filter(!Resolved)
     }
-    
-    if (monitor) {
-      message("iters: ", iters)
-      message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
-      message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
-    }
   }
   
   ##Return overlapsPost
@@ -835,9 +873,13 @@ formatTimes <- function(time, type=c("S","HMS")[2]) {
 ##Fix overlaps in all files, returning any unresolved overlaps, formatted
 ##  nicely for printing
 ##x should be eaflist(), df should be tierDF() (passed down to fixOverlaps())
-overlapsIssues <- function(x, df) {
+overlapsIssues <- function(x, df, inclRedact=TRUE) {
+  library(purrr)
+  library(dplyr)
+  library(tidyr)
+  
   ##Get list of each file's tier names to check
-  tierNames <- getOverlapTiers(df=df)
+  tierNames <- getOverlapTiers(df, inclRedact)
   
   ##Get initial timing data
   times <- list(eaf = x,
@@ -902,7 +944,9 @@ overlapsIssues <- function(x, df) {
 }
 
 ##Lower-level function called by eafs_to_df() and eafDir_to_df()
-xmllist_to_df <- function(x, singleDF=TRUE, ignoreTiers) {
+xmllist_to_df <- function(x, singleDF=TRUE, nonSpeakerTiers=NULL, inclRedact=TRUE) {
+  library(purrr)
+  
   cls <- x %>% 
     map_lgl(~ "xml_document" %in% class(.x))
   if (!all(cls)) {
@@ -910,9 +954,9 @@ xmllist_to_df <- function(x, singleDF=TRUE, ignoreTiers) {
   }
   
   ##Get list of each file's tier names to include
-  tierDF <- tierInfo(x, ignoreTiers=ignoreTiers)
+  tierDF <- tierInfo(x, nonSpeakerTiers=nonSpeakerTiers)
   if ("TIER_ID" %in% colnames(tierDF)) {
-    tierNames <- getOverlapTiers(df=tierDF)
+    tierNames <- getOverlapTiers(tierDF, inclRedact)
   } else {
     tierNames <- seq_len(nrow(tierDF))
   }
@@ -924,7 +968,7 @@ xmllist_to_df <- function(x, singleDF=TRUE, ignoreTiers) {
   
   if (singleDF) {
     times %>%
-      map_dfr(~ map_dfr(.x, as_tibble, .id="Tier"), .id="File")
+      map_dfr(~ map_dfr(.x, as.data.frame, .id="Tier"), .id="File")
   } else {
     times
   }
@@ -934,6 +978,8 @@ xmllist_to_df <- function(x, singleDF=TRUE, ignoreTiers) {
 
 ##Convenience functions to display/undisplay HTML elements
 display <- function(x) {
+  library(stringr)
+  
   if (!("shiny.tag" %in% class(x))) {
     stop("display() only works with shiny.tag objects, not ", 
          paste(class(x), collapse="/"), " objects.")
@@ -950,6 +996,8 @@ display <- function(x) {
   x
 }
 undisplay <- function(x) {
+  library(stringr)
+  
   if (!("shiny.tag" %in% class(x))) {
     stop("undisplay() only works with shiny.tag objects, not ", 
          paste(class(x), collapse="/"), " objects.")
@@ -979,23 +1027,22 @@ is.displayed <- function(x) {
 ##Functions to be used interactively rather than in the actual app
 
 ##Get a dataframe from several paths to EAFs
-eafs_to_df <- function(..., singleDF=TRUE, ignoreTiers=c("Comment","Noise","Redaction")) {
-  eaflist <- list(...) %>% 
-    flatten_chr()
-  eaflist <- read_eafs(eaflist, make.names(basename(eaflist), unique=TRUE))
+eafs_to_df <- function(..., singleDF=TRUE, 
+                       nonSpeakerTiers=c("Comment","Noise","Redaction")) {
+  eaflist <- unlist(list(...))
+  xmllist <- read_eafs(eaflist, make.names(basename(eaflist), unique=TRUE))
   
-  xmllist_to_df(eaflist, singleDF=singleDF, ignoreTiers=ignoreTiers)
+  xmllist_to_df(xmllist, singleDF=singleDF, nonSpeakerTiers=nonSpeakerTiers)
 }
 
 ##Get a dataframe from a directory with several EAFs
 eafDir_to_df <- function(eafDir, pattern=".+\\.eaf$", 
-                         singleDF=TRUE, ignoreTiers=c("Comment","Noise","Redaction")) {
-  eaflist <- 
-    dir(eafDir, pattern=pattern, full.names=TRUE) %>% 
-    set_names(make.names(basename(.), unique=TRUE)) %>% 
-    read_eafs()
+                         singleDF=TRUE, 
+                         nonSpeakerTiers=c("Comment","Noise","Redaction")) {
+  eaflist <- dir(eafDir, pattern=pattern, full.names=TRUE)
+  xmllist <- read_eafs(eaflist, make.names(basename(eaflist), unique=TRUE))
   
-  xmllist_to_df(eaflist, singleDF=singleDF, ignoreTiers=ignoreTiers)
+  xmllist_to_df(xmllist, singleDF=singleDF, nonSpeakerTiers=nonSpeakerTiers)
 }
 
 
@@ -1004,7 +1051,8 @@ server <- function(input, output) {
   # Set up file structures --------------------------------------------------
   
   ##Dataframe of files
-  fileDF <- eventReactive(input$files, fileInfo(input$files))
+  fileDF <- eventReactive(input$files,
+                          fileInfo(input$files, spkrExtractRegex, spkrNumExtractRegex))
   
   ##Read files: Get a list that's nrow(fileDF()) long, each element an xml_document
   eaflist <- reactive({
@@ -1073,7 +1121,7 @@ server <- function(input, output) {
               pack_val(tierDF() %>% 
                          select(-any_of(c("datapath", "size"))), "tierDF"),
               pack_val(eaflist() %>% 
-                         xmllist_to_df(singleDF=FALSE, ignoreTiers=c("Comment","Noise","Redaction")), "eaflist"))
+                         xmllist_to_df(singleDF=FALSE, nonSpeakerTiers=c("Comment","Noise","Redaction")), "eaflist"))
     } else {
       ##If failing step0, export just fileDF()
       tagList(export)
@@ -1160,7 +1208,7 @@ server <- function(input, output) {
     ##If not exiting early yet, check for tier issues
     if (!exitEarly || overrideExit$fileName) {
       ##Get tier issues
-      tierIss <- tierIssues(tierDF())
+      tierIss <- tierIssues(tierDF(), prohibTiers)
       ##If no tier issues, don't display anything & make step heading green
       if (length(tierIss)==0) {
         tierSubhead <- undisplay(tierSubhead)
@@ -1314,7 +1362,7 @@ server <- function(input, output) {
     ##If not exiting early yet, check for dictionary issues
     if (!exitEarly || overrideExit$dict) {
       ##Get overlaps issues
-      overlapsIss <- overlapsIssues(eaflist(), tierDF())
+      overlapsIss <- overlapsIssues(eaflist(), tierDF(), fixOverlapRedact)
       ##If no overlaps issues, don't display anything & make step heading green
       if (length(overlapsIss)==0) {
         overlapsSubhead <- undisplay(overlapsSubhead)
