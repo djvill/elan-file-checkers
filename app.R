@@ -545,7 +545,7 @@ getTimesTier <- function(tierName, eaf, timeSlots) {
 ##N.B. This function outputs a list of DFs rather than a single DF because the
 ##  list structure makes it easier to detect overlaps in fixOverlaps() (by
 ##  comparing the timings on a given speaker tier to all other speaker tiers)
-getTimes <- function(eaf, eafName, tiers) {
+getTimes <- function(eaf, tiers) {
   ##Timeslots (maps time slot ID to actual time, in milliseconds)
   timeSlots <- 
     ##Get TIME_SLOT nodes
@@ -744,7 +744,7 @@ fixOverlapsTier <- function(overlapBounds, eaflist, eafName) {
 fixOverlaps <- function(tierNamesFile, eafName, eaflist, 
                         monitor=monitorOverlaps) {
   ##Get initial timing data
-  timesEAF <- getTimes(eaflist %>% pluck(eafName), eafName, tierNamesFile)
+  timesEAF <- getTimes(eaflist %>% pluck(eafName), tierNamesFile)
   ##If just one tier, skip overlap-checking for this file
   if (length(timesEAF)==1) {
     return(tibble(ANNOTATION_ID = character(0L), 
@@ -791,7 +791,7 @@ fixOverlaps <- function(tierNamesFile, eafName, eaflist,
       newTimesEAF <- 
         eaflist %>%
         pluck(eafName) %>% 
-        getTimes(eafName=eafName, tiers=tierNamesFile)
+        getTimes(tiers=tierNamesFile)
       overlapsCurr <- imap(newTimesEAF, findOverlapsTier, timesEAF=newTimesEAF)
       
       ##Hide overlaps in all other tiers from fixOverlapsTier()
@@ -842,7 +842,6 @@ overlapsIssues <- function(x, df) {
   
   ##Get initial timing data
   times <- list(eaf = x,
-                eafName = names(x),
                 tiers = tierNames) %>%
     pmap(getTimes)
   
@@ -921,7 +920,6 @@ xmllist_to_df <- function(x, singleDF=TRUE, nST=nonSpkrTiers) {
   
   ##Get timing data
   times <- list(eaf = x, 
-                eafName = names(x),
                 tiers = tierNames) %>% 
     pmap(getTimes)
   
