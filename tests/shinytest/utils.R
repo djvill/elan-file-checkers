@@ -118,7 +118,7 @@ snap <- function(app, name=NULL, path=getwd(), incl_eaflist=FALSE) {
         ) %>% 
         set_names(fileNames)
     } else if (lastDetailID=="overlapsDetails") {
-      require(lubridate)
+      library(lubridate)
       lastDetails <-
         lastDetailElem %>% 
         html_elements(".file-headed") %>% 

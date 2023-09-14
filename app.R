@@ -67,9 +67,8 @@ ui <- fluidPage(
   tags$head(
     tags$title("Elan File Checker | APLS"),
     tags$link(rel="stylesheet", type="text/css", href="file-checker.css"),
-    # tags$link(rel="stylesheet", type="text/css", href="https://github.com/djvill/APLS/raw/main/site-assets/css/doc.css"),
     tags$link(rel="stylesheet", type="text/css", href="doc.css"),
-    tags$link(rel="icon", type="image/svg", href="https://github.com/djvill/APLS/raw/main/site-assets/img/1f34e.svg")
+    tags$link(rel="icon", type="image/svg", href="https://github.com/djvill/APLS/raw/main/assets/img/1f34e.svg")
   ),
   div(id="header",
     h1("Elan File Checker", class="title"),
@@ -157,15 +156,15 @@ read_eafs <- function(filename, datapath) {
 ##In interactive use:
 ##- x can be output of <file name vector> %>% set_names(basename(.)) %>% read_eafs(., .)
 ##- df can be omitted (in which case fileInfo() is called inside this function)
-tierInfo <- function(x, df, nST=nonSpkrTiers) {
+tierInfo <- function(x, df, ignoreTiers) {
   if (is.null(names(x))) {
     stop("x must have names")
   }
   
-  if (missing(df)) {
-    df <- fileInfo(tibble(File = names(x)))
+	if (missing(df)) {
+		df <- fileInfo(tibble(File = names(x)))
   }
-  
+	
   x <- x %>% 
     map(xml_find_all, "//TIER") %>% 
     ##One row per tier, with file info
@@ -176,7 +175,7 @@ tierInfo <- function(x, df, nST=nonSpkrTiers) {
   if (!is.null(x$PARTICIPANT)) {
     x <- x %>% 
       ##Add SpkrTier (is the tier a speaker tier?)
-      mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(nST)))
+      mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(ignoreTiers)))
   }
   
   x
@@ -903,7 +902,7 @@ overlapsIssues <- function(x, df) {
 }
 
 ##Lower-level function called by eafs_to_df() and eafDir_to_df()
-xmllist_to_df <- function(x, singleDF=TRUE, nST=nonSpkrTiers) {
+xmllist_to_df <- function(x, singleDF=TRUE, ignoreTiers) {
   cls <- x %>% 
     map_lgl(~ "xml_document" %in% class(.x))
   if (!all(cls)) {
@@ -911,7 +910,7 @@ xmllist_to_df <- function(x, singleDF=TRUE, nST=nonSpkrTiers) {
   }
   
   ##Get list of each file's tier names to include
-  tierDF <- tierInfo(x)
+  tierDF <- tierInfo(x, ignoreTiers=ignoreTiers)
   if ("TIER_ID" %in% colnames(tierDF)) {
     tierNames <- getOverlapTiers(df=tierDF)
   } else {
@@ -980,23 +979,23 @@ is.displayed <- function(x) {
 ##Functions to be used interactively rather than in the actual app
 
 ##Get a dataframe from several paths to EAFs
-eafs_to_df <- function(..., singleDF=TRUE, nST=nonSpkrTiers) {
+eafs_to_df <- function(..., singleDF=TRUE, ignoreTiers=c("Comment","Noise","Redaction")) {
   eaflist <- list(...) %>% 
     flatten_chr()
   eaflist <- read_eafs(eaflist, make.names(basename(eaflist), unique=TRUE))
   
-  xmllist_to_df(eaflist, singleDF=singleDF, nST=nST)
+  xmllist_to_df(eaflist, singleDF=singleDF, ignoreTiers=ignoreTiers)
 }
 
 ##Get a dataframe from a directory with several EAFs
 eafDir_to_df <- function(eafDir, pattern=".+\\.eaf$", 
-                         singleDF=TRUE, nST=nonSpkrTiers) {
+                         singleDF=TRUE, ignoreTiers=c("Comment","Noise","Redaction")) {
   eaflist <- 
     dir(eafDir, pattern=pattern, full.names=TRUE) %>% 
     set_names(make.names(basename(.), unique=TRUE)) %>% 
     read_eafs()
   
-  xmllist_to_df(eaflist, singleDF=singleDF, nST=nST)
+  xmllist_to_df(eaflist, singleDF=singleDF, ignoreTiers=ignoreTiers)
 }
 
 
@@ -1016,7 +1015,7 @@ server <- function(input, output) {
   ##Get tier info as a single dataframe
   tierDF <- reactive({
     req(eaflist())
-    tierInfo(eaflist(), fileDF())
+    tierInfo(eaflist(), fileDF(), nonSpkrTiers)
   })
   
   # Debugging output --------------------------------------------------------
@@ -1072,9 +1071,9 @@ server <- function(input, output) {
     if (all(fileDF()$FileNameValid)) {
       tagList(export,
               pack_val(tierDF() %>% 
-                         select(-c(datapath, size)), "tierDF"),
+                         select(-any_of(c("datapath", "size"))), "tierDF"),
               pack_val(eaflist() %>% 
-                         xmllist_to_df(singleDF=FALSE), "eaflist"))
+                         xmllist_to_df(singleDF=FALSE, ignoreTiers=c("Comment","Noise","Redaction")), "eaflist"))
     } else {
       ##If failing step0, export just fileDF()
       tagList(export)
@@ -1217,7 +1216,7 @@ server <- function(input, output) {
                           strong("Incorrect DISC characters:"),
                           "Make sure you're not using any characters that aren't in the", 
                           a("DISC phonemic alphabet",
-                            href="https://djvill.github.io/APLS/doc/Phonemic-Transcription.html",
+                            href="https://djvill.github.io/APLS/doc/phonemic-transcription",
                             target="_blank"),
                           "(e.g., IPA /j/ is DISC", code("j", .noWS="after"), 
                           ", not ", code("y", .noWS="after"), ")"
@@ -1226,12 +1225,12 @@ server <- function(input, output) {
                           strong("Words that should be in APLS's phonemic dictionary:"),
                           "To look up phonemic representations, APLS uses: (1) the Unisyn English dictionary, and (2)",
                           a("custom entries", 
-                            href="https://raw.githubusercontent.com/djvill/APLS/main/files/custom-dictionary/aplsDict.txt",
+                            href="https://djvill.github.io/APLS/files/custom-entries",
                             target="_blank",
                             .noWS="after"),
                           ". If any words should be added to the dictionary, send suggestions to Dan, including ",
                           a("DISC representations",
-                            href="https://djvill.github.io/APLS/doc/Phonemic-Transcription.html#Suggesting_new_dictionary_entries",
+                            href="https://djvill.github.io/APLS/doc/phonemic-transcription.html#suggesting-new-dictionary-entries",
                             target="_blank",
                             .noWS="after"),
                           ". If you're not sure whether a word should be added to the dictionary, ask Dan"
