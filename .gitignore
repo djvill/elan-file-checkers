@@ -1,10 +1,10 @@
-#### CUSTOM ****
+#### CUSTOM ####
 
 Elan File Checkers.Rproj
 *.psfx
 unisynDict.txt
 **test*-current/
-
+rsconnect/
 
 #### R ####
 

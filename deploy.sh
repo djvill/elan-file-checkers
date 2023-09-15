@@ -20,4 +20,4 @@ then
 fi
 
 ##Deploy app to shinyapps.io
-Rscript -e "rsconnect::deployApp(appFiles=c('app.R', 'dict/unisynDict.txt', 'www', 'tests'), launch.browser=FALSE)"
+Rscript -e "rsconnect::deployApp(appFiles=c('app.R', 'eaf-utils.R', 'dict/unisynDict.txt', 'www', 'tests'), launch.browser=FALSE)"
