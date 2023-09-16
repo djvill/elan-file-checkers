@@ -806,7 +806,8 @@ server <- function(input, output) {
   ##Read files: Get a list that's nrow(fileDF()) long, each element an xml_document
   eaflist <- reactive({
     req(all(fileDF()$FileNameValid) || overrideExit$fileName)
-    read_eafs(fileDF()$File, fileDF()$datapath)
+    read_eafs(fileDF()$datapath) %>%
+      set_names(fileDF()$File)
   })
   
   ##Get tier info as a single dataframe

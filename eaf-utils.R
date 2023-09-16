@@ -1,6 +1,6 @@
 #### Utilities for working with .eaf files ####
 ##
-## Originally developed for Elan File Checker(s), but usable as standalone functions
+## Originally developed for Elan File Checker(s), but usable(ish) as standalone functions
 
 
 ## EAF conversion ---------------------------------------------------------
@@ -8,20 +8,19 @@
 
 ##Get a dataframe from several paths to EAFs
 eafs_to_df <- function(..., singleDF=TRUE, 
-                       nonSpeakerTiers=c("Comment","Noise","Redaction")) {
+                       nonSpeakerTiers=c("Comment","Noise","Redaction")) {											 
   eaflist <- unlist(list(...))
-  xmllist <- read_eafs(eaflist, make.names(basename(eaflist), unique=TRUE))
-  
+  xmllist <- read_eafs(eaflist)
+  names(xmllist) <- make.unique(basename(eaflist))
   xmllist_to_df(xmllist, singleDF=singleDF, nonSpeakerTiers=nonSpeakerTiers)
 }
 
 ##Get a dataframe from a directory with several EAFs
-eafDir_to_df <- function(eafDir, pattern=".+\\.eaf$", 
-                         singleDF=TRUE, 
+eafDir_to_df <- function(eafDir, singleDF=TRUE, pattern=".+\\.eaf$", 
                          nonSpeakerTiers=c("Comment","Noise","Redaction")) {
   eaflist <- dir(eafDir, pattern=pattern, full.names=TRUE)
-  xmllist <- read_eafs(eaflist, make.names(basename(eaflist), unique=TRUE))
-  
+  xmllist <- read_eafs(eaflist)
+  names(xmllist) <- make.unique(basename(eaflist))
   xmllist_to_df(xmllist, singleDF=singleDF, nonSpeakerTiers=nonSpeakerTiers)
 }
 
@@ -33,6 +32,7 @@ fileInfo <- function(x,
                      spkrNumRE="([A-Z]{2})(\\d+)(?:and\\d+)?") {
   library(dplyr)
   library(tidyr)
+  library(stringr)
   
   if (!is.data.frame(x) || nrow(x)==0 || all(!(c("File","name") %in% colnames(x)))) {
     stop("x must be a dataframe with at least one row & column called either File or name")
@@ -133,24 +133,19 @@ xmllist_to_df <- function(x, singleDF=TRUE, nonSpeakerTiers=NULL, inclRedact=TRU
 
 ##From a character vector of paths, creates a list of XML objects w/ the file
 ##  basenames as element names
+##It's necessary to have datapath and filename specified separately, because 
+##  datapath is a temporary path *without* the original filename
 ##Doesn't check for valid paths, because in the app that's handled by
 ##  req(all(fileDF()$FileNameValid))
-read_eafs <- function(filename, datapath) {
+read_eafs <- function(datapath) {
   library(purrr)
   library(xml2)
   
-  if (!is.character(filename)) {
-    stop("filename must be a character vector")
-  }
   if (!is.character(datapath)) {
     stop("datapath must be a character vector")
   }
-  if (any(duplicated(filename))) {
-    stop("filenames (not paths) must be unique")
-  }
-  
-  set_names(datapath, filename) %>% 
-    map(read_xml)
+	
+  map(datapath, read_xml)
 }
 
 
