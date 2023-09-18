@@ -806,8 +806,9 @@ server <- function(input, output) {
   ##Read files: Get a list that's nrow(fileDF()) long, each element an xml_document
   eaflist <- reactive({
     req(all(fileDF()$FileNameValid) || overrideExit$fileName)
-    read_eafs(fileDF()$datapath) %>%
-      set_names(fileDF()$File)
+    fileDF()$datapath %>% 
+      set_names(fileDF()$File) %>% 
+      read_eafs()
   })
   
   ##Get tier info as a single dataframe
@@ -871,7 +872,9 @@ server <- function(input, output) {
               pack_val(tierDF() %>% 
                          select(-any_of(c("datapath", "size"))), "tierDF"),
               pack_val(eaflist() %>% 
-                         xmllist_to_df(singleDF=FALSE, nonSpeakerTiers=c("Comment","Noise","Redaction")), "eaflist"))
+                         xmllist_to_df(df_nesting="Tier", 
+                                       nonSpeakerTiers=c("Comment","Noise","Redaction")), 
+                       "eaflist"))
     } else {
       ##If failing step0, export just fileDF()
       tagList(export)

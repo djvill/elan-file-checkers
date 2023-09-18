@@ -7,21 +7,19 @@
 ##Functions to be used interactively rather than in the actual app
 
 ##Get a dataframe from several paths to EAFs
-eafs_to_df <- function(..., singleDF=TRUE, 
+eafs_to_df <- function(..., df_nesting="None", 
                        nonSpeakerTiers=c("Comment","Noise","Redaction")) {											 
   eaflist <- unlist(list(...))
   xmllist <- read_eafs(eaflist)
-  names(xmllist) <- make.unique(basename(eaflist))
-  xmllist_to_df(xmllist, singleDF=singleDF, nonSpeakerTiers=nonSpeakerTiers)
+  xmllist_to_df(xmllist, df_nesting=df_nesting, nonSpeakerTiers=nonSpeakerTiers)
 }
 
 ##Get a dataframe from a directory with several EAFs
-eafDir_to_df <- function(eafDir, singleDF=TRUE, pattern=".+\\.eaf$", 
+eafDir_to_df <- function(eafDir, df_nesting="None", pattern=".+\\.eaf$", 
                          nonSpeakerTiers=c("Comment","Noise","Redaction")) {
   eaflist <- dir(eafDir, pattern=pattern, full.names=TRUE)
   xmllist <- read_eafs(eaflist)
-  names(xmllist) <- make.unique(basename(eaflist))
-  xmllist_to_df(xmllist, singleDF=singleDF, nonSpeakerTiers=nonSpeakerTiers)
+  xmllist_to_df(xmllist, df_nesting=df_nesting, nonSpeakerTiers=nonSpeakerTiers)
 }
 
 
@@ -101,9 +99,12 @@ tierInfo <- function(x, df, nonSpeakerTiers=NULL) {
 }
 
 ##Lower-level function called by eafs_to_df() and eafDir_to_df()
-xmllist_to_df <- function(x, singleDF=TRUE, nonSpeakerTiers=NULL, inclRedact=TRUE) {
+xmllist_to_df <- function(x, df_nesting=c("None","File","Tier"), 
+                          nonSpeakerTiers=NULL, inclRedact=TRUE) {
   library(purrr)
   
+  ##Check inputs
+  df_nesting <- match.arg(df_nesting)
   cls <- x %>% 
     map_lgl(~ "xml_document" %in% class(.x))
   if (!all(cls)) {
@@ -119,32 +120,41 @@ xmllist_to_df <- function(x, singleDF=TRUE, nonSpeakerTiers=NULL, inclRedact=TRU
   }
   
   ##Get timing data
-  times <- list(eaf = x, 
-                tiers = tierNames) %>% 
+  times <- list(eaf = x,
+                tiers = tierNames) %>%
     pmap(getTimes)
   
-  if (singleDF) {
-    times %>%
-      map_dfr(~ map_dfr(.x, as.data.frame, .id="Tier"), .id="File")
-  } else {
+  ##Return timing dataframe nested by Tier, File, or not at all
+  if (df_nesting=="Tier") {
     times
+  } else if (df_nesting=="File") {
+    times %>% 
+      map(~ map_dfr(.x, as.data.frame, .id="Tier"))
+  } else if (df_nesting=="None") {
+    times %>%
+      map_dfr(~ map_dfr(.x, as.data.frame, .id="Tier"), 
+              .id="File")
   }
 }
 
-##From a character vector of paths, creates a list of XML objects w/ the file
-##  basenames as element names
-##It's necessary to have datapath and filename specified separately, because 
-##  datapath is a temporary path *without* the original filename
+##From a named character vector of paths, creates a list of XML objects
+##In the app, datapath is a temporary path *without* the original filename,
+##  so specifying original filenames as vector names preserves orig filenames;
+##  if any names unspecified, basenames are substituted
 ##Doesn't check for valid paths, because in the app that's handled by
 ##  req(all(fileDF()$FileNameValid))
-read_eafs <- function(datapath) {
+read_eafs <- function(datapath, filename) {
   library(purrr)
   library(xml2)
   
   if (!is.character(datapath)) {
     stop("datapath must be a character vector")
   }
-	
+  
+  if (any(is.null(names(datapath)))) {
+    names(datapath) <- make.unique(basename(datapath))
+  }
+  
   map(datapath, read_xml)
 }
 
@@ -172,9 +182,13 @@ getOverlapTiers <- function(df, inclRedact=TRUE) {
       SpkrTier ~ "Bystander",
       TRUE ~ NA_character_
     )) %>% 
+    ##Remove tiers that aren't in priority order
     filter(!is.na(OverlapTier)) %>% 
-    arrange(desc(OverlapTier),
-            ##If multiple main speakers or bystanders, break ties with name order
+    ##Put in order
+    arrange(File,
+            ##Coincidentally, priority order == reverse alphabetical order
+            desc(OverlapTier),
+            ##If multiple main speakers or bystanders, break ties by name order
             TIER_ID)
   
   ##Optionally exclude Redaction
