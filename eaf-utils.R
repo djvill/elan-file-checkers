@@ -7,19 +7,22 @@
 ##Functions to be used interactively rather than in the actual app
 
 ##Get a dataframe from several paths to EAFs
-eafs_to_df <- function(..., df_nesting="None", 
+eafs_to_df <- function(..., df_nesting="None", tierText=FALSE,
                        nonSpeakerTiers=c("Comment","Noise","Redaction")) {											 
   eaflist <- unlist(list(...))
   xmllist <- read_eafs(eaflist)
-  xmllist_to_df(xmllist, df_nesting=df_nesting, nonSpeakerTiers=nonSpeakerTiers)
+  xmllist_to_df(xmllist, df_nesting=df_nesting, tierText=tierText,
+                nonSpeakerTiers=nonSpeakerTiers)
 }
 
 ##Get a dataframe from a directory with several EAFs
-eafDir_to_df <- function(eafDir, df_nesting="None", pattern=".+\\.eaf$", 
+eafDir_to_df <- function(eafDir, df_nesting="None", tierText=FALSE,
+                         pattern=".+\\.eaf$", 
                          nonSpeakerTiers=c("Comment","Noise","Redaction")) {
   eaflist <- dir(eafDir, pattern=pattern, full.names=TRUE)
   xmllist <- read_eafs(eaflist)
-  xmllist_to_df(xmllist, df_nesting=df_nesting, nonSpeakerTiers=nonSpeakerTiers)
+  xmllist_to_df(xmllist, df_nesting=df_nesting, tierText=tierText,
+                nonSpeakerTiers=nonSpeakerTiers)
 }
 
 
@@ -99,7 +102,7 @@ tierInfo <- function(x, df, nonSpeakerTiers=NULL) {
 }
 
 ##Lower-level function called by eafs_to_df() and eafDir_to_df()
-xmllist_to_df <- function(x, df_nesting=c("None","File","Tier"), 
+xmllist_to_df <- function(x, df_nesting=c("None","File","Tier"), tierText=FALSE,
                           nonSpeakerTiers=NULL, inclRedact=TRUE) {
   library(purrr)
   
@@ -122,7 +125,7 @@ xmllist_to_df <- function(x, df_nesting=c("None","File","Tier"),
   ##Get timing data
   times <- list(eaf = x,
                 tiers = tierNames) %>%
-    pmap(getTimes)
+    pmap(getTimes, tierText=tierText)
   
   ##Return timing dataframe nested by Tier, File, or not at all
   if (df_nesting=="Tier") {
@@ -209,7 +212,7 @@ getOverlapTiers <- function(df, inclRedact=TRUE) {
 
 ##Function that takes a tier name, eaf file, and file-wide time slot DF as
 ##  input and outputs actual times for annotations
-getTimesTier <- function(tierName, eaf, timeSlots) {
+getTimesTier <- function(tierName, eaf, timeSlots, tierText=FALSE) {
   library(stringr)
   library(xml2)
   library(dplyr)
@@ -228,6 +231,13 @@ getTimesTier <- function(tierName, eaf, timeSlots) {
     xml_attrs() %>% 
     bind_rows()
   
+  ##Optionally add Text
+  if (tierText) {
+    timesTier <- timesTier %>% 
+      mutate(Text = xml_find_all(eaf, xpath) %>% 
+               xml_text())
+  }
+  
   ##Add actual times, only if tier is nonempty
   if (nrow(timesTier) > 0) {
     timesTier <- timesTier %>% 
@@ -239,7 +249,8 @@ getTimesTier <- function(tierName, eaf, timeSlots) {
       left_join(timeSlots %>%
                   rename(TIME_SLOT_REF2 = TIME_SLOT_ID,
                          End = TIME_VALUE),
-                by="TIME_SLOT_REF2")
+                by="TIME_SLOT_REF2") %>% 
+      relocate(Start, End, .after=TIME_SLOT_REF2)
   } else {
     ##If tier is empty, return NULL (will be immediately discard()ed)
     NULL
@@ -254,7 +265,7 @@ getTimesTier <- function(tierName, eaf, timeSlots) {
 ##N.B. This function outputs a list of DFs rather than a single DF because the
 ##  list structure makes it easier to detect overlaps in fixOverlaps() (by
 ##  comparing the timings on a given speaker tier to all other speaker tiers)
-getTimes <- function(eaf, tiers) {
+getTimes <- function(eaf, tiers, tierText=FALSE) {
   library(xml2)
   library(dplyr)
   library(purrr)
@@ -274,7 +285,7 @@ getTimes <- function(eaf, tiers) {
   timesEAF <- 
     tiers %>% 
     set_names(., .) %>% 
-    map(getTimesTier, eaf, timeSlots) %>%
+    map(getTimesTier, eaf, timeSlots, tierText=tierText) %>%
     ##Only nonempty tiers
     discard(is.null)
   
