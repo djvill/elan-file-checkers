@@ -58,7 +58,7 @@ fixOverlapRedact <- TRUE
 checkZeroWidth <- FALSE						# Not yet modularized
 
 ##Exit-early overrides, for debugging
-overrideExit <- list(fileName = T, tiers = T, dict = T, overlaps = FALSE)
+overrideExit <- list(fileName = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
 
 # UI ----------------------------------------------------------------------
 ui <- fluidPage(
