@@ -58,7 +58,7 @@ fixOverlapRedact <- TRUE
 checkZeroWidth <- FALSE						# Not yet modularized
 
 ##Exit-early overrides, for debugging
-overrideExit <- list(fileName = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
+overrideExit <- list(fileName = T, tiers = T, dict = T, overlaps = FALSE)
 
 # UI ----------------------------------------------------------------------
 ui <- fluidPage(
@@ -617,6 +617,10 @@ fixOverlaps <- function(tierNamesFile, eafName, eaflist) {
   iters <- 0
   maxIter <- 10
   
+	if (all(map_int(overlapsPost, nrow)==0)) {
+    message("No initial overlaps.")
+  }
+	
   ##Continue until there are no remaining overlaps, either because all
   ##  overlaps have been fixed, or because things have stablized
   while (any(map_int(overlapsPost, nrow) > 0) && !identical(overlapsPre, overlapsPost)) {
@@ -650,6 +654,10 @@ fixOverlaps <- function(tierNamesFile, eafName, eaflist) {
         map(fixOverlapsTier, eaflist, eafName) %>% 
         pluck(tier) %>% 
         filter(!Resolved)
+			
+			message("iters: ", iters)
+      message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
+      message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
     }
   }
   
@@ -741,7 +749,7 @@ overlapsIssues <- function(x, df, inclRedact=TRUE) {
           arrange(Start) %>%
           select(-ANNOTATION_ID) %>%
           rowwise() %>%
-          mutate(across(c(Start,End), formatTimes, type=timeDisp)))
+          mutate(across(c(Start,End), ~ formatTimes(.x, timeDisp))))
 }
 
 ## UI convenience functions ===================================================
