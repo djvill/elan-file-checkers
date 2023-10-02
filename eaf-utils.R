@@ -217,44 +217,63 @@ getTimesTier <- function(tierName, eaf, timeSlots, tierText=FALSE) {
   library(xml2)
   library(dplyr)
   
-  ##Construct xpath to account for missing TIER_ID
+  ##Get tier node, accounting for missing TIER_ID
   if (is.numeric(tierName)) {
-    xpath <- str_glue("//TIER[{tierName}]//ALIGNABLE_ANNOTATION")
+    tierPath <- str_glue("//TIER[{tierName}]")
   } else {
-    xpath <- str_glue("//TIER[@TIER_ID='{tierName}']//ALIGNABLE_ANNOTATION")
+    tierPath <- str_glue("//TIER[@TIER_ID='{tierName}']")
   }
+  tierNode <- xml_find_first(eaf, tierPath)
   
-  timesTier <-
-    ##Get all ALIGNABLE_ANNOTATION tags
-    xml_find_all(eaf, xpath) %>% 
-    ##Get attributes as a dataframe
+  ##Get turn time-slot IDs as a dataframe
+  parentTier <- xml_attr(tierNode, "PARENT_REF")
+  if (is.na(parentTier)) {
+    turnPath <- ".//ALIGNABLE_ANNOTATION"
+  } else {
+    turnPath <- ".//REF_ANNOTATION"
+  }
+  turnNodes <- xml_find_all(tierNode, turnPath)
+  timesTier <- 
+    turnNodes %>% 
     xml_attrs() %>% 
     bind_rows()
+  
+  ##If tier is empty, return NULL (will be immediately discard()ed)
+  if (nrow(timesTier)==0) {
+    return(NULL)
+  }
+  
+  ##If turn is a dependency, add time-slot IDs from parent tier
+  if (!is.na(parentTier)) {
+    ##Get parent annotation IDs
+    timesParent <- 
+      xml_find_all(eaf, str_glue("//TIER[@TIER_ID='{parentTier}']//ALIGNABLE_ANNOTATION")) %>% 
+      xml_attrs() %>% 
+      bind_rows()
+    ##Add to tier
+    timesTier <- timesTier %>% 
+      left_join(timesParent %>% rename(ANNOTATION_REF = ANNOTATION_ID),
+                "ANNOTATION_REF")
+  }
   
   ##Optionally add Text
   if (tierText) {
     timesTier <- timesTier %>% 
-      mutate(Text = xml_find_all(eaf, xpath) %>% 
-               xml_text())
+      mutate(Text = xml_text(turnNodes))
   }
   
-  ##Add actual times, only if tier is nonempty
-  if (nrow(timesTier) > 0) {
-    timesTier <- timesTier %>% 
-      ##Add actual times
-      left_join(timeSlots %>%
-                  rename(TIME_SLOT_REF1 = TIME_SLOT_ID,
-                         Start = TIME_VALUE),
-                by="TIME_SLOT_REF1") %>%
-      left_join(timeSlots %>%
-                  rename(TIME_SLOT_REF2 = TIME_SLOT_ID,
-                         End = TIME_VALUE),
-                by="TIME_SLOT_REF2") %>% 
-      relocate(Start, End, .after=TIME_SLOT_REF2)
-  } else {
-    ##If tier is empty, return NULL (will be immediately discard()ed)
-    NULL
-  }
+  ##Add actual times
+  timesTier <- timesTier %>% 
+    ##Add actual times
+    left_join(timeSlots %>%
+                rename(TIME_SLOT_REF1 = TIME_SLOT_ID,
+                       Start = TIME_VALUE),
+              by="TIME_SLOT_REF1") %>%
+    left_join(timeSlots %>%
+                rename(TIME_SLOT_REF2 = TIME_SLOT_ID,
+                       End = TIME_VALUE),
+              by="TIME_SLOT_REF2") %>% 
+    relocate(Start, End, .after=TIME_SLOT_REF2)
 }
 
 ##Wrapper function around getTimesTier() that takes a single EAF file and name
