@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "1.1.3"
+vers <- "1.1.4"
 
 ##Debugging
 ##  (See also info about "interactive use" below)
@@ -41,7 +41,7 @@ onlyLocalDict <- FALSE						# Not yet modularized
 ##Permit angle brackets for single-word interruptions?
 permitAngleBrackets <- FALSE						# Not yet modularized
 ##Characters to accept in pronounce codes
-pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE{VQU@i$u312456789#]"						# Not yet modularized
+pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE{VQU@i$u312456789#'\"-]"						# Not yet modularized
 ##Case-sensitive?
 caseSens <- FALSE						# Not yet modularized
 
