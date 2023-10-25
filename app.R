@@ -163,7 +163,7 @@ tierIssuesOneFile <- function(df, prohibTiers=NULL) {
   }
   
   ##Detect missing/empty AUTHOR attribute
-  if (any(is.na(df$AUTHOR)) || any(df$AUTHOR == "")) {
+  if (any(is.na(df$AUTHOR)) || any(df$AUTHOR == "") || any(tolower(df$AUTHOR) == "unspecified")) {
     issues <- c(issues, paste("File missing an AUTHOR attribute"))
   }
   
