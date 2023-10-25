@@ -33,7 +33,8 @@
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
@@ -50,7 +51,8 @@
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
@@ -67,7 +69,8 @@
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
@@ -84,7 +87,8 @@
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
@@ -101,7 +105,8 @@
         "SpeakerNum": 1,
         "FileSuffix": "-reading1b_JustOneTier",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       }
     ]
   },

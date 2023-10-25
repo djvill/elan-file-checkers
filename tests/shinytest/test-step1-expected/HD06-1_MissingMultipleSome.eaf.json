@@ -32,7 +32,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingMultipleSome.eaf",
@@ -47,6 +48,7 @@
         "FileSuffix": "-1_MissingMultipleSome",
         "type": "",
         "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin",
         "PARTICIPANT": "Interviewer HD06"
       },
       {
@@ -63,6 +65,7 @@
         "FileSuffix": "-1_MissingMultipleSome",
         "type": "",
         "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin",
         "PARTICIPANT": "Comment"
       },
       {
@@ -80,6 +83,7 @@
         "FileSuffix": "-1_MissingMultipleSome",
         "type": "",
         "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin",
         "PARTICIPANT": "Noise"
       },
       {
@@ -97,6 +101,7 @@
         "FileSuffix": "-1_MissingMultipleSome",
         "type": "",
         "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin",
         "PARTICIPANT": "Redaction"
       }
     ]
@@ -154,7 +159,7 @@
       {
         "id": "tierDetails",
         "hasContent": true,
-        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MissingMultipleSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing an Annotator attribute: Tier 2<\/li>\n      <li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_MissingMultipleSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
       },
       {
         "id": "dictDetails",
@@ -174,7 +179,6 @@
       "HD06-1_MissingMultipleSome.eaf": [
         "There are no tiers with tier name Comment",
         "There are no tiers with tier name Interviewer HD06 or Trista Pennington",
-        "Tier missing an Annotator attribute: Tier 2",
         "Tier missing a Participant attribute: HD06",
         "Tier missing a Tier name attribute: Tier 2",
         "Tier missing a Tier name attribute: Tier 3"

@@ -69,7 +69,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadPlural",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadPlural.eaf",
@@ -86,7 +87,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadPlural",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadPlural.eaf",
@@ -103,7 +105,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadPlural",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadPlural.eaf",
@@ -120,7 +123,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadPlural",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadPlural.eaf",
@@ -137,7 +141,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadPlural",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MisspellingsMultipleTiers.eaf",
@@ -154,7 +159,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MisspellingsMultipleTiers.eaf",
@@ -171,7 +177,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MisspellingsMultipleTiers.eaf",
@@ -188,7 +195,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MisspellingsMultipleTiers.eaf",
@@ -205,7 +213,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MisspellingsMultipleTiers.eaf",
@@ -222,7 +231,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MisspellingsMultipleTiers",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NewlineInAnnotation.eaf",
@@ -239,7 +249,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NewlineInAnnotation",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NewlineInAnnotation.eaf",
@@ -256,7 +267,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NewlineInAnnotation",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NewlineInAnnotation.eaf",
@@ -273,7 +285,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NewlineInAnnotation",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NewlineInAnnotation.eaf",
@@ -290,7 +303,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NewlineInAnnotation",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NewlineInAnnotation.eaf",
@@ -307,7 +321,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NewlineInAnnotation",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NoIssues.eaf",
@@ -324,7 +339,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NoIssues.eaf",
@@ -341,7 +357,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NoIssues.eaf",
@@ -358,7 +375,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NoIssues.eaf",
@@ -375,7 +393,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NoIssues.eaf",
@@ -392,7 +411,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       }
     ]
   },

@@ -81,24 +81,29 @@ tierInfo <- function(x, df, nonSpeakerTiers=NULL) {
     df <- fileInfo(data.frame(File = names(x)))
   }
   
-  x <- x %>% 
+  out <- x %>% 
     map(xml_find_all, "//TIER") %>% 
     ##One row per tier, with file info
     map_dfr(~ map_dfr(.x, xml_attrs), .id="File") %>% 
     ##Add info from fileDF
     left_join(df, by="File")
   
-  if (!is.null(x$PARTICIPANT)) {
+  if (!is.null(out$PARTICIPANT)) {
     ##Add SpkrTier (is the tier a speaker tier?)
     if (!is.null(nonSpeakerTiers)) {
-      x <- x %>% 
+      out <- out %>% 
         mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(nonSpeakerTiers)))
     } else {
-      x$SpkrTier <- TRUE
+      out$SpkrTier <- TRUE
     }
   }
   
-  x
+  ##Add file-wide AUTHOR attribute (or NA if missing)
+  auths <- tibble(File = names(x), AUTHOR = unname(map_chr(x, xml_attr, "AUTHOR")))
+  out <- out %>% 
+    left_join(auths, "File")
+  
+  out
 }
 
 ##Lower-level function called by eafs_to_df() and eafDir_to_df()

@@ -41,7 +41,7 @@
         "type": ""
       },
       {
-        "File": "HD06-1_MissingAnnotatorAll.eaf",
+        "File": "HD06-1_MissingAuthor.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCodeValid": true,
@@ -49,11 +49,11 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingAnnotatorAll",
+        "FileSuffix": "-1_MissingAuthor",
         "type": ""
       },
       {
-        "File": "HD06-1_MissingAnnotatorSome.eaf",
+        "File": "HD06-1_MissingAuthorAndParticipant.eaf",
         "FileExt": "eaf",
         "FileExtValid": true,
         "SpkrCodeValid": true,
@@ -61,7 +61,7 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingAnnotatorSome",
+        "FileSuffix": "-1_MissingAuthorAndParticipant",
         "type": ""
       },
       {
@@ -165,7 +165,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadNonspkrTierNames.eaf",
@@ -182,7 +183,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadNonspkrTierNames.eaf",
@@ -199,7 +201,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadNonspkrTierNames.eaf",
@@ -216,7 +219,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadNonspkrTierNames.eaf",
@@ -233,7 +237,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadSpkrTierNames.eaf",
@@ -250,7 +255,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadSpkrTierNames",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadSpkrTierNames.eaf",
@@ -267,7 +273,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadSpkrTierNames",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadSpkrTierNames.eaf",
@@ -284,7 +291,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadSpkrTierNames",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadSpkrTierNames.eaf",
@@ -301,7 +309,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadSpkrTierNames",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_BadSpkrTierNames.eaf",
@@ -318,7 +327,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadSpkrTierNames",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_HasRecheckTier.eaf",
@@ -335,7 +345,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_HasRecheckTier",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_HasRecheckTier.eaf",
@@ -352,7 +363,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_HasRecheckTier",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_HasRecheckTier.eaf",
@@ -369,7 +381,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_HasRecheckTier",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_HasRecheckTier.eaf",
@@ -386,7 +399,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_HasRecheckTier",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_HasRecheckTier.eaf",
@@ -403,7 +417,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_HasRecheckTier",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_HasRecheckTier.eaf",
@@ -420,90 +435,11 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_HasRecheckTier",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
-        "File": "HD06-1_MissingAnnotatorAll.eaf",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "HD06",
-        "TIER_ID": "HD06",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingAnnotatorAll",
-        "type": "",
-        "SpkrTier": true
-      },
-      {
-        "File": "HD06-1_MissingAnnotatorAll.eaf",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Interviewer HD06",
-        "TIER_ID": "Interviewer HD06",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingAnnotatorAll",
-        "type": "",
-        "SpkrTier": true
-      },
-      {
-        "File": "HD06-1_MissingAnnotatorAll.eaf",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Comment",
-        "TIER_ID": "Comment",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingAnnotatorAll",
-        "type": "",
-        "SpkrTier": false
-      },
-      {
-        "File": "HD06-1_MissingAnnotatorAll.eaf",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Noise",
-        "TIER_ID": "Noise",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingAnnotatorAll",
-        "type": "",
-        "SpkrTier": false
-      },
-      {
-        "File": "HD06-1_MissingAnnotatorAll.eaf",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Redaction",
-        "TIER_ID": "Redaction",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingAnnotatorAll",
-        "type": "",
-        "SpkrTier": false
-      },
-      {
-        "File": "HD06-1_MissingAnnotatorSome.eaf",
+        "File": "HD06-1_MissingAuthor.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "HD06",
@@ -515,12 +451,13 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingAnnotatorSome",
+        "FileSuffix": "-1_MissingAuthor",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": ""
       },
       {
-        "File": "HD06-1_MissingAnnotatorSome.eaf",
+        "File": "HD06-1_MissingAuthor.eaf",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Interviewer HD06",
         "TIER_ID": "Interviewer HD06",
@@ -531,12 +468,13 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingAnnotatorSome",
+        "FileSuffix": "-1_MissingAuthor",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": ""
       },
       {
-        "File": "HD06-1_MissingAnnotatorSome.eaf",
+        "File": "HD06-1_MissingAuthor.eaf",
         "ANNOTATOR": "Emma McKibbin",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Comment",
@@ -548,12 +486,13 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingAnnotatorSome",
+        "FileSuffix": "-1_MissingAuthor",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": ""
       },
       {
-        "File": "HD06-1_MissingAnnotatorSome.eaf",
+        "File": "HD06-1_MissingAuthor.eaf",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Noise",
         "TIER_ID": "Noise",
@@ -564,12 +503,13 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingAnnotatorSome",
+        "FileSuffix": "-1_MissingAuthor",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": ""
       },
       {
-        "File": "HD06-1_MissingAnnotatorSome.eaf",
+        "File": "HD06-1_MissingAuthor.eaf",
         "LINGUISTIC_TYPE_REF": "default-lt",
         "PARTICIPANT": "Redaction",
         "TIER_ID": "Redaction",
@@ -580,9 +520,96 @@
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
         "SpeakerNum": 6,
-        "FileSuffix": "-1_MissingAnnotatorSome",
+        "FileSuffix": "-1_MissingAuthor",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": ""
+      },
+      {
+        "File": "HD06-1_MissingAuthorAndParticipant.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "TIER_ID": "HD06",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_MissingAuthorAndParticipant",
+        "type": "",
+        "SpkrTier": true,
+        "AUTHOR": ""
+      },
+      {
+        "File": "HD06-1_MissingAuthorAndParticipant.eaf",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Interviewer HD06",
+        "TIER_ID": "Interviewer HD06",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_MissingAuthorAndParticipant",
+        "type": "",
+        "SpkrTier": true,
+        "AUTHOR": ""
+      },
+      {
+        "File": "HD06-1_MissingAuthorAndParticipant.eaf",
+        "ANNOTATOR": "Emma McKibbin",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Comment",
+        "TIER_ID": "Comment",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_MissingAuthorAndParticipant",
+        "type": "",
+        "SpkrTier": false,
+        "AUTHOR": ""
+      },
+      {
+        "File": "HD06-1_MissingAuthorAndParticipant.eaf",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Noise",
+        "TIER_ID": "Noise",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_MissingAuthorAndParticipant",
+        "type": "",
+        "SpkrTier": false,
+        "AUTHOR": ""
+      },
+      {
+        "File": "HD06-1_MissingAuthorAndParticipant.eaf",
+        "LINGUISTIC_TYPE_REF": "default-lt",
+        "PARTICIPANT": "Redaction",
+        "TIER_ID": "Redaction",
+        "FileExt": "eaf",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileNameValid": true,
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "SpeakerNum": 6,
+        "FileSuffix": "-1_MissingAuthorAndParticipant",
+        "type": "",
+        "SpkrTier": false,
+        "AUTHOR": ""
       },
       {
         "File": "HD06-1_MissingMultipleSome.eaf",
@@ -598,7 +625,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingMultipleSome.eaf",
@@ -613,7 +641,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingMultipleSome.eaf",
@@ -629,7 +658,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingMultipleSome.eaf",
@@ -646,7 +676,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingMultipleSome.eaf",
@@ -663,7 +694,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingMultipleSome",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingParticipantAll.eaf",
@@ -679,7 +711,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantAll",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingParticipantAll.eaf",
@@ -695,7 +728,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantAll",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingParticipantAll.eaf",
@@ -711,7 +745,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantAll",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingParticipantAll.eaf",
@@ -727,7 +762,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantAll",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingParticipantAll.eaf",
@@ -743,7 +779,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantAll",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingParticipantSome.eaf",
@@ -759,7 +796,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantSome",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingParticipantSome.eaf",
@@ -776,7 +814,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantSome",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingParticipantSome.eaf",
@@ -793,7 +832,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantSome",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingParticipantSome.eaf",
@@ -809,7 +849,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantSome",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingParticipantSome.eaf",
@@ -826,7 +867,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantSome",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingRedact.eaf",
@@ -843,7 +885,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingRedact",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingRedact.eaf",
@@ -860,7 +903,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingRedact",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingRedact.eaf",
@@ -877,7 +921,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingRedact",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingRedact.eaf",
@@ -894,7 +939,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingRedact",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingTierIDAll.eaf",
@@ -910,7 +956,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDAll",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingTierIDAll.eaf",
@@ -926,7 +973,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDAll",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingTierIDAll.eaf",
@@ -942,7 +990,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDAll",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingTierIDAll.eaf",
@@ -958,7 +1007,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDAll",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingTierIDAll.eaf",
@@ -974,7 +1024,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDAll",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingTierIDSome.eaf",
@@ -991,7 +1042,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDSome",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingTierIDSome.eaf",
@@ -1007,7 +1059,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDSome",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingTierIDSome.eaf",
@@ -1023,7 +1076,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDSome",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingTierIDSome.eaf",
@@ -1040,7 +1094,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDSome",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingTierIDSome.eaf",
@@ -1057,7 +1112,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDSome",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NoIssues.eaf",
@@ -1074,7 +1130,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NoIssues.eaf",
@@ -1091,7 +1148,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NoIssues.eaf",
@@ -1108,7 +1166,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NoIssues.eaf",
@@ -1125,7 +1184,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_NoIssues.eaf",
@@ -1142,7 +1202,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_NoIssues",
         "type": "",
-        "SpkrTier": false
+        "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin"
       }
     ]
   },
@@ -1194,12 +1255,12 @@
       {
         "id": "checkDetails",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_BadNonspkrTierNames.eaf<\/li>\n  <li class=\"\">HD06-1_BadSpkrTierNames.eaf<\/li>\n  <li class=\"\">HD06-1_HasRecheckTier.eaf<\/li>\n  <li class=\"\">HD06-1_MissingAnnotatorAll.eaf<\/li>\n  <li class=\"\">HD06-1_MissingAnnotatorSome.eaf<\/li>\n  <li class=\"\">HD06-1_MissingMultipleSome.eaf<\/li>\n  <li class=\"\">HD06-1_MissingParticipantAll.eaf<\/li>\n  <li class=\"\">HD06-1_MissingParticipantSome.eaf<\/li>\n  <li class=\"\">HD06-1_MissingRedact.eaf<\/li>\n  <li class=\"\">HD06-1_MissingTierIDAll.eaf<\/li>\n  <li class=\"\">HD06-1_MissingTierIDSome.eaf<\/li>\n  <li class=\"\">HD06-1_NoIssues.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD06-1_BadNonspkrTierNames.eaf<\/li>\n  <li class=\"\">HD06-1_BadSpkrTierNames.eaf<\/li>\n  <li class=\"\">HD06-1_HasRecheckTier.eaf<\/li>\n  <li class=\"\">HD06-1_MissingAuthor.eaf<\/li>\n  <li class=\"\">HD06-1_MissingAuthorAndParticipant.eaf<\/li>\n  <li class=\"\">HD06-1_MissingMultipleSome.eaf<\/li>\n  <li class=\"\">HD06-1_MissingParticipantAll.eaf<\/li>\n  <li class=\"\">HD06-1_MissingParticipantSome.eaf<\/li>\n  <li class=\"\">HD06-1_MissingRedact.eaf<\/li>\n  <li class=\"\">HD06-1_MissingTierIDAll.eaf<\/li>\n  <li class=\"\">HD06-1_MissingTierIDSome.eaf<\/li>\n  <li class=\"\">HD06-1_NoIssues.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
         "hasContent": true,
-        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_BadNonspkrTierNames.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>Mismatched tier name (Comment) &amp; Participant attribute (Coment)<\/li>\n      <li>Mismatched tier name (Noie) &amp; Participant attribute (Noise)<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_BadSpkrTierNames.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_HasRecheckTier.eaf:\n    <ul class=\"file-headed\">\n<li>The completed file should not have a tier named Recheck<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingAnnotatorAll.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing an Annotator attribute: HD06<\/li>\n      <li>Tier missing an Annotator attribute: Interviewer HD06<\/li>\n      <li>Tier missing an Annotator attribute: Comment<\/li>\n      <li>Tier missing an Annotator attribute: Noise<\/li>\n      <li>Tier missing an Annotator attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingAnnotatorSome.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing an Annotator attribute: Interviewer HD06<\/li>\n      <li>Tier missing an Annotator attribute: Noise<\/li>\n      <li>Tier missing an Annotator attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingMultipleSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing an Annotator attribute: Tier 2<\/li>\n      <li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingParticipantAll.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Participant attribute: Interviewer HD06<\/li>\n      <li>Tier missing a Participant attribute: Comment<\/li>\n      <li>Tier missing a Participant attribute: Noise<\/li>\n      <li>Tier missing a Participant attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingParticipantSome.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Participant attribute: Noise<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingRedact.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingTierIDAll.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier name attribute: Tier 1<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n      <li>Tier missing a Tier name attribute: Tier 4<\/li>\n      <li>Tier missing a Tier name attribute: Tier 5<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingTierIDSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: inherit;\">\n<li>\n    In file HD06-1_BadNonspkrTierNames.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>Mismatched tier name (Comment) &amp; Participant attribute (Coment)<\/li>\n      <li>Mismatched tier name (Noie) &amp; Participant attribute (Noise)<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_BadSpkrTierNames.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_HasRecheckTier.eaf:\n    <ul class=\"file-headed\">\n<li>The completed file should not have a tier named Recheck<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingAuthor.eaf:\n    <ul class=\"file-headed\">\n<li>File missing an AUTHOR attribute<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingAuthorAndParticipant.eaf:\n    <ul class=\"file-headed\">\n<li>File missing an AUTHOR attribute<\/li>\n      <li>Tier missing a Participant attribute: HD06<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingMultipleSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingParticipantAll.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Participant attribute: Interviewer HD06<\/li>\n      <li>Tier missing a Participant attribute: Comment<\/li>\n      <li>Tier missing a Participant attribute: Noise<\/li>\n      <li>Tier missing a Participant attribute: Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingParticipantSome.eaf:\n    <ul class=\"file-headed\">\n<li>Tier missing a Participant attribute: HD06<\/li>\n      <li>Tier missing a Participant attribute: Noise<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingRedact.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingTierIDAll.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name HD06<\/li>\n      <li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Noise<\/li>\n      <li>There are no tiers with tier name Redaction<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier name attribute: Tier 1<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n      <li>Tier missing a Tier name attribute: Tier 4<\/li>\n      <li>Tier missing a Tier name attribute: Tier 5<\/li>\n    <\/ul>\n<\/li>\n  <li>\n    In file HD06-1_MissingTierIDSome.eaf:\n    <ul class=\"file-headed\">\n<li>There are no tiers with tier name Comment<\/li>\n      <li>There are no tiers with tier name Interviewer HD06 or Trista Pennington<\/li>\n      <li>Tier missing a Tier name attribute: Tier 2<\/li>\n      <li>Tier missing a Tier name attribute: Tier 3<\/li>\n    <\/ul>\n<\/li>\n<\/ul>\n"
       },
       {
         "id": "dictDetails",
@@ -1229,22 +1290,16 @@
       "HD06-1_HasRecheckTier.eaf": [
         "The completed file should not have a tier named Recheck"
       ],
-      "HD06-1_MissingAnnotatorAll.eaf": [
-        "Tier missing an Annotator attribute: HD06",
-        "Tier missing an Annotator attribute: Interviewer HD06",
-        "Tier missing an Annotator attribute: Comment",
-        "Tier missing an Annotator attribute: Noise",
-        "Tier missing an Annotator attribute: Redaction"
+      "HD06-1_MissingAuthor.eaf": [
+        "File missing an AUTHOR attribute"
       ],
-      "HD06-1_MissingAnnotatorSome.eaf": [
-        "Tier missing an Annotator attribute: Interviewer HD06",
-        "Tier missing an Annotator attribute: Noise",
-        "Tier missing an Annotator attribute: Redaction"
+      "HD06-1_MissingAuthorAndParticipant.eaf": [
+        "File missing an AUTHOR attribute",
+        "Tier missing a Participant attribute: HD06"
       ],
       "HD06-1_MissingMultipleSome.eaf": [
         "There are no tiers with tier name Comment",
         "There are no tiers with tier name Interviewer HD06 or Trista Pennington",
-        "Tier missing an Annotator attribute: Tier 2",
         "Tier missing a Participant attribute: HD06",
         "Tier missing a Tier name attribute: Tier 2",
         "Tier missing a Tier name attribute: Tier 3"

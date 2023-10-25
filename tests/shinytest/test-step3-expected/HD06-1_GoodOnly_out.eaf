@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ANNOTATION_DOCUMENT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" AUTHOR="" DATE="2021-11-08T12:44:47-05:00" FORMAT="3.0" VERSION="3.0" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
+<ANNOTATION_DOCUMENT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" AUTHOR="Emma McKibbin" DATE="2021-11-08T12:44:47-05:00" FORMAT="3.0" VERSION="3.0" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
   <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
     <MEDIA_DESCRIPTOR MEDIA_URL="file:///C:/Users/DAV49/OneDrive - University of Pittsburgh/Research/Scripts and Corpora/PSSP/Transcription/ASR-Assisted Transcription Fall 2021/ASR-Assisted Transcription Shared Folder/Sounds and Transcripts/HD06-1.mp3" MIME_TYPE="audio/*" RELATIVE_MEDIA_URL="../../../../../../Scripts and Corpora/PSSP/Transcription/ASR-Assisted Transcription Fall 2021/ASR-Assisted Transcription Shared Folder/Sounds and Transcripts/HD06-1.mp3"/>
     <PROPERTY NAME="URN">urn:nl-mpi-tools-elan-eaf:f9b95415-92db-4077-8dc8-6da8f856440d</PROPERTY>

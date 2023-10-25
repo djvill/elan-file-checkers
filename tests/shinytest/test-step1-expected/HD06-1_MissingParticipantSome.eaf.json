@@ -32,7 +32,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantSome",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingParticipantSome.eaf",
@@ -49,6 +50,7 @@
         "FileSuffix": "-1_MissingParticipantSome",
         "type": "",
         "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin",
         "PARTICIPANT": "Interviewer HD06"
       },
       {
@@ -66,6 +68,7 @@
         "FileSuffix": "-1_MissingParticipantSome",
         "type": "",
         "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin",
         "PARTICIPANT": "Comment"
       },
       {
@@ -82,7 +85,8 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantSome",
         "type": "",
-        "SpkrTier": true
+        "SpkrTier": true,
+        "AUTHOR": "Emma McKibbin"
       },
       {
         "File": "HD06-1_MissingParticipantSome.eaf",
@@ -99,6 +103,7 @@
         "FileSuffix": "-1_MissingParticipantSome",
         "type": "",
         "SpkrTier": false,
+        "AUTHOR": "Emma McKibbin",
         "PARTICIPANT": "Redaction"
       }
     ]

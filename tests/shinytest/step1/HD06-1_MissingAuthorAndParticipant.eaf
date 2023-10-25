@@ -1601,8 +1601,8 @@
         <TIME_SLOT TIME_SLOT_ID="ts1589" TIME_VALUE="2416949"/>
         <TIME_SLOT TIME_SLOT_ID="ts1590" TIME_VALUE="2416949"/>
     </TIME_ORDER>
-    <TIER LINGUISTIC_TYPE_REF="default-lt"
-        PARTICIPANT="HD06" TIER_ID="HD06">
+    <TIER ANNOTATOR="Emma McKibbin" LINGUISTIC_TYPE_REF="default-lt"
+        TIER_ID="HD06">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a7"
                 TIME_SLOT_REF1="ts11" TIME_SLOT_REF2="ts12">
@@ -6251,7 +6251,7 @@
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>
-    <TIER LINGUISTIC_TYPE_REF="default-lt"
+    <TIER ANNOTATOR="Emma McKibbin" LINGUISTIC_TYPE_REF="default-lt"
         PARTICIPANT="Comment" TIER_ID="Comment">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1012"

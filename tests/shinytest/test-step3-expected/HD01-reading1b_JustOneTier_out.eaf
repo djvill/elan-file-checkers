@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ANNOTATION_DOCUMENT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" AUTHOR="" DATE="2022-07-18T12:19:11-05:00" FORMAT="3.0" VERSION="3.0" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
+<ANNOTATION_DOCUMENT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" AUTHOR="Emma McKibbin" DATE="2022-07-18T12:19:11-05:00" FORMAT="3.0" VERSION="3.0" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
   <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
     <MEDIA_DESCRIPTOR MEDIA_URL="file:///C:/Users/jelaw/Downloads/HD01reading1b.WAV" MIME_TYPE="audio/x-wav" RELATIVE_MEDIA_URL="../../../../Downloads/HD01reading1b.WAV"/>
     <PROPERTY NAME="URN">urn:nl-mpi-tools-elan-eaf:eb8a9a97-46d0-408c-9c65-b0a9abe7b7a1</PROPERTY>

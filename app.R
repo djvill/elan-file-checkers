@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "1.1.4"
+vers <- "1.2.0"
 
 ##Debugging
 ##  (See also info about "interactive use" below)
@@ -30,7 +30,11 @@ spkrNumExtractRegex <- "([A-Z]{2})(\\d+)(?:and\\d+)?"
 ##Required non-speaker tiers
 nonSpkrTiers <- c("Comment","Noise","Redaction")
 ##Tiers that should never be present
-prohibTiers <- c("Text","Recheck")
+prohibTiers <- c("Recheck",
+                 "Text",                                      ##From CLOx
+                 paste0("SPEAKER_0", 0:9),                    ##From AI segmentation
+                 "NoMatch - Word","NoMatch - Turn","Overlap"  ##From Fill-Batchalign-Words
+                 )
 
 ##Dictionary checking
 ##Include local version of aplsDict.txt? Include ONLY local version?
@@ -110,7 +114,7 @@ source("eaf-utils.R")
 ##Function that takes a one-file tier df as input (meant to be used with a
 ##  subset of rows in tierDF() reactive) and outputs nested list of tier 
 ##  issues
-tierIssuesOneFile <- function(df, filename, prohibTiers=NULL) {
+tierIssuesOneFile <- function(df, prohibTiers=NULL) {
   library(dplyr)
   library(purrr)
   library(stringr)
@@ -158,8 +162,14 @@ tierIssuesOneFile <- function(df, filename, prohibTiers=NULL) {
                               paste(interviewerTier, collapse=" or ")))
   }
   
-  ##Handle missing attributes
-  checkAttrs <- c("ANNOTATOR", "PARTICIPANT", "TIER_ID")
+  ##Detect missing/empty AUTHOR attribute
+  if (any(is.na(df$AUTHOR)) || any(df$AUTHOR == "")) {
+    issues <- c(issues, paste("File missing an AUTHOR attribute"))
+  }
+  
+  ##Handle missing tier attributes
+  # checkAttrs <- c("ANNOTATOR", "PARTICIPANT", "TIER_ID")
+  checkAttrs <- c("PARTICIPANT", "TIER_ID")
   missingAttr <- function(x) {
     ##String formatting for output
     attrTitle <- if_else(x=="TIER_ID", "Tier name", str_to_title(x))
@@ -958,7 +968,7 @@ server <- function(input, output) {
     # Step 1: Tier check ------------------------------------------------------
     ##Content
     tierSubhead <- h3(paste("The tier checker returned the following issue(s),",
-                            "which can be resolved using Change Tier Attributes in Elan:"),
+                            "which can be resolved in Elan using Set Author and/or Change Tier Attributes:"),
                       id="tierSubhead") %>% 
       ##By default, don't display
       undisplay()
