@@ -11,7 +11,7 @@ library(magrittr)
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "1.2.0"
+vers <- "1.2.1"
 
 ##Debugging
 ##  (See also info about "interactive use" below)
@@ -31,9 +31,10 @@ spkrNumExtractRegex <- "([A-Z]{2})(\\d+)(?:and\\d+)?"
 nonSpkrTiers <- c("Comment","Noise","Redaction")
 ##Tiers that should never be present
 prohibTiers <- c("Recheck",
-                 "Text",                                      ##From CLOx
-                 paste0("SPEAKER_0", 0:9),                    ##From AI segmentation
-                 "NoMatch - Word","NoMatch - Turn","Overlap"  ##From Fill-Batchalign-Words
+                 "Text",                                                 ##From CLOx
+                 paste0("SPEAKER_0", 0:9),                               ##From AI segmentation
+                 paste0("PAR", 0:9), paste0("wor@", paste0("PAR", 0:9)), ##From Batchalign
+                 "NoMatch - Word","NoMatch - Turn","Overlap"             ##From Fill-Batchalign-Words
                  )
 
 ##Dictionary checking
