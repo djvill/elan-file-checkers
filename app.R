@@ -59,8 +59,11 @@ overlapThresh <- 500						# Not yet modularized
 timeDisp <- "HMS"						# Not yet modularized
 ##Include Redaction tier in overlap-fixing?
 fixOverlapRedact <- TRUE
-##Check for zero-width post-fixing annotations (can cause issues)
-checkZeroWidth <- FALSE						# Not yet modularized
+##Check for 0-width post-fixing annotations (can cause issues)
+##  "error" = throw error in fixOverlapsTier()
+##  "drop" = silently drop 0-width annotations at end of fixOverlaps()
+##  NULL = don't check
+checkZeroWidth <- "drop"						# Not yet modularized
 
 ##Exit-early overrides, for debugging
 overrideExit <- list(fileName = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
@@ -546,7 +549,7 @@ fixOverlapsTier <- function(overlapBounds, eaflist, eafName) {
   ##This could happen if the annotation is less than overlapThresh wide and
   ##  is fully contained within another annotation on another tier. Could
   ##  mitigate this by re-running with a smaller overlapThresh
-  if (checkZeroWidth) {
+  if (!is.null(checkZeroWidth) && checkZeroWidth=="error") {
     zeroWidth <- 
       overlapBoundsFixed %>%
       ##Remove annotations that only have one boundary in overlapBoundsFixed
@@ -644,7 +647,7 @@ fixOverlaps <- function(tierNamesFile, eafName, eaflist) {
     ##Old post is new pre
     overlapsPre <- overlapsPost
     
-    ##Fix each tier in turn
+    ##Fix each tier in order
     for (tier in rev(tierNamesFile)) {
       ##Re-assess overlaps now that eaflist has been modified
       newTimesEAF <- 
@@ -670,6 +673,32 @@ fixOverlaps <- function(tierNamesFile, eafName, eaflist) {
       message("nrow(overlapsPre): ", map_int(overlapsPre, nrow) %>% paste(collapse=" "))
       message("nrow(overlapsPost): ", map_int(overlapsPost, nrow) %>% paste(collapse=" "))
     }
+  }
+  
+  ##Optionally remove 0-width turns from eaflist
+  if (!is.null(checkZeroWidth) && checkZeroWidth=="drop") {
+    ##Get updated times
+    newestTimes <- 
+      eaflist %>%
+      pluck(eafName) %>% 
+      getTimes(tiers=tierNamesFile)
+    ##Get annotation IDs of 0-width turns
+    noWidth <- 
+      newestTimes %>% 
+      map(~ .x %>% 
+            filter(Start==End) %>% 
+            pull(ANNOTATION_ID)) %>% 
+      reduce(c)
+    
+    ##Xpath to select parent ANNOTATION node of each 0-width node
+    noWidthXpath <-
+      paste0("//ALIGNABLE_ANNOTATION[@ANNOTATION_ID='", noWidth, "']/..", 
+             collapse=" | ")
+    ##Remove turns
+    eaflist %>% 
+      pluck(eafName) %>% 
+      xml_find_all(noWidthXpath) %>% 
+      xml_remove()
   }
   
   ##Return overlapsPost
