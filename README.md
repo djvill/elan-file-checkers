@@ -4,6 +4,12 @@
 
 This repo contains code for the [APLS Elan file checker](https://djvill.shinyapps.io/apls_elan_file_checker/), a Shiny app that helps transcribers conform their Elan files to [LaBB-CAT](https://labbcat.canterbury.ac.nz/system/) specifications. It was developed by Dan Villarreal, originally for the [New Zealand Institute of Language, Brain, and Behaviour](https://www.canterbury.ac.nz/nzilbb/) and more recently for the [Archive of Pittsburgh Language and Speech (APLS)](https://labb-cat.linguistics.pitt.edu/labbcat/). The code for the original apps has been archived to the [`southland` branch](https://github.com/djvill/elan-file-checkers/tree/southland).
 
+**If you use this code in any published work, please cite it.** Citing open code is a small thing you can do to ensure that researchers have the incentive to keep making code open.
+
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
+
+[cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
+[cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
 
 ## Why an Elan file checker?
 
@@ -13,11 +19,11 @@ Elan is a free, flexible software tool for annotating linguistic data. LaBB-CAT 
 
 - Elan allows users to name tiers and speakers however they wish. In turn, LaBB-CAT allows the user to merge or rename speaker records, which may be necessary to ensure conformity to corpus conventions; the resulting disagreement between LaBB-CAT's version of a file and the original file can create major issues if the file is re-uploaded somewhere down the line (e.g., to add topic-tagged tiers).
 
-- <a id="elan-spell-check"> Elan includes a spell-checker, but this doesn't include the myriad words that will inevitably need to be added to any corpus's dictionary (e.g., *Coraopolis*), and updating a custom dictionary across research assistants' computers is onerous. Without spell-checking capabilities, the responsibility for correcting bona fide misspellings (e.g., *Coropulis*) is downstreamed to the corpus manager. The presence of out-of-dictionary words in a transcript interferes with automatic phonetic alignment in LaBB-CAT, as any annotation that can't be mapped to a phonemic representation prevents the alignment of the turn in which this annotation is found.
+- <a id="elan-spell-check"></a> Elan includes a spell-checker, but this doesn't include the myriad words that will inevitably need to be added to any corpus's dictionary (e.g., *Coraopolis*), and updating a custom dictionary across research assistants' computers is onerous. Without spell-checking capabilities, the responsibility for correcting bona fide misspellings (e.g., *Coropulis*) is downstreamed to the corpus manager. The presence of out-of-dictionary words in a transcript interferes with automatic phonetic alignment in LaBB-CAT, as any annotation that can't be mapped to a phonemic representation prevents the alignment of the turn in which this annotation is found.
 
-- <a id="elan-hard-to-align"> Elan's user interface makes it rather difficult to align turn boundaries on multiple tiers (unlike Praat, which provides an easy way to duplicate alignments on multiple tiers; or Transcriber, in which time intervals are explicitly mapped to one or more tiers); this can result in short overlaps that are imperceptible to the Elan GUI user. These easily created overlaps make a mess in LaBB-CAT, where they become short orphan turns.
+- <a id="elan-hard-to-align"></a> Elan's user interface makes it rather difficult to align turn boundaries on multiple tiers (unlike Praat, which provides an easy way to duplicate alignments on multiple tiers; or Transcriber, in which time intervals are explicitly mapped to one or more tiers); this can result in short overlaps that are imperceptible to the Elan GUI user. These easily created overlaps make a mess in LaBB-CAT, where they become short orphan turns.
 
-- <a id="elan-overlaps"> Elan also allows for turns to overlap in a way that messes with LaBB-CAT's automatic phonetic alignment performed via HTK or MFA. For example, if the main speaker's utterances from 0:40 to 0:55 are transcribed in a single turn and an interviewer's backchannel is transcribed from 0:46 to 0:47, LaBB-CAT refuses to align the entire main-speaker turn from 0:40 to 0:55.
+- <a id="elan-overlaps"></a> Elan also allows for turns to overlap in a way that messes with LaBB-CAT's automatic phonetic alignment performed via HTK or MFA. For example, if the main speaker's utterances from 0:40 to 0:55 are transcribed in a single turn and an interviewer's backchannel is transcribed from 0:46 to 0:47, LaBB-CAT refuses to align the entire main-speaker turn from 0:40 to 0:55.
 
 
 ## What do they do?
