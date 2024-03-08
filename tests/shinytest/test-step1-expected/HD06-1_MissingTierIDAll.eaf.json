@@ -32,7 +32,6 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDAll",
         "type": "",
-        "SpkrTier": true,
         "AUTHOR": "Emma McKibbin"
       },
       {
@@ -49,7 +48,6 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDAll",
         "type": "",
-        "SpkrTier": true,
         "AUTHOR": "Emma McKibbin"
       },
       {
@@ -66,7 +64,6 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDAll",
         "type": "",
-        "SpkrTier": false,
         "AUTHOR": "Emma McKibbin"
       },
       {
@@ -83,7 +80,6 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDAll",
         "type": "",
-        "SpkrTier": false,
         "AUTHOR": "Emma McKibbin"
       },
       {
@@ -100,7 +96,6 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingTierIDAll",
         "type": "",
-        "SpkrTier": false,
         "AUTHOR": "Emma McKibbin"
       }
     ]

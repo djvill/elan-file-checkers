@@ -69,7 +69,7 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
         "type": "",
-        "SpkrTier": true,
+        "SpkrTier": false,
         "AUTHOR": "Emma McKibbin"
       },
       {
@@ -87,7 +87,7 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_BadNonspkrTierNames",
         "type": "",
-        "SpkrTier": false,
+        "SpkrTier": true,
         "AUTHOR": "Emma McKibbin"
       },
       {

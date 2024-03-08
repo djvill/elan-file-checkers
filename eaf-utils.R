@@ -88,11 +88,11 @@ tierInfo <- function(x, df, nonSpeakerTiers=NULL) {
     ##Add info from fileDF
     left_join(df, by="File")
   
-  if (!is.null(out$PARTICIPANT)) {
+  if ("TIER_ID" %in% colnames(out)) {
     ##Add SpkrTier (is the tier a speaker tier?)
     if (!is.null(nonSpeakerTiers)) {
       out <- out %>% 
-        mutate(SpkrTier = !(tolower(PARTICIPANT) %in% tolower(nonSpeakerTiers)))
+        mutate(SpkrTier = !(tolower(TIER_ID) %in% tolower(nonSpeakerTiers)))
     } else {
       out$SpkrTier <- TRUE
     }
@@ -174,8 +174,8 @@ getOverlapTiers <- function(df, inclRedact=TRUE) {
   library(dplyr)
   library(purrr)
   
-  ##Account for missing Participant attribute (which blocks SpkrTier)
-  if (is.null(df$PARTICIPANT)) {
+  ##Account for missing TIER_ID attribute (which blocks SpkrTier)
+  if (!("TIER_ID" %in% colnames(df))) {
     df$SpkrTier <- FALSE
   }
   

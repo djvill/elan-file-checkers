@@ -85,7 +85,7 @@
         "SpeakerNum": 6,
         "FileSuffix": "-1_MissingParticipantSome",
         "type": "",
-        "SpkrTier": true,
+        "SpkrTier": false,
         "AUTHOR": "Emma McKibbin"
       },
       {
