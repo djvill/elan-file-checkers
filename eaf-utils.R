@@ -106,44 +106,61 @@ tierInfo <- function(x, df, nonSpeakerTiers=NULL) {
   out
 }
 
-##Lower-level function called by eafs_to_df() and eafDir_to_df()
-xmllist_to_df <- function(x, df_nesting=c("None","File","Tier"), tierText=FALSE,
-                          nonSpeakerTiers=NULL, inclRedact=TRUE) {
+##Given a single xml_document, return a list of dataframes of tier annotations,
+##  one for each tier. Includes file metadata as attributes for object, and 
+##  tier metadata as attributes for dataframe-elements
+##To get tier info, pipe this function's output into 
+##  map_dfr(~ .x %>%
+##            attributes() %>%
+##            discard_at(c("class", "row.names", "names")),
+##          .id="TIER_ID")
+eaf_to_df_list <- function(x, annotation_metadata=FALSE) {
+  library(xml2)
   library(purrr)
+  library(tidyr)
+  library(dplyr)
   
-  ##Check inputs
-  df_nesting <- match.arg(df_nesting)
-  cls <- x %>% 
-    map_lgl(~ "xml_document" %in% class(.x))
-  if (!all(cls)) {
-    stop("All elements of x must be an XML document")
+  if (!("xml_document" %in% class(x))) {
+    stop("x must be an XML document")
   }
   
-  ##Get list of each file's tier names to include
-  tierDF <- tierInfo(x, nonSpeakerTiers=nonSpeakerTiers)
-  if ("TIER_ID" %in% colnames(tierDF)) {
-    tierNames <- getOverlapTiers(tierDF, inclRedact)
-  } else {
-    tierNames <- seq_len(nrow(tierDF))
+  ##Get file attributes
+  fileAttr <- xml_attrs(x)
+  
+  ##Get tier names & attributes
+  tierAttr <-
+    x %>% 
+    xml_find_all("//TIER") %>% 
+    map_dfr(xml_attrs)
+  if (!("TIER_ID" %in% colnames(tierAttr))) {
+    tierAttr$TIER_ID <- seq_len(nrow(tierAttr))
   }
   
   ##Get timing data
-  times <- list(eaf = x,
-                tiers = tierNames) %>%
-    pmap(getTimes, tierText=tierText)
-  
-  ##Return timing dataframe nested by Tier, File, or not at all
-  if (df_nesting=="Tier") {
-    times
-  } else if (df_nesting=="File") {
-    times %>% 
-      map(~ map_dfr(.x, as.data.frame, .id="Tier"))
-  } else if (df_nesting=="None") {
-    times %>%
-      map_dfr(~ map_dfr(.x, as.data.frame, .id="Tier"), 
-              .id="File")
+  times <- getTimes(x, tierAttr$TIER_ID)
+  if (!annotation_metadata) {
+    times <- times %>% 
+      map(~ select(.x, Start, End, Text))
   }
+  
+  ##Put data & metadata together
+  out <- times
+  ##Format & add tier attributes
+  tierAttrList <- 
+    tierAttr %>% 
+    nest(data = -TIER_ID) %>% 
+    pull(data, TIER_ID) %>% 
+    map(as.list)
+  out <- out %>% 
+    ##Preserve existing attributes (i.e., column names)
+    map2(tierAttrList, ~`attributes<-`(.x, c(attributes(.x), .y)))
+  ##Add file attributes
+  attributes(out) <- c(attributes(out), fileAttr)
+  
+  out
 }
+
+##Lower-level function called by eafs_to_df() and eafDir_to_df()
 
 ##From a named character vector of paths, creates a list of XML objects
 ##In the app, datapath is a temporary path *without* the original filename,
@@ -217,7 +234,7 @@ getOverlapTiers <- function(df, inclRedact=TRUE) {
 
 ##Function that takes a tier name, eaf file, and file-wide time slot DF as
 ##  input and outputs actual times for annotations
-getTimesTier <- function(tierName, eaf, timeSlots, tierText=FALSE) {
+getTimesTier <- function(tierName, eaf, timeSlots) {
   library(stringr)
   library(xml2)
   library(dplyr)
@@ -231,11 +248,11 @@ getTimesTier <- function(tierName, eaf, timeSlots, tierText=FALSE) {
   tierNode <- xml_find_first(eaf, tierPath)
   
   ##Get turn time-slot IDs as a dataframe
-  parentTier <- xml_attr(tierNode, "PARENT_REF")
-  if (is.na(parentTier)) {
-    turnPath <- ".//ALIGNABLE_ANNOTATION"
-  } else {
+  childTier <- !is.na(xml_attr(tierNode, "PARENT_REF"))
+  if (childTier) {
     turnPath <- ".//REF_ANNOTATION"
+  } else {
+    turnPath <- ".//ALIGNABLE_ANNOTATION"
   }
   turnNodes <- xml_find_all(tierNode, turnPath)
   timesTier <- 
@@ -243,28 +260,30 @@ getTimesTier <- function(tierName, eaf, timeSlots, tierText=FALSE) {
     xml_attrs() %>% 
     bind_rows()
   
-  ##If tier is empty, return NULL (will be immediately discard()ed)
+  ##If tier is empty, return 0-row dataframe
   if (nrow(timesTier)==0) {
-    return(NULL)
+    emptyTimes <- tibble(ANNOTATION_ID = character(),
+                         TIME_SLOT_REF1 = character(),
+                         TIME_SLOT_REF2 = character(),
+                         Start = numeric(),
+                         End = numeric(),
+                         Text = character())
+    return(emptyTimes)
   }
   
-  ##If turn is a dependency, add time-slot IDs from parent tier
-  if (!is.na(parentTier)) {
+  ##If tier is a dependency, add time-slot IDs from parent tier
+  if (childTier) {
+    parent <- xml_attr(tierNode, "PARENT_REF")
     ##Get parent annotation IDs
     timesParent <- 
-      xml_find_all(eaf, str_glue("//TIER[@TIER_ID='{parentTier}']//ALIGNABLE_ANNOTATION")) %>% 
+      xml_find_all(eaf, str_glue("//TIER[@TIER_ID='{parent}']//ALIGNABLE_ANNOTATION")) %>% 
       xml_attrs() %>% 
       bind_rows()
     ##Add to tier
     timesTier <- timesTier %>% 
-      left_join(timesParent %>% rename(ANNOTATION_REF = ANNOTATION_ID),
+      left_join(timesParent %>% 
+                  rename(ANNOTATION_REF = ANNOTATION_ID),
                 "ANNOTATION_REF")
-  }
-  
-  ##Optionally add Text
-  if (tierText) {
-    timesTier <- timesTier %>% 
-      mutate(Text = xml_text(turnNodes))
   }
   
   ##Add actual times
@@ -279,6 +298,12 @@ getTimesTier <- function(tierName, eaf, timeSlots, tierText=FALSE) {
                        End = TIME_VALUE),
               by="TIME_SLOT_REF2") %>% 
     relocate(Start, End, .after=TIME_SLOT_REF2)
+  
+  ##Add Text
+  timesTier <- timesTier %>% 
+    mutate(Text = xml_text(turnNodes))
+  
+  timesTier
 }
 
 ##Wrapper function around getTimesTier() that takes a single EAF file and name
@@ -289,7 +314,7 @@ getTimesTier <- function(tierName, eaf, timeSlots, tierText=FALSE) {
 ##N.B. This function outputs a list of DFs rather than a single DF because the
 ##  list structure makes it easier to detect overlaps in fixOverlaps() (by
 ##  comparing the timings on a given speaker tier to all other speaker tiers)
-getTimes <- function(eaf, tiers, tierText=FALSE) {
+getTimes <- function(eaf, tiers) {
   library(xml2)
   library(dplyr)
   library(purrr)
@@ -309,9 +334,7 @@ getTimes <- function(eaf, tiers, tierText=FALSE) {
   timesEAF <- 
     tiers %>% 
     set_names(., .) %>% 
-    map(getTimesTier, eaf, timeSlots, tierText=tierText) %>%
-    ##Only nonempty tiers
-    discard(is.null)
+    map(getTimesTier, eaf, timeSlots)
   
   timesEAF
 }
