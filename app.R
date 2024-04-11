@@ -19,12 +19,10 @@ vers <- "1.3.1"
 showDebug <- FALSE
 
 ##File structures
-##Regex for extracting SpkrCode and FileSuffix columns using tidyr::extract();
-##  should specify exactly two capturing groups
-spkrExtractRegex <- "^((?:CB|FH|HD|LV)\\d+(?:and\\d+)?)\\.?(.+)\\..+?$"
-##Regex for extracting Neighborhood and SpeakerNum columns using
-##  tidyr::extract(); should specify exactly two capturing groups
-spkrNumExtractRegex <- "([A-Z]{2})(\\d+)(?:and\\d+)?"
+##Regex for extracting SpkrCode column from filenames
+spkrCodeRegex <- "^(CB|FH|HD|LV)\\d+(and\\d+)?"
+##Regex for extracting Neighborhood column from SpkrCode
+neighborhoodRegex <- "^(CB|FH|HD|LV)"
 
 ##Tier checking
 ##Required non-speaker tiers
@@ -97,7 +95,7 @@ ui <- fluidPage(
     
     ##UI details are complicated, so they all take place in output$out
     mainPanel(uiOutput("debug"),
-              uiOutput("export"), ##Never shown
+              # uiOutput("export"), ##Never shown
               uiOutput("out"))
   )
 )
@@ -113,6 +111,7 @@ source("eaf-utils.R")
 ## - getOverlapTiers()
 ## - getTimesTier()
 ## - getTimes()
+
 
 ## Tiers ==================================================================
 ##Function that takes a one-file tier df as input (meant to be used with a
@@ -847,16 +846,41 @@ is.displayed <- function(x) {
 server <- function(input, output) {
   # Set up file structures --------------------------------------------------
   
-  ##Dataframe of files
-  fileDF <- eventReactive(input$files,
-                          fileInfo(input$files, spkrExtractRegex, spkrNumExtractRegex))
+  ##Read files: Get a list with one element per file. Each element is either an
+  ##  xml_document (if read_xml() succeeded) or the error message thrown by 
+  ##  read_xml()
+  eaflist <- eventReactive(input$files, {
+    # reactive({
+    input$files %>% 
+      pull(datapath, name) %>% 
+      ##Get safely() list of results and errors
+      map(safely(read_xml)) %>% 
+      ##Turn into a list of results *or* errors
+      map_if(~ !is.null(.x$result), "result", .else="error")
+  })
+  ##Get a dataframe of error or no error (for validation below)
+  readDF <- reactive({
+    eaflist() %>% 
+      map_lgl(~ "xml_document" %in% class(.x)) %>% 
+      tibble(name = names(.), FileReadValid = .)
+  })
   
-  ##Read files: Get a list that's nrow(fileDF()) long, each element an xml_document
-  eaflist <- reactive({
-    req(all(fileDF()$FileNameValid) || overrideExit$fileName)
-    fileDF()$datapath %>% 
-      set_names(fileDF()$File) %>% 
-      read_eafs()
+  ##File info: speaker code, neighborhood, file extension
+  ##Speaker code & file extension used for validation, neighborhood & speaker
+  ##  code for matching interviewer
+  fileDF <- eventReactive(input$files, {
+    parse_filenames(input$files$name, spkrCodeRegex, neighborhoodRegex)
+  })
+  ##Add columns for validation info: speaker code initial, eaf file extension,
+  ##  actual xml file
+  validationDF <- reactive({
+    fileDF() %>% 
+      mutate(FileExtValid = FileExt=="eaf",
+             SpkrCodeValid = !is.na(SpkrCode)) %>% 
+      left_join(readDF(), "name") %>% 
+      select(name, ends_with("Valid")) %>% 
+      rowwise() %>% 
+      mutate(Valid = all(c_across(-name)))
   })
   
   ##Get tier info as a single dataframe
@@ -910,18 +934,18 @@ server <- function(input, output) {
       require(jsonlite)
       undisplay(div(prettify(toJSON(x), 2), id=nm))
     }
-    
+
     ##First element: fileDF() (datapath is just a temporary path)
     export <- list(pack_val(fileDF() %>% select(-c(datapath, size)), "fileDF"))
-    
+
     ##If step 0 passed, add tierDF() & at least one eaflist()
     if (all(fileDF()$FileNameValid)) {
       tagList(export,
-              pack_val(tierDF() %>% 
+              pack_val(tierDF() %>%
                          select(-any_of(c("datapath", "size"))), "tierDF"),
-              pack_val(eaflist() %>% 
-                         xmllist_to_df(df_nesting="Tier", 
-                                       nonSpeakerTiers=c("Comment","Noise","Redaction")), 
+              pack_val(eaflist() %>%
+                         xmllist_to_df(df_nesting="Tier",
+                                       nonSpeakerTiers=c("Comment","Noise","Redaction")),
                        "eaflist"))
     } else {
       ##If failing step0, export just fileDF()
@@ -950,44 +974,53 @@ server <- function(input, output) {
     exitEarly <- FALSE
     
     
-    # Step 0: File name check -------------------------------------------------
-    checkHead <- h1("Checking the following files...",
-                    id="checkHead")
+    # Step 0: File check -----------------------------------------------------
+    fileCheckHead <- h1("Checking the following files...",
+                        id="fileCheckHead")
+    
     
     ##Get bullet-list of filenames (styling bad ones in red)
-    checkDetails <- tags$ul(
-      fileDF() %>% 
-        mutate(Class = if_else(FileNameValid, "", "bad")) %>% 
-        pull(Class, File) %>% 
+    fileList <- tags$ul(
+      validationDF() %>% 
+        mutate(Class = if_else(Valid, "", "bad")) %>% 
+        pull(Class, name) %>% 
         imap(~ tags$li(.y, class=.x)),
-      id="checkDetails", class="details"
+      id="fileList", class="details"
     )
     
     ##Style headings based on whether filenames are valid
-    fileNameHead <- h2("Correct file names and re-upload",
-                       id="fileNameHead")
-    fileNameValid <- all(fileDF()$FileNameValid)
-    if (fileNameValid) {
-      fileNameHead <- undisplay(fileNameHead)
-      fileNameSubhead <- h3("", id="fileNameSubhead") %>% 
+    # fileNameHead <- h2("Correct file names and re-upload",
+    #                    id="fileNameHead")
+    fileCheckValid <- all(validationDF()$Valid)
+    if (fileCheckValid) {
+      fileCheckSubhead <- h3("", id="fileCheckSubhead") %>% 
         undisplay()
     } else {
-      fileNameHead <- display(fileNameHead) %>%
-        tagAppendAttributes(class="bad")
       stepHeads <- stepHeads %>%
         map(tagAppendAttributes, class="grayout")
+      
       ##Extra-informative error message
       fileNameTips <- character(0L)
-      if (any(!fileDF()$SpkrCodeValid)) {
+      if (any(!validationDF()$SpkrCodeValid)) {
         fileNameTips <- c(fileNameTips, "begin with a speaker code")
       }
-      if (any(!fileDF()$FileExtValid)) {
+      if (any(!validationDF()$FileExtValid)) {
         fileNameTips <- c(fileNameTips, "end with the .eaf file extension")
       }
-      fileNameSubhead <- h3(paste("Files must", 
-                                  paste(fileNameTips, collapse=" and ")), 
-                            id="fileNameSubhead") %>% 
+      if (any(!validationDF()$FileReadValid)) {
+        fileNameTips <- c(fileNameTips, "be readable by Elan")
+      }
+      if (length(fileNameTips) > 1) {
+        fileNameTips <- paste0("(", seq_along(fileNameTips), ") ", fileNameTips)
+      }
+      fileCheckSubhead <- h3(paste0("Files must ", 
+                                    str_flatten_comma(fileNameTips, ", and "),
+                                    "."), 
+                            id="fileCheckSubhead") %>% 
         display()
+      
+      ##Edge case: Throw error if !fileCheckValid but no fileNameTips
+      stopifnot(length(fileNameTips) > 0)
       
       ##Exit early
       exitEarly <- TRUE
@@ -1238,11 +1271,10 @@ server <- function(input, output) {
     ##Construct tag list
     tagList(
       ##"Checking the following files" and bullet-list (styling bad files)
-      checkHead,
-      checkDetails,
+      fileCheckHead,
+      fileList,
       ##Step 0: Check file names (only displays if failed)
-      fileNameHead,
-      fileNameSubhead,
+      fileCheckSubhead,
       ##Step 1: Check tiers
       stepHeads$tiers,
       tierSubhead,

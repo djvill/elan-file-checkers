@@ -3,61 +3,21 @@
 ## Originally developed for Elan File Checker(s), but usable(ish) as standalone functions
 
 
-## EAF conversion ---------------------------------------------------------
-##Functions to be used interactively rather than in the actual app
-
-##Get a dataframe from several paths to EAFs
-eafs_to_df <- function(..., df_nesting="None", tierText=FALSE,
-                       nonSpeakerTiers=c("Comment","Noise","Redaction")) {											 
-  eaflist <- unlist(list(...))
-  xmllist <- read_eafs(eaflist)
-  xmllist_to_df(xmllist, df_nesting=df_nesting, tierText=tierText,
-                nonSpeakerTiers=nonSpeakerTiers)
-}
-
-##Get a dataframe from a directory with several EAFs
-eafDir_to_df <- function(eafDir, df_nesting="None", tierText=FALSE,
-                         pattern=".+\\.eaf$", 
-                         nonSpeakerTiers=c("Comment","Noise","Redaction")) {
-  eaflist <- dir(eafDir, pattern=pattern, full.names=TRUE)
-  xmllist <- read_eafs(eaflist)
-  xmllist_to_df(xmllist, df_nesting=df_nesting, tierText=tierText,
-                nonSpeakerTiers=nonSpeakerTiers)
-}
-
-
 ## File setup -------------------------------------------------------------
-##Dataframe of file information
-fileInfo <- function(x, 
-                     spkrRE="^((?:CB|FH|HD|LV)\\d+(?:and\\d+)?)\\.?(.+)\\..+?$",
-                     spkrNumRE="([A-Z]{2})(\\d+)(?:and\\d+)?") {
+
+##Given input$files$name, extract file extension, speaker code, and neighborhood
+parse_filenames <- function(x, 
+                            spkrCodeRE="^(CB|FH|HD|LV)\\d+(and\\d+)?",
+                            neighborhoodRE="^(CB|FH|HD|LV)") {
   library(dplyr)
-  library(tidyr)
   library(stringr)
-  
-  if (!is.data.frame(x) || nrow(x)==0 || all(!(c("File","name") %in% colnames(x)))) {
-    stop("x must be a dataframe with at least one row & column called either File or name")
-  }
-  
-  if ("name" %in% colnames(x) && !("File" %in% colnames(x))) {
-    x <- x %>% 
-      rename(File = name)
-  }
+  library(tools)
   
   ##Add file info
-  x %>% 
-    ##Add neighborhood, speaker number, and file number
-    ##Will need to be extended to multiple speakers, non-interview tasks, etc.
-    tidyr::extract(File, c("SpkrCode", "FileSuffix"), spkrRE, FALSE, TRUE) %>% 
-    tidyr::extract(SpkrCode, c("Neighborhood", "SpeakerNum"), spkrNumRE, FALSE, TRUE) %>% 
-    ##Add file extension
-    mutate(FileExt = str_extract(File, "[^\\.]+$"),
-           FileExtValid = FileExt=="eaf",
-           SpkrCodeValid = !is.na(SpkrCode),
-           FileNameValid = FileExtValid & SpkrCodeValid,
-           .after=File) %>% 
-    ##Sort
-    arrange(Neighborhood, SpeakerNum, FileSuffix, File)
+  data.frame(name = x) %>% 
+    mutate(SpkrCode = str_extract(name, spkrCodeRE),
+           Neighborhood = str_extract(SpkrCode, neighborhoodRE),
+           FileExt = file_ext(name))
 }
 
 ##Dataframe of tier information
@@ -158,29 +118,6 @@ eaf_to_df_list <- function(x, annotation_metadata=FALSE) {
   attributes(out) <- c(attributes(out), fileAttr)
   
   out
-}
-
-##Lower-level function called by eafs_to_df() and eafDir_to_df()
-
-##From a named character vector of paths, creates a list of XML objects
-##In the app, datapath is a temporary path *without* the original filename,
-##  so specifying original filenames as vector names preserves orig filenames;
-##  if any names unspecified, basenames are substituted
-##Doesn't check for valid paths, because in the app that's handled by
-##  req(all(fileDF()$FileNameValid))
-read_eafs <- function(datapath, filename) {
-  library(purrr)
-  library(xml2)
-  
-  if (!is.character(datapath)) {
-    stop("datapath must be a character vector")
-  }
-  
-  if (any(is.null(names(datapath)))) {
-    names(datapath) <- make.unique(basename(datapath))
-  }
-  
-  map(datapath, read_xml)
 }
 
 
