@@ -1,3 +1,4 @@
+message("****ELAN-FILE-CHECKERS****\n")
 
 library(shiny)
 library(xml2)
@@ -112,6 +113,42 @@ source("eaf-utils.R")
 ## - getTimesTier()
 ## - getTimes()
 
+##Given a list of eafs (either an xml_document or an error thrown by
+##  read_xml()), generate a dataframe of information on whether each file &
+##  filename are valid (with regexes passed down to parse_filenames())
+##In the app, x is eaflist()
+validateEaflist <- function(x, spkrCodeRE=spkrCodeRegex, 
+                            neighborhoodRE=neighborhoodRegex) {
+  if (is.null(names(x))) {
+    stop("x must be a named list")
+  }
+  
+  ##File info: speaker code, file extension
+  fileDF <- 
+    x %>% 
+    names() %>% 
+    parse_filenames(spkrCodeRE, neighborhoodRE)
+  
+  ##Dataframe of whether files were successfully read
+  readDF <- 
+    x %>% 
+    map_lgl(~ "xml_document" %in% class(.x)) %>% 
+    tibble(name = names(.), FileReadValid = .)
+  
+  ##Add columns for validation: speaker code initial, eaf file extension,
+  ##  whether file was successfully read
+  fileDF <- fileDF %>% 
+    mutate(FileExtValid = FileExt=="eaf",
+           SpkrCodeValid = !is.na(SpkrCode)) %>% 
+    left_join(readDF, "name") %>%
+    select(name, ends_with("Valid")) %>% 
+    ##File is valid only if it satisfies all conditions
+    rowwise() %>% 
+    mutate(Valid = all(c_across(-name))) %>% 
+    ungroup()
+  
+  fileDF
+}
 
 ## Tiers ==================================================================
 ##Function that takes a one-file tier df as input (meant to be used with a
@@ -850,7 +887,9 @@ server <- function(input, output) {
   ##  xml_document (if read_xml() succeeded) or the error message thrown by 
   ##  read_xml()
   eaflist <- eventReactive(input$files, {
-    # reactive({
+    message("Uploaded ", nrow(input$files), " files:\n",
+            str_flatten(input$files$name, "\n"),
+            "\n")
     input$files %>% 
       pull(datapath, name) %>% 
       ##Get safely() list of results and errors
@@ -858,35 +897,12 @@ server <- function(input, output) {
       ##Turn into a list of results *or* errors
       map_if(~ !is.null(.x$result), "result", .else="error")
   })
-  ##Get a dataframe of error or no error (for validation below)
-  readDF <- reactive({
-    eaflist() %>% 
-      map_lgl(~ "xml_document" %in% class(.x)) %>% 
-      tibble(name = names(.), FileReadValid = .)
-  })
   
-  ##File info: speaker code, neighborhood, file extension
-  ##Speaker code & file extension used for validation, neighborhood & speaker
-  ##  code for matching interviewer
-  fileDF <- eventReactive(input$files, {
-    parse_filenames(input$files$name, spkrCodeRegex, neighborhoodRegex)
-  })
-  ##Add columns for validation info: speaker code initial, eaf file extension,
-  ##  actual xml file
-  validationDF <- reactive({
-    fileDF() %>% 
-      mutate(FileExtValid = FileExt=="eaf",
-             SpkrCodeValid = !is.na(SpkrCode)) %>% 
-      left_join(readDF(), "name") %>% 
-      select(name, ends_with("Valid")) %>% 
-      rowwise() %>% 
-      mutate(Valid = all(c_across(-name)))
-  })
-  
-  ##Get tier info as a single dataframe
-  tierDF <- reactive({
-    req(eaflist())
-    tierInfo(eaflist(), fileDF(), nonSpkrTiers)
+  ##Convert eaflist to dflist
+  dflist <- reactive({ 
+    eaflist() %>%
+      keep(~ "xml_document" %in% class(.x)) %>% 
+      map(~ eaf_to_df_list(.x, annotation_metadata=TRUE))
   })
   
   # Debugging output --------------------------------------------------------
@@ -978,10 +994,12 @@ server <- function(input, output) {
     fileCheckHead <- h1("Checking the following files...",
                         id="fileCheckHead")
     
+    ##Get validation info
+    validationDF <- validateEaflist(eaflist())
     
     ##Get bullet-list of filenames (styling bad ones in red)
     fileList <- tags$ul(
-      validationDF() %>% 
+      validationDF %>% 
         mutate(Class = if_else(Valid, "", "bad")) %>% 
         pull(Class, name) %>% 
         imap(~ tags$li(.y, class=.x)),
@@ -989,25 +1007,24 @@ server <- function(input, output) {
     )
     
     ##Style headings based on whether filenames are valid
-    # fileNameHead <- h2("Correct file names and re-upload",
-    #                    id="fileNameHead")
-    fileCheckValid <- all(validationDF()$Valid)
+    fileCheckValid <- all(validationDF$Valid)
     if (fileCheckValid) {
       fileCheckSubhead <- h3("", id="fileCheckSubhead") %>% 
         undisplay()
+      message("Step 0: Pass")
     } else {
       stepHeads <- stepHeads %>%
         map(tagAppendAttributes, class="grayout")
       
       ##Extra-informative error message
       fileNameTips <- character(0L)
-      if (any(!validationDF()$SpkrCodeValid)) {
+      if (any(!validationDF$SpkrCodeValid)) {
         fileNameTips <- c(fileNameTips, "begin with a speaker code")
       }
-      if (any(!validationDF()$FileExtValid)) {
+      if (any(!validationDF$FileExtValid)) {
         fileNameTips <- c(fileNameTips, "end with the .eaf file extension")
       }
-      if (any(!validationDF()$FileReadValid)) {
+      if (any(!validationDF$FileReadValid)) {
         fileNameTips <- c(fileNameTips, "be readable by Elan")
       }
       if (length(fileNameTips) > 1) {
@@ -1022,10 +1039,10 @@ server <- function(input, output) {
       ##Edge case: Throw error if !fileCheckValid but no fileNameTips
       stopifnot(length(fileNameTips) > 0)
       
-      ##Exit early
+      ##Exit early & message
       exitEarly <- TRUE
+      message("Step 0: Fail")
     }
-    
     
     
     # Step 1: Tier check ------------------------------------------------------
@@ -1049,6 +1066,7 @@ server <- function(input, output) {
         tierDetails <- undisplay(tierDetails)
         stepHeads$tiers <- stepHeads$tiers %>% 
           tagAppendAttributes(class="good")
+        message("Step 1: Pass")
       } else {
         ##If tier issues, display issues in nested list
         tierSubhead <- display(tierSubhead)
@@ -1073,8 +1091,9 @@ server <- function(input, output) {
         stepHeads[2:3] <- stepHeads[2:3] %>% 
           map(tagAppendAttributes, class="grayout")
         
-        ##Exit early
+        ##Exit early & message
         exitEarly <- TRUE
+        message("Step 1: Fail")
       }
     }
     
@@ -1142,6 +1161,7 @@ server <- function(input, output) {
         dictDetails <- undisplay(dictDetails)
         stepHeads$dict <- stepHeads$dict %>% 
           tagAppendAttributes(class="good")
+        message("Step 2: Pass")
       } else {
         ##If dict issues, display issues in nested list
         dictSubhead <- display(dictSubhead)
@@ -1175,8 +1195,9 @@ server <- function(input, output) {
         stepHeads[3] <- stepHeads[3] %>% 
           map(tagAppendAttributes, class="grayout")
         
-        ##Exit early
+        ##Exit early & message
         exitEarly <- TRUE
+        message("Step 2: Fail")
       }
     }
     
@@ -1203,6 +1224,7 @@ server <- function(input, output) {
         overlapsDetails <- undisplay(overlapsDetails)
         stepHeads$overlaps <- stepHeads$overlaps %>% 
           tagAppendAttributes(class="good")
+        message("Step 3: Pass")
       } else {
         ##If overlaps issues, display issues in nested list
         overlapsSubhead <- display(overlapsSubhead)
@@ -1231,8 +1253,9 @@ server <- function(input, output) {
         stepHeads$overlaps <- stepHeads$overlaps %>% 
           tagAppendAttributes(class="bad")
         
-        ##Exit early
+        ##Exit early & message
         exitEarly <- TRUE
+        message("Step 3: Fail")
       }
     }
     
@@ -1264,10 +1287,15 @@ server <- function(input, output) {
     }
     
     ##PAGE FUNCTIONALITY:
-    ##  At page load, all that's visible in mainPanel is checkHead and stepHeads
-    ##  If a step passes, stepHead styled as .good (except step 0, which only displays if failed)
-    ##  If a step fails, stepHead styled as .bad, and subhead+details display (plus reuploadHead)
-    ##  If a step is not reached, stepHead styled as .grayout
+    ##At page load, all that's visible in mainPanel is a temporary h2 "Waiting
+    ##  for uploaded files..." and stepHeads (tagList below is bypassed)
+    ##Once file(s) are uploaded, below tagList is displayed
+    ##If a step passes, stepHead styled as .good (except step 0, which only
+    ##  displays if failed)
+    ##If a step fails, stepHead styled as .bad, and subhead+details display
+    ##  (plus reuploadHead)
+    ##If a step is not reached, stepHead styled as .grayout
+    
     ##Construct tag list
     tagList(
       ##"Checking the following files" and bullet-list (styling bad files)

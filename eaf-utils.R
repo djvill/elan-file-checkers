@@ -5,10 +5,17 @@
 
 ## File setup -------------------------------------------------------------
 
-##Given input$files$name, extract file extension, speaker code, and neighborhood
+##Given a vector of filenames, extract file extension, speaker code, and 
+##  neighborhood, as a dataframe
+##In the app, x is input$files$name
 parse_filenames <- function(x, 
                             spkrCodeRE="^(CB|FH|HD|LV)\\d+(and\\d+)?",
                             neighborhoodRE="^(CB|FH|HD|LV)") {
+  if (!identical(x, basename(x))) {
+    warning("Found non-basename(s) in x. Using basename(x) instead")
+    x <- basename(x)
+  }
+  
   library(dplyr)
   library(stringr)
   library(tools)
@@ -20,60 +27,9 @@ parse_filenames <- function(x,
            FileExt = file_ext(name))
 }
 
-##Dataframe of tier information
-##In app:
-##- x is eaflist() reactive (output of read_eafs(fileDF()$File, fileDF()$datapath))
-##- df is fileDF() reactive (output of fileInfo(input$files)); fileDF() has to 
-##  come first to trigger read_eafs() to create eaflist()
-##In interactive use:
-##- x can be output of <file name vector> %>% set_names(basename(.)) %>% read_eafs(., .)
-##- df can be omitted (in which case fileInfo() is called inside this function)
-tierInfo <- function(x, df, nonSpeakerTiers=NULL) {
-  library(xml2)
-  library(purrr)
-  library(dplyr)
-  
-  if (is.null(names(x))) {
-    stop("x must have names")
-  }
-  
-  if (missing(df)) {
-    df <- fileInfo(data.frame(File = names(x)))
-  }
-  
-  out <- x %>% 
-    map(xml_find_all, "//TIER") %>% 
-    ##One row per tier, with file info
-    map_dfr(~ map_dfr(.x, xml_attrs), .id="File") %>% 
-    ##Add info from fileDF
-    left_join(df, by="File")
-  
-  if ("TIER_ID" %in% colnames(out)) {
-    ##Add SpkrTier (is the tier a speaker tier?)
-    if (!is.null(nonSpeakerTiers)) {
-      out <- out %>% 
-        mutate(SpkrTier = !(tolower(TIER_ID) %in% tolower(nonSpeakerTiers)))
-    } else {
-      out$SpkrTier <- TRUE
-    }
-  }
-  
-  ##Add file-wide AUTHOR attribute (or NA if missing)
-  auths <- tibble(File = names(x), AUTHOR = unname(map_chr(x, xml_attr, "AUTHOR")))
-  out <- out %>% 
-    left_join(auths, "File")
-  
-  out
-}
-
 ##Given a single xml_document, return a list of dataframes of tier annotations,
 ##  one for each tier. Includes file metadata as attributes for object, and 
 ##  tier metadata as attributes for dataframe-elements
-##To get tier info, pipe this function's output into 
-##  map_dfr(~ .x %>%
-##            attributes() %>%
-##            discard_at(c("class", "row.names", "names")),
-##          .id="TIER_ID")
 eaf_to_df_list <- function(x, annotation_metadata=FALSE) {
   library(xml2)
   library(purrr)
@@ -92,8 +48,15 @@ eaf_to_df_list <- function(x, annotation_metadata=FALSE) {
     x %>% 
     xml_find_all("//TIER") %>% 
     map_dfr(xml_attrs)
+  
+  ##Handle missing TIER_ID
+  rowIds <- as.character(seq_len(nrow(tierAttr)))
   if (!("TIER_ID" %in% colnames(tierAttr))) {
-    tierAttr$TIER_ID <- seq_len(nrow(tierAttr))
+    tierAttr$TIER_ID <- rowIds
+  }
+  if (anyNA(tierAttr$TIER_ID)) {
+    tierAttr <- tierAttr %>% 
+      mutate(across(TIER_ID, ~ coalesce(.x, rowIds)))
   }
   
   ##Get timing data
@@ -105,7 +68,7 @@ eaf_to_df_list <- function(x, annotation_metadata=FALSE) {
   
   ##Put data & metadata together
   out <- times
-  ##Format & add tier attributes
+  ##Add tier attributes to each df element
   tierAttrList <- 
     tierAttr %>% 
     nest(data = -TIER_ID) %>% 
@@ -117,7 +80,21 @@ eaf_to_df_list <- function(x, annotation_metadata=FALSE) {
   ##Add file attributes
   attributes(out) <- c(attributes(out), fileAttr)
   
-  out
+  structure(out, class="transcription")
+}
+
+##Given a transcription object, extract tier metadata as a dataframe
+tier_metadata <- function(x) {
+  library(purrr)
+  if (!inherits(x, "transcription")) {
+    stop("x must be an object of class transcription")
+  }
+  
+  x %>% 
+    map_dfr(~ .x %>%
+              attributes() %>%
+              discard_at(c("class", "row.names", "names")),
+            .id="TIER_ID")
 }
 
 
@@ -176,8 +153,10 @@ getTimesTier <- function(tierName, eaf, timeSlots) {
   library(xml2)
   library(dplyr)
   
-  ##Get tier node, accounting for missing TIER_ID
-  if (is.numeric(tierName)) {
+  ##Get tier node, accounting for numeral TIER_ID
+  ##N.B. This will return unexpected results if integers are valid tier names,
+  ##  *and* these integers don't line up with the tier's index
+  if (str_detect(tierName, "^\\d+$")) {
     tierPath <- str_glue("//TIER[{tierName}]")
   } else {
     tierPath <- str_glue("//TIER[@TIER_ID='{tierName}']")
