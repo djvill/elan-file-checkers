@@ -151,133 +151,114 @@ validateEaflist <- function(x, spkrCodeRE=spkrCodeRegex,
 }
 
 ## Tiers ==================================================================
-##Function that takes a one-file tier df as input (meant to be used with a
-##  subset of rows in tierDF() reactive) and outputs nested list of tier 
-##  issues
-tierIssuesOneFile <- function(df, prohibTiers=NULL) {
+##Given a transcription object and filename, output nested list of tier issues
+tierIssuesOneFile <- function(x, nm, nonSpkrTiers=NULL, prohibTiers=NULL) {
   library(dplyr)
   library(purrr)
   library(stringr)
   
+  if (!inherits(x, "transcription")) {
+    stop("x must be an object of class transcription")
+  }
+  if (!is.character(nm) || length(nm) != 1) {
+    stop("nm must be a string")
+  }
+  
+  ##Get filename, speaker code, neighborhood
+  fileInfo <- parse_filenames(nm)
+  ##Get tier metadata
+  tierInfo <- x %>% 
+    tier_metadata() %>% 
+    ##Add info for checking tier attributes
+    mutate(ExistsTIER_ID = TIER_ID!=row_number(),
+           ExistsPARTICIPANT = !is.na(PARTICIPANT),
+           TierIDisParticipant = TIER_ID==PARTICIPANT)
+  
   ##Initialize empty issues character vector
   issues <- character(0L)
   
-  hasTierID <- !is.null(as.data.frame(df)$TIER_ID) ## not tibble to suppress warning
-  ##Add tier number (as backup for IDing tiers w/o TIER_ID attr)
-  df <- df %>% 
-    mutate(tierNum = paste("Tier", row_number()))
+  ##Detect missing/empty AUTHOR attribute
+  author <- attr(x, "AUTHOR")
+  if (is.null(author) || author=="" || tolower(author)=="unspecified") {
+    issues <- c(issues, paste("File missing an AUTHOR attribute"))
+  }
   
   ##Handle prohibited tiers
-  if (hasTierID && !is.null(prohibTiers)) {
+  if (!is.null(prohibTiers)) {
     issues <- c(issues,
                 prohibTiers %>% 
-                  map_if(~ any(str_detect(tolower(df$TIER_ID), tolower(.x)), na.rm=TRUE),
+                  map_if(~ any(str_detect(tolower(tierInfo$TIER_ID), tolower(.x)), na.rm=TRUE),
                          ~ paste("The completed file should not have a tier named", .x),
                          .else = ~ character(0L)) %>% 
                   flatten_chr())
   }
   
   ##Handle missing tiers (non-interviewer)
-  checkTiers <- c(unique(df$SpkrCode), nonSpkrTiers)
-  if (hasTierID) {
-    missingTiers <- setdiff(checkTiers, df$TIER_ID)
-  } else {
-    missingTiers <- checkTiers
-  }
-  
+  checkTiers <- c(unique(fileInfo$SpkrCode), nonSpkrTiers)
+  missingTiers <- setdiff(checkTiers, tierInfo$TIER_ID)
   if (length(missingTiers) > 0) {
-    issues <- c(issues, paste("There are no tiers with tier name", missingTiers))
+    issues <- c(issues, paste("There are no tiers named", missingTiers))
   }
   
-  ##Interviewers can be named either Interviewer [SpkrCode] or actual name
-  interviewerTier <- c(paste("Interviewer", unique(df$SpkrCode)),
-                       case_when(
-                         unique(df$Neighborhood)=="HD" ~ "Trista Pennington", 
-                         unique(df$SpkrCode) %in% c("CB02", "CB18") ~ "Jennifer Andrus",
-                         TRUE ~ "Barbara Johnstone"))
+  ##Handle missing interviewer tier
+  ##Interviewers can be named either actual name or Interviewer [SpkrCode]
+  interviewerTier <- c(
+    case_when(
+      fileInfo$Neighborhood=="HD" ~ "Trista Pennington", 
+      fileInfo$SpkrCode %in% c("CB02", "CB18") ~ "Jennifer Andrus",
+      TRUE ~ "Barbara Johnstone"),
+    paste("Interviewer", fileInfo$SpkrCode))
   ##Detect missing interviewer tier
-  if (!hasTierID || !any(interviewerTier %in% df$TIER_ID)) {
-    issues <- c(issues, paste("There are no tiers with tier name", 
+  if (!any(interviewerTier %in% tierInfo$TIER_ID)) {
+    issues <- c(issues, paste("There are no tiers named either", 
                               ##Format for printing
                               paste(interviewerTier, collapse=" or ")))
   }
   
-  ##Detect missing/empty AUTHOR attribute
-  if (any(is.na(df$AUTHOR)) || any(df$AUTHOR == "") || any(tolower(df$AUTHOR) == "unspecified")) {
-    issues <- c(issues, paste("File missing an AUTHOR attribute"))
+  ##Handle missing TIER_ID
+  noTIER_ID <-
+    tierInfo %>% 
+    filter(!ExistsTIER_ID)
+  if (identical(noTIER_ID, tierInfo)) {
+    issues <- c(issues, "All tiers missing a tier name")
+  } else if (nrow(noTIER_ID) > 0) {
+    issues <- c(issues, 
+                paste("Tier", noTIER_ID$TIER_ID, "missing a tier name"))
   }
   
-  ##Handle missing tier attributes
-  # checkAttrs <- c("ANNOTATOR", "PARTICIPANT", "TIER_ID")
-  checkAttrs <- c("PARTICIPANT", "TIER_ID")
-  missingAttr <- function(x) {
-    ##String formatting for output
-    attrTitle <- if_else(x=="TIER_ID", "Tier name", str_to_title(x))
-    attrArticle <- if_else(str_detect(tolower(x), "^[aeiou]"), "an", "a")
-    
-    ##Check attribute for all tiers
-    tryCatch({
-      ##Try retrieving attribute column from dataframe; if missing, it'll throw
-      ##  an error, indicating that no tiers in the file have that attribute
-      attrCol <- df[,x]
-      
-      ##If any rows are missing attribute, get character vector of messages
-      ##  naming each tier
-      if (any(is.na(attrCol))) {
-        noAttrDF <- df[is.na(attrCol), ]
-        noAttr <-
-          noAttrDF %>% 
-          mutate(tierName = if_else(is.na(TIER_ID), tierNum, TIER_ID)) %>% 
-          pull(tierName)
-        
-        paste("Tier missing", attrArticle, attrTitle, "attribute:", noAttr)
-      }
-    }, error = function(e) {
-      paste("All tiers missing", attrArticle, attrTitle, "attribute")
-    })
-    
+  ##Handle missing PARTICIPANT
+  noPARTICIPANT <-
+    tierInfo %>% 
+    filter(!ExistsPARTICIPANT)
+  if (identical(noPARTICIPANT, tierInfo)) {
+    issues <- c(issues, "All tiers missing a participant attribute")
+  } else if (nrow(noPARTICIPANT) > 0) {
+    issues <- c(issues, 
+                paste("Tier", noPARTICIPANT$TIER_ID, 
+                      "missing a participant attribute"))
   }
   
-  ##Check each attribute and return result as list of character vectors
-  issues <- c(issues,
-              checkAttrs %>% 
-                map(missingAttr) %>% 
-                reduce(c))
-  
-  ##Handle mismatched tier ID & participant attrs (return character vector)
-  ##Only check tier ID & participant attrs if neither is missing (in which case
-  ##  the missing attr has already been registered above)
-  if (!is.null(df$PARTICIPANT) && hasTierID &&
-      !identical(df$TIER_ID, df$PARTICIPANT)) {
-    issues <- c(issues,
-                df %>% 
-                  filter(TIER_ID != PARTICIPANT) %>% 
-                  mutate(msg = paste0("Mismatched tier name (", TIER_ID,
-                                      ") & Participant attribute (",
-                                      PARTICIPANT, ")")) %>% 
-                  pull(msg))
+  ##Handle mismatched TIER_ID & PARTICIPANT
+  bothAttr <- 
+    tierInfo %>% 
+    filter(if_all(starts_with("Exists")))
+  ##Only check tiers that have both
+  if (nrow(bothAttr) > 0) {
+    mismatchAttr <-
+      bothAttr %>% 
+      filter(!TierIDisParticipant)
+    if (nrow(mismatchAttr) > 0) {
+      issues <- c(issues,
+                  paste0("Mismatched tier name (", mismatchAttr$TIER_ID,
+                         ") & participant attribute (",
+                         mismatchAttr$PARTICIPANT, ")"))
+    }
   }
   
   ##Return issues (if none found, this is an empty vector)
   issues
 }
 
-##Wrapper function around tierIssuesOneFile() that takes a multi-file tier df as
-##  input (meant to be used with tierDF() reactive) and outputs tier issues if
-##  any; if no issues, outputs an empty list
-tierIssues <- function(df, prohibTiers=NULL) {
-  library(dplyr)
-  library(purrr)
-  
-  df %>%
-    ##Look for tier issues for each file
-    nest(data = -File) %>% 
-    mutate(issues = map(data, tierIssuesOneFile, prohibTiers=prohibTiers)) %>% 
-    ##Turn into list with one element for each file
-    pull(issues, name=File) %>% 
-    ##Only keep files with issues
-    keep(~ length(.x) > 0)
-}
 
 ## Dictionaries ===============================================================
 
@@ -888,7 +869,7 @@ server <- function(input, output) {
   ##  read_xml()
   eaflist <- eventReactive(input$files, {
     message("Uploaded ", nrow(input$files), " files:\n",
-            str_flatten(input$files$name, "\n"),
+            paste("-", str_flatten(input$files$name, "\n")),
             "\n")
     input$files %>% 
       pull(datapath, name) %>% 
@@ -1059,7 +1040,10 @@ server <- function(input, output) {
     ##If not exiting early yet, check for tier issues
     if (!exitEarly || overrideExit$fileName) {
       ##Get tier issues
-      tierIss <- tierIssues(tierDF(), prohibTiers)
+      tierIss <- dflist() %>% 
+        imap(tierIssuesOneFile, 
+             nonSpkrTiers=nonSpkrTiers, prohibTiers=prohibTiers) %>% 
+        keep(~ length(.x) > 0)
       ##If no tier issues, don't display anything & make step heading green
       if (length(tierIss)==0) {
         tierSubhead <- undisplay(tierSubhead)

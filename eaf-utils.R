@@ -83,18 +83,27 @@ eaf_to_df_list <- function(x, annotation_metadata=FALSE) {
   structure(out, class="transcription")
 }
 
-##Given a transcription object, extract tier metadata as a dataframe
+##Given a transcription object, output a dataframe of tier metadata
+##If no tier has a TIER_ID, output dataframe's TIER_ID is row numbers. If no
+##  tier has a PARTICIPANT, output dataframe's PARTICIPANT is NA
 tier_metadata <- function(x) {
   library(purrr)
   if (!inherits(x, "transcription")) {
     stop("x must be an object of class transcription")
   }
   
-  x %>% 
+  out <- 
+    x %>% 
     map_dfr(~ .x %>%
               attributes() %>%
               discard_at(c("class", "row.names", "names")),
             .id="TIER_ID")
+  
+  if (!("PARTICIPANT" %in% colnames(out))) {
+    out$PARTICIPANT <- NA
+  }
+  
+  out
 }
 
 
