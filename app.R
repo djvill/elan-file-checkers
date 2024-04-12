@@ -96,7 +96,7 @@ ui <- fluidPage(
     
     ##UI details are complicated, so they all take place in output$out
     mainPanel(uiOutput("debug"),
-              # uiOutput("export"), ##Never shown
+              uiOutput("export"), ##Never shown
               uiOutput("out"))
   )
 )
@@ -151,7 +151,8 @@ validateEaflist <- function(x, spkrCodeRE=spkrCodeRegex,
 }
 
 ## Tiers ==================================================================
-##Given a transcription object and filename, output nested list of tier issues
+##Given a transcription object and filename, output character vector of tier
+##  issues
 tierIssuesOneFile <- function(x, nm, nonSpkrTiers=NULL, prohibTiers=NULL) {
   library(dplyr)
   library(purrr)
@@ -869,7 +870,7 @@ server <- function(input, output) {
   ##  read_xml()
   eaflist <- eventReactive(input$files, {
     message("Uploaded ", nrow(input$files), " files:\n",
-            paste("-", str_flatten(input$files$name, "\n")),
+            str_flatten(paste("-", input$files$name), "\n"),
             "\n")
     input$files %>% 
       pull(datapath, name) %>% 
@@ -932,22 +933,36 @@ server <- function(input, output) {
       undisplay(div(prettify(toJSON(x), 2), id=nm))
     }
 
-    ##First element: fileDF() (datapath is just a temporary path)
-    export <- list(pack_val(fileDF() %>% select(-c(datapath, size)), "fileDF"))
-
-    ##If step 0 passed, add tierDF() & at least one eaflist()
-    if (all(fileDF()$FileNameValid)) {
-      tagList(export,
-              pack_val(tierDF() %>%
-                         select(-any_of(c("datapath", "size"))), "tierDF"),
-              pack_val(eaflist() %>%
-                         xmllist_to_df(df_nesting="Tier",
-                                       nonSpeakerTiers=c("Comment","Noise","Redaction")),
-                       "eaflist"))
+    ##First element: dataframe of file info
+    ##N.B. This is different than fileInfo, which is for a single element in 
+    ##  dflist
+    fileDF <-
+      eaflist() %>%
+      names() %>% 
+      parse_filenames()
+    export <- tagList(pack_val(fileDF, "fileDF"))
+    
+    ##Add the rest of the data
+    validationDF <- validateEaflist(eaflist())
+    fileCheckValid <- all(validationDF$Valid)
+    if (!fileCheckValid) { 
+      ##If step 0 failed, add validationDF
+      export <- c(export, tagList(pack_val(validationDF, "validationDF")))
     } else {
-      ##If failing step0, export just fileDF()
-      tagList(export)
+      ##If step 0 passed, add tier info & at least one eaflist()
+      tierDF <- map(dflist(), tier_metadata)
+      turnsDF <- 
+        dflist() %>% 
+        map_dfr(~ .x %>% 
+                  map_dfr(as_tibble, .id="Tier"),
+                .id="File") %>% 
+        select(-Text)
+      export <- c(export, 
+                  tagList(pack_val(tierDF, "tierDF")),
+                  tagList(pack_val(turnsDF, "turnsDF")))
     }
+    
+    export
   })
   
   # Output: UI --------------------------------------------------------------
