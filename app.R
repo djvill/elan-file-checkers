@@ -50,14 +50,14 @@ pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE{VQU@i$u312456789#'\"-]"						# Not
 caseSens <- FALSE						# Not yet modularized
 
 ##Overlap fixing
+##Tiers to exclude from overlap checking/fixing
+noOverlapCheckTiers <- c("Comment","Noise")
 ##Maximum cross-tier misalignment (in ms) to 'snap together'. Set lower to be
 ##  more conservative about what counts as an intended cross-tier alignment
 overlapThresh <- 500						# Not yet modularized
 ##Time display type: "S" (seconds, useful for Praat TextGrids), or "HMS" (useful
 ##  for ELAN)
 timeDisp <- "HMS"						# Not yet modularized
-##Include Redaction tier in overlap-fixing?
-fixOverlapRedact <- TRUE
 ##Check for 0-width post-fixing annotations (can cause issues)
 ##  "error" = throw error in fixOverlapsTier()
 ##  "drop" = silently drop 0-width annotations at end of fixOverlaps()
@@ -326,13 +326,28 @@ dict <- dict %>%
 message(length(dict), " total unique entries")
 
 
-##Function that takes a tier name and eaf file as input and outputs
-##  non-dictionary words
-dictCheckTier <- function(tierName, eaf) {
+##Given a transcription object, outputs a list (one element per tier), each
+##  element containing a character vector of out-of-dictionary words
+##Tiers without any out-of-dictionary words don't get an element
+dictIssuesOneFile <- function(x, noDictCheckTiers=NULL, dict=NULL,
+                             pronChars=NULL, permitAngleBrackets=FALSE, 
+                             caseSens=FALSE) {
   library(stringr)
   library(purrr)
-  library(xml2)
   library(dplyr)
+  
+  ##Check args
+  if (!inherits(x, "transcription")) {
+    stop("x must be an object of class transcription")
+  }
+  stopifnot(is.character(noDictCheckTiers))
+  stopifnot(is.character(dict))
+  if (!is.character(noDictCheckTiers)) {
+    stop("noDictCheckTiers must be a character vector")
+  }
+  if (!is.character(dict)) {
+    stop("dict must be a character vector")
+  }
   
   ##Tokenizing function
   tokenize <- function(x) {
@@ -351,84 +366,70 @@ dictCheckTier <- function(tierName, eaf) {
       flatten_chr()
   }
   
-  ##Get all lines in tier
-  tierLines <- str_glue("//TIER[@TIER_ID='{tierName}']//ANNOTATION_VALUE") %>%
-    xml_find_all(eaf, .) %>%
-    xml_text()
-  
-  ##Get all unique words 
-  tierWords <- unique(tokenize(tierLines))
+  ##Get all lines in non-ignored tiers
+  lineDF <- 
+    x %>% 
+    discard_at(noDictCheckTiers) %>% 
+    map("Text") %>% 
+    tibble(Tier = names(.), Line = .)
+  ##Get all unique words
+  wordDF <- 
+    lineDF %>% 
+    mutate(Word = map(Line, tokenize),
+           .keep="unused") %>% 
+    unnest(Word) %>% 
+    distinct()
   
   ##Optionally strip matched angle brackets (single-word interruptions)
   if (permitAngleBrackets) {
-    tierWords <- tierWords %>% 
-      str_replace("^<(.+)>$", "\\1") %>% 
-      unique()
+    wordDF <- wordDF %>% 
+      mutate(across(Word, ~ str_replace(.x, "^<(.+)>$", "\\1"))) %>% 
+      distinct()
   }
   
   ##Single-word ignores
-  tierWords <- tierWords %>% 
-    ##Ignore words with valid bracket pronounce codes (hesitations, sui generis words)
-    str_subset(paste0("^[[:alpha:]']+~?\\[", pronChars, "+\\]$"),
-               negate=TRUE) %>% 
-    ##Ignore standalone valid punctuation
-    str_subset("^[.?-]$", negate=TRUE) %>% 
-    str_subset("^--$", negate=TRUE) %>% 
-    ##Ignore empty words
-    str_subset("^$", negate=TRUE)
+  wordDF <- wordDF %>% 
+    filter(
+      ##Words with valid bracket pronounce codes (hesitations, sui generis 
+      ##  words)
+      !str_detect(Word, paste0("^[[:alpha:]']+~?\\[", pronChars, "+\\]$")),
+      ##Standalone valid punctuation
+      !str_detect(Word, "^[.?-]$"),
+      !str_detect(Word, "^--$"),
+      ##Empty words
+      Word!=""
+    )
   
   ##Get form of words for checking
-  wordDF <- tibble(
-    Word = tierWords,
-    ##Checking form
-    CheckWord = Word %>%
-      # ##Strip attached valid punctuation
-      # str_remove("(\\s[.?-]|--)$") %>%
-      ##For words with paren codes, use the paren code for checking
-      str_replace(".+\\((.+)\\)$", "\\1") %>%
-      ##Strip clitics for checking
-      str_remove_all("'(d|ll|ve|s)") %>%
-      str_replace("s'$", "s")
-  )
+  wordDF <- wordDF %>% 
+    mutate(CheckWord = Word %>%
+             # ##Strip attached valid punctuation
+             # str_remove("(\\s[.?-]|--)$") %>%
+             ##For words with paren codes, use the paren code for checking
+             str_replace(".+\\((.+)\\)$", "\\1") %>%
+             ##Strip clitics for checking
+             str_remove_all("'(d|ll|ve|s)") %>%
+             str_replace("s'$", "s")
+    )
   
   ##Optionally convert checking form to lowercase
   if (!caseSens) {
     wordDF <- wordDF %>% 
-      mutate(across(-Word, str_to_lower))
+      mutate(across(CheckWord, str_to_lower))
     dict <- str_to_lower(dict)
   }
   
-  ##Return words that aren't in the dictionary
-  wordDF %>%
-    filter(!if_any(-Word, ~ .x %in% dict)) %>% 
-    pull(Word)
+  ##Identify words that aren't in the dictionary in *either* form
+  wordDF <- wordDF %>%
+    filter(!if_any(-Word, ~ .x %in% dict))
+  
+  ##Return list of out-of-dictionary words
+  wordDF %>% 
+    select(Tier, Word) %>% 
+    chop(Word) %>% 
+    pull(Word, Tier)
 }
 
-##Wrapper function around dictCheckTier() that takes a multi-file tier df
-##  and a list of EAF files as input (meant to be used with tierDF() &
-##  eaflist() reactives) and outputs non-dictionary words if any (in a
-##  nested list); if no issues, outputs an empty list
-dictCheck <- function(df, x) {
-  library(dplyr)
-  library(purrr)
-  
-  ##Get nested list of speaker tier names
-  spkrTierNames <- 
-    df %>% 
-    filter(SpkrTier) %>% 
-    group_by(File) %>% 
-    summarise(across(TIER_ID, list)) %>% 
-    pull(TIER_ID, name=File) %>% 
-    map(~ set_names(.x, .x))
-  
-  ##Loop over files & speaker tiers for dictionary-checking
-  map2(spkrTierNames, x, 
-       ~ map(.x, dictCheckTier, .y) %>% 
-         ##Only keep tiers with issues
-         keep(~ length(.x) > 0)) %>% 
-    ##Only keep files with issues
-    keep(~ length(.x) > 0)
-}
 
 ## Overlaps ===================================================================
 
@@ -870,8 +871,7 @@ server <- function(input, output) {
   ##  read_xml()
   eaflist <- eventReactive(input$files, {
     message("Uploaded ", nrow(input$files), " files:\n",
-            str_flatten(paste("-", input$files$name), "\n"),
-            "\n")
+            str_flatten(paste("-", input$files$name), "\n"))
     input$files %>% 
       pull(datapath, name) %>% 
       ##Get safely() list of results and errors
@@ -1153,7 +1153,11 @@ server <- function(input, output) {
     ##If not exiting early yet, check for dictionary issues
     if (!exitEarly || overrideExit$tiers) {
       ##Get dictionary check
-      dictIss <- dictCheck(tierDF(), eaflist())
+      dictIss <- dflist() %>% 
+        map(dictIssuesOneFile, noDictCheckTiers=noDictCheckTiers, dict=dict, 
+            pronChars=pronChars, permitAngleBrackets=permitAngleBrackets, 
+            caseSens=caseSens) %>% 
+        keep(~ length(.x) > 0)
       ##If no dictionary issues, don't display anything & make step heading green
       if (length(dictIss)==0) {
         dictSubhead <- undisplay(dictSubhead)
