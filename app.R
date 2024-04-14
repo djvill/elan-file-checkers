@@ -37,6 +37,8 @@ prohibTiers <- c("Recheck",
                  )
 
 ##Dictionary checking
+##Tiers to exclude from dictionary checking
+noDictCheckTiers <- c("Comment","Noise","Redaction")
 ##Include local version of aplsDict.txt? Include ONLY local version?
 ##  Only works on Dan's machine, useful for testing new entries without
 ##  committing each time
@@ -330,8 +332,8 @@ message(length(dict), " total unique entries")
 ##  element containing a character vector of out-of-dictionary words
 ##Tiers without any out-of-dictionary words don't get an element
 dictIssuesOneFile <- function(x, noDictCheckTiers=NULL, dict=NULL,
-                             pronChars=NULL, permitAngleBrackets=FALSE, 
-                             caseSens=FALSE) {
+                              pronChars=NULL, permitAngleBrackets=FALSE, 
+                              caseSens=FALSE) {
   library(stringr)
   library(purrr)
   library(dplyr)
@@ -438,6 +440,103 @@ dictIssuesOneFile <- function(x, noDictCheckTiers=NULL, dict=NULL,
 ## - getTimesTier()
 ## - getTimes()
 ## - xmllist_to_df()
+
+findOverlapsOneFile <- function(x, nm,
+                                noOverlapCheckTiers=NULL, 
+                                overlapThresh=NULL, timeDisp=NULL,
+                                checkZeroWidth=c("drop","error")) {
+  library(purrr)
+  library(dplyr)
+  library(tidyr)
+  
+  ##Check args
+  if (!inherits(x, "transcription")) {
+    stop("x must be an object of class transcription")
+  }
+  if (!is.character(nm) || length(nm) != 1) {
+    stop("nm must be a string")
+  }
+  stopifnot(is.character(noOverlapCheckTiers))
+  stopifnot(is.numeric(overlapThresh) && overlapThresh >= 0)
+  stopifnot(is.character(timeDisp))
+  checkZeroWidth <- match.arg(checkZeroWidth)
+  
+  ##Get tier priority order
+  fileInfo <- parse_filenames(nm)
+  ##Interviewers can be named either actual name or Interviewer [SpkrCode]
+  interviewerTier <- c(
+    case_when(
+      fileInfo$Neighborhood=="HD" ~ "Trista Pennington", 
+      fileInfo$SpkrCode %in% c("CB02", "CB18") ~ "Jennifer Andrus",
+      TRUE ~ "Barbara Johnstone"),
+    paste("Interviewer", fileInfo$SpkrCode))
+  ##Get priority order
+  tierInfo <- tier_metadata(x) %>% 
+    filter(!(TIER_ID %in% noOverlapCheckTiers)) %>% 
+    ##Prioritize Redaction > Main speaker(s) > Interviewer > Bystander(s)
+    mutate(OverlapGroup = case_match(TIER_ID,
+      "Redaction" ~ "Redaction",
+      fileInfo$SpkrCode ~ "Main speaker",
+      interviewerTier ~ "Interviewer",
+      .default="Bystander"
+    )) %>% 
+    ##Arrange by priority order
+    arrange(
+      ##Coincidentally, priority order == reverse alphabetical order
+      desc(OverlapGroup),
+      ##If multiple main speakers or bystanders, break ties by name order
+      TIER_ID) %>% 
+    ##Add priority
+    mutate(Priority = row_number())
+  ##Create priority vector
+  tierPriority <- tierInfo %>% 
+    # select(TIER_ID, Priority)
+    pull(Priority, TIER_ID)
+  
+  ##Get non-empty overlap tiers in tier-priority order
+  overlapTiers <-
+    tierInfo %>% 
+    nest_join(x %>% 
+                map_dfr(~ select(.x, ANNOTATION_ID, Start, End),
+                        .id="TIER_ID"),
+              "TIER_ID", 
+              name="data") %>% 
+    pull(data, TIER_ID) %>% 
+    ##Only non-empty tiers
+    discard(~ nrow(.x)==0)
+  
+  ##Get turn boundaries for overlap tiers
+  bounds <- 
+    overlapTiers %>% 
+    map(~ pivot_longer(.x, c(Start, End), names_to="Bound", values_to="Time"))
+  
+  ##Get overlaps
+  boundJoin <- join_by(between(x$Time, y$Start, y$End, bounds="()"))
+  overlapBounds <-
+    bounds %>% 
+    imap(~ inner_join(.x, 
+                      ##Get all turns for *other* overlap tiers
+                      overlapTiers %>% 
+                        discard_at(.y) %>% 
+                        bind_rows(.id="TIER_ID_overlapped"),
+                      boundJoin,
+                      suffix=c("", "_overlapped")) %>% 
+           rename_with(~ paste0(.x, "_overlapped"), c(Start, End)))
+  
+  ##Add info to help determine which boundary to change
+  ##N.B. This really should go in fixOverlapsOneFile()
+  overlapBounds <- overlapBounds %>% 
+    bind_rows(.id="TIER_ID") %>% 
+    rowwise() %>%
+    mutate(StartDiff = abs(Start_overlapped - Time),
+           EndDiff = abs(End_overlapped - Time),
+           CloseEnough = min(StartDiff, EndDiff) < overlapThresh) %>%
+    ungroup() %>% 
+    mutate(across(contains("TIER_ID"), list(priority = ~ tierPriority[.x]))) %>% 
+    arrange(TIER_ID_priority, TIER_ID_overlapped_priority)
+  
+  overlapBounds
+}
 
 ##Function that takes a single tier name and a nested list of annotation time
 ##  DFs (meant to be used with output of getTimes()), and outputs a single
