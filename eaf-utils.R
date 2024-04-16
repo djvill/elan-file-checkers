@@ -216,3 +216,185 @@ getTimes <- function(eaf, tiers) {
   
   timesEAF
 }
+
+##x is overlapTiers
+findOverlapsOneFile <- function(x, tierPriority, overlapThresh=NULL) {
+  library(purrr)
+  library(dplyr)
+  library(tidyr)
+  
+  ##Check args
+  if (!is.list(x) || !every(x, is.data.frame)) {
+    stop("x must be a list of dataframes")
+  }
+  if (!is.character(tierPriority)) {
+    stop("tierPriority must be a character vector")
+  }
+  stopifnot(is.numeric(overlapThresh) && overlapThresh >= 0)
+  
+  ##Convenience renaming to match fixOverlapsOneFile()
+  overlapTiers <- x
+  
+  ##Get turn boundaries for overlap tiers
+  bounds <- 
+    overlapTiers %>% 
+    map(~ pivot_longer(.x, c(Start, End), names_to="Bound", values_to="Time"))
+  
+  ##Get overlaps
+  boundJoin <- join_by(between(x$Time, y$Start, y$End, bounds="()"))
+  overlapBounds <-
+    bounds %>% 
+    imap(~ inner_join(.x, 
+                      ##Get all turns for *other* overlap tiers
+                      overlapTiers %>% 
+                        discard_at(.y) %>% 
+                        bind_rows(.id="TIER_ID_overlapped"),
+                      boundJoin,
+                      suffix=c("", "_overlapped")) %>% 
+           rename_with(~ paste0(.x, "_overlapped"), c(Start, End)))
+  
+  ##Add info to help determine which boundary to change
+  overlapBounds <- overlapBounds %>% 
+    bind_rows(.id="TIER_ID") %>% 
+    mutate(StartDiff = abs(Start_overlapped - Time),
+           EndDiff = abs(End_overlapped - Time),
+           CloseEnough = any(StartDiff < overlapThresh, 
+                             EndDiff < overlapThresh),
+           across(contains("TIER_ID"), 
+                  list(priority = ~ match(.x, tierPriority)))) %>% 
+    arrange(TIER_ID_priority, TIER_ID_overlapped_priority)
+  
+  overlapBounds
+}
+
+fixOverlapsOneFile <- function(x, nm, method=c("old","new"),
+                               noOverlapCheckTiers=NULL, 
+                               overlapThresh=NULL, timeDisp=NULL,
+                               checkZeroWidth=c("drop","error")) {
+  library(purrr)
+  library(dplyr)
+  library(tidyr)
+  
+  ##Check args
+  if (!inherits(x, "transcription")) {
+    stop("x must be an object of class transcription")
+  }
+  if (!is.character(nm) || length(nm) != 1) {
+    stop("nm must be a string")
+  }
+  method <- match.arg(method)
+  stopifnot(is.character(noOverlapCheckTiers))
+  stopifnot(is.numeric(overlapThresh) && overlapThresh >= 0)
+  stopifnot(is.character(timeDisp))
+  checkZeroWidth <- match.arg(checkZeroWidth)
+  
+  ##Get tier priority order
+  fileInfo <- parse_filenames(nm)
+  ##Interviewers can be named either actual name or Interviewer [SpkrCode]
+  interviewerTier <- c(
+    case_when(
+      fileInfo$Neighborhood=="HD" ~ "Trista Pennington", 
+      fileInfo$SpkrCode %in% c("CB02", "CB18") ~ "Jennifer Andrus",
+      TRUE ~ "Barbara Johnstone"),
+    paste("Interviewer", fileInfo$SpkrCode))
+  ##Get priority order
+  tierInfo <- tier_metadata(x) %>% 
+    filter(!(TIER_ID %in% noOverlapCheckTiers)) %>% 
+    ##Prioritize Redaction > Main speaker(s) > Interviewer > Bystander(s)
+    mutate(OverlapGroup = case_match(TIER_ID,
+                                     "Redaction" ~ "Redaction",
+                                     fileInfo$SpkrCode ~ "Main speaker",
+                                     interviewerTier ~ "Interviewer",
+                                     .default="Bystander"
+    )) %>% 
+    ##Arrange by priority order
+    arrange(
+      ##Coincidentally, priority order == reverse alphabetical order
+      desc(OverlapGroup),
+      ##If multiple main speakers or bystanders, break ties by name order
+      TIER_ID)
+  ##Create priority vector
+  tierPriority <- tierInfo$TIER_ID
+  
+  ##Account for missing ANNOTATION_ID
+  if (!every(x, ~ "ANNOTATION_ID" %in% colnames(.x))) {
+    x <- x %>% 
+      map_dfr(as.data.frame, .id="Tier") %>% 
+      mutate(ANNOTATION_ID = paste0("a", row_number()),
+             .before=1) %>% 
+      nest(data = -Tier) %>% 
+      pull(data, Tier)
+  }
+  
+  ##Get non-empty overlap tiers in tier-priority order
+  overlapTiers <-
+    tierInfo %>% 
+    nest_join(x %>% 
+                map_dfr(~ select(.x, ANNOTATION_ID, Start, End),
+                        .id="TIER_ID"),
+              "TIER_ID", 
+              name="data") %>% 
+    pull(data, TIER_ID) %>% 
+    ##Only non-empty tiers
+    discard(~ nrow(.x)==0)
+  
+  ##Single-df version of overlapTiers
+  overlapTiersDF <- bind_rows(overlapTiers, .id="TIER_ID")
+  
+  ##Iteratively find and fix overlaps until a stable solution has been found
+  ##  OR the loop hits its maximum number of iterations
+  overlapsCurr <- findOverlapsOneFile(overlapTiers, tierPriority, overlapThresh)
+  overlapsOld <- NULL
+  iters <- 0
+  maxIter <- 10
+  
+  ##Main execution loop
+  while (nrow(overlapsCurr) > 0 && !identical(overlapsCurr, overlapsOld)) {
+    ##Increment iteration counter
+    iters <- iters + 1
+    ##Exit loop if maximum iterations reached
+    if (iters==maxIter) {
+      warning("Overlap-fixing reached maximum iterations (", maxIter, ") ",
+              "without reaching a stable solution")
+      break
+    }
+    ##Curr is now Old
+    overlapsOld <- overlapsCurr
+    
+    ##Identify timeslots to change
+    if (method=="old") {
+      ##Old method: Set the overlapping boundary to the overlapped turn's
+      ##  closest boundary (regardless of priority)
+      ##Old-method code is written to ostensibly fix each tier in reverse-
+      ##  priority order, but in reality, it's the same as if all tiers are
+      ##  fixed simultaneously (as they are here)
+      newStarts <-
+        overlapsCurr %>% 
+        filter(CloseEnough,
+               Bound=="Start") %>% 
+        mutate(Start = if_else(StartDiff < EndDiff, Start_overlapped, End_overlapped)) %>% 
+        select(TIER_ID, ANNOTATION_ID, Start)
+      newEnds <-
+        overlapsCurr %>% 
+        filter(CloseEnough,
+               Bound=="End") %>% 
+        mutate(End = if_else(StartDiff < EndDiff, Start_overlapped, End_overlapped)) %>% 
+        select(TIER_ID, ANNOTATION_ID, End)
+    }
+    
+    ##Update timeslots
+    overlapTiersDF <- overlapTiersDF %>%
+      rows_update(newStarts, c("TIER_ID", "ANNOTATION_ID")) %>% 
+      rows_update(newEnds, c("TIER_ID", "ANNOTATION_ID"))
+    
+    ##Get updated state of overlaps
+    overlapTiers <- 
+      overlapTiersDF %>% 
+      nest(data = -TIER_ID) %>% 
+      pull(data, TIER_ID)
+    overlapsCurr <- findOverlapsOneFile(overlapTiers, tierPriority, 
+                                        overlapThresh)
+  }
+  
+  overlapTiers
+}
