@@ -258,8 +258,7 @@ findOverlapsOneFile <- function(x, tierPriority, overlapThresh=NULL) {
     bind_rows(.id="TIER_ID") %>% 
     mutate(StartDiff = abs(Start_overlapped - Time),
            EndDiff = abs(End_overlapped - Time),
-           CloseEnough = any(StartDiff < overlapThresh, 
-                             EndDiff < overlapThresh),
+           CloseEnough = StartDiff < overlapThresh | EndDiff < overlapThresh,
            across(contains("TIER_ID"), 
                   list(priority = ~ match(.x, tierPriority)))) %>% 
     arrange(TIER_ID_priority, TIER_ID_overlapped_priority)
@@ -341,14 +340,34 @@ fixOverlapsOneFile <- function(x, nm, method=c("old","new"),
   ##Single-df version of overlapTiers
   overlapTiersDF <- bind_rows(overlapTiers, .id="TIER_ID")
   
-  ##Iteratively find and fix overlaps until a stable solution has been found
-  ##  OR the loop hits its maximum number of iterations
+  #### MAIN EXECUTION ####
+  ##Set up messages
+  message("Overlaps:")
+  msgCols <- c("Iteration", names(overlapTiers))
+  msgHeader <- str_flatten(c("", msgCols), "  ")
+  message(msgHeader)
+  overlapsMsg <- function(overlapsCurr, iters, msgCols, minWidth=5) {
+    msgWidths <- str_width(msgCols) + 2
+    numOverlaps <- 
+      msgCols[-1] %>% 
+      map_int(~ overlapsCurr %>% 
+                filter(TIER_ID==.x) %>% 
+                nrow() %>% 
+                max(minWidth))
+    c(iters, numOverlaps) %>% 
+      str_pad(msgWidths) %>% 
+      message()
+  }
+  
+  ##Initialize looping variables
   overlapsCurr <- findOverlapsOneFile(overlapTiers, tierPriority, overlapThresh)
   overlapsOld <- NULL
   iters <- 0
   maxIter <- 10
+  overlapsMsg(overlapsCurr, iters, msgCols)
   
-  ##Main execution loop
+  ##Iteratively find and fix overlaps until a stable solution has been found
+  ##  OR the loop hits its maximum number of iterations
   while (nrow(overlapsCurr) > 0 && !identical(overlapsCurr, overlapsOld)) {
     ##Increment iteration counter
     iters <- iters + 1
@@ -369,22 +388,22 @@ fixOverlapsOneFile <- function(x, nm, method=c("old","new"),
       ##  priority order, but in reality, it's the same as if all tiers are
       ##  fixed simultaneously (as they are here)
       newStarts <-
-        overlapsCurr %>% 
+        overlapsCurr %>%
         filter(CloseEnough,
-               Bound=="Start") %>% 
-        mutate(Start = if_else(StartDiff < EndDiff, Start_overlapped, End_overlapped)) %>% 
+               Bound=="Start") %>%
+        mutate(Start = if_else(StartDiff < EndDiff, Start_overlapped, End_overlapped)) %>%
         select(TIER_ID, ANNOTATION_ID, Start)
       newEnds <-
-        overlapsCurr %>% 
+        overlapsCurr %>%
         filter(CloseEnough,
-               Bound=="End") %>% 
-        mutate(End = if_else(StartDiff < EndDiff, Start_overlapped, End_overlapped)) %>% 
+               Bound=="End") %>%
+        mutate(End = if_else(StartDiff < EndDiff, Start_overlapped, End_overlapped)) %>%
         select(TIER_ID, ANNOTATION_ID, End)
     }
     
-    ##Update timeslots
+    # ##Update timeslots
     overlapTiersDF <- overlapTiersDF %>%
-      rows_update(newStarts, c("TIER_ID", "ANNOTATION_ID")) %>% 
+      rows_update(newStarts, c("TIER_ID", "ANNOTATION_ID")) %>%
       rows_update(newEnds, c("TIER_ID", "ANNOTATION_ID"))
     
     ##Get updated state of overlaps
@@ -394,6 +413,7 @@ fixOverlapsOneFile <- function(x, nm, method=c("old","new"),
       pull(data, TIER_ID)
     overlapsCurr <- findOverlapsOneFile(overlapTiers, tierPriority, 
                                         overlapThresh)
+    overlapsMsg(overlapsCurr, iters, msgCols)
   }
   
   overlapTiers
