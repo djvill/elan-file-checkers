@@ -6,7 +6,6 @@ library(stringr)
 library(purrr)
 library(tidyr)
 library(dplyr)
-library(magrittr)
 
 
 # Parameters ------------------------------------------------------------------
@@ -472,7 +471,7 @@ findOverlapsTier <- function(timesTier, tierName, timesEAF) {
     ##Add overlap annotation ID
     ##N.B. This works because if which(x) is integer(0), which(x)[1] is NA
     mutate(ANNOTATION_ID_overlapped = timesOtherTiers$ANNOTATION_ID %>% 
-             extract(which(Time > timesOtherTiers$Start & Time < timesOtherTiers$End)[1])) %>% 
+             magrittr::extract(which(Time > timesOtherTiers$Start & Time < timesOtherTiers$End)[1])) %>% 
     ungroup()
   
   ##Restrict to boundaries with overlaps, and add information about overlapped

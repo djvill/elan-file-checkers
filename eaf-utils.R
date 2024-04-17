@@ -36,7 +36,7 @@ eaf_to_df_list <- function(x, annotation_metadata=FALSE) {
   library(tidyr)
   library(dplyr)
   
-  if (!("xml_document" %in% class(x))) {
+  if (!inherits(x, "xml_document")) {
     stop("x must be an XML document")
   }
   
@@ -80,16 +80,16 @@ eaf_to_df_list <- function(x, annotation_metadata=FALSE) {
   ##Add file attributes
   attributes(out) <- c(attributes(out), fileAttr)
   
-  structure(out, class="transcription")
+  structure(out, class=c("trs_transcription", "trs_nesttiers", class(out)))
 }
 
-##Given a transcription object, output a dataframe of tier metadata
+##Given a trs_transcription object, output a dataframe of tier metadata
 ##If no tier has a TIER_ID, output dataframe's TIER_ID is row numbers. If no
 ##  tier has a PARTICIPANT, output dataframe's PARTICIPANT is NA
 tier_metadata <- function(x) {
   library(purrr)
-  if (!inherits(x, "transcription")) {
-    stop("x must be an object of class transcription")
+  if (!inherits(x, c("trs_transcription", "trs_nesttiers"))) {
+    stop("x must be an object of classes trs_transcription and trs_nesttiers")
   }
   
   out <- 
@@ -263,29 +263,49 @@ findOverlapsOneFile <- function(x, tierPriority, overlapThresh=NULL) {
                   list(priority = ~ match(.x, tierPriority)))) %>% 
     arrange(TIER_ID_priority, TIER_ID_overlapped_priority)
   
+  ##Add metadata
+  overlapBounds <- overlapBounds %>% 
+    structure(class=c("trs_overlaps", class(overlapBounds)),
+              tierPriority=tierPriority,
+              overlapThresh=overlapThresh)
+  
   overlapBounds
 }
 
-fixOverlapsOneFile <- function(x, nm, method=c("old","new"),
-                               noOverlapCheckTiers=NULL, 
-                               overlapThresh=NULL, timeDisp=NULL,
-                               checkZeroWidth=c("drop","error")) {
+##Wrapper to handle two use cases: (1) finding overlaps, (2) finding then fixing
+##  overlaps (corresponding to fixOverlaps=FALSE or TRUE, respectively).
+##In case (1), returns a trs_overlaps object. In case (2), returns the original
+##  trs_transcription object with a (possibly 0-row) trs_overlaps object in the
+##  remainingOverlaps slot
+##TODO: Split out fixOverlaps(), which adds overlap metadata to trs_overlaps
+##  (so, taking the "Add info" bit from findOverlapsOneFile()) and resolves
+##  overlaps. handleOverlapsOneFile() will still handle the looping and the 
+##  messages
+handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE, 
+                                  noOverlapCheckTiers=NULL, overlapThresh=NULL, 
+                                  fixMethod=c("old","new"), 
+                                  checkZeroWidth=c("drop","error"),
+                                  maxIters=10) {
   library(purrr)
   library(dplyr)
   library(tidyr)
   
   ##Check args
-  if (!inherits(x, "transcription")) {
-    stop("x must be an object of class transcription")
+  if (!inherits(x, c("trs_transcription", "trs_nesttiers"))) {
+    stop("x must be an object of classes trs_transcription and trs_nesttiers")
   }
   if (!is.character(nm) || length(nm) != 1) {
     stop("nm must be a string")
   }
-  method <- match.arg(method)
+  stopifnot(is.logical(fixOverlaps))
   stopifnot(is.character(noOverlapCheckTiers))
   stopifnot(is.numeric(overlapThresh) && overlapThresh >= 0)
-  stopifnot(is.character(timeDisp))
-  checkZeroWidth <- match.arg(checkZeroWidth)
+  ##Additional args only come into play if fixing overlaps
+  if (fixOverlaps) {
+    fixMethod <- match.arg(fixMethod)
+    checkZeroWidth <- match.arg(checkZeroWidth)
+    stopifnot(is.numeric(maxIters) && maxIters > 0)
+  }
   
   ##Get tier priority order
   fileInfo <- parse_filenames(nm)
@@ -304,8 +324,7 @@ fixOverlapsOneFile <- function(x, nm, method=c("old","new"),
                                      "Redaction" ~ "Redaction",
                                      fileInfo$SpkrCode ~ "Main speaker",
                                      interviewerTier ~ "Interviewer",
-                                     .default="Bystander"
-    )) %>% 
+                                     .default="Bystander")) %>% 
     ##Arrange by priority order
     arrange(
       ##Coincidentally, priority order == reverse alphabetical order
@@ -316,13 +335,31 @@ fixOverlapsOneFile <- function(x, nm, method=c("old","new"),
   tierPriority <- tierInfo$TIER_ID
   
   ##Account for missing ANNOTATION_ID
+  ##Flag to remove ANNOTATION_ID from x after fixing overlaps
+  removeAnnIDs <- FALSE
+  ##If any tier is missing ANNOTATION_ID, add them
   if (!every(x, ~ "ANNOTATION_ID" %in% colnames(.x))) {
-    x <- x %>% 
-      map_dfr(as.data.frame, .id="Tier") %>% 
-      mutate(ANNOTATION_ID = paste0("a", row_number()),
-             .before=1) %>% 
-      nest(data = -Tier) %>% 
-      pull(data, Tier)
+    ##Flag to remove annotation IDs from x after fixing overlaps
+    removeAnnIDs <- TRUE
+    
+    ##Get attributes so they can be restored after manipulation
+    ##This is a temporary shim---once trs_ objects are implemented in an OO way,
+    ##  these attributes will persist through object manipulation
+    xAttr <- attributes(x)
+    
+    ##Get a vector of total rows from preceding tiers
+    startIDs <- x %>% 
+      map_int(nrow) %>% 
+      lag(default=0) %>% 
+      cumsum()
+    ##Add ANNOTATION_IDs in sequence
+    x <- map2(x, startIDs, 
+              ~ .x %>% 
+                mutate(ANNOTATION_ID = paste0("a", row_number() + .y),
+                       .before=1))
+    
+    ##Restore attributes
+    attributes(x) <- xAttr
   }
   
   ##Get non-empty overlap tiers in tier-priority order
@@ -337,33 +374,44 @@ fixOverlapsOneFile <- function(x, nm, method=c("old","new"),
     ##Only non-empty tiers
     discard(~ nrow(.x)==0)
   
+  ##If not fixing overlaps, exit early
+  if (!fixOverlaps) {
+    overlapsCurr <- findOverlapsOneFile(overlapTiers, tierPriority, 
+                                        overlapThresh)
+    return(overlapsCurr)
+  }
+  
   ##Single-df version of overlapTiers
   overlapTiersDF <- bind_rows(overlapTiers, .id="TIER_ID")
   
-  #### MAIN EXECUTION ####
   ##Set up messages
   message("Overlaps:")
   msgCols <- c("Iteration", names(overlapTiers))
   msgHeader <- str_flatten(c("", msgCols), "  ")
   message(msgHeader)
-  overlapsMsg <- function(overlapsCurr, iters, msgCols, minWidth=5) {
-    msgWidths <- str_width(msgCols) + 2
+  ##Function to construct each line of the overlaps table, with values right-
+  ##  aligned under the header
+  overlapsMsg <- function(overlapsCurr, iters, msgCols) {
+    ##Get overlap counts
     numOverlaps <- 
       msgCols[-1] %>% 
       map_int(~ overlapsCurr %>% 
+                as.data.frame() %>% ##Temporary while I wait to implement filter.trs_overlaps()
                 filter(TIER_ID==.x) %>% 
-                nrow() %>% 
-                max(minWidth))
+                nrow())
+    ##Print with iterations, padding with whitespace to width of each column 
+    ##  header (including 2-space cushion)
+    msgWidths <- str_width(msgCols) + 2
     c(iters, numOverlaps) %>% 
       str_pad(msgWidths) %>% 
       message()
   }
   
+  #### MAIN EXECUTION ####
   ##Initialize looping variables
   overlapsCurr <- findOverlapsOneFile(overlapTiers, tierPriority, overlapThresh)
   overlapsOld <- NULL
   iters <- 0
-  maxIter <- 10
   overlapsMsg(overlapsCurr, iters, msgCols)
   
   ##Iteratively find and fix overlaps until a stable solution has been found
@@ -372,8 +420,8 @@ fixOverlapsOneFile <- function(x, nm, method=c("old","new"),
     ##Increment iteration counter
     iters <- iters + 1
     ##Exit loop if maximum iterations reached
-    if (iters==maxIter) {
-      warning("Overlap-fixing reached maximum iterations (", maxIter, ") ",
+    if (iters==maxIters) {
+      warning("Overlap-fixing reached maximum iterations (", maxIters, ") ",
               "without reaching a stable solution")
       break
     }
@@ -381,7 +429,7 @@ fixOverlapsOneFile <- function(x, nm, method=c("old","new"),
     overlapsOld <- overlapsCurr
     
     ##Identify timeslots to change
-    if (method=="old") {
+    if (fixMethod=="old") {
       ##Old method: Set the overlapping boundary to the overlapped turn's
       ##  closest boundary (regardless of priority)
       ##Old-method code is written to ostensibly fix each tier in reverse-
@@ -401,7 +449,7 @@ fixOverlapsOneFile <- function(x, nm, method=c("old","new"),
         select(TIER_ID, ANNOTATION_ID, End)
     }
     
-    # ##Update timeslots
+    ##Update timeslots
     overlapTiersDF <- overlapTiersDF %>%
       rows_update(newStarts, c("TIER_ID", "ANNOTATION_ID")) %>%
       rows_update(newEnds, c("TIER_ID", "ANNOTATION_ID"))
@@ -416,5 +464,69 @@ fixOverlapsOneFile <- function(x, nm, method=c("old","new"),
     overlapsMsg(overlapsCurr, iters, msgCols)
   }
   
-  overlapTiers
+  ##Modify original transcription with new timestamps
+  for (tierName in names(overlapTiers)) {
+    x[[tierName]] <- x[[tierName]] %>% 
+      rows_update(overlapTiers[[tierName]], "ANNOTATION_ID")
+  }
+  
+  ##Optionally remove annotation IDs
+  if (removeAnnIDs) {
+    ##Get attributes so they can be restored after manipulation
+    ##This is a temporary shim---once trs_ objects are implemented in an OO way,
+    ##  these attributes will persist through object manipulation
+    xAttr <- attributes(x)
+    
+    x <- map(x, select, -ANNOTATION_ID)
+    
+    ##Restore attributes
+    attributes(x) <- xAttr
+  }
+  
+  ##Add overlaps as an attribute
+  attr(x, "overlaps") <- overlapsCurr
+  
+  x
 }
+
+
+
+# Object-oriented ---------------------------------------------------------
+
+##Classes:
+##- Basic structures:
+##  - trs_transcription
+##  - trs_tier
+##  - trs_overlaps
+##- Subset of tiers that's *not* a full transcription (and maybe doesn't have full metadata):
+##  - trs_tierset
+##- Additional classes for trs_transcription and trs_tierset that denote shape:
+##  - trs_nesttiers
+##  - trs_single
+
+##Constructors
+
+
+##Validators
+
+
+##Helpers
+
+
+##Low-level methods:
+##- Subset (turns .trs_transcription.trs_nesttiers into .trs_nesttiers)
+##- Combine?
+
+##Change shape:
+##- tierset to single (make TIER_ID a factor so we don't lose information about empty tiers)
+##- single to tierset
+##- add tier
+##- remove tier
+
+##Overlaps:
+##- detect
+##- fix
+
+##I/O:
+##- read from eaf/textgrid
+##- write to eaf/textgrid
