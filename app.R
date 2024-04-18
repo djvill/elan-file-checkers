@@ -56,14 +56,23 @@ noOverlapCheckTiers <- c("Comment","Noise")
 ##Maximum cross-tier misalignment (in ms) to 'snap together'. Set lower to be
 ##  more conservative about what counts as an intended cross-tier alignment
 overlapThresh <- 500						# Not yet modularized
+##Overlap-fixing method: old or new
+fixMethod <- "old"
+##Check for 0-width post-fixing annotations (can cause issues)
+##  "error" = throw error if any annotations have been set to 0-width
+##  "warn" = throw warning
+##  "silent" = silently drop 0-width annotations
+##  NULL = don't check
+checkZeroWidth <- "silent"						# Not yet modularized
+##Maximum number of overlap-fixing iterations to attempt before exiting (must be
+##  positive number)
+maxIters <- 10
+##Behavior when reaching maximum overlap-fixing iterations: "error", "warn",
+##  "silent"
+reachMaxIters <- "warn"
 ##Time display type: "S" (seconds, useful for Praat TextGrids), or "HMS" (useful
 ##  for ELAN)
 timeDisp <- "HMS"						# Not yet modularized
-##Check for 0-width post-fixing annotations (can cause issues)
-##  "error" = throw error in fixOverlapsTier()
-##  "drop" = silently drop 0-width annotations at end of fixOverlaps()
-##  NULL = don't check
-checkZeroWidth <- "drop"						# Not yet modularized
 
 ##Exit-early overrides, for debugging
 overrideExit <- list(fileName = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
@@ -159,8 +168,8 @@ tierIssuesOneFile <- function(x, nm, nonSpkrTiers=NULL, prohibTiers=NULL) {
   library(purrr)
   library(stringr)
   
-  if (!inherits(x, "transcription")) {
-    stop("x must be an object of class transcription")
+  if (!inherits(x, c("trs_transcription", "trs_nesttiers"))) {
+    stop("x must be an object of classes trs_transcription and trs_nesttiers")
   }
   if (!is.character(nm) || length(nm) != 1) {
     stop("nm must be a string")
@@ -338,8 +347,8 @@ dictIssuesOneFile <- function(x, noDictCheckTiers=NULL, dict=NULL,
   library(dplyr)
   
   ##Check args
-  if (!inherits(x, "transcription")) {
-    stop("x must be an object of class transcription")
+  if (!inherits(x, c("trs_transcription", "trs_nesttiers"))) {
+    stop("x must be an object of classes trs_transcription and trs_nesttiers")
   }
   stopifnot(is.character(noDictCheckTiers))
   stopifnot(is.character(dict))
@@ -443,8 +452,8 @@ dictIssuesOneFile <- function(x, noDictCheckTiers=NULL, dict=NULL,
 overlapsIssuesOneFile <- function(x, nm, 
                                   noOverlapCheckTiers=NULL, overlapThresh=NULL, 
                                   fixMethod=c("old","new"), 
-                                  checkZeroWidth=c("drop","error"),
-                                  maxIters=NULL,
+                                  checkZeroWidth=c("error","warn","silent"),
+                                  maxIters=NULL, reachMaxIters=c("error","warn","silent")[2],
                                   timeDisp=c("HMS","S")) {
   library(purrr)
   library(dplyr)
@@ -462,11 +471,12 @@ overlapsIssuesOneFile <- function(x, nm,
   fixMethod <- match.arg(fixMethod)
   checkZeroWidth <- match.arg(checkZeroWidth)
   stopifnot(is.numeric(maxIters) && maxIters > 0)
+  reachMaxIters <- match.arg(reachMaxIters)
   timeDisp <- match.arg(timeDisp)
   
   ##Fix overlaps and/or get remaining overlaps
   x <- handleOverlapsOneFile(x, nm, TRUE, noOverlapCheckTiers, overlapThresh, 
-                             fixMethod, checkZeroWidth, maxIters)
+                             fixMethod, checkZeroWidth, maxIters, reachMaxIters)
   overlaps <- attr(x, "overlaps")
   
   ##If no remaining overlaps, make overlapsNice a 0-row dataframe & exit early
@@ -480,9 +490,10 @@ overlapsIssuesOneFile <- function(x, nm,
     overlaps %>% 
     ##Display overlapping turns with both boundaries
     distinct(ANNOTATION_ID, TIER_ID) %>% 
-    left_join(x %>% map_dfr(as_tibble, .id="TIER_ID")) %>% 
+    left_join(x %>% map_dfr(as_tibble, .id="TIER_ID"),
+              by=c("ANNOTATION_ID", "TIER_ID")) %>% 
     ##Nicer formatting
-    select(TIER_ID, Start, End) %>% 
+    select(Tier = TIER_ID, Start, End) %>% 
     arrange(Start) %>% 
     rowwise() %>% 
     mutate(across(c(Start,End), ~ formatTimes(.x, timeDisp))) %>% 
@@ -939,7 +950,7 @@ server <- function(input, output) {
   dflist <- reactive({ 
     eaflist() %>%
       keep(~ "xml_document" %in% class(.x)) %>% 
-      map(~ eaf_to_df_list(.x, annotation_metadata=TRUE))
+      map(~ eaf_to_trs(.x, annotation_metadata=TRUE))
   })
   
   # Debugging output --------------------------------------------------------
@@ -1274,8 +1285,18 @@ server <- function(input, output) {
     
     ##If not exiting early yet, check for dictionary issues
     if (!exitEarly || overrideExit$dict) {
-      ##Get overlaps issues
-      overlapsIss <- overlapsIssues(eaflist(), tierDF(), fixOverlapRedact)
+      ##Fix overlaps
+      dflistFixed <- dflist() %>% 
+        imap(overlapsIssuesOneFile, noOverlapCheckTiers=noOverlapCheckTiers, 
+             overlapThresh=overlapThresh, fixMethod=fixMethod, 
+             checkZeroWidth=checkZeroWidth, maxIters=maxIters, 
+             reachMaxIters=reachMaxIters, timeDisp=timeDisp)
+      ##Get list of remaining overlaps
+      overlapsIss <-
+        dflistFixed %>% 
+        map(attr, "overlapsNice") %>% 
+        discard(~ nrow(.x)==0)
+      
       ##If no overlaps issues, don't display anything & make step heading green
       if (length(overlapsIss)==0) {
         overlapsSubhead <- undisplay(overlapsSubhead)

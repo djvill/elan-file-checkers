@@ -30,7 +30,7 @@ parse_filenames <- function(x,
 ##Given a single xml_document, return a list of dataframes of tier annotations,
 ##  one for each tier. Includes file metadata as attributes for object, and 
 ##  tier metadata as attributes for dataframe-elements
-eaf_to_df_list <- function(x, annotation_metadata=FALSE) {
+eaf_to_trs <- function(x, annotation_metadata=FALSE) {
   library(xml2)
   library(purrr)
   library(tidyr)
@@ -42,6 +42,11 @@ eaf_to_df_list <- function(x, annotation_metadata=FALSE) {
   
   ##Get file attributes
   fileAttr <- xml_attrs(x)
+  ##Restore xsi: prefix to noNamespaceSchemaLocation
+  ns <- which(names(fileAttr)=="noNamespaceSchemaLocation")
+  if (length(ns) > 0) {
+    names(fileAttr)[ns] <- "xsi:noNamespaceSchemaLocation"
+  }
   
   ##Get tier names & attributes
   tierAttr <-
@@ -149,6 +154,118 @@ add_annotation_ids <- function(x, overwrite=c("error","warn","silent")) {
   attributes(x) <- xAttr
   
   x
+}
+
+##Convert a trs_transcription to an xml_document suitable for opening in Elan
+trs_to_eaf <- function(x, mediaFile=NULL, minElan="minimal-elan.xml") {
+  library(dplyr)
+  library(tidyr)
+  library(purrr)
+  library(xml2)
+  
+  ##Check args
+  if (!inherits(x, c("trs_transcription", "trs_nesttiers"))) {
+    stop("x must be an object of classes trs_transcription and trs_nesttiers")
+  }
+  minXML <- tryCatch(readLines(minElan),
+                     error = \(e) stop("Minimal Elan file ", minElan, " not found"))
+  
+  ##Get xml attributes
+  xAttr <- attributes(x) %>% 
+    ##Leave off R & trs attributes
+    discard_at(c("names", "class", "overlaps", "overlapsNice"))
+  
+  ##Reshape trs
+  x <- x %>%
+    map(~ .x %>% 
+          ##Remove old ANNOTATION_ID and TIME_SLOT_REF columns, if they exist
+          select(-any_of(c("ANNOTATION_ID", "TIME_SLOT_REF1", "TIME_SLOT_REF2"))) %>% 
+          ##Ensure integer, non-NA TIME_VALUEs
+          mutate(across(c(Start, End), round)) %>%
+          filter(if_all(c(Start, End), ~ !is.na(.x)))
+    )
+  
+  ##Get time slots
+  timeSlots <-
+    x %>% 
+    map_dfr(as_tibble, .id="TIER_ID") %>% 
+    mutate(ANNOTATION_ID = paste0("a", row_number())) %>% 
+    pivot_longer(c(Start, End), names_to="Boundary", values_to="TIME_VALUE") %>% 
+    mutate(TIME_SLOT_ID = paste0("ts", row_number()),
+           .before=TIME_VALUE)
+  
+  ##Create TIME_ORDER node
+  TIME_ORDER <- 
+    timeSlots %>% 
+    with(map2(TIME_SLOT_ID, TIME_VALUE, 
+              ##TIME_SLOT nodes have attributes r/t elements or values
+              ~ `attributes<-`(list(),
+                               list(TIME_SLOT_ID = .x, 
+                                    TIME_VALUE = .y)))) %>% 
+    set_names("TIME_SLOT") %>% 
+    list(TIME_ORDER = .) %>%
+    as_xml_document()
+  
+  ##Add timeslots to annotation dataframe
+  tierDF <-
+    timeSlots %>% 
+    mutate(Boundary = paste0("TIME_SLOT_REF", if_else(Boundary=="Start", "1", "2"))) %>% 
+    select(-TIME_VALUE) %>% 
+    pivot_wider(names_from=Boundary, values_from=TIME_SLOT_ID) %>% 
+    mutate(ANNOTATION_VALUE = replace_na(Text, "")) %>% 
+    select(TIER_ID, ANNOTATION_VALUE, ANNOTATION_ID, 
+           TIME_SLOT_REF1, TIME_SLOT_REF2) %>% 
+    nest(ANNOTATION = -TIER_ID)
+  
+  ##List of TIER nodes
+  TIERs <-
+    tierDF %>% 
+    ##Create lists of annotation nodes
+    mutate(TIER = map(ANNOTATION,
+                      ~ .x %>% 
+                        rowwise() %>% 
+                        mutate(ANNOTATION = list(
+                          ANNOTATION = list(
+                            ALIGNABLE_ANNOTATION = structure(list(
+                              ANNOTATION_VALUE = list(ANNOTATION_VALUE)),
+                              ANNOTATION_ID = ANNOTATION_ID, 
+                              TIME_SLOT_REF1 = TIME_SLOT_REF1,
+                              TIME_SLOT_REF2 = TIME_SLOT_REF2)))) %>% 
+                        pull(ANNOTATION))) %>%
+    ##Add tier-level attributes to lists of annotation nodes
+    mutate(TIER = map2(TIER, TIER_ID,
+                       ~ `attributes<-`(.x, list(LINGUISTIC_TYPE_REF="default-lt",
+                                                 TIER_ID = .y,
+                                                 PARTICIPANT = .y)) %>% 
+                         ##Restore node names zapped by `attributes<-`()
+                         set_names("ANNOTATION"))) %>%
+    ##Extract from dataframe and add node name
+    pull(TIER) %>% 
+    set_names("TIER") %>%
+    ##Convert to XML
+    lmap(as_xml_document)
+  
+  ##Remove comments from minimal XML
+  minXML <- minXML[!startsWith(minXML, "<!--")]
+  
+  ##Fill in XML
+  outXML <- read_xml(paste(minXML, collapse=""))
+  xml_replace(xml_find_first(outXML, "//TIME_ORDER"), TIME_ORDER)
+  defaultTier <- xml_find_first(outXML, "//TIER[@TIER_ID='default']")
+  walk(rev(TIERs),
+       ~ xml_add_sibling(defaultTier, .x))
+  xml_remove(defaultTier)
+  ##Optionally add media file
+  if (!is.null(mediaFile)) {
+    header <- xml_find_first(outXML, "//HEADER")
+    xml_attr(header, "MEDIA_FILE") <- mediaFile
+  }
+  
+  ##Add root-tag attributes
+  xml_attrs(outXML) <- xAttr
+  
+  ##Return
+  outXML
 }
 
 ## Overlaps ---------------------------------------------------------------
@@ -328,8 +445,8 @@ findOverlapsOneFile <- function(x, tierPriority, overlapThresh=NULL) {
 handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE, 
                                   noOverlapCheckTiers=NULL, overlapThresh=NULL, 
                                   fixMethod=c("old","new"), 
-                                  checkZeroWidth=c("drop","error"),
-                                  maxIters=NULL) {
+                                  checkZeroWidth=c("error","warn","silent"),
+                                  maxIters=NULL, reachMaxIters=c("error","warn","silent")[2]) {
   library(purrr)
   library(dplyr)
   library(tidyr)
@@ -349,6 +466,7 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
     fixMethod <- match.arg(fixMethod)
     checkZeroWidth <- match.arg(checkZeroWidth)
     stopifnot(is.numeric(maxIters) && maxIters > 0)
+    reachMaxIters <- match.arg(reachMaxIters)
   }
   
   ##Get tier priority order
@@ -381,7 +499,7 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
   ##If any tier is missing ANNOTATION_ID, add them
   if (!every(x, ~ "ANNOTATION_ID" %in% colnames(.x))) {
     warning("Adding missing ANNOTATION_IDs")
-    x <- add_annotation_ids(x)
+    x <- add_annotation_ids(x, "warn")
   }
   
   ##Get non-empty overlap tiers in tier-priority order
@@ -443,8 +561,16 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
     iters <- iters + 1
     ##Exit loop if maximum iterations reached
     if (iters==maxIters) {
-      warning("Overlap-fixing reached maximum iterations (", maxIters, ") ",
-              "without reaching a stable solution")
+      ##Optionally error out or warn
+      maxIterMsg <- paste0("Overlap-fixing reached maximum iterations (", 
+                           maxIters, ") without reaching a stable solution")
+      if (reachMaxIters=="error") {
+        stop(maxIterMsg)
+      }
+      if (reachMaxIters=="warn") {
+        warning(maxIterMsg)
+      }
+      
       break
     }
     ##Curr is now Old
@@ -457,33 +583,43 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
       ##Old-method code is written to ostensibly fix each tier in reverse-
       ##  priority order, but in reality, it's the same as if all tiers are
       ##  fixed simultaneously (as they are here)
-      newStarts <-
-        overlapsCurr %>%
-        filter(CloseEnough,
-               Bound=="Start") %>%
-        mutate(Start = if_else(StartDiff < EndDiff, Start_overlapped, End_overlapped)) %>%
-        select(TIER_ID, ANNOTATION_ID, Start)
-      newEnds <-
-        overlapsCurr %>%
-        filter(CloseEnough,
-               Bound=="End") %>%
-        mutate(End = if_else(StartDiff < EndDiff, Start_overlapped, End_overlapped)) %>%
-        select(TIER_ID, ANNOTATION_ID, End)
+      for (tier in rev(tierPriority)) {
+        newStarts <-
+          overlapsCurr %>%
+          filter(CloseEnough,
+                 TIER_ID==tier,
+                 Bound=="Start") %>%
+          mutate(Start = if_else(StartDiff < EndDiff, Start_overlapped, End_overlapped)) %>%
+          select(TIER_ID, ANNOTATION_ID, Start) %>% 
+          ##Just get first row for each TIER_ID + ANNOTATION_ID (in case the 
+          ##  boundary overlaps multiple tiers), for the sake of rows_update()
+          slice(1, .by=c("TIER_ID","ANNOTATION_ID"))
+        newEnds <-
+          overlapsCurr %>%
+          filter(CloseEnough,
+                 TIER_ID==tier,
+                 Bound=="End") %>%
+          mutate(End = if_else(StartDiff < EndDiff, Start_overlapped, End_overlapped)) %>%
+          select(TIER_ID, ANNOTATION_ID, End) %>% 
+          ##Just get first row for each TIER_ID + ANNOTATION_ID (in case the 
+          ##  boundary overlaps multiple tiers), for the sake of rows_update()
+          slice(1, .by=c("TIER_ID","ANNOTATION_ID"))
+        
+        ##Update timeslots
+        overlapTiersDF <- overlapTiersDF %>%
+          rows_update(newStarts, c("TIER_ID", "ANNOTATION_ID")) %>%
+          rows_update(newEnds, c("TIER_ID", "ANNOTATION_ID"))
+        
+        ##Get updated state of overlaps
+        overlapTiers <- 
+          overlapTiersDF %>% 
+          nest(data = -TIER_ID) %>% 
+          pull(data, TIER_ID)
+        overlapsCurr <- findOverlapsOneFile(overlapTiers, tierPriority, 
+                                            overlapThresh)
+        overlapsMsg(overlapsCurr, iters, msgCols)
+      }
     }
-    
-    ##Update timeslots
-    overlapTiersDF <- overlapTiersDF %>%
-      rows_update(newStarts, c("TIER_ID", "ANNOTATION_ID")) %>%
-      rows_update(newEnds, c("TIER_ID", "ANNOTATION_ID"))
-    
-    ##Get updated state of overlaps
-    overlapTiers <- 
-      overlapTiersDF %>% 
-      nest(data = -TIER_ID) %>% 
-      pull(data, TIER_ID)
-    overlapsCurr <- findOverlapsOneFile(overlapTiers, tierPriority, 
-                                        overlapThresh)
-    overlapsMsg(overlapsCurr, iters, msgCols)
   }
   
   ##Modify original transcription with new timestamps
