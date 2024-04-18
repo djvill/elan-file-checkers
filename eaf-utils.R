@@ -106,6 +106,50 @@ tier_metadata <- function(x) {
   out
 }
 
+##Add annotation IDs to a transcription
+##TODO: Make this a generic so x can be a trs_transcription, trs_tierset, or 
+##  trs_tier
+add_annotation_ids <- function(x, overwrite=c("error","warn","silent")) {
+  library(purrr)
+  library(dplyr)
+  
+  ##Check args
+  if (!inherits(x, c("trs_transcription", "trs_nesttiers"))) {
+    stop("x must be an object of classes trs_transcription and trs_nesttiers")
+  }
+  overwrite <- match.arg(overwrite)
+  
+  ##Check if there are already ANNOTATION_IDs, and act accordingly
+  if (some(x, ~ "ANNOTATION_ID" %in% colnames(.x))) {
+    if (overwrite=="error") {
+      stop("add_annotation_ids() would overwrite existing ANNOTATION_ID attributes")
+    }
+    if (overwrite=="warn") {
+      warning("Overwriting existing ANNOTATION_ID attributes")
+    }
+  }
+  
+  ##Get attributes so they can be restored after manipulation
+  ##This is a temporary shim---once trs_ objects are implemented in an OO way,
+  ##  these attributes will persist through object manipulation
+  xAttr <- attributes(x)
+  
+  ##Get a vector of total rows from preceding tiers
+  startIDs <- x %>% 
+    map_int(nrow) %>% 
+    lag(default=0) %>% 
+    cumsum()
+  ##Add ANNOTATION_IDs in sequence
+  x <- map2(x, startIDs, 
+            ~ .x %>% 
+              mutate(ANNOTATION_ID = paste0("a", row_number() + .y),
+                     .before=1))
+  
+  ##Restore attributes
+  attributes(x) <- xAttr
+  
+  x
+}
 
 ## Overlaps ---------------------------------------------------------------
 ##Function that takes a tier name, eaf file, and file-wide time slot DF as
@@ -285,7 +329,7 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
                                   noOverlapCheckTiers=NULL, overlapThresh=NULL, 
                                   fixMethod=c("old","new"), 
                                   checkZeroWidth=c("drop","error"),
-                                  maxIters=10) {
+                                  maxIters=NULL) {
   library(purrr)
   library(dplyr)
   library(tidyr)
@@ -334,32 +378,10 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
   ##Create priority vector
   tierPriority <- tierInfo$TIER_ID
   
-  ##Account for missing ANNOTATION_ID
-  ##Flag to remove ANNOTATION_ID from x after fixing overlaps
-  removeAnnIDs <- FALSE
   ##If any tier is missing ANNOTATION_ID, add them
   if (!every(x, ~ "ANNOTATION_ID" %in% colnames(.x))) {
-    ##Flag to remove annotation IDs from x after fixing overlaps
-    removeAnnIDs <- TRUE
-    
-    ##Get attributes so they can be restored after manipulation
-    ##This is a temporary shim---once trs_ objects are implemented in an OO way,
-    ##  these attributes will persist through object manipulation
-    xAttr <- attributes(x)
-    
-    ##Get a vector of total rows from preceding tiers
-    startIDs <- x %>% 
-      map_int(nrow) %>% 
-      lag(default=0) %>% 
-      cumsum()
-    ##Add ANNOTATION_IDs in sequence
-    x <- map2(x, startIDs, 
-              ~ .x %>% 
-                mutate(ANNOTATION_ID = paste0("a", row_number() + .y),
-                       .before=1))
-    
-    ##Restore attributes
-    attributes(x) <- xAttr
+    warning("Adding missing ANNOTATION_IDs")
+    x <- add_annotation_ids(x)
   }
   
   ##Get non-empty overlap tiers in tier-priority order
@@ -468,19 +490,6 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
   for (tierName in names(overlapTiers)) {
     x[[tierName]] <- x[[tierName]] %>% 
       rows_update(overlapTiers[[tierName]], "ANNOTATION_ID")
-  }
-  
-  ##Optionally remove annotation IDs
-  if (removeAnnIDs) {
-    ##Get attributes so they can be restored after manipulation
-    ##This is a temporary shim---once trs_ objects are implemented in an OO way,
-    ##  these attributes will persist through object manipulation
-    xAttr <- attributes(x)
-    
-    x <- map(x, select, -ANNOTATION_ID)
-    
-    ##Restore attributes
-    attributes(x) <- xAttr
   }
   
   ##Add overlaps as an attribute

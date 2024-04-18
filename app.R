@@ -440,6 +440,60 @@ dictIssuesOneFile <- function(x, noDictCheckTiers=NULL, dict=NULL,
 ## - getTimes()
 ## - xmllist_to_df()
 
+overlapsIssuesOneFile <- function(x, nm, 
+                                  noOverlapCheckTiers=NULL, overlapThresh=NULL, 
+                                  fixMethod=c("old","new"), 
+                                  checkZeroWidth=c("drop","error"),
+                                  maxIters=NULL,
+                                  timeDisp=c("HMS","S")) {
+  library(purrr)
+  library(dplyr)
+  library(tidyr)
+  
+  ##Check args
+  if (!inherits(x, c("trs_transcription", "trs_nesttiers"))) {
+    stop("x must be an object of classes trs_transcription and trs_nesttiers")
+  }
+  if (!is.character(nm) || length(nm) != 1) {
+    stop("nm must be a string")
+  }
+  stopifnot(is.character(noOverlapCheckTiers))
+  stopifnot(is.numeric(overlapThresh) && overlapThresh >= 0)
+  fixMethod <- match.arg(fixMethod)
+  checkZeroWidth <- match.arg(checkZeroWidth)
+  stopifnot(is.numeric(maxIters) && maxIters > 0)
+  timeDisp <- match.arg(timeDisp)
+  
+  ##Fix overlaps and/or get remaining overlaps
+  x <- handleOverlapsOneFile(x, nm, TRUE, noOverlapCheckTiers, overlapThresh, 
+                             fixMethod, checkZeroWidth, maxIters)
+  overlaps <- attr(x, "overlaps")
+  
+  ##If no remaining overlaps, make overlapsNice a 0-row dataframe & exit early
+  if (nrow(overlaps)==0) {
+    attr(x, "overlapsNice") <- tibble(Tier = character(), Start = character(), End = character())
+    return(x)
+  }
+  
+  ##Format remaining overlaps for printing
+  overlapsNice <- 
+    overlaps %>% 
+    ##Display overlapping turns with both boundaries
+    distinct(ANNOTATION_ID, TIER_ID) %>% 
+    left_join(x %>% map_dfr(as_tibble, .id="TIER_ID")) %>% 
+    ##Nicer formatting
+    select(TIER_ID, Start, End) %>% 
+    arrange(Start) %>% 
+    rowwise() %>% 
+    mutate(across(c(Start,End), ~ formatTimes(.x, timeDisp))) %>% 
+    ungroup()
+  
+  ##Add to x as an attribute
+  attr(x, "overlapsNice") <- overlapsNice
+  
+  x
+}
+
 ##Function that takes a single tier name and a nested list of annotation time
 ##  DFs (meant to be used with output of getTimes()), and outputs a single
 ##  dataframe: the relevant annotation time DF plus three boolean overlaps
