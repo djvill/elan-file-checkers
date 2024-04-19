@@ -248,7 +248,7 @@ trs_to_eaf <- function(x, mediaFile=NULL, minElan="minimal-elan.xml") {
   ##Remove comments from minimal XML
   minXML <- minXML[!startsWith(minXML, "<!--")]
   
-  ##Fill in XML
+  ##Create output file by filling elements into minimal XML
   outXML <- read_xml(paste(minXML, collapse=""))
   xml_replace(xml_find_first(outXML, "//TIME_ORDER"), TIME_ORDER)
   defaultTier <- xml_find_first(outXML, "//TIER[@TIER_ID='default']")

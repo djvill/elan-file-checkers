@@ -32,8 +32,7 @@ prohibTiers <- c("Recheck",
                  "Text",                                                 ##From CLOx
                  paste0("SPEAKER_0", 0:9),                               ##From AI segmentation
                  paste0("PAR", 0:9), paste0("wor@", paste0("PAR", 0:9)), ##From Batchalign
-                 "NoMatch - Word","NoMatch - Turn","Overlap"             ##From Fill-Batchalign-Words
-                 )
+                 "NoMatch - Word","NoMatch - Turn","Overlap")            ##From Fill-Batchalign-Words
 
 ##Dictionary checking
 ##Tiers to exclude from dictionary checking
@@ -1031,8 +1030,8 @@ server <- function(input, output) {
     export
   })
   
-  # Output: UI --------------------------------------------------------------
-  output$out <- renderUI({
+  # Main execution block ----------------------------------------------------
+  main <- reactive({
     ##Always-displayed headings
     stepHeads <- list(tiers = h2("Step 1: Validating tier names and attributes...",
                                  id="tierHead"),
@@ -1043,9 +1042,10 @@ server <- function(input, output) {
     
     ##If no uploaded files, just display headings
     if (!isTruthy(input$files)) {
-      return(tagList(
+      tl <- tagList(
         h1("Waiting for uploaded files..."), 
-        stepHeads))
+        stepHeads)
+      return(list(tags = tl, outdata = list()))
     }
     
     ##If uploaded files, initialize exitEarly sentinel & proceed to checking steps
@@ -1339,7 +1339,9 @@ server <- function(input, output) {
     }
     
     
-    # Download ----------------------------------------------------------------
+    # Download elements -----------------------------------------------------
+    ##List of transcriptions to download
+    outdata <- map(dflistFixed, trs_to_eaf)
     ##Content
     downloadHead <- h1("The file(s) passed all checks. Great job!",
                        id="downloadHead")
@@ -1347,7 +1349,7 @@ server <- function(input, output) {
                           id="downloadSubhead")
     downloadBtn <- downloadButton("OutputFile", "Download corrected file(s)")
     
-    # UI output ---------------------------------------------------------------
+    # UI tags ---------------------------------------------------------------
     ##Reupload heading
     reuploadHead <- h1("Please fix issues and re-upload.", 
                        id="reuploadHead") %>% 
@@ -1376,7 +1378,7 @@ server <- function(input, output) {
     ##If a step is not reached, stepHead styled as .grayout
     
     ##Construct tag list
-    tagList(
+    tl <- tagList(
       ##"Checking the following files" and bullet-list (styling bad files)
       fileCheckHead,
       fileList,
@@ -1401,25 +1403,33 @@ server <- function(input, output) {
       downloadSubhead,
       downloadBtn
     )
-  }) ##End output$out <- renderUI({})
+    
+    ##Return tag list and modified data
+    list(tags = tl, outdata = outdata)
+  }) ##End main <- reactive({})
   
+  # Output: UI --------------------------------------------------------------
+  output$out <- renderUI({
+    req(main())
+    main()$tags
+  })
   
   # Create output file(s) ---------------------------------------------------
   output$OutputFile <- downloadHandler(
     filename=function() {
-      if (length(eaflist())==1) {
-        names(eaflist())
+      if (length(main()$outdata)==1) {
+        names(main()$outdata)
       } else {
         "corrected_eafs.zip"
       }
     },
     content=function(file) {
-      if (length(eaflist())==1) {
-        write_xml(eaflist()[[1]], file)
+      if (length(main()$outdata)==1) {
+        write_xml(main()$outdata[[1]], file)
       } else {
-        eaflist() %>% 
+        main()$outdata %>% 
           iwalk(write_xml)
-        zip(file, names(eaflist()))
+        zip(file, names(main()$outdata))
       }
     }
   )
