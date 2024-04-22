@@ -5,26 +5,24 @@
   "export": {
     "fileDF": [
       {
-        "File": "HD06-1_BadFileExt.eaff",
-        "FileExt": "eaff",
-        "FileExtValid": false,
-        "SpkrCodeValid": true,
-        "FileNameValid": false,
+        "name": "HD06-1_BadFileExt.eaff",
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
-        "SpeakerNum": 6,
-        "FileSuffix": "-1_BadFileExt",
-        "type": ""
+        "FileExt": "eaff"
+      }
+    ],
+    "validationDF": [
+      {
+        "name": "HD06-1_BadFileExt.eaff",
+        "FileExtValid": false,
+        "SpkrCodeValid": true,
+        "FileReadValid": true,
+        "Valid": false
       }
     ]
   },
   "elements": {
     "stepHeads": [
-      {
-        "id": "fileNameHead",
-        "class": "bad",
-        "displayed": true
-      },
       {
         "id": "tierHead",
         "class": "grayout",
@@ -43,7 +41,7 @@
     ],
     "stepSubheads": [
       {
-        "id": "fileNameSubhead",
+        "id": "fileCheckSubhead",
         "displayed": true
       },
       {
@@ -65,9 +63,9 @@
     ],
     "stepDetails": [
       {
-        "id": "checkDetails",
+        "id": "fileList",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"bad\">HD06-1_BadFileExt.eaff<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"fileList\" class=\"details\">\n<li class=\"bad\">HD06-1_BadFileExt.eaff<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
@@ -86,9 +84,9 @@
       }
     ],
     "lastDetailID": [
-      "checkDetails"
+      "fileList"
     ],
-    "checkDetails": [
+    "fileList": [
       "HD06-1_BadFileExt.eaff"
     ]
   }

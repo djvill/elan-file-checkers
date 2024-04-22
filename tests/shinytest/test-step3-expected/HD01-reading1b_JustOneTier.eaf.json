@@ -5,117 +5,132 @@
   "export": {
     "fileDF": [
       {
-        "File": "HD01-reading1b_JustOneTier.eaf",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
+        "name": "HD01-reading1b_JustOneTier.eaf",
         "SpkrCode": "HD01",
         "Neighborhood": "HD",
-        "SpeakerNum": 1,
-        "FileSuffix": "-reading1b_JustOneTier",
-        "type": ""
+        "FileExt": "eaf"
       }
     ],
-    "tierDF": [
+    "tierDF": {
+      "HD01-reading1b_JustOneTier.eaf": [
+        {
+          "TIER_ID": "HD01",
+          "ANNOTATOR": "James Lawler",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "HD01"
+        },
+        {
+          "TIER_ID": "Trista Pennington",
+          "ANNOTATOR": "James Lawler",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Trista Pennington"
+        },
+        {
+          "TIER_ID": "Noise",
+          "ANNOTATOR": "James Lawler",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Noise"
+        },
+        {
+          "TIER_ID": "Redaction",
+          "ANNOTATOR": "James Lawler",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Redaction"
+        },
+        {
+          "TIER_ID": "Comment",
+          "ANNOTATOR": "James Lawler",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Comment"
+        }
+      ]
+    },
+    "turnsDF": [
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
-        "ANNOTATOR": "James Lawler",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "HD01",
-        "TIER_ID": "HD01",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD01",
-        "Neighborhood": "HD",
-        "SpeakerNum": 1,
-        "FileSuffix": "-reading1b_JustOneTier",
-        "type": "",
-        "SpkrTier": true,
-        "AUTHOR": "Emma McKibbin"
+        "Tier": "HD01",
+        "ANNOTATION_ID": "a1",
+        "TIME_SLOT_REF1": "ts4",
+        "TIME_SLOT_REF2": "ts5",
+        "Start": 10180,
+        "End": 10860
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
-        "ANNOTATOR": "James Lawler",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Trista Pennington",
-        "TIER_ID": "Trista Pennington",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD01",
-        "Neighborhood": "HD",
-        "SpeakerNum": 1,
-        "FileSuffix": "-reading1b_JustOneTier",
-        "type": "",
-        "SpkrTier": true,
-        "AUTHOR": "Emma McKibbin"
+        "Tier": "HD01",
+        "ANNOTATION_ID": "a2",
+        "TIME_SLOT_REF1": "ts7",
+        "TIME_SLOT_REF2": "ts8",
+        "Start": 10866,
+        "End": 11340
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
-        "ANNOTATOR": "James Lawler",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Noise",
-        "TIER_ID": "Noise",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD01",
-        "Neighborhood": "HD",
-        "SpeakerNum": 1,
-        "FileSuffix": "-reading1b_JustOneTier",
-        "type": "",
-        "SpkrTier": false,
-        "AUTHOR": "Emma McKibbin"
+        "Tier": "HD01",
+        "ANNOTATION_ID": "a3",
+        "TIME_SLOT_REF1": "ts13",
+        "TIME_SLOT_REF2": "ts14",
+        "Start": 20994,
+        "End": 28521
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
-        "ANNOTATOR": "James Lawler",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Redaction",
-        "TIER_ID": "Redaction",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD01",
-        "Neighborhood": "HD",
-        "SpeakerNum": 1,
-        "FileSuffix": "-reading1b_JustOneTier",
-        "type": "",
-        "SpkrTier": false,
-        "AUTHOR": "Emma McKibbin"
+        "Tier": "HD01",
+        "ANNOTATION_ID": "a4",
+        "TIME_SLOT_REF1": "ts15",
+        "TIME_SLOT_REF2": "ts16",
+        "Start": 28521,
+        "End": 36786
       },
       {
         "File": "HD01-reading1b_JustOneTier.eaf",
-        "ANNOTATOR": "James Lawler",
-        "LINGUISTIC_TYPE_REF": "default-lt",
-        "PARTICIPANT": "Comment",
-        "TIER_ID": "Comment",
-        "FileExt": "eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileNameValid": true,
-        "SpkrCode": "HD01",
-        "Neighborhood": "HD",
-        "SpeakerNum": 1,
-        "FileSuffix": "-reading1b_JustOneTier",
-        "type": "",
-        "SpkrTier": false,
-        "AUTHOR": "Emma McKibbin"
+        "Tier": "Trista Pennington",
+        "ANNOTATION_ID": "a5",
+        "TIME_SLOT_REF1": "ts1",
+        "TIME_SLOT_REF2": "ts2",
+        "Start": 1050,
+        "End": 10180
+      },
+      {
+        "File": "HD01-reading1b_JustOneTier.eaf",
+        "Tier": "Trista Pennington",
+        "ANNOTATION_ID": "a6",
+        "TIME_SLOT_REF1": "ts3",
+        "TIME_SLOT_REF2": "ts6",
+        "Start": 10180,
+        "End": 10866
+      },
+      {
+        "File": "HD01-reading1b_JustOneTier.eaf",
+        "Tier": "Trista Pennington",
+        "ANNOTATION_ID": "a7",
+        "TIME_SLOT_REF1": "ts9",
+        "TIME_SLOT_REF2": "ts10",
+        "Start": 11340,
+        "End": 18020
+      },
+      {
+        "File": "HD01-reading1b_JustOneTier.eaf",
+        "Tier": "Trista Pennington",
+        "ANNOTATION_ID": "a8",
+        "TIME_SLOT_REF1": "ts11",
+        "TIME_SLOT_REF2": "ts12",
+        "Start": 18235,
+        "End": 20994
+      },
+      {
+        "File": "HD01-reading1b_JustOneTier.eaf",
+        "Tier": "Trista Pennington",
+        "ANNOTATION_ID": "a9",
+        "TIME_SLOT_REF1": "ts17",
+        "TIME_SLOT_REF2": "ts18",
+        "Start": 36786,
+        "End": 44884
       }
     ]
   },
   "elements": {
     "stepHeads": [
-      {
-        "id": "fileNameHead",
-        "displayed": false
-      },
       {
         "id": "tierHead",
         "class": "good",
@@ -134,7 +149,7 @@
     ],
     "stepSubheads": [
       {
-        "id": "fileNameSubhead",
+        "id": "fileCheckSubhead",
         "displayed": false
       },
       {
@@ -156,9 +171,9 @@
     ],
     "stepDetails": [
       {
-        "id": "checkDetails",
+        "id": "fileList",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"\">HD01-reading1b_JustOneTier.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"fileList\" class=\"details\">\n<li class=\"\">HD01-reading1b_JustOneTier.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
@@ -177,82 +192,14 @@
       }
     ],
     "lastDetailID": [
-      "checkDetails"
+      "fileList"
     ],
-    "checkDetails": [
+    "fileList": [
       "HD01-reading1b_JustOneTier.eaf"
     ]
   },
   "eaflist": {
-    "HD01-reading1b_JustOneTier.eaf": {
-      "HD01": [
-        {
-          "ANNOTATION_ID": "a1",
-          "TIME_SLOT_REF1": "ts4",
-          "TIME_SLOT_REF2": "ts5",
-          "Start": 10180,
-          "End": 10860
-        },
-        {
-          "ANNOTATION_ID": "a2",
-          "TIME_SLOT_REF1": "ts7",
-          "TIME_SLOT_REF2": "ts8",
-          "Start": 10866,
-          "End": 11340
-        },
-        {
-          "ANNOTATION_ID": "a3",
-          "TIME_SLOT_REF1": "ts13",
-          "TIME_SLOT_REF2": "ts14",
-          "Start": 20994,
-          "End": 28521
-        },
-        {
-          "ANNOTATION_ID": "a4",
-          "TIME_SLOT_REF1": "ts15",
-          "TIME_SLOT_REF2": "ts16",
-          "Start": 28521,
-          "End": 36786
-        }
-      ],
-      "Trista Pennington": [
-        {
-          "ANNOTATION_ID": "a5",
-          "TIME_SLOT_REF1": "ts1",
-          "TIME_SLOT_REF2": "ts2",
-          "Start": 1050,
-          "End": 10180
-        },
-        {
-          "ANNOTATION_ID": "a6",
-          "TIME_SLOT_REF1": "ts3",
-          "TIME_SLOT_REF2": "ts6",
-          "Start": 10180,
-          "End": 10866
-        },
-        {
-          "ANNOTATION_ID": "a7",
-          "TIME_SLOT_REF1": "ts9",
-          "TIME_SLOT_REF2": "ts10",
-          "Start": 11340,
-          "End": 18020
-        },
-        {
-          "ANNOTATION_ID": "a8",
-          "TIME_SLOT_REF1": "ts11",
-          "TIME_SLOT_REF2": "ts12",
-          "Start": 18235,
-          "End": 20994
-        },
-        {
-          "ANNOTATION_ID": "a9",
-          "TIME_SLOT_REF1": "ts17",
-          "TIME_SLOT_REF2": "ts18",
-          "Start": 36786,
-          "End": 44884
-        }
-      ]
-    }
+
   }
 }
 

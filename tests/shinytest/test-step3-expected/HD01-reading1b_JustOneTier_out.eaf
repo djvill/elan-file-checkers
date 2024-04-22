@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ANNOTATION_DOCUMENT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" AUTHOR="Emma McKibbin" DATE="2022-07-18T12:19:11-05:00" FORMAT="3.0" VERSION="3.0" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
-  <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
-    <MEDIA_DESCRIPTOR MEDIA_URL="file:///C:/Users/jelaw/Downloads/HD01reading1b.WAV" MIME_TYPE="audio/x-wav" RELATIVE_MEDIA_URL="../../../../Downloads/HD01reading1b.WAV"/>
-    <PROPERTY NAME="URN">urn:nl-mpi-tools-elan-eaf:eb8a9a97-46d0-408c-9c65-b0a9abe7b7a1</PROPERTY>
-    <PROPERTY NAME="lastUsedAnnotationId">9</PROPERTY>
-  </HEADER>
+  <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds"/>
   <TIME_ORDER>
     <TIME_SLOT TIME_SLOT_ID="ts1" TIME_VALUE="1050"/>
     <TIME_SLOT TIME_SLOT_ID="ts2" TIME_VALUE="10180"/>
     <TIME_SLOT TIME_SLOT_ID="ts3" TIME_VALUE="10180"/>
     <TIME_SLOT TIME_SLOT_ID="ts4" TIME_VALUE="10180"/>
-    <TIME_SLOT TIME_SLOT_ID="ts5" TIME_VALUE="10860"/>
+    <TIME_SLOT TIME_SLOT_ID="ts5" TIME_VALUE="10866"/>
     <TIME_SLOT TIME_SLOT_ID="ts6" TIME_VALUE="10866"/>
     <TIME_SLOT TIME_SLOT_ID="ts7" TIME_VALUE="10866"/>
     <TIME_SLOT TIME_SLOT_ID="ts8" TIME_VALUE="11340"/>
@@ -25,36 +21,14 @@
     <TIME_SLOT TIME_SLOT_ID="ts17" TIME_VALUE="36786"/>
     <TIME_SLOT TIME_SLOT_ID="ts18" TIME_VALUE="44884"/>
   </TIME_ORDER>
-  <TIER ANNOTATOR="James Lawler" LINGUISTIC_TYPE_REF="default-lt" PARTICIPANT="HD01" TIER_ID="HD01">
+  <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Trista Pennington" PARTICIPANT="Trista Pennington">
     <ANNOTATION>
-      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1" TIME_SLOT_REF1="ts4" TIME_SLOT_REF2="ts6">
-        <ANNOTATION_VALUE>okay</ANNOTATION_VALUE>
-      </ALIGNABLE_ANNOTATION>
-    </ANNOTATION>
-    <ANNOTATION>
-      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a2" TIME_SLOT_REF1="ts7" TIME_SLOT_REF2="ts8">
-        <ANNOTATION_VALUE>mmm hmm</ANNOTATION_VALUE>
-      </ALIGNABLE_ANNOTATION>
-    </ANNOTATION>
-    <ANNOTATION>
-      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a3" TIME_SLOT_REF1="ts13" TIME_SLOT_REF2="ts14">
-        <ANNOTATION_VALUE>that's my lunch Dawn and I stopped down in the Strip on the way in and bought some of that great goat cheese they're selling at Penn-Mac</ANNOTATION_VALUE>
-      </ALIGNABLE_ANNOTATION>
-    </ANNOTATION>
-    <ANNOTATION>
-      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a4" TIME_SLOT_REF1="ts15" TIME_SLOT_REF2="ts16">
-        <ANNOTATION_VALUE>it's really ripe . I thought of putting it in the fridge but I didn't . it's good if it's not too cold go on you try it</ANNOTATION_VALUE>
-      </ALIGNABLE_ANNOTATION>
-    </ANNOTATION>
-  </TIER>
-  <TIER ANNOTATOR="James Lawler" LINGUISTIC_TYPE_REF="default-lt" PARTICIPANT="Trista Pennington" TIER_ID="Trista Pennington">
-    <ANNOTATION>
-      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a5" TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts2">
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a5" TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts3">
         <ANNOTATION_VALUE>okay uh so this time I'll actually . uh read - the part of . Denise and then you read Ron</ANNOTATION_VALUE>
       </ALIGNABLE_ANNOTATION>
     </ANNOTATION>
     <ANNOTATION>
-      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a6" TIME_SLOT_REF1="ts3" TIME_SLOT_REF2="ts6">
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a6" TIME_SLOT_REF1="ts4" TIME_SLOT_REF2="ts7">
         <ANNOTATION_VALUE>okay ?</ANNOTATION_VALUE>
       </ALIGNABLE_ANNOTATION>
     </ANNOTATION>
@@ -64,7 +38,7 @@
       </ALIGNABLE_ANNOTATION>
     </ANNOTATION>
     <ANNOTATION>
-      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a8" TIME_SLOT_REF1="ts11" TIME_SLOT_REF2="ts12">
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a8" TIME_SLOT_REF1="ts11" TIME_SLOT_REF2="ts13">
         <ANNOTATION_VALUE>Ron did you go fishing over the weekend ?</ANNOTATION_VALUE>
       </ALIGNABLE_ANNOTATION>
     </ANNOTATION>
@@ -74,9 +48,31 @@
       </ALIGNABLE_ANNOTATION>
     </ANNOTATION>
   </TIER>
-  <TIER ANNOTATOR="James Lawler" LINGUISTIC_TYPE_REF="default-lt" PARTICIPANT="Noise" TIER_ID="Noise"/>
-  <TIER ANNOTATOR="James Lawler" LINGUISTIC_TYPE_REF="default-lt" PARTICIPANT="Redaction" TIER_ID="Redaction"/>
-  <TIER ANNOTATOR="James Lawler" LINGUISTIC_TYPE_REF="default-lt" PARTICIPANT="Comment" TIER_ID="Comment"/>
+  <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="HD01" PARTICIPANT="HD01">
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1" TIME_SLOT_REF1="ts2" TIME_SLOT_REF2="ts5">
+        <ANNOTATION_VALUE>okay</ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a2" TIME_SLOT_REF1="ts6" TIME_SLOT_REF2="ts8">
+        <ANNOTATION_VALUE>mmm hmm</ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a3" TIME_SLOT_REF1="ts12" TIME_SLOT_REF2="ts14">
+        <ANNOTATION_VALUE>that's my lunch Dawn and I stopped down in the Strip on the way in and bought some of that great goat cheese they're selling at Penn-Mac</ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a4" TIME_SLOT_REF1="ts15" TIME_SLOT_REF2="ts16">
+        <ANNOTATION_VALUE>it's really ripe . I thought of putting it in the fridge but I didn't . it's good if it's not too cold go on you try it</ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+  </TIER>
+  <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Noise" PARTICIPANT="Noise"/>
+  <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Redaction" PARTICIPANT="Redaction"/>
+  <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Comment" PARTICIPANT="Comment"/>
   <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="default-lt" TIME_ALIGNABLE="true"/>
   <CONSTRAINT DESCRIPTION="Time subdivision of parent annotation's time interval, no time gaps allowed within this interval" STEREOTYPE="Time_Subdivision"/>
   <CONSTRAINT DESCRIPTION="Symbolic subdivision of a parent annotation. Annotations refering to the same parent are ordered" STEREOTYPE="Symbolic_Subdivision"/>

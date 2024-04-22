@@ -5,64 +5,14 @@
   "export": {
     "fileDF": [
       {
-        "name": "HD06-1_ActuallyATextGrid.eaf",
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "FileExt": "eaf"
-      },
-      {
-        "name": "HD06-1_BadFileExt.eaff",
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "FileExt": "eaff"
-      },
-      {
-        "name": "HD06-1_NoIssues.eaf",
-        "SpkrCode": "HD06",
-        "Neighborhood": "HD",
-        "FileExt": "eaf"
-      },
-      {
         "name": "MultipleIssues_HD06-1.eafF",
         "FileExt": "eafF"
-      },
-      {
-        "name": "SpeakerCodeNonInitial_HD06-1.eaf",
-        "FileExt": "eaf"
       }
     ],
     "validationDF": [
       {
-        "name": "HD06-1_ActuallyATextGrid.eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileReadValid": false,
-        "Valid": false
-      },
-      {
-        "name": "HD06-1_BadFileExt.eaff",
-        "FileExtValid": false,
-        "SpkrCodeValid": true,
-        "FileReadValid": true,
-        "Valid": false
-      },
-      {
-        "name": "HD06-1_NoIssues.eaf",
-        "FileExtValid": true,
-        "SpkrCodeValid": true,
-        "FileReadValid": true,
-        "Valid": true
-      },
-      {
         "name": "MultipleIssues_HD06-1.eafF",
         "FileExtValid": false,
-        "SpkrCodeValid": false,
-        "FileReadValid": true,
-        "Valid": false
-      },
-      {
-        "name": "SpeakerCodeNonInitial_HD06-1.eaf",
-        "FileExtValid": true,
         "SpkrCodeValid": false,
         "FileReadValid": true,
         "Valid": false
@@ -113,7 +63,7 @@
       {
         "id": "fileList",
         "hasContent": true,
-        "content": "<ul id=\"fileList\" class=\"details\">\n<li class=\"bad\">HD06-1_ActuallyATextGrid.eaf<\/li>\n  <li class=\"bad\">HD06-1_BadFileExt.eaff<\/li>\n  <li class=\"\">HD06-1_NoIssues.eaf<\/li>\n  <li class=\"bad\">MultipleIssues_HD06-1.eafF<\/li>\n  <li class=\"bad\">SpeakerCodeNonInitial_HD06-1.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"fileList\" class=\"details\">\n<li class=\"bad\">MultipleIssues_HD06-1.eafF<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
@@ -135,11 +85,7 @@
       "fileList"
     ],
     "fileList": [
-      "HD06-1_ActuallyATextGrid.eaf",
-      "HD06-1_BadFileExt.eaff",
-      "HD06-1_NoIssues.eaf",
-      "MultipleIssues_HD06-1.eafF",
-      "SpeakerCodeNonInitial_HD06-1.eaf"
+      "MultipleIssues_HD06-1.eafF"
     ]
   }
 }

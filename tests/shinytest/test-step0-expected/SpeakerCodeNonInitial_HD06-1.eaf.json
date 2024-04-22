@@ -5,22 +5,22 @@
   "export": {
     "fileDF": [
       {
-        "File": "SpeakerCodeNonInitial_HD06-1.eaf",
-        "FileExt": "eaf",
+        "name": "SpeakerCodeNonInitial_HD06-1.eaf",
+        "FileExt": "eaf"
+      }
+    ],
+    "validationDF": [
+      {
+        "name": "SpeakerCodeNonInitial_HD06-1.eaf",
         "FileExtValid": true,
         "SpkrCodeValid": false,
-        "FileNameValid": false,
-        "type": ""
+        "FileReadValid": true,
+        "Valid": false
       }
     ]
   },
   "elements": {
     "stepHeads": [
-      {
-        "id": "fileNameHead",
-        "class": "bad",
-        "displayed": true
-      },
       {
         "id": "tierHead",
         "class": "grayout",
@@ -39,7 +39,7 @@
     ],
     "stepSubheads": [
       {
-        "id": "fileNameSubhead",
+        "id": "fileCheckSubhead",
         "displayed": true
       },
       {
@@ -61,9 +61,9 @@
     ],
     "stepDetails": [
       {
-        "id": "checkDetails",
+        "id": "fileList",
         "hasContent": true,
-        "content": "<ul id=\"checkDetails\" class=\"details\">\n<li class=\"bad\">SpeakerCodeNonInitial_HD06-1.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"fileList\" class=\"details\">\n<li class=\"bad\">SpeakerCodeNonInitial_HD06-1.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
@@ -82,9 +82,9 @@
       }
     ],
     "lastDetailID": [
-      "checkDetails"
+      "fileList"
     ],
-    "checkDetails": [
+    "fileList": [
       "SpeakerCodeNonInitial_HD06-1.eaf"
     ]
   }

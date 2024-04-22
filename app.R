@@ -11,7 +11,7 @@ library(dplyr)
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "1.3.1"
+vers <- "1.4.0"
 
 ##File structures
 ##Regex for extracting SpkrCode column from filenames
