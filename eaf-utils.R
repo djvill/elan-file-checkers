@@ -191,6 +191,7 @@ trs_to_eaf <- function(x, mediaFile=NULL, minElan="minimal-elan.xml") {
     map_dfr(as_tibble, .id="TIER_ID") %>% 
     mutate(ANNOTATION_ID = paste0("a", row_number())) %>% 
     pivot_longer(c(Start, End), names_to="Boundary", values_to="TIME_VALUE") %>% 
+    arrange(TIME_VALUE) %>% 
     mutate(TIME_SLOT_ID = paste0("ts", row_number()),
            .before=TIME_VALUE)
   
@@ -245,6 +246,24 @@ trs_to_eaf <- function(x, mediaFile=NULL, minElan="minimal-elan.xml") {
     ##Convert to XML
     lmap(as_xml_document)
   
+  ##Account for tiers without annotations (which are missing from TIERs list)
+  missingTiers <- 
+    x %>% 
+    names() %>% 
+    setdiff(map_chr(TIERs, xml_attr, "TIER_ID"))
+  ##Create empty TIER nodes if needed
+  if (length(missingTiers) > 0) {
+    emptyTIERs <- 
+      missingTiers %>% 
+      map(~ structure(list(),
+                      LINGUISTIC_TYPE_REF="default-lt",
+                      TIER_ID = .x,
+                      PARTICIPANT = .x)) %>% 
+      ##Add node name & convert to XML
+      set_names("TIER") %>% 
+      lmap(as_xml_document)
+  }
+  
   ##Remove comments from minimal XML
   minXML <- minXML[!startsWith(minXML, "<!--")]
   
@@ -252,6 +271,10 @@ trs_to_eaf <- function(x, mediaFile=NULL, minElan="minimal-elan.xml") {
   outXML <- read_xml(paste(minXML, collapse=""))
   xml_replace(xml_find_first(outXML, "//TIME_ORDER"), TIME_ORDER)
   defaultTier <- xml_find_first(outXML, "//TIER[@TIER_ID='default']")
+  if (length(missingTiers) > 0) {
+    walk(rev(emptyTIERs), 
+         ~ xml_add_sibling(defaultTier, .x))
+  }
   walk(rev(TIERs),
        ~ xml_add_sibling(defaultTier, .x))
   xml_remove(defaultTier)
