@@ -1,5 +1,5 @@
 ##Test the files for step 3
-source("utils.R")
+source("shinytest-utils.R")
 app <- ShinyDriver$new("../../")
 testPath <- paste0("test-step3", "-current/")
 testFiles <- dir("step3", ".+eaf", full.names=TRUE)

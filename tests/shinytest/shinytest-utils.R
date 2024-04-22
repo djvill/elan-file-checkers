@@ -75,7 +75,7 @@ snap <- function(app, name=NULL, path=getwd(), incl_eaflist=FALSE) {
   lastDetailElem <- html_elements(mainUI, paste0("#", lastDetailID))
   
   ##Translate from HTML to vector (checkDetails) or named list (others)
-  if (lastDetailID=="checkDetails") {
+  if (lastDetailID=="fileList") {
     lastDetails <- 
       lastDetailElem %>% 
       html_children() %>% 
