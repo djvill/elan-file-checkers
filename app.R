@@ -13,11 +13,6 @@ library(dplyr)
 ##Version
 vers <- "1.3.1"
 
-##Debugging
-##  (See also info about "interactive use" below)
-##Show additional UI element "debugPrint" at top of main panel for debugging?
-showDebug <- FALSE
-
 ##File structures
 ##Regex for extracting SpkrCode column from filenames
 spkrCodeRegex <- "^(CB|FH|HD|LV)\\d+(and\\d+)?"
@@ -40,21 +35,21 @@ noDictCheckTiers <- c("Comment","Noise","Redaction")
 ##Include local version of aplsDict.txt? Include ONLY local version?
 ##  Only works on Dan's machine, useful for testing new entries without
 ##  committing each time
-inclLocalDict <- FALSE						# Not yet modularized
-onlyLocalDict <- FALSE						# Not yet modularized
+inclLocalDict <- FALSE
+onlyLocalDict <- FALSE
 ##Permit angle brackets for single-word interruptions?
-permitAngleBrackets <- FALSE						# Not yet modularized
+permitAngleBrackets <- FALSE
 ##Characters to accept in pronounce codes
-pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE{VQU@i$u312456789#'\"-]"						# Not yet modularized
+pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE{VQU@i$u312456789#'\"-]"
 ##Case-sensitive?
-caseSens <- FALSE						# Not yet modularized
+caseSens <- FALSE
 
 ##Overlap fixing
 ##Tiers to exclude from overlap checking/fixing
 noOverlapCheckTiers <- c("Comment","Noise")
 ##Maximum cross-tier misalignment (in ms) to 'snap together'. Set lower to be
 ##  more conservative about what counts as an intended cross-tier alignment
-overlapThresh <- 500						# Not yet modularized
+overlapThresh <- 500
 ##Overlap-fixing method: old or new
 fixMethod <- "old"
 ##Check for 0-width post-fixing annotations (can cause issues)
@@ -62,7 +57,7 @@ fixMethod <- "old"
 ##  "warn" = throw warning
 ##  "silent" = silently drop 0-width annotations
 ##  NULL = don't check
-checkZeroWidth <- "silent"						# Not yet modularized
+checkZeroWidth <- "silent"
 ##Maximum number of overlap-fixing iterations to attempt before exiting (must be
 ##  positive number)
 maxIters <- 10
@@ -71,7 +66,7 @@ maxIters <- 10
 reachMaxIters <- "warn"
 ##Time display type: "S" (seconds, useful for Praat TextGrids), or "HMS" (useful
 ##  for ELAN)
-timeDisp <- "HMS"						# Not yet modularized
+timeDisp <- "HMS"
 
 ##Exit-early overrides, for debugging
 overrideExit <- list(fileName = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
@@ -104,8 +99,7 @@ ui <- fluidPage(
     ),
     
     ##UI details are complicated, so they all take place in output$out
-    mainPanel(uiOutput("debug"),
-              uiOutput("export"), ##Never shown
+    mainPanel(uiOutput("export"), ##Never shown
               uiOutput("out"))
   )
 )
@@ -349,10 +343,8 @@ dictIssuesOneFile <- function(x, noDictCheckTiers=NULL, dict=NULL,
   if (!inherits(x, c("trs_transcription", "trs_nesttiers"))) {
     stop("x must be an object of classes trs_transcription and trs_nesttiers")
   }
-  stopifnot(is.character(noDictCheckTiers))
-  stopifnot(is.character(dict))
-  if (!is.character(noDictCheckTiers)) {
-    stop("noDictCheckTiers must be a character vector")
+  if (!is.null(noDictCheckTiers) && !is.character(noDictCheckTiers)) {
+    stop("noDictCheckTiers must be NULL or a character vector")
   }
   if (!is.character(dict)) {
     stop("dict must be a character vector")
@@ -518,79 +510,6 @@ formatTimes <- function(time, type=c("S","HMS")[2]) {
   }
 }
 
-##Fix overlaps in all files, returning any unresolved overlaps, formatted
-##  nicely for printing
-##x should be eaflist(), df should be tierDF() (passed down to fixOverlaps())
-overlapsIssues <- function(x, df, inclRedact=TRUE) {
-  library(purrr)
-  library(dplyr)
-  library(tidyr)
-  
-  ##Get list of each file's tier names to check
-  tierNames <- getOverlapTiers(df, inclRedact)
-  
-  ##Get initial timing data
-  times <- list(eaf = x,
-                tiers = tierNames) %>%
-    pmap(getTimes)
-  
-  ##If all files have just one tier, skip overlap-checking
-  nTiers <- map_int(times, length)
-  if (all(nTiers==1)) {
-    return(list())
-  }
-  
-  ##Fix overlaps & format output for display
-  fixed <- 
-    tierNames %>% 
-    ##Fix overlaps
-    imap(fixOverlaps, eaflist=x) %>% 
-    ##Get fixed-overlap times
-    map(~ .x %>% 
-          ##All in one DF
-          bind_rows(.id="Tier") %>%
-          ##One row per annotation (nicer labels)
-          select(ANNOTATION_ID, Tier, Side, Time) %>%
-          mutate(Side = if_else(Side==1, "Start", "End")) %>%
-          pivot_wider(names_from=Side, values_from=Time))
-  
-  ##Remove empty entries from times and fixed
-  nonempty <- map_int(fixed, nrow) > 0
-  times <- times[nonempty]
-  fixed <- fixed[nonempty]
-  
-  ##Add empty End columns to fixed if needed
-  ##This circumvents an error in weird edge casess
-  fixed <- fixed %>% 
-    map_if(~ !("End" %in% colnames(.x)),
-           ~ .x %>% mutate(End = NA_real_))
-  
-  ##If any NAs in Start/End, patch rows
-  if (any(fixed %>% 
-          map_lgl(~ .x %>% 
-                  select(Start, End) %>% 
-                  is.na() %>% 
-                  any()))) {
-    ##Get just relevant annotations (otherwise rows_patch() will complain)
-    times <- map2(times, fixed,
-                  ~ .x %>%
-                    bind_rows() %>%
-                    select(ANNOTATION_ID, Start, End) %>%
-                    semi_join(.y, "ANNOTATION_ID"))
-    
-    ##Add missing timestamps
-    fixed <- map2(fixed, times, rows_patch, by="ANNOTATION_ID")
-  }
-  
-  ##Sort by start time, remove annotation ID, nicer Start/End formatting, & return
-  fixed %>%
-    map(~ .x %>%
-          arrange(Start) %>%
-          select(-ANNOTATION_ID) %>%
-          rowwise() %>%
-          mutate(across(c(Start,End), ~ formatTimes(.x, timeDisp))))
-}
-
 ## UI convenience functions ===================================================
 
 ##Convenience functions to display/undisplay HTML elements
@@ -667,35 +586,7 @@ server <- function(input, output) {
       map(~ eaf_to_trs(.x, annotation_metadata=TRUE))
   })
   
-  # Debugging output --------------------------------------------------------
-  ##Wrapper to include verbatim debugging text in UI or UI elements
-  output$debug <- renderUI({
-    out <- verbatimTextOutput("debugPrint")
-    
-    ##Optionally display or undisplay
-    if (showDebug) {
-      display(out)
-    } else {
-      undisplay(out)
-    }
-  })
-  
-  ##Verbatim debugging text (to 'peek into' environment)
-  output$debugPrint <-
-    renderPrint({
-      list(
-        ##To use:
-        ## 1. Set showDebug to TRUE
-        ## 2. Put reactive objects here with name from environment or expression, such as
-        ##      `eaflist()` = eaflist()
-        ##      `tierDF()$TIER_ID` = tierDF()$TIER_ID,
-        ##    or if that's too cumbersome, just give it a temporary name, such as
-        ##      jon = tierDF()$TIER_ID %>% 
-        ##        unique()
-        # `overlapsIssues(eaflist(), tierDF())` = overlapsIssues(eaflist(), tierDF())
-      )
-    })
-  
+  # Export element for shinytest ---------------------------------------------
   ##Export test values (packed away in 1+ <div>s)
   ##To unpack in shinytest, use the following: 
   ##  app <- ShinyDriver$new()
