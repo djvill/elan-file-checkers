@@ -27,6 +27,66 @@ parse_filenames <- function(x,
            FileExt = file_ext(name))
 }
 
+##Check that Praat exists in praatDir, either as Praat.exe or a zipfolder
+##  praat...zip, and return its path (including ./ prefix, suitable for use in
+##  shell scripts to run it as an executable)
+check_for_praat <- function(praatDir=".") {
+  ##Check args and ensure existence of executable and/or zipfolder
+  stopifnot(is.character(praatDir) && dir.exists(praatDir))
+  praatExe <- file.path(praatDir, "Praat.exe")
+  praatZip <- dir(praatDir, "praat.+\\.zip", full.names=TRUE, ignore.case=TRUE)
+  if (!file.exists(praatExe) && length(praatZip) == 0) {
+    stop("No Praat executable or zipfile found in praatDir ", praatDir)
+  }
+  
+  ##Unzip if necessary
+  if (!file.exists(praatExe)) {
+    ##If more than one zipfile found, try to get the latest one
+    ##This is imperfect because (e.g.) praat649.zip will incorrectly be sorted
+    ##  after praat6410.zip
+    numPraatZip <- length(praatZip)
+    if (numPraatZip > 1) {
+      praatZip <- sort(praatZip, decreasing=TRUE)[1]
+      warning("Found ", numPraatZip, " Praat zipfolders in praatDir ", praatDir,
+              "\n  Using ", basename(praatZip))
+    }
+    ##Unzip to praatDir
+    praatExe <- unzip(praatZip, exdir=praatDir)
+    ##Ensure praatZip is a valid Praat zipfolder
+    if (length(praatExe) != 1 || basename(praatExe) != "Praat.exe") {
+      stop(praatZip, " is not a valid Praat zipfolder ", 
+           "(it should contain only Praat.exe)")
+    }
+  }
+  
+  praatExe
+}
+
+##Given a path to a Praat TextGrid, read as an R dataframe (using Praat's
+##  built-in "Down to Table..." command)
+read_textgrid <- function(x, outcsv=tempfile(fileext=".csv"), praatDir=".") {
+  library(dplyr)
+  
+  ##Check args
+  praatExe <- check_for_praat(praatDir)
+  stopifnot(file.exists(x))
+  
+  ##Run Praat script and check that it created an output
+  system2(praatExe, paste0("--run tg-to-csv.praat ", 
+                           '"', x, '" ',
+                           '"', outcsv, '"'), 
+          stderr=FALSE)
+  if (!file.exists(outcsv)) {
+    stop(x, " is not a valid TextGrid")
+  }
+  
+  ##Read csv, clean up tempfile, and return
+  out <- read.csv(outcsv)
+  file.remove(outcsv)
+  out
+}
+
+
 ##Given a single xml_document, return a list of dataframes of tier annotations,
 ##  one for each tier. Includes file metadata as attributes for object, and 
 ##  tier metadata as attributes for dataframe-elements

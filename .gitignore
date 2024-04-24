@@ -1,10 +1,12 @@
 #### CUSTOM ####
 
 Elan File Checkers.Rproj
-*.psfx
+*.pfsx
 unisynDict.txt
 **test*-current/
 rsconnect/
+Praat.exe
+*.dcf
 
 #### R ####
 

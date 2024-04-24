@@ -11,6 +11,9 @@ This repo contains code for the [APLS Elan file checker](https://djvill.shinyapp
 [cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
 [cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
 
+N.B. As of version 1.4.1, this repository includes [Praat](https://www.fon.hum.uva.nl/praat/), which is open-source software distributed under the [GNU General Public License](https://www.fon.hum.uva.nl/praat/manual/License.html).
+
+
 ## Why an Elan file checker?
 
 In short, this app is a **quality control tool that closes the gap between Elan and LaBB-CAT**, catching issues that originate in Elan before they cause downstream havoc in LaBB-CAT.
