@@ -10,7 +10,13 @@
 ##In the app, x is input$files$name
 parse_filenames <- function(x, 
                             spkrCodeRE="^(CB|FH|HD|LV)\\d+(and\\d+)?",
-                            neighborhoodRE="^(CB|FH|HD|LV)") {
+                            neighborhoodRE="^(CB|FH|HD|LV)",
+                            readHandlers=list(eaf = xml2::read_xml,
+                                              textgrid = readtextgrid::read_textgrid)) {
+  ##Check args
+  if (!is.character(x)) {
+    stop("x must be a character vector")
+  }
   if (!identical(x, basename(x))) {
     warning("Found non-basename(s) in x. Using basename(x) instead")
     x <- basename(x)
@@ -19,12 +25,17 @@ parse_filenames <- function(x,
   library(dplyr)
   library(stringr)
   library(tools)
+  library(purrr)
   
-  ##Add file info
-  data.frame(name = x) %>% 
-    mutate(SpkrCode = str_extract(name, spkrCodeRE),
-           Neighborhood = str_extract(SpkrCode, neighborhoodRE),
-           FileExt = file_ext(name))
+  ##Collect file info
+  out <- tibble(name = x,
+         SpkrCode = str_extract(name, spkrCodeRE),
+         Neighborhood = str_extract(SpkrCode, neighborhoodRE),
+         FileExt = file_ext(name))
+  if (!is.null(readHandlers)) {
+    out <- out %>% 
+      mutate(ReadHandler = map(tolower(FileExt), ~ pluck(readHandlers, .x)))
+  }
 }
 
 ##Check that Praat exists in praatDir, either as Praat.exe or a zipfolder
@@ -87,18 +98,56 @@ read_textgrid <- function(x, outcsv=tempfile(fileext=".csv"), praatDir=".") {
 }
 
 
-##Given a single xml_document, return a list of dataframes of tier annotations,
-##  one for each tier. Includes file metadata as attributes for object, and 
-##  tier metadata as attributes for dataframe-elements
-eaf_to_trs <- function(x, annotation_metadata=FALSE) {
+# trs_transcription -------------------------------------------------------
+
+
+as.trs_transcription <- function(x, ...) {
+  UseMethod("as.trs_transcription")
+}
+
+
+##Given a single trs_textgrid, return a list of dataframes of tier annotations, 
+##  one for each tier. Adds tier metadata as attributes for dataframe-elements
+##  to mirror trs_eaf objects (and pass validation checks)
+as.trs_transcription.trs_textgrid <- function(x, tierAttributes=FALSE, ...) {
+  library(dplyr)
+  library(tidyr)
+  
+  ##Rename & reorder columns, create nested list
+  out <- 
+    x %>% 
+    select(TIER_ID = tier,
+           Start = tmin,
+           End = tmax,
+           Text = text) %>% 
+    nest(data = -TIER_ID) %>% 
+    pull(data, TIER_ID)
+  
+  ##Optionally add tier attributes to mirror trs_eaf objects
+  if (tierAttributes) {
+    out <- out %>% 
+      imap(~ add_attributes(.x, list(LINGUISTIC_TYPE_REF="default-lt",
+                                     PARTICIPANT = .y)))
+  }
+  
+  ##Remove trs_textgrid class from nested dataframes
+  out <- out %>% 
+    map(as.data.frame) %>% 
+    ##Add trs_transcription and trs_nesttiers classes to object
+    add_class(c("trs_transcription", "trs_nesttiers"))
+  
+  out
+}
+
+
+##Given a single trs_eaf, return a list of dataframes of tier annotations, one
+##  for each tier. Includes file metadata as attributes for object, and tier
+##  metadata as attributes for dataframe-elements
+as.trs_transcription.trs_eaf <- function(x, annotation_metadata=FALSE, ...) {
   library(xml2)
   library(purrr)
   library(tidyr)
   library(dplyr)
-  
-  if (!inherits(x, "xml_document")) {
-    stop("x must be an XML document")
-  }
   
   ##Get file attributes
   fileAttr <- xml_attrs(x)
@@ -147,6 +196,8 @@ eaf_to_trs <- function(x, annotation_metadata=FALSE) {
   
   structure(out, class=c("trs_transcription", "trs_nesttiers", class(out)))
 }
+
+
 
 ##Given a trs_transcription object, output a dataframe of tier metadata
 ##If no tier has a TIER_ID, output dataframe's TIER_ID is row numbers. If no
@@ -717,6 +768,62 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
   x
 }
 
+
+# Miscellaneous utilities -------------------------------------------------
+
+##Low-level utility for adding new class(es) to x, facilitating cleaner code
+##  in functional-programming settings (e.g., purrr:::map*()) or in pipe chains
+add_class <- function(x, newClass) {
+  stopifnot(is.character(newClass))
+  curr <- class(x)
+  
+  ##Handle cases where x already inherits from 1+ newClass
+  overlap <- intersect(curr, newClass)
+  if (identical(overlap, newClass)) {
+    stop("x already has class(es) ", paste(newClass, collapse=" "))
+  }
+  if (length(overlap) > 0) {
+    newClass <- setdiff(newClass, overlap)
+    warning("x already has class(es) ", paste(overlap, collapse=" "), "\n",
+            "  Only adding class(es) ", paste(newClass, collapse=" "))
+  }
+  
+  ##Add new class and return
+  class(x) <- c(newClass, curr)
+  x
+}
+
+##Low-level utility for adding new attribute(s) to x, facilitating cleaner code
+##  in functional-programming settings (e.g., purrr:::map*()) or in pipe chains
+add_attributes <- function(x, newAttr) {
+  ##Check args
+  if (is.atomic(newAttr)) {
+    newAttr <- as.list(newAttr)
+  }
+  newAttrNames <- names(newAttr)
+  if (any(duplicated(newAttrNames))) {
+    stop("Duplicate names in newAttr")
+  }
+  
+  ##Get current
+  curr <- attributes(x)
+  currNames <- names(curr)
+  
+  ##Handle cases where x already has 1+ newAttr
+  overlap <- intersect(currNames, newAttrNames)
+  if (identical(overlap, newAttrNames)) {
+    stop("x already has attribute(s) ", paste(newAttrNames, collapse=" "))
+  }
+  if (length(overlap) > 0) {
+    newAttr <- newAttr[!(newAttrNames %in% overlap)]
+    warning("x already has attribute(s) ", paste(overlap, collapse=" "), "\n",
+            "  Only adding attribute(s) ", paste(names(newAttr), collapse=" "))
+  }
+  
+  ##Add new attributes and return
+  attributes(x) <- c(curr, newAttr)
+  x
+}
 
 
 # Object-oriented ---------------------------------------------------------

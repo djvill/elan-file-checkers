@@ -7,13 +7,19 @@ library(purrr)
 library(tidyr)
 library(dplyr)
 
+source("eaf-utils.R")
+
 
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "1.4.1"
+vers <- "1.4.2"
 
 ##File structures
+##Named list of functions to handle each file extension to be read
+readHandlers <- list(eaf = xml2::read_xml,
+                     ##read_textgrid() defined in eaf-utils.R
+                     textgrid = read_textgrid)
 ##Regex for extracting SpkrCode column from filenames
 spkrCodeRegex <- "^(CB|FH|HD|LV)\\d+(and\\d+)?"
 ##Regex for extracting Neighborhood column from SpkrCode
@@ -107,21 +113,20 @@ ui <- fluidPage(
 
 # Functions for server-side processing ------------------------------------
 
-source("eaf-utils.R")
-
 ## File setup =============================================================
 
 ## See eaf-utils.R:
-## - getOverlapTiers()
 ## - getTimesTier()
 ## - getTimes()
 
 ##Given a list of eafs (either an xml_document or an error thrown by
 ##  read_xml()), generate a dataframe of information on whether each file &
-##  filename are valid (with regexes passed down to parse_filenames())
+##  filename are valid (with regexes and readHandlers passed down to 
+##  parse_filenames())
 ##In the app, x is eaflist()
 validateEaflist <- function(x, spkrCodeRE=spkrCodeRegex, 
-                            neighborhoodRE=neighborhoodRegex) {
+                            neighborhoodRE=neighborhoodRegex,
+                            readHandlers=readHandlers) {
   if (is.null(names(x))) {
     stop("x must be a named list")
   }
@@ -130,7 +135,7 @@ validateEaflist <- function(x, spkrCodeRE=spkrCodeRegex,
   fileDF <- 
     x %>% 
     names() %>% 
-    parse_filenames(spkrCodeRE, neighborhoodRE)
+    parse_filenames(spkrCodeRE, neighborhoodRE, readHandlers)
   
   ##Dataframe of whether files were successfully read
   readDF <- 
@@ -571,19 +576,38 @@ server <- function(input, output) {
   eaflist <- eventReactive(input$files, {
     message("Uploaded ", nrow(input$files), " files:\n",
             str_flatten(paste("-", input$files$name), "\n"))
-    input$files %>% 
-      pull(datapath, name) %>% 
-      ##Get safely() list of results and errors
-      map(safely(read_xml)) %>% 
-      ##Turn into a list of results *or* errors
-      map_if(~ !is.null(.x$result), "result", .else="error")
+    ##Parse filenames
+    fileDF <- parse_filenames(input$files$name, 
+                              spkrCodeRE=spkrCodeRegex, 
+                              neighborhoodRE=neighborhoodRegex,
+                              readHandlers=readHandlers) %>% 
+      left_join(input$files, "name")
+    
+    fileDF <- fileDF %>% 
+      ##Try to use read handlers to read each file; if unsuccessful, return the
+      ##  string "read-error"
+      mutate(file = map2(ReadHandler, map(datapath, as.list), 
+                         safely(do.call)) %>% 
+               map_if(~ !is.null(.x$result), 
+                      ~ .x$result,
+                      .else=~ "read-error"))
+    
+    ##Get list of classed objects representing individual files
+    fileDF %>% 
+      ##Just files that read correctly
+      filter(map_lgl(file, ~ !identical(.x, "read-error"))) %>% 
+      ##Add class attributes to pass down to as.data.frame()
+      mutate(fileClass = paste0("trs_", tolower(FileExt)),
+             file = map2(file, fileClass, add_class)) %>% 
+      ##As nested list
+      pull(file, name)
   })
   
   ##Convert eaflist to dflist
-  dflist <- reactive({ 
+  dflist <- reactive({
     eaflist() %>%
-      keep(~ "xml_document" %in% class(.x)) %>% 
-      map(~ eaf_to_trs(.x, annotation_metadata=TRUE))
+      map(~ as.trs_transcription(.x, annotation_metadata=TRUE,
+                                 tierAttributes=TRUE))
   })
   
   # Export element for shinytest ---------------------------------------------
