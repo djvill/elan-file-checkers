@@ -12,7 +12,7 @@ parse_filenames <- function(x,
                             spkrCodeRE="^(CB|FH|HD|LV)\\d+(and\\d+)?",
                             neighborhoodRE="^(CB|FH|HD|LV)",
                             readHandlers=list(eaf = xml2::read_xml,
-                                              textgrid = readtextgrid::read_textgrid)) {
+                                              textgrid = read_textgrid)) {
   ##Check args
   if (!is.character(x)) {
     stop("x must be a character vector")
@@ -113,9 +113,15 @@ as.trs_transcription.trs_textgrid <- function(x, tierAttributes=FALSE, ...) {
   library(dplyr)
   library(tidyr)
   
-  ##Rename & reorder columns, create nested list
+  ##Remove blank turns *unless* the entire tier is blank turns (e.g., an empty
+  ##  Redaction tier)
   out <- 
     x %>% 
+    mutate(allblank = all(str_detect(text, "^\\s*$")), .by=tier) %>% 
+    filter(!str_detect(text, "^\\s*$") | allblank)
+  
+  ##Rename & reorder columns, create nested list
+  out <- out %>% 
     select(TIER_ID = tier,
            Start = tmin,
            End = tmax,
@@ -773,8 +779,9 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
 
 ##Low-level utility for adding new class(es) to x, facilitating cleaner code
 ##  in functional-programming settings (e.g., purrr:::map*()) or in pipe chains
+##If newClass is NA, it won't be added
 add_class <- function(x, newClass) {
-  stopifnot(is.character(newClass))
+  stopifnot(all(is.na(newClass) | is.character(newClass)))
   curr <- class(x)
   
   ##Handle cases where x already inherits from 1+ newClass
@@ -787,6 +794,9 @@ add_class <- function(x, newClass) {
     warning("x already has class(es) ", paste(overlap, collapse=" "), "\n",
             "  Only adding class(es) ", paste(newClass, collapse=" "))
   }
+  
+  ##Remove NAs
+  newClass <- newClass[!is.na(newClass)]
   
   ##Add new class and return
   class(x) <- c(newClass, curr)

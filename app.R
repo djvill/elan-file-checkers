@@ -119,43 +119,28 @@ ui <- fluidPage(
 ## - getTimesTier()
 ## - getTimes()
 
-##Given a list of eafs (either an xml_document or an error thrown by
-##  read_xml()), generate a dataframe of information on whether each file &
-##  filename are valid (with regexes and readHandlers passed down to 
-##  parse_filenames())
-##In the app, x is eaflist()
-validateEaflist <- function(x, spkrCodeRE=spkrCodeRegex, 
-                            neighborhoodRE=neighborhoodRegex,
-                            readHandlers=readHandlers) {
-  if (is.null(names(x))) {
-    stop("x must be a named list")
+##Given a dataframe of file information, generate a dataframe of information on
+##  whether each file & filename are valid
+##In the app, x is fileDF()
+validateFiles <- function(x, validExts=names(readHandlers)) {
+  library(dplyr)
+  
+  if (!is.data.frame(x) || 
+      !all(c("name", "FileExt", "SpkrCode", "file") %in% colnames(x))) {
+    stop("x must be a data.frame with columns name, FileExt, SpkrCode, file")
   }
   
-  ##File info: speaker code, file extension
-  fileDF <- 
-    x %>% 
-    names() %>% 
-    parse_filenames(spkrCodeRE, neighborhoodRE, readHandlers)
-  
-  ##Dataframe of whether files were successfully read
-  readDF <- 
-    x %>% 
-    map_lgl(~ "xml_document" %in% class(.x)) %>% 
-    tibble(name = names(.), FileReadValid = .)
-  
-  ##Add columns for validation: speaker code initial, eaf file extension,
-  ##  whether file was successfully read
-  fileDF <- fileDF %>% 
-    mutate(FileExtValid = FileExt=="eaf",
-           SpkrCodeValid = !is.na(SpkrCode)) %>% 
-    left_join(readDF, "name") %>%
+  x %>% 
+    ##Add columns for validation: speaker code initial, valid file extensions,
+    ##  whether file was successfully read
+    mutate(FileExtValid = tolower(FileExt) %in% tolower(validExts),
+           SpkrCodeValid = !is.na(SpkrCode),
+           FileReadValid = map_lgl(file, ~ !inherits(.x, "error"))) %>% 
     select(name, ends_with("Valid")) %>% 
     ##File is valid only if it satisfies all conditions
     rowwise() %>% 
     mutate(Valid = all(c_across(-name))) %>% 
     ungroup()
-  
-  fileDF
 }
 
 ## Tiers ==================================================================
@@ -570,12 +555,14 @@ is.displayed <- function(x) {
 server <- function(input, output) {
   # Set up file structures --------------------------------------------------
   
-  ##Read files: Get a list with one element per file. Each element is either an
-  ##  xml_document (if read_xml() succeeded) or the error message thrown by 
-  ##  read_xml()
-  eaflist <- eventReactive(input$files, {
+  ##Read files: Get a dataframe with one row per file. Each value in the file
+  ##  column is either an object of class trs_[file extension] (if read
+  ##  successfully by the read handler for [file extension]) or an error (thrown
+  ##  by the read handler)
+  fileDF <- eventReactive(input$files, {
     message("Uploaded ", nrow(input$files), " files:\n",
             str_flatten(paste("-", input$files$name), "\n"))
+    
     ##Parse filenames
     fileDF <- parse_filenames(input$files$name, 
                               spkrCodeRE=spkrCodeRegex, 
@@ -583,29 +570,33 @@ server <- function(input, output) {
                               readHandlers=readHandlers) %>% 
       left_join(input$files, "name")
     
+    ##Try to use read handlers to read each file; if unsuccessful, return the 
+    ##  error
     fileDF <- fileDF %>% 
-      ##Try to use read handlers to read each file; if unsuccessful, return the
-      ##  string "read-error"
+      ##Get safely() list of results and errors
       mutate(file = map2(ReadHandler, map(datapath, as.list), 
                          safely(do.call)) %>% 
-               map_if(~ !is.null(.x$result), 
-                      ~ .x$result,
-                      .else=~ "read-error"))
-    
-    ##Get list of classed objects representing individual files
-    fileDF %>% 
-      ##Just files that read correctly
-      filter(map_lgl(file, ~ !identical(.x, "read-error"))) %>% 
-      ##Add class attributes to pass down to as.data.frame()
-      mutate(fileClass = paste0("trs_", tolower(FileExt)),
+               ##Turn into a list of results *or* errors
+               map_if(~ !is.null(.x$result), "result", .else="error")) %>% 
+      ##Add class attributes to pass down to as.trs_transcription() if read 
+      ##  successfully
+      mutate(fileClass = if_else(map_lgl(file, ~ !inherits(.x, "error")),
+                                 paste0("trs_", tolower(FileExt)),
+                                 NA_character_),
              file = map2(file, fileClass, add_class)) %>% 
-      ##As nested list
-      pull(file, name)
+      select(-fileClass)
+    
+    fileDF
   })
   
-  ##Convert eaflist to dflist
-  dflist <- reactive({
-    eaflist() %>%
+  ##Convert valid files to list of trs_transcription objects
+  trsList <- reactive({
+    fileDF() %>%
+      ##As list of files (and/or errors)
+      pull(file, name) %>% 
+      ##Only valid files
+      discard(~ inherits(.x, "error")) %>% 
+      ##Convert to trs_transcription via method dispatch
       map(~ as.trs_transcription(.x, annotation_metadata=TRUE,
                                  tierAttributes=TRUE))
   })
@@ -628,26 +619,22 @@ server <- function(input, output) {
       undisplay(div(prettify(toJSON(x), 2), id=nm))
     }
 
-    ##First element: dataframe of file info
-    ##N.B. This is different than fileInfo, which is for a single element in 
-    ##  dflist
-    fileDF <-
-      eaflist() %>%
-      names() %>% 
-      parse_filenames()
-    export <- tagList(pack_val(fileDF, "fileDF"))
+    ##First element: dataframe of file info (just the first 4 columns)
+    export <- tagList(pack_val(fileDF() %>% 
+                                 select(name, SpkrCode, Neighborhood, FileExt), 
+                               "fileDF"))
     
     ##Add the rest of the data
-    validationDF <- validateEaflist(eaflist())
+    validationDF <- validateFiles(fileDF(), validExts=names(readHandlers))
     fileCheckValid <- all(validationDF$Valid)
     if (!fileCheckValid) { 
       ##If step 0 failed, add validationDF
       export <- c(export, tagList(pack_val(validationDF, "validationDF")))
     } else {
-      ##If step 0 passed, add tier info & at least one eaflist()
-      tierDF <- map(dflist(), tier_metadata)
+      ##If step 0 passed, add tier info & at least one fileDF()
+      tierDF <- map(trsList(), tier_metadata)
       turnsDF <- 
-        dflist() %>% 
+        trsList() %>% 
         map_dfr(~ .x %>% 
                   map_dfr(as_tibble, .id="Tier"),
                 .id="File") %>% 
@@ -678,16 +665,17 @@ server <- function(input, output) {
       return(list(tags = tl, outdata = list()))
     }
     
-    ##If uploaded files, initialize exitEarly sentinel & proceed to checking steps
+    ##If uploaded files, initialize exitEarly sentinel & proceed to checking
+    ##  steps
     exitEarly <- FALSE
     
     
-    # Step 0: File check -----------------------------------------------------
+    ## Step 0: File check =====================================================
     fileCheckHead <- h1("Checking the following files...",
                         id="fileCheckHead")
     
     ##Get validation info
-    validationDF <- validateEaflist(eaflist())
+    validationDF <- validateFiles(fileDF(), validExts=names(readHandlers))
     
     ##Get bullet-list of filenames (styling bad ones in red)
     fileList <- tags$ul(
@@ -751,7 +739,7 @@ server <- function(input, output) {
     ##If not exiting early yet, check for tier issues
     if (!exitEarly || overrideExit$fileName) {
       ##Get tier issues
-      tierIss <- dflist() %>% 
+      tierIss <- trsList() %>% 
         imap(tierIssuesOneFile, 
              nonSpkrTiers=nonSpkrTiers, prohibTiers=prohibTiers) %>% 
         keep(~ length(.x) > 0)
@@ -849,7 +837,7 @@ server <- function(input, output) {
     ##If not exiting early yet, check for dictionary issues
     if (!exitEarly || overrideExit$tiers) {
       ##Get dictionary check
-      dictIss <- dflist() %>% 
+      dictIss <- trsList() %>% 
         map(dictIssuesOneFile, noDictCheckTiers=noDictCheckTiers, dict=dict, 
             pronChars=pronChars, permitAngleBrackets=permitAngleBrackets, 
             caseSens=caseSens) %>% 
@@ -916,14 +904,14 @@ server <- function(input, output) {
     ##If not exiting early yet, check for dictionary issues
     if (!exitEarly || overrideExit$dict) {
       ##Fix overlaps
-      dflistFixed <- dflist() %>% 
+      trsListFixed <- trsList() %>% 
         imap(overlapsIssuesOneFile, noOverlapCheckTiers=noOverlapCheckTiers, 
              overlapThresh=overlapThresh, fixMethod=fixMethod, 
              checkZeroWidth=checkZeroWidth, maxIters=maxIters, 
              reachMaxIters=reachMaxIters, timeDisp=timeDisp)
       ##Get list of remaining overlaps
       overlapsIss <-
-        dflistFixed %>% 
+        trsListFixed %>% 
         map(attr, "overlapsNice") %>% 
         discard(~ nrow(.x)==0)
       
@@ -974,7 +962,7 @@ server <- function(input, output) {
     if (exitEarly) {
       outdata <- list()
     } else {
-      outdata <- map(dflistFixed, trs_to_eaf)
+      outdata <- map(trsListFixed, trs_to_eaf)
     }
     ##Content
     downloadHead <- h1("The file(s) passed all checks. Great job!",
