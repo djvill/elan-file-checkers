@@ -94,20 +94,20 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       fileInput("files",
-                label="Drag and drop Elan files in the box below",
+                label="Drag and drop transcription files into the box below",
                 buttonLabel="Browse...",
-                placeholder="Box outline must turn green",
-                multiple = TRUE),
-      p("Source code for this app on", 
-        a("GitHub", 
-          href="https://github.com/djvill/elan-file-checkers/",
-          target="_blank"))
+                placeholder="Your file here",
+                multiple = TRUE)
     ),
     
     ##UI details are complicated, so they all take place in output$out
     mainPanel(uiOutput("export"), ##Never shown
               uiOutput("out"))
-  )
+  ),
+  p("App code on ", 
+    a("GitHub", href="https://github.com/djvill/elan-file-checkers", 
+      target="_blank"), 
+    class="footer")
 )
 
 
@@ -589,9 +589,28 @@ server <- function(input, output) {
     fileDF
   })
   
+  ##Create reactiveValues() list for author-updating
+  rV <- reactiveValues(trsList = NULL)
+  
   ##Convert valid files to list of trs_transcription objects
-  trsList <- reactive({
-    fileDF() %>%
+  observeEvent(fileDF(), {
+    anyTG <- 
+      fileDF()$file %>% 
+      map_lgl(~ inherits(.x, "trs_textgrid")) %>% 
+      any()
+    
+    ##If there are any textgrids, prompt for author
+    if (anyTG) {
+      showModal(modalDialog(
+        textInput("author", "Specify transcriber"),
+        span("This will get filled in as the output Elan file's Author ",
+             "attribute"),
+        footer = actionButton("ok", "OK"))
+      )
+    }
+    
+    rV$trsList <-
+      fileDF() %>%
       ##As list of files (and/or errors)
       pull(file, name) %>% 
       ##Only valid files
@@ -599,6 +618,16 @@ server <- function(input, output) {
       ##Convert to trs_transcription via method dispatch
       map(~ as.trs_transcription(.x, annotation_metadata=TRUE,
                                  tierAttributes=TRUE))
+  })
+  
+  ##Fill author attribute for textgrids
+  observeEvent(input$ok, {
+    fromTG <- rV$trsList %>% 
+      keep(~ inherits(.x, "trs_from_textgrid")) %>% 
+      names()
+    rV$trsList <- rV$trsList %>% 
+      modify_in(fromTG, ~ add_attributes(.x, list(AUTHOR = input$author)))
+    removeModal()
   })
   
   # Export element for shinytest ---------------------------------------------
@@ -632,9 +661,9 @@ server <- function(input, output) {
       export <- c(export, tagList(pack_val(validationDF, "validationDF")))
     } else {
       ##If step 0 passed, add tier info & at least one fileDF()
-      tierDF <- map(trsList(), tier_metadata)
+      tierDF <- map(rV$trsList, tier_metadata)
       turnsDF <- 
-        trsList() %>% 
+        rV$trsList %>%
         map_dfr(~ .x %>% 
                   map_dfr(as_tibble, .id="Tier"),
                 .id="File") %>% 
@@ -736,10 +765,13 @@ server <- function(input, output) {
       ##By default, don't display
       undisplay()
     
+    ##Convenience: store rV$trsList as trsList
+    trsList <- rV$trsList
+    
     ##If not exiting early yet, check for tier issues
     if (!exitEarly || overrideExit$fileName) {
       ##Get tier issues
-      tierIss <- trsList() %>% 
+      tierIss <- trsList %>%
         imap(tierIssuesOneFile, 
              nonSpkrTiers=nonSpkrTiers, prohibTiers=prohibTiers) %>% 
         keep(~ length(.x) > 0)
@@ -837,7 +869,7 @@ server <- function(input, output) {
     ##If not exiting early yet, check for dictionary issues
     if (!exitEarly || overrideExit$tiers) {
       ##Get dictionary check
-      dictIss <- trsList() %>% 
+      dictIss <- trsList %>% 
         map(dictIssuesOneFile, noDictCheckTiers=noDictCheckTiers, dict=dict, 
             pronChars=pronChars, permitAngleBrackets=permitAngleBrackets, 
             caseSens=caseSens) %>% 
@@ -904,7 +936,7 @@ server <- function(input, output) {
     ##If not exiting early yet, check for dictionary issues
     if (!exitEarly || overrideExit$dict) {
       ##Fix overlaps
-      trsListFixed <- trsList() %>% 
+      trsListFixed <- trsList %>% 
         imap(overlapsIssuesOneFile, noOverlapCheckTiers=noOverlapCheckTiers, 
              overlapThresh=overlapThresh, fixMethod=fixMethod, 
              checkZeroWidth=checkZeroWidth, maxIters=maxIters, 

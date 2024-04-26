@@ -140,7 +140,7 @@ as.trs_transcription.trs_textgrid <- function(x, tierAttributes=FALSE, ...) {
   out <- out %>% 
     map(as.data.frame) %>% 
     ##Add trs_transcription and trs_nesttiers classes to object
-    add_class(c("trs_transcription", "trs_nesttiers"))
+    add_class(c("trs_transcription", "trs_nesttiers", "trs_from_textgrid"))
   
   out
 }
@@ -200,7 +200,8 @@ as.trs_transcription.trs_eaf <- function(x, annotation_metadata=FALSE, ...) {
   ##Add file attributes
   attributes(out) <- c(attributes(out), fileAttr)
   
-  structure(out, class=c("trs_transcription", "trs_nesttiers", class(out)))
+  structure(out, class=c("trs_transcription", "trs_nesttiers", "trs_from_eaf",
+                         class(out)))
 }
 
 
