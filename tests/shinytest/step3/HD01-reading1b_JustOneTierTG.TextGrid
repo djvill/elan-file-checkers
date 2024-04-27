@@ -1,0 +1,122 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0.0
+xmax = 300.0
+tiers? <exists>
+size = 5
+item []:
+    item[1]:
+        class = "IntervalTier"
+        name = "HD01"
+        xmin = 0.0
+        xmax = 300.0
+        intervals: size = 8
+        intervals [1]
+            xmin = 0.0
+            xmax = 10.18
+            text = ""
+        intervals [2]
+            xmin = 10.18
+            xmax = 10.86
+            text = "okay"
+        intervals [3]
+            xmin = 10.86
+            xmax = 10.866
+            text = ""
+        intervals [4]
+            xmin = 10.866
+            xmax = 11.34
+            text = "mmm hmm"
+        intervals [5]
+            xmin = 11.34
+            xmax = 20.994
+            text = ""
+        intervals [6]
+            xmin = 20.994
+            xmax = 28.521
+            text = "that's my lunch Dawn and I stopped down in the Strip on the way in and bought some of that great goat cheese they're selling at Penn-Mac"
+        intervals [7]
+            xmin = 28.521
+            xmax = 36.786
+            text = "it's really ripe . I thought of putting it in the fridge but I didn't . it's good if it's not too cold go on you try it"
+        intervals [8]
+            xmin = 36.786
+            xmax = 300.0
+            text = ""
+    item[2]:
+        class = "IntervalTier"
+        name = "Trista Pennington"
+        xmin = 0.0
+        xmax = 300.0
+        intervals: size = 10
+        intervals [1]
+            xmin = 0.0
+            xmax = 1.05
+            text = ""
+        intervals [2]
+            xmin = 1.05
+            xmax = 10.18
+            text = "okay uh so this time I'll actually . uh read - the part of . Denise and then you read Ron"
+        intervals [3]
+            xmin = 10.18
+            xmax = 10.866
+            text = "okay ?"
+        intervals [4]
+            xmin = 10.866
+            xmax = 11.34
+            text = ""
+        intervals [5]
+            xmin = 11.34
+            xmax = 18.02
+            text = "um what's that foul odor coming out of the filing cabinet ? is Ron or something hiding a bag of fish in there ? "
+        intervals [6]
+            xmin = 18.02
+            xmax = 18.235
+            text = ""
+        intervals [7]
+            xmin = 18.235
+            xmax = 20.994
+            text = "Ron did you go fishing over the weekend ?"
+        intervals [8]
+            xmin = 20.994
+            xmax = 36.786
+            text = ""
+        intervals [9]
+            xmin = 36.786
+            xmax = 44.884
+            text = "get it out of here I can't stand the smell next thing you know people will be calling the police wanting to know where the body is cheese like that should be illegal  "
+        intervals [10]
+            xmin = 44.884
+            xmax = 300.0
+            text = ""
+    item[3]:
+        class = "IntervalTier"
+        name = "Noise"
+        xmin = 0.0
+        xmax = 300.0
+        intervals: size = 1
+        intervals [1]
+            xmin = 0.0
+            xmax = 300.0
+            text = ""
+    item[4]:
+        class = "IntervalTier"
+        name = "Redaction"
+        xmin = 0.0
+        xmax = 300.0
+        intervals: size = 1
+        intervals [1]
+            xmin = 0.0
+            xmax = 300.0
+            text = ""
+    item[5]:
+        class = "IntervalTier"
+        name = "Comment"
+        xmin = 0.0
+        xmax = 300.0
+        intervals: size = 1
+        intervals [1]
+            xmin = 0.0
+            xmax = 300.0
+            text = ""

@@ -67,7 +67,7 @@ item []:
         intervals [14]:
             xmin = 20.668 
             xmax = 21.932 
-            text = "when was I what year?" 
+            text = "when was I what year ?" 
         intervals [15]:
             xmin = 21.932 
             xmax = 22.403 
@@ -1743,7 +1743,7 @@ item []:
         intervals [433]:
             xmin = 1121.886 
             xmax = 1128.223 
-            text = "come [breath] to the Hill and not be~ I'd go to meetings [breath] . just so somebody could look at my face" 
+            text = "come [breath] to the Hill and not b~ I'd go to meetings [breath] . just so somebody could look at my face" 
         intervals [434]:
             xmin = 1128.223 
             xmax = 1128.656 
@@ -3369,7 +3369,7 @@ item []:
         intervals [16]:
             xmin = 17.832 
             xmax = 20.717 
-            text = "okay . when was that like. when were you" 
+            text = "okay . when was that like . when were you" 
         intervals [17]:
             xmin = 20.717 
             xmax = 22.009 
@@ -5452,7 +5452,7 @@ item []:
             text = "" 
     item [3]:
         class = "IntervalTier" 
-        name = "Comments" 
+        name = "Comment" 
         xmin = 0 
         xmax = 2417.148 
         intervals: size = 15 
@@ -5640,7 +5640,7 @@ item []:
             text = "" 
     item [5]:
         class = "IntervalTier" 
-        name = "Redact" 
+        name = "Redaction" 
         xmin = 0 
         xmax = 2417.148 
         intervals: size = 1 
