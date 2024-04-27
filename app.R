@@ -605,7 +605,7 @@ server <- function(input, output) {
         textInput("author", "Specify transcriber"),
         span("This will get filled in as the output Elan file's Author ",
              "attribute"),
-        footer = actionButton("ok", "OK"))
+        footer = actionButton("ok", "Submit"))
       )
     }
     
@@ -620,13 +620,11 @@ server <- function(input, output) {
                                  tierAttributes=TRUE))
   })
   
-  ##Fill author attribute for textgrids
+  ##Fill author attribute for textgrids when modal is submitted
   observeEvent(input$ok, {
-    fromTG <- rV$trsList %>% 
-      keep(~ inherits(.x, "trs_from_textgrid")) %>% 
-      names()
     rV$trsList <- rV$trsList %>% 
-      modify_in(fromTG, ~ add_attributes(.x, list(AUTHOR = input$author)))
+      map_if(~ inherits(.x, "trs_from_textgrid"),
+             ~ add_attributes(.x, list(AUTHOR = input$author)))
     removeModal()
   })
   
@@ -988,12 +986,22 @@ server <- function(input, output) {
       }
     }
     
-    
     # Download elements -----------------------------------------------------
     ##List of transcriptions to download
     if (exitEarly) {
       outdata <- list()
     } else {
+      ##Convert Praat seconds to Elan milliseconds
+      trsListFixed <- trsListFixed %>% 
+        map_if(~ inherits(.x, "trs_from_textgrid"),
+               ~ convert_times(.x, from="s", to="ms"))
+      
+      ##Change file extensions to .eaf
+      names(trsListFixed) <- names(trsListFixed) %>% 
+        file_path_sans_ext() %>% 
+        paste0(".eaf")
+      
+      ##Convert to trs_eaf
       outdata <- map(trsListFixed, trs_to_eaf)
     }
     ##Content

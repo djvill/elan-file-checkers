@@ -113,21 +113,16 @@ as.trs_transcription.trs_textgrid <- function(x, tierAttributes=FALSE, ...) {
   library(dplyr)
   library(tidyr)
   
-  ##Remove blank turns *unless* the entire tier is blank turns (e.g., an empty
-  ##  Redaction tier)
+  ##Create list of tier dataframes
   out <- 
-    x %>% 
-    mutate(allblank = all(str_detect(text, "^\\s*$")), .by=tier) %>% 
-    filter(!str_detect(text, "^\\s*$") | allblank)
-  
-  ##Rename & reorder columns, create nested list
-  out <- out %>% 
-    select(TIER_ID = tier,
-           Start = tmin,
-           End = tmax,
-           Text = text) %>% 
+    x %>%
+    ##Rename and reorder columns
+    select(TIER_ID = tier, Start = tmin, End = tmax, Text = text) %>% 
+    ##As list of dataframes
     nest(data = -TIER_ID) %>% 
-    pull(data, TIER_ID)
+    pull(data, TIER_ID) %>% 
+    ##Remove blank turns
+    map(~ filter(.x, !grepl("^\\s*$", Text)))
   
   ##Optionally add tier attributes to mirror trs_eaf objects
   if (tierAttributes) {
@@ -138,7 +133,7 @@ as.trs_transcription.trs_textgrid <- function(x, tierAttributes=FALSE, ...) {
   
   ##Remove trs_textgrid class from nested dataframes
   out <- out %>% 
-    map(as.data.frame) %>% 
+    map(as_tibble) %>% 
     ##Add trs_transcription and trs_nesttiers classes to object
     add_class(c("trs_transcription", "trs_nesttiers", "trs_from_textgrid"))
   
@@ -229,6 +224,38 @@ tier_metadata <- function(x) {
   out
 }
 
+##Utility to convert times while retaining class attributes
+convert_times <- function(x, from=c("s","ms"), to=c("s","ms")) {
+  ##Check args
+  if (!inherits(x, c("trs_transcription", "trs_nesttiers"))) {
+    stop("x must be an object of classes trs_transcription and trs_nesttiers")
+  }
+  from <- match.arg(from)
+  to <- match.arg(to)
+  if (from==to) {
+    warning("No time conversion performed (from and to are identical)")
+    return(x)
+  }
+  
+  ##Determine multiplier
+  if (from == "s" && to == "ms") {
+    multiplier <- 1000
+  }
+  if (from == "ms" && to == "s") {
+    multiplier <- 1/1000
+  }
+  
+  ##Convert times and restore class/attributes
+  out <- 
+    x %>% 
+    map(~ .x %>% 
+          mutate(across(c(Start, End), ~ .x * multiplier)))
+  class(out) <- class(x)
+  attributes(out) <- attributes(x)
+  
+  out
+}
+
 ##Add annotation IDs to a transcription
 ##TODO: Make this a generic so x can be a trs_transcription, trs_tierset, or 
 ##  trs_tier
@@ -288,13 +315,9 @@ trs_to_eaf <- function(x, mediaFile=NULL, minElan="minimal-elan.xml") {
   minXML <- tryCatch(readLines(minElan),
                      error = \(e) stop("Minimal Elan file ", minElan, " not found"))
   
-  ##Get xml attributes
-  xAttr <- attributes(x) %>% 
-    ##Leave off R & trs attributes
-    discard_at(c("names", "class", "overlaps", "overlapsNice"))
-  
   ##Reshape trs
-  x <- x %>%
+  trs <- 
+    x %>%
     map(~ .x %>% 
           ##Remove old ANNOTATION_ID and TIME_SLOT_REF columns, if they exist
           select(-any_of(c("ANNOTATION_ID", "TIME_SLOT_REF1", "TIME_SLOT_REF2"))) %>% 
@@ -305,7 +328,7 @@ trs_to_eaf <- function(x, mediaFile=NULL, minElan="minimal-elan.xml") {
   
   ##Get time slots
   timeSlots <-
-    x %>% 
+    trs %>% 
     map_dfr(as_tibble, .id="TIER_ID") %>% 
     mutate(ANNOTATION_ID = paste0("a", row_number())) %>% 
     pivot_longer(c(Start, End), names_to="Boundary", values_to="TIME_VALUE") %>% 
@@ -366,7 +389,7 @@ trs_to_eaf <- function(x, mediaFile=NULL, minElan="minimal-elan.xml") {
   
   ##Account for tiers without annotations (which are missing from TIERs list)
   missingTiers <- 
-    x %>% 
+    trs %>% 
     names() %>% 
     setdiff(map_chr(TIERs, xml_attr, "TIER_ID"))
   ##Create empty TIER nodes if needed
@@ -402,8 +425,24 @@ trs_to_eaf <- function(x, mediaFile=NULL, minElan="minimal-elan.xml") {
     xml_attr(header, "MEDIA_FILE") <- mediaFile
   }
   
-  ##Add root-tag attributes
-  xml_attrs(outXML) <- xAttr
+  ##Add new root-tag attributes, update overlapping attributes, and leave intact
+  ##  attributes in minimal XML but not x
+  ##Get xml attributes, leaving off R & trs attributes
+  xAttr <- attributes(x) %>% 
+    discard_at(c("names", "class", "overlaps", "overlapsNice"))
+  ##Get minimal XML attributes, restoring xsi: prefix to
+  ##  noNamespaceSchemaLocation
+  minAttr <- xml_attrs(outXML)
+  ns <- which(names(minAttr)=="noNamespaceSchemaLocation")
+  if (length(ns) > 0) {
+    names(minAttr)[ns] <- "xsi:noNamespaceSchemaLocation"
+  }
+  ##Change attributes
+  diffAttr <- minAttr[setdiff(names(minAttr), names(xAttr))]
+  xml_attrs(outXML) <- c(xAttr, diffAttr)
+  
+  ##Add trs_eaf class
+  outXML <- add_class(outXML, "trs_eaf")
   
   ##Return
   outXML
