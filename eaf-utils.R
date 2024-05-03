@@ -34,7 +34,7 @@ parse_filenames <- function(x,
          FileExt = file_ext(name))
   if (!is.null(readHandlers)) {
     out <- out %>% 
-      mutate(ReadHandler = map(tolower(FileExt), ~ pluck(readHandlers, .x)))
+      mutate(ReadHandler = map(tolower(FileExt), ~ readHandlers[[.x]]))
   }
 }
 
@@ -299,6 +299,43 @@ add_annotation_ids <- function(x, overwrite=c("error","warn","silent")) {
   attributes(x) <- xAttr
   
   x
+}
+
+##Remove tier(s) from trs_transcription (while preserving attributes)
+remove_tiers <- function(x, tiers=NULL, notier=c("error","warn","silent")) {
+  ##Check args
+  if (!inherits(x, c("trs_transcription", "trs_nesttiers"))) {
+    stop("x must be an object of classes trs_transcription and trs_nesttiers")
+  }
+  if (is.null(tiers) || !is.character(tiers)) {
+    stop("tiers must be a character vector")
+  }
+  notier <- match.arg(notier)
+  
+  ##Account for tiers not in x
+  missingTiers <- setdiff(tiers, names(x))
+  if (notier != "silent" && length(missingTiers) > 1) {
+    msg <- paste("Some tiers are missing from x:",
+                 paste(missingTiers, collapse=" "))
+    if (notier=="error") {
+      stop(msg)
+    } 
+    if (notier=="warn") {
+      if (identical(tiers, missingTiers)) {
+        stop("All tiers are missing from x")
+      }
+      warning(msg, "\nOnly removing tiers ",
+              paste(setdiff(tiers, missingTiers), collapse=" "))
+    }
+  }
+  
+  ##Remove tier(s) (even if they don't exist)
+  out <- x
+  for (tier in tiers) {
+    out[[tier]] <- NULL
+  }
+  
+  out
 }
 
 ##Convert a trs_transcription to an xml_document suitable for opening in Elan

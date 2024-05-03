@@ -28,6 +28,9 @@ neighborhoodRegex <- "^(CB|FH|HD|LV)"
 ##Tier checking
 ##Required non-speaker tiers
 nonSpkrTiers <- c("Comment","Noise","Redaction")
+##Additional required tiers for different file extensions
+addlReqTiers <- list(eaf = character(0L),
+                     textgrid = "Transcriber")
 ##Tiers that should never be present
 prohibTiers <- c("Recheck",
                  "Text",                                                 ##From CLOx
@@ -37,7 +40,7 @@ prohibTiers <- c("Recheck",
 
 ##Dictionary checking
 ##Tiers to exclude from dictionary checking
-noDictCheckTiers <- c("Comment","Noise","Redaction")
+noDictCheckTiers <- c("Comment","Noise","Redaction","Transcriber")
 ##Include local version of aplsDict.txt? Include ONLY local version?
 ##  Only works on Dan's machine, useful for testing new entries without
 ##  committing each time
@@ -52,7 +55,7 @@ caseSens <- FALSE
 
 ##Overlap fixing
 ##Tiers to exclude from overlap checking/fixing
-noOverlapCheckTiers <- c("Comment","Noise")
+noOverlapCheckTiers <- c("Comment","Noise","Transcriber")
 ##Maximum cross-tier misalignment (in ms) to 'snap together'. Set lower to be
 ##  more conservative about what counts as an intended cross-tier alignment
 overlapThresh <- 500
@@ -146,16 +149,24 @@ validateFiles <- function(x, validExts=names(readHandlers)) {
 ## Tiers ==================================================================
 ##Given a transcription object and filename, output character vector of tier
 ##  issues
-tierIssuesOneFile <- function(x, nm, nonSpkrTiers=NULL, prohibTiers=NULL) {
+tierIssuesOneFile <- function(x, nm, 
+                              nonSpkrTiers=NULL, addlReqTiers=NULL, 
+                              prohibTiers=NULL) {
   library(dplyr)
   library(purrr)
   library(stringr)
   
+  ##Check args
   if (!inherits(x, c("trs_transcription", "trs_nesttiers"))) {
     stop("x must be an object of classes trs_transcription and trs_nesttiers")
   }
   if (!is.character(nm) || length(nm) != 1) {
     stop("nm must be a string")
+  }
+  stopifnot(is.list(addlReqTiers))
+  if (any(map_int(addlReqTiers, length) > 1)) {
+    stop("tierIssuesOneFile() can only accept one addlReqTiers tier per ", 
+         "file extension")
   }
   
   ##Get filename, speaker code, neighborhood
@@ -171,12 +182,6 @@ tierIssuesOneFile <- function(x, nm, nonSpkrTiers=NULL, prohibTiers=NULL) {
   ##Initialize empty issues character vector
   issues <- character(0L)
   
-  ##Detect missing/empty AUTHOR attribute
-  author <- attr(x, "AUTHOR")
-  if (is.null(author) || author=="" || tolower(author)=="unspecified") {
-    issues <- c(issues, paste("File missing an AUTHOR attribute"))
-  }
-  
   ##Handle prohibited tiers
   if (!is.null(prohibTiers)) {
     issues <- c(issues,
@@ -188,10 +193,28 @@ tierIssuesOneFile <- function(x, nm, nonSpkrTiers=NULL, prohibTiers=NULL) {
   }
   
   ##Handle missing tiers (non-interviewer)
-  checkTiers <- c(unique(fileInfo$SpkrCode), nonSpkrTiers)
+  fileExt <- tolower(fileInfo$FileExt)
+  addlTiers <- addlReqTiers[[fileExt]]
+  checkTiers <- c(unique(fileInfo$SpkrCode), nonSpkrTiers, addlTiers)
   missingTiers <- setdiff(checkTiers, tierInfo$TIER_ID)
   if (length(missingTiers) > 0) {
     issues <- c(issues, paste("There are no tiers named", missingTiers))
+  }
+  
+  ##Detect missing/empty AUTHOR attribute or empty Transcriber tier contents
+  if (fileExt=="eaf") {
+    author <- attr(x, "AUTHOR")
+    if (is.null(author) || author=="" || tolower(author)=="unspecified") {
+      issues <- c(issues, "File missing an AUTHOR attribute")
+    }
+  } else if (fileExt=="textgrid" && addlTiers %in% tierInfo$TIER_ID) {
+    transcriber <- x[[addlTiers]]$Text
+    if (length(transcriber)==0 || all(transcriber=="")) {
+      issues <- c(issues, paste(addlTiers, "tier is empty"))
+    }
+    if (n_distinct(transcriber) > 1) {
+      issues <- c(issues, paste(addlTiers, "tier has multiple annotations"))
+    }
   }
   
   ##Handle missing interviewer tier
@@ -589,27 +612,9 @@ server <- function(input, output) {
     fileDF
   })
   
-  ##Create reactiveValues() list for author-updating
-  rV <- reactiveValues(trsList = NULL)
-  
   ##Convert valid files to list of trs_transcription objects
-  observeEvent(fileDF(), {
-    anyTG <- 
-      fileDF()$file %>% 
-      map_lgl(~ inherits(.x, "trs_textgrid")) %>% 
-      any()
-    
-    ##If there are any textgrids, prompt for author
-    if (anyTG) {
-      showModal(modalDialog(
-        textInput("author", "Specify transcriber"),
-        span("This will get filled in as the output Elan file's Author ",
-             "attribute"),
-        footer = actionButton("ok", "Submit"))
-      )
-    }
-    
-    rV$trsList <-
+  trsList <- reactive({
+    trsList <-
       fileDF() %>%
       ##As list of files (and/or errors)
       pull(file, name) %>% 
@@ -618,14 +623,8 @@ server <- function(input, output) {
       ##Convert to trs_transcription via method dispatch
       map(~ as.trs_transcription(.x, annotation_metadata=TRUE,
                                  tierAttributes=TRUE))
-  })
-  
-  ##Fill author attribute for textgrids when modal is submitted
-  observeEvent(input$ok, {
-    rV$trsList <- rV$trsList %>% 
-      map_if(~ inherits(.x, "trs_from_textgrid"),
-             ~ add_attributes(.x, list(AUTHOR = input$author)))
-    removeModal()
+    
+    trsList
   })
   
   # Export element for shinytest ---------------------------------------------
@@ -659,9 +658,9 @@ server <- function(input, output) {
       export <- c(export, tagList(pack_val(validationDF, "validationDF")))
     } else {
       ##If step 0 passed, add tier info & at least one fileDF()
-      tierDF <- map(rV$trsList, tier_metadata)
+      tierDF <- map(trsList(), tier_metadata)
       turnsDF <- 
-        rV$trsList %>%
+        trsList() %>%
         map_dfr(~ .x %>% 
                   map_dfr(as_tibble, .id="Tier"),
                 .id="File") %>% 
@@ -676,6 +675,9 @@ server <- function(input, output) {
   
   # Main execution block ----------------------------------------------------
   main <- reactive({
+    ##Store trsList() as trsList (purely for easier interactive debugging)
+    trsList <- trsList()
+    
     ##Always-displayed headings
     stepHeads <- list(tiers = h2("Step 1: Validating tier names and attributes...",
                                  id="tierHead"),
@@ -763,15 +765,15 @@ server <- function(input, output) {
       ##By default, don't display
       undisplay()
     
-    ##Convenience: store rV$trsList as trsList
-    trsList <- rV$trsList
+    
     
     ##If not exiting early yet, check for tier issues
     if (!exitEarly || overrideExit$fileName) {
       ##Get tier issues
       tierIss <- trsList %>%
         imap(tierIssuesOneFile, 
-             nonSpkrTiers=nonSpkrTiers, prohibTiers=prohibTiers) %>% 
+             nonSpkrTiers=nonSpkrTiers, addlReqTiers=addlReqTiers,
+             prohibTiers=prohibTiers) %>% 
         keep(~ length(.x) > 0)
       ##If no tier issues, don't display anything & make step heading green
       if (length(tierIss)==0) {
@@ -991,15 +993,29 @@ server <- function(input, output) {
     if (exitEarly) {
       outdata <- list()
     } else {
-      ##Convert Praat seconds to Elan milliseconds
-      trsListFixed <- trsListFixed %>% 
-        map_if(~ inherits(.x, "trs_from_textgrid"),
-               ~ convert_times(.x, from="s", to="ms"))
-      
-      ##Change file extensions to .eaf
-      names(trsListFixed) <- names(trsListFixed) %>% 
-        file_path_sans_ext() %>% 
-        paste0(".eaf")
+      ##Convert Praat to Elan, if needed
+      anyTG <- 
+        trsListFixed %>% 
+        map_lgl(~ inherits(.x, "trs_from_textgrid")) %>% 
+        any()
+      if (anyTG) {
+        trsListFixed <- trsListFixed %>%
+          map_if(~ inherits(.x, "trs_from_textgrid"),
+                 ~ .x %>% 
+                   ##Convert Praat seconds to Elan milliseconds
+                   convert_times(from="s", to="ms") %>% 
+                   ##Change Transcriber tier text to AUTHOR attribute
+                   add_attributes(list(AUTHOR = .x %>% 
+                                         pluck("Transcriber", "Text") %>% 
+                                         unique())) %>% 
+                   remove_tiers("Transcriber")
+          )
+        
+        ##Change file extensions to .eaf
+        names(trsListFixed) <- names(trsListFixed) %>% 
+          file_path_sans_ext() %>% 
+          paste0(".eaf")
+      }
       
       ##Convert to trs_eaf
       outdata <- map(trsListFixed, trs_to_eaf)
