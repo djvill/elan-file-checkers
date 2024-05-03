@@ -1,4 +1,4 @@
-message("****ELAN-FILE-CHECKERS****\n")
+message("****APLS TRANSCRIPTION CHECKER****\n")
 
 library(shiny)
 library(xml2)
@@ -7,7 +7,7 @@ library(purrr)
 library(tidyr)
 library(dplyr)
 
-source("eaf-utils.R")
+source("trs-utils.R")
 
 
 # Parameters ------------------------------------------------------------------
@@ -18,7 +18,7 @@ vers <- "1.4.2"
 ##File structures
 ##Named list of functions to handle each file extension to be read
 readHandlers <- list(eaf = xml2::read_xml,
-                     ##read_textgrid() defined in eaf-utils.R
+                     ##read_textgrid() defined in trs-utils.R
                      textgrid = read_textgrid)
 ##Regex for extracting SpkrCode column from filenames
 spkrCodeRegex <- "^(CB|FH|HD|LV)\\d+(and\\d+)?"
@@ -83,13 +83,14 @@ overrideExit <- list(fileName = FALSE, tiers = FALSE, dict = FALSE, overlaps = F
 # UI ----------------------------------------------------------------------
 ui <- fluidPage(
   tags$head(
-    tags$title("Elan File Checker | APLS"),
+    tags$title("Transcription Checker | APLS"),
     tags$link(rel="stylesheet", type="text/css", href="file-checker.css"),
     tags$link(rel="stylesheet", type="text/css", href="doc.css"),
-    tags$link(rel="icon", type="image/svg", href="https://github.com/djvill/APLS/raw/main/assets/img/1f34e.svg")
+    tags$link(rel="icon", type="image/svg", 
+              href="https://github.com/djvill/APLS/raw/main/assets/img/1f34e.svg")
   ),
   div(id="header",
-    h1("Elan File Checker", class="title"),
+    h1("Transcription Checker", class="title"),
     h3("Archive of Pittsburgh Language and Speech (APLS)", class="subtitle"),
     h4("Dan Villarreal", class="author"),
     h4(paste("Version", vers), class="version")
@@ -97,7 +98,7 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       fileInput("files",
-                label="Drag and drop transcription files into the box below",
+                label="Drag and drop transcription files (Elan or Praat) into the box below",
                 buttonLabel="Browse...",
                 placeholder="Your file here",
                 multiple = TRUE)
@@ -117,10 +118,6 @@ ui <- fluidPage(
 # Functions for server-side processing ------------------------------------
 
 ## File setup =============================================================
-
-## See eaf-utils.R:
-## - getTimesTier()
-## - getTimes()
 
 ##Given a dataframe of file information, generate a dataframe of information on
 ##  whether each file & filename are valid
@@ -447,12 +444,6 @@ dictIssuesOneFile <- function(x, noDictCheckTiers=NULL, dict=NULL,
 
 ## Overlaps ===================================================================
 
-## See eaf-utils.R:
-## - getOverlapTiers()
-## - getTimesTier()
-## - getTimes()
-## - xmllist_to_df()
-
 overlapsIssuesOneFile <- function(x, nm, 
                                   noOverlapCheckTiers=NULL, overlapThresh=NULL, 
                                   fixMethod=c("old","new"), 
@@ -731,10 +722,10 @@ server <- function(input, output) {
         fileNameTips <- c(fileNameTips, "begin with a speaker code")
       }
       if (any(!validationDF$FileExtValid)) {
-        fileNameTips <- c(fileNameTips, "end with the .eaf file extension")
+        fileNameTips <- c(fileNameTips, "end with .eaf or .TextGrid")
       }
       if (any(!validationDF$FileReadValid)) {
-        fileNameTips <- c(fileNameTips, "be readable by Elan")
+        fileNameTips <- c(fileNameTips, "be readable by Elan or Praat")
       }
       if (length(fileNameTips) > 1) {
         fileNameTips <- paste0("(", seq_along(fileNameTips), ") ", fileNameTips)
@@ -756,8 +747,7 @@ server <- function(input, output) {
     
     # Step 1: Tier check ------------------------------------------------------
     ##Content
-    tierSubhead <- h3(paste("The tier checker returned the following issue(s),",
-                            "which can be resolved in Elan using Set Author and/or Change Tier Attributes:"),
+    tierSubhead <- h3(paste("The tier checker returned the following issue(s):"),
                       id="tierSubhead") %>% 
       ##By default, don't display
       undisplay()
