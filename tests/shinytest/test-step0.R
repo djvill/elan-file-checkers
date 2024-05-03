@@ -2,7 +2,7 @@
 source("shinytest-utils.R")
 app <- ShinyDriver$new("../../")
 testPath <- paste0("test-step0", "-current/")
-testFiles <- dir("step0", ".+eaf", full.names=TRUE)
+testFiles <- dir("step0", full.names=TRUE)
 fileCounter <<- 0
 
 ##All files

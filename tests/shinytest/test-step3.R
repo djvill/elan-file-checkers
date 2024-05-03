@@ -2,7 +2,7 @@
 source("shinytest-utils.R")
 app <- ShinyDriver$new("../../")
 testPath <- paste0("test-step3", "-current/")
-testFiles <- dir("step3", ".+eaf", full.names=TRUE)
+testFiles <- dir("step3", full.names=TRUE)
 fileCounter <<- 0
 
 ##For step 3 *only*, include eaflist (for debugging overlap fixing)

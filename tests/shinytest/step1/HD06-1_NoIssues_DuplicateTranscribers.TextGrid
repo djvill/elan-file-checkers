@@ -5665,8 +5665,12 @@ item []:
         name = "Transcriber"
         xmin = 0.0
         xmax = 2416.949
-        intervals: size = 1
+        intervals: size = 2
         intervals [1]
             xmin = 0.0
-            xmax = 2416.949
+            xmax = 1000.000 
+            text = "Emma McKibbin"
+        intervals [2]
+            xmin = 1000.000
+            xmax = 2416.949 
             text = "Emma McKibbin"
