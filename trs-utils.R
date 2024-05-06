@@ -75,17 +75,28 @@ check_for_praat <- function(praatDir=".") {
 
 ##Given a path to a Praat TextGrid, read as an R dataframe (using Praat's
 ##  built-in "Down to Table..." command)
-read_textgrid <- function(x, outcsv=tempfile(fileext=".csv"), praatDir=".") {
+read_textgrid <- function(x, outcsv=tempfile(fileext=".csv"), praatDir=".",
+                          praatScript="tg-to-csv.praat") {
   library(dplyr)
+  library(fs)
   
   ##Check args
   praatExe <- check_for_praat(praatDir)
   stopifnot(file.exists(x))
+  ##If praatScript doesn't exist, try with path relative to praatDir
+  if (!file.exists(praatScript)) {
+    newScript <- file.path(praatDir, praatScript)
+    if (!file.exists(newScript)) {
+      stop("praatScript file ", praatScript, " does not exist")
+    } else {
+      praatScript <- newScript
+    }
+  }
   
   ##Run Praat script and check that it created an output
-  system2(praatExe, paste0("--run tg-to-csv.praat ", 
-                           '"', x, '" ',
-                           '"', outcsv, '"'), 
+  system2(praatExe, paste0("--run ", praatScript, " ", 
+                           '"', path_rel(x, praatDir), '" ',
+                           '"', path_rel(outcsv, praatDir), '"'), 
           stderr=FALSE)
   if (!file.exists(outcsv)) {
     stop(x, " is not a valid TextGrid")
@@ -339,7 +350,7 @@ remove_tiers <- function(x, tiers=NULL, notier=c("error","warn","silent")) {
 }
 
 ##Convert a trs_transcription to an xml_document suitable for opening in Elan
-trs_to_eaf <- function(x, mediaFile=NULL, minElan="minimal-elan.xml") {
+trs_to_eaf <- function(x, mediaFile=NULL, minElan="misc/minimal-elan.xml") {
   library(dplyr)
   library(tidyr)
   library(purrr)

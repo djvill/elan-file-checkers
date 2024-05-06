@@ -6,6 +6,7 @@ library(stringr)
 library(purrr)
 library(tidyr)
 library(dplyr)
+library(fs)
 
 source("trs-utils.R")
 
@@ -18,14 +19,18 @@ vers <- "1.4.2"
 ##File structures
 ##Named list of functions to handle each file extension to be read
 readHandlers <- list(eaf = xml2::read_xml,
-                     ##read_textgrid() defined in trs-utils.R
-                     textgrid = read_textgrid)
+                     ##read_textgrid() defined in trs-utils.R, plus args
+                     textgrid = partial(read_textgrid, 
+                                        praatDir="misc", 
+                                        praatScript="misc/tg-to-csv.praat"))
 ##Regex for extracting SpkrCode column from filenames
 spkrCodeRegex <- "^(CB|FH|HD|LV)\\d+(and\\d+)?"
 ##Regex for extracting Neighborhood column from SpkrCode
 neighborhoodRegex <- "^(CB|FH|HD|LV)"
 
-##Tier checking
+
+## Tier checking ==============================================================
+
 ##Required non-speaker tiers
 nonSpkrTiers <- c("Comment","Noise","Redaction")
 ##Additional required tiers for different file extensions
@@ -38,7 +43,9 @@ prohibTiers <- c("Recheck",
                  paste0("PAR", 0:9), paste0("wor@", paste0("PAR", 0:9)), ##From Batchalign
                  "NoMatch - Word","NoMatch - Turn","Overlap")            ##From Fill-Batchalign-Words
 
-##Dictionary checking
+
+## Dictionary checking ========================================================
+
 ##Tiers to exclude from dictionary checking
 noDictCheckTiers <- c("Comment","Noise","Redaction","Transcriber")
 ##Include local version of aplsDict.txt? Include ONLY local version?
@@ -53,7 +60,9 @@ pronChars <- "[pbtdkgNmnlrfvTDszSZjhwJ_CFHPIE{VQU@i$u312456789#'\"-]"
 ##Case-sensitive?
 caseSens <- FALSE
 
-##Overlap fixing
+
+## Overlap fixing =============================================================
+
 ##Tiers to exclude from overlap checking/fixing
 noOverlapCheckTiers <- c("Comment","Noise","Transcriber")
 ##Maximum cross-tier misalignment (in ms) to 'snap together'. Set lower to be
@@ -76,6 +85,11 @@ reachMaxIters <- "warn"
 ##Time display type: "S" (seconds, useful for Praat TextGrids), or "HMS" (useful
 ##  for ELAN)
 timeDisp <- "HMS"
+
+## File output ================================================================
+
+##Minimal Elan file
+minElan <- "misc/minimal-elan.xml"
 
 ##Exit-early overrides, for debugging
 overrideExit <- list(fileName = FALSE, tiers = FALSE, dict = FALSE, overlaps = FALSE)
@@ -805,7 +819,7 @@ server <- function(input, output) {
     
     # Step 2: Dictionary check ------------------------------------------------
     ##Content outsourced to dict-subhead.html because it's too long
-    dictSubhead <- div(includeHTML("dict-subhead.html")) %>% 
+    dictSubhead <- div(includeHTML("misc/dict-subhead.html")) %>% 
       ##By default, don't display
       undisplay()
     dictDetails <- tags$ul("", id="dictDetails", class="details") %>% 
@@ -964,7 +978,7 @@ server <- function(input, output) {
       }
       
       ##Convert to trs_eaf
-      outdata <- map(trsListFixed, trs_to_eaf)
+      outdata <- map(trsListFixed, trs_to_eaf, minElan=minElan)
     }
     ##Content
     downloadHead <- h1("The file(s) passed all checks. Great job!",
