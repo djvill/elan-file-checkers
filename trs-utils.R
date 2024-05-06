@@ -111,7 +111,7 @@ read_textgrid <- function(x, outcsv=tempfile(fileext=".csv"), praatDir=".",
 
 # trs_transcription -------------------------------------------------------
 
-
+##S3 generic for as.trs_transcription
 as.trs_transcription <- function(x, ...) {
   UseMethod("as.trs_transcription")
 }
@@ -349,8 +349,16 @@ remove_tiers <- function(x, tiers=NULL, notier=c("error","warn","silent")) {
   out
 }
 
+
+##S3 generic for as.trs_eaf
+as.trs_eaf <- function(x, ...) {
+  UseMethod("as.trs_eaf")
+}
+
+
 ##Convert a trs_transcription to an xml_document suitable for opening in Elan
-trs_to_eaf <- function(x, mediaFile=NULL, minElan="misc/minimal-elan.xml") {
+as.trs_eaf.trs_transcription <- function(x, mediaFile=NULL, 
+                                         minElan="misc/minimal-elan.xml", ...) {
   library(dplyr)
   library(tidyr)
   library(purrr)

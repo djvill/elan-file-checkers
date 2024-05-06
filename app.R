@@ -978,7 +978,7 @@ server <- function(input, output) {
       }
       
       ##Convert to trs_eaf
-      outdata <- map(trsListFixed, trs_to_eaf, minElan=minElan)
+      outdata <- map(trsListFixed, ~ as.trs_eaf(.x, minElan=minElan))
     }
     ##Content
     downloadHead <- h1("The file(s) passed all checks. Great job!",
