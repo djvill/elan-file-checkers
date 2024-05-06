@@ -804,52 +804,8 @@ server <- function(input, output) {
     
     
     # Step 2: Dictionary check ------------------------------------------------
-    ##Content
-    dictSubhead <- h3("The following word(s) are not currently in the corpus dictionary.", 
-                      "These could be:",
-                      tags$ul(
-                        tags$li(
-                          strong("Misspellings/typos:"),
-                          "Check commonly misspelled words like", em("embarrassed"),
-                          "or", em("conscious")
-                        ),
-                        tags$li(
-                          strong("Incorrect punctuation:"),
-                          "For example,", em("that."), "(need a space between word and period)",
-                          "or", em("bec~(bIk)"), "(pronounce code goes in [], not ())"
-                        ),
-                        tags$li(
-                          strong("Incorrect DISC characters:"),
-                          "Make sure you're not using any characters that aren't in the", 
-                          a("DISC phonemic alphabet",
-                            href="https://djvill.github.io/APLS/doc/phonemic-transcription",
-                            target="_blank"),
-                          "(e.g., IPA /j/ is DISC", code("j", .noWS="after"), 
-                          ", not ", code("y", .noWS="after"), ")"
-                        ),
-                        tags$li(
-                          strong("Words that should be in APLS's phonemic dictionary:"),
-                          "To look up phonemic representations, APLS uses: (1) the Unisyn English dictionary, and (2)",
-                          a("custom entries", 
-                            href="https://djvill.github.io/APLS/files/custom-entries",
-                            target="_blank",
-                            .noWS="after"),
-                          ". If any words should be added to the dictionary, send suggestions to Dan, including ",
-                          a("DISC representations",
-                            href="https://djvill.github.io/APLS/doc/phonemic-transcription.html#suggesting-new-dictionary-entries",
-                            target="_blank",
-                            .noWS="after"),
-                          ". If you're not sure whether a word should be added to the dictionary, ask Dan"
-                        ),
-                        tags$li(
-                          strong("Words that need an inline pronounce code (aka DISC code):"),
-                          "Words made up on the spot (e.g., ", em("yinzerific", .noWS="after"), "),",
-                          "words unlikely to come up in any other interview (e.g., a specific schoolteacher's name),",
-                          "obvious misprounciations (e.g., \"havring\" for", em("having", .noWS="after"), "),",
-                          "and hesitations (e.g., \"hesi~\")"
-                        )
-                      ),
-                      id="dictSubhead") %>% 
+    ##Content outsourced to dict-subhead.html because it's too long
+    dictSubhead <- div(includeHTML("dict-subhead.html")) %>% 
       ##By default, don't display
       undisplay()
     dictDetails <- tags$ul("", id="dictDetails", class="details") %>% 
