@@ -1,8 +1,8 @@
-# Elan File Checkers
+# Transcription Checker
 
 [Dan Villarreal](https://www.linguistics.pitt.edu/people/dan-villarreal), University of Pittsburgh Linguistics
 
-This repo contains code for the [APLS Elan file checker](https://djvill.shinyapps.io/apls_elan_file_checker/), a Shiny app that helps transcribers conform their Elan files to [LaBB-CAT](https://labbcat.canterbury.ac.nz/system/) specifications. It was developed by Dan Villarreal, originally for the [New Zealand Institute of Language, Brain, and Behaviour](https://www.canterbury.ac.nz/nzilbb/) and more recently for the [Archive of Pittsburgh Language and Speech (APLS)](https://labb-cat.linguistics.pitt.edu/labbcat/). The code for the original apps has been archived to the [`southland` branch](https://github.com/djvill/elan-file-checkers/tree/southland).
+This repo contains code for the [APLS Transcription Checker](https://djvill.shinyapps.io/apls_elan_file_checker/), a Shiny app that helps transcribers conform their transcription files (Elan or Praat) to [LaBB-CAT](https://labbcat.canterbury.ac.nz/system/) specifications. It was developed by Dan Villarreal, originally for the [New Zealand Institute of Language, Brain, and Behaviour](https://www.canterbury.ac.nz/nzilbb/) and more recently for the [Archive of Pittsburgh Language and Speech (APLS)](https://labb-cat.linguistics.pitt.edu/labbcat/). The code for the original apps has been archived to the [`southland` branch](https://github.com/djvill/elan-file-checkers/tree/southland).
 
 **If you use this code in any published work, please cite it.** Citing open code is a small thing you can do to ensure that researchers have the incentive to keep making code open.
 
@@ -14,11 +14,11 @@ This repo contains code for the [APLS Elan file checker](https://djvill.shinyapp
 N.B. As of version 1.4.1, this repository includes [Praat](https://www.fon.hum.uva.nl/praat/), which is open-source software distributed under the [GNU General Public License](https://www.fon.hum.uva.nl/praat/manual/License.html).
 
 
-## Why an Elan file checker?
+## Why a transcription checker?
 
-In short, this app is a **quality control tool that closes the gap between Elan and LaBB-CAT**, catching issues that originate in Elan before they cause downstream havoc in LaBB-CAT.
+In short, this app is a **quality control tool that closes the gap between transcription programs and LaBB-CAT**, catching issues that originate in transcriptions before they cause downstream havoc in LaBB-CAT.
 
-Elan is a free, flexible software tool for annotating linguistic data. LaBB-CAT is a tool for storing, searching, and manipulating linguistic corpora that accepts multiple file types, including Elan files. The flexibility of both Elan and LaBB-CAT can lead to a suboptimal situation for quality control and reproducibility. For example:
+This is especially true for transcriptions created in Elan, a free, flexible software tool for annotating linguistic data. LaBB-CAT is a tool for storing, searching, and manipulating linguistic corpora that accepts multiple file types, including Elan files. The flexibility of both Elan and LaBB-CAT can lead to a suboptimal situation for quality control and reproducibility. For example:
 
 - Elan allows users to name tiers and speakers however they wish. In turn, LaBB-CAT allows the user to merge or rename speaker records, which may be necessary to ensure conformity to corpus conventions; the resulting disagreement between LaBB-CAT's version of a file and the original file can create major issues if the file is re-uploaded somewhere down the line (e.g., to add topic-tagged tiers).
 
@@ -31,7 +31,7 @@ Elan is a free, flexible software tool for annotating linguistic data. LaBB-CAT 
 
 ## What do they do?
 
-Once users drag-and-drop one or more files, the checker ensures that all files are Elan file format (`.eaf`). If so, the files go through up to three sequential steps; Step 2 only engages if all files pass Step 1, etc.
+Once users drag-and-drop one or more files, the checker ensures that all files are one of the accepted file formats (`.eaf` for Elan, `.TextGrid` for Praat, case-insensitive) and are actually readable by the respective programs. If so, the files go through up to three sequential steps; Step 2 only engages if all files pass Step 1, etc.
 
 1. [Validating tier names and attributes...](#step-1-tier-check)
 2. [Checking for out-of-dictionary words...](#step-2-dictionary-check)
