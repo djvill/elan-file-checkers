@@ -57,7 +57,7 @@ snap <- function(app, name=NULL, path=getwd(), incl_eaflist=FALSE) {
     class = html_attr(html_elements(mainUI, "h2"), "class"),
     displayed = map_lgl(html_elements(mainUI, "h2"), is.displayed)
   )
-  stepSubheads <- html_elements(mainUI, "h3") %>% 
+  stepSubheads <- html_elements(mainUI, ".subhead") %>% 
     {data.frame(id = html_attr(., "id"),
                 displayed = map_lgl(., is.displayed))}
   success <- is.displayed(html_element(mainUI, "#downloadSubhead"))

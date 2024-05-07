@@ -16,7 +16,8 @@ source("trs-utils.R")
 ##Version
 vers <- "1.4.2"
 
-##File structures
+## File structures ============================================================
+
 ##Named list of functions to handle each file extension to be read
 readHandlers <- list(eaf = xml2::read_xml,
                      ##read_textgrid() defined in trs-utils.R, plus args
@@ -680,9 +681,6 @@ server <- function(input, output) {
   
   # Main execution block ----------------------------------------------------
   main <- reactive({
-    ##Store trsList() as trsList (purely for easier interactive debugging)
-    trsList <- trsList()
-    
     ##Always-displayed headings
     stepHeads <- list(tiers = h2("Step 1: Validating tier names and attributes...",
                                  id="tierHead"),
@@ -702,6 +700,8 @@ server <- function(input, output) {
     ##If uploaded files, initialize exitEarly sentinel & proceed to checking
     ##  steps
     exitEarly <- FALSE
+    ##Store trsList() as trsList (purely for easier interactive debugging)
+    trsList <- trsList()
     
     
     ## Step 0: File check =====================================================
@@ -723,7 +723,7 @@ server <- function(input, output) {
     ##Style headings based on whether filenames are valid
     fileCheckValid <- all(validationDF$Valid)
     if (fileCheckValid) {
-      fileCheckSubhead <- h3("", id="fileCheckSubhead") %>% 
+      fileCheckSubhead <- h3("", id="fileCheckSubhead", class="subhead") %>% 
         undisplay()
       message("Step 0: Pass")
     } else {
@@ -747,7 +747,7 @@ server <- function(input, output) {
       fileCheckSubhead <- h3(paste0("Files must ", 
                                     str_flatten_comma(fileNameTips, ", and "),
                                     "."), 
-                            id="fileCheckSubhead") %>% 
+                            id="fileCheckSubhead", class="subhead") %>% 
         display()
       
       ##Edge case: Throw error if !fileCheckValid but no fileNameTips
@@ -761,8 +761,8 @@ server <- function(input, output) {
     
     # Step 1: Tier check ------------------------------------------------------
     ##Content
-    tierSubhead <- h3(paste("The tier checker returned the following issue(s):"),
-                      id="tierSubhead") %>% 
+    tierSubhead <- h3("The tier checker returned the following issue(s):",
+                      id="tierSubhead", class="subhead") %>% 
       ##By default, don't display
       undisplay()
     tierDetails <- tags$ul("", id="tierDetails", class="details") %>% 
@@ -819,7 +819,8 @@ server <- function(input, output) {
     
     # Step 2: Dictionary check ------------------------------------------------
     ##Content outsourced to dict-subhead.html because it's too long
-    dictSubhead <- div(includeHTML("misc/dict-subhead.html")) %>% 
+    dictSubhead <- div(includeHTML("misc/dict-subhead.html"),
+                       id="dictSubhead", class="subhead") %>% 
       ##By default, don't display
       undisplay()
     dictDetails <- tags$ul("", id="dictDetails", class="details") %>% 
@@ -886,7 +887,7 @@ server <- function(input, output) {
     overlapsSubhead <- h3(paste("The overlap checker could not resolve the following overlaps.",
                                 "Please fix these overlaps; remember to make overlaps a",
                                 "separate turn on each speaker's tier."),
-                          id="overlapsSubhead") %>% 
+                          id="overlapsSubhead", class="subhead") %>% 
       ##By default, don't display
       undisplay()
     overlapsDetails <- tags$ul("", id="overlapsDetails", class="details") %>% 
@@ -984,7 +985,7 @@ server <- function(input, output) {
     downloadHead <- h1("The file(s) passed all checks. Great job!",
                        id="downloadHead")
     downloadSubhead <- h3("Please download the corrected file(s) and upload to the Completed folder",
-                          id="downloadSubhead")
+                          id="downloadSubhead", class="subhead")
     downloadBtn <- downloadButton("OutputFile", "Download corrected file(s)")
     
     # UI tags ---------------------------------------------------------------
