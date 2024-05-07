@@ -42,12 +42,26 @@ parse_filenames <- function(x,
 ##  praat...zip, and return its path (including ./ prefix, suitable for use in
 ##  shell scripts to run it as an executable)
 check_for_praat <- function(praatDir=".") {
-  ##Check args and ensure existence of executable and/or zipfolder
+  ##Check arg
   stopifnot(is.character(praatDir) && dir.exists(praatDir))
-  praatExe <- file.path(praatDir, "Praat.exe")
-  praatZip <- dir(praatDir, "praat.+\\.zip", full.names=TRUE, ignore.case=TRUE)
+  
+  ##Ensure existence of executable and/or zipped archive
+  os <- Sys.info()[["sysname"]]
+  if (os=="Windows") {
+    pathExe <- "Praat.exe"
+    pathZip <- "praat.+\\.zip"
+    extractZip <- unzip
+  } else if (os=="Linux") {
+    pathExe <- "praat_nogui"
+    pathZip <- "praat.+nogui\\.tar\\.gz"
+    extractZip <- untar
+  } else {
+    stop("Operating system ", os, " not supported")
+  }
+  praatExe <- file.path(praatDir, pathExe)
+  praatZip <- dir(praatDir, pathZip, full.names=TRUE, ignore.case=TRUE)
   if (!file.exists(praatExe) && length(praatZip) == 0) {
-    stop("No Praat executable or zipfile found in praatDir ", praatDir)
+    stop("No Praat executable or zipfolder found in praatDir ", praatDir)
   }
   
   ##Unzip if necessary
@@ -62,11 +76,11 @@ check_for_praat <- function(praatDir=".") {
               "\n  Using ", basename(praatZip))
     }
     ##Unzip to praatDir
-    praatExe <- unzip(praatZip, exdir=praatDir)
+    praatExe <- extractZip(praatZip, exdir=praatDir)
     ##Ensure praatZip is a valid Praat zipfolder
-    if (length(praatExe) != 1 || basename(praatExe) != "Praat.exe") {
+    if (length(praatExe) != 1 || basename(praatExe) != pathExe) {
       stop(praatZip, " is not a valid Praat zipfolder ", 
-           "(it should contain only Praat.exe)")
+           "(it should contain only ", pathExe, ")")
     }
   }
   
