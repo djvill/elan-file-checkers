@@ -1,0 +1,4960 @@
+{
+  "success": [
+    true
+  ],
+  "export": {
+    "fileDF": [
+      {
+        "name": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "FileExt": "TextGrid"
+      }
+    ],
+    "tierDF": {
+      "HD06-1_GoodOnlyRedactTG.TextGrid": [
+        {
+          "TIER_ID": "Noise",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Noise"
+        },
+        {
+          "TIER_ID": "Interviewer HD06",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Interviewer HD06"
+        },
+        {
+          "TIER_ID": "Redaction",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Redaction"
+        },
+        {
+          "TIER_ID": "HD06",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "HD06"
+        },
+        {
+          "TIER_ID": "Comment",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Comment"
+        },
+        {
+          "TIER_ID": "Transcriber",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Transcriber"
+        }
+      ]
+    },
+    "turnsDF": [
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 0.327,
+        "End": 0.77
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 3.052,
+        "End": 3.496
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 5.503,
+        "End": 5.918
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 269.382,
+        "End": 269.942
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 504.346,
+        "End": 505.946
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 535.662,
+        "End": 536.843
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 547.567,
+        "End": 548.435
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 653.513,
+        "End": 654.674
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 723.94,
+        "End": 724.422
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 1028.093,
+        "End": 1028.844
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 1304.151,
+        "End": 1304.771
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 1912.961,
+        "End": 1914.351
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 2249.166,
+        "End": 2249.967
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Noise",
+        "Start": 2414.993,
+        "End": 2415.415
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 3.523,
+        "End": 3.9844
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 3.9844,
+        "End": 4.4648
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 4.4648,
+        "End": 5.499
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 6.037,
+        "End": 7.436
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 9.3,
+        "End": 9.897
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 10.305,
+        "End": 11.184
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 11.251,
+        "End": 12.422
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 13.619,
+        "End": 14.335
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 15.31,
+        "End": 17.812
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 17.832,
+        "End": 20.717
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 22.009,
+        "End": 22.391
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 24.072,
+        "End": 31.365
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 31.847,
+        "End": 32.562
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 35.889,
+        "End": 37.082
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 37.084,
+        "End": 37.394
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 37.416,
+        "End": 38.164
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 39.024,
+        "End": 39.652
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 40.192,
+        "End": 44.879
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 45.504,
+        "End": 46.896
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 46.899,
+        "End": 47.401
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 47.406,
+        "End": 50.221
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 50.223,
+        "End": 50.775
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 50.775,
+        "End": 53.398
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 64.096,
+        "End": 64.802
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 70.73,
+        "End": 71.513
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 72.054,
+        "End": 72.927
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 78.433,
+        "End": 79.383
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 79.383,
+        "End": 80.448
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 80.507,
+        "End": 83.374
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 90.327,
+        "End": 90.973
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 91.567,
+        "End": 96.704
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 106.949,
+        "End": 107.784
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 110.309,
+        "End": 110.679
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 114.567,
+        "End": 115.085
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 122.861,
+        "End": 123.441
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 128.276,
+        "End": 129.174
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 130.557,
+        "End": 131.249
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 153.779,
+        "End": 154.357
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 156.723,
+        "End": 157.505
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 169.472,
+        "End": 173.485
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 174.478,
+        "End": 175.149
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 181.271,
+        "End": 181.941
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 182.627,
+        "End": 183.287
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 183.936,
+        "End": 185.133
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 185.856,
+        "End": 189.074
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 190.941,
+        "End": 191.523
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 194.788,
+        "End": 195.442
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 197.323,
+        "End": 201.786
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 201.786,
+        "End": 203.133
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 203.15,
+        "End": 204.312
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 211.922,
+        "End": 218.586
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 219.948,
+        "End": 220.421
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 220.861,
+        "End": 222.981
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 223.895,
+        "End": 226.053
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 226.057,
+        "End": 228.381
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 263.119,
+        "End": 263.918
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 275.499,
+        "End": 276.046
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 285.412,
+        "End": 286.196
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 286.196,
+        "End": 287.335
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 287.335,
+        "End": 288.254
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 288.254,
+        "End": 288.71
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 289.507,
+        "End": 294.907
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 295.681,
+        "End": 296.313
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 311.164,
+        "End": 311.769
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 333.791,
+        "End": 334.399
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 341.578,
+        "End": 343.354
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 347.088,
+        "End": 347.674
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 361.696,
+        "End": 362.374
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 375.13,
+        "End": 380.881
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 380.881,
+        "End": 381.363
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 382.295,
+        "End": 382.929
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 391.884,
+        "End": 392.7
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 402.971,
+        "End": 403.893
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 404.625,
+        "End": 405.053
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 409.391,
+        "End": 409.753
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 410.869,
+        "End": 411.24
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 413.154,
+        "End": 413.601
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 429.066,
+        "End": 429.643
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 429.978,
+        "End": 430.397
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 439.557,
+        "End": 440.332
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 471.189,
+        "End": 477.43
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 477.708,
+        "End": 483.32
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 483.32,
+        "End": 484.071
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 484.081,
+        "End": 484.705
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 485.452,
+        "End": 488.657
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 488.657,
+        "End": 490.213
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 490.213,
+        "End": 491.218
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 491.218,
+        "End": 492.103
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 492.178,
+        "End": 493.049
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 493.049,
+        "End": 494.079
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 494.081,
+        "End": 495.611
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 513.581,
+        "End": 514.28
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 526.378,
+        "End": 527.172
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 529.078,
+        "End": 529.529
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 542.562,
+        "End": 544.654
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 544.654,
+        "End": 545.571
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 562.551,
+        "End": 563.431
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 574.577,
+        "End": 575.113
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 575.113,
+        "End": 576.842
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 578.484,
+        "End": 579.175
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 604.024,
+        "End": 604.642
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 627.479,
+        "End": 627.752
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 627.755,
+        "End": 628.711
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 630.253,
+        "End": 635.299
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 635.699,
+        "End": 636.631
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 638.619,
+        "End": 639.193
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 641.386,
+        "End": 644.538
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 645.425,
+        "End": 647.653
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 660.317,
+        "End": 660.921
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 661.933,
+        "End": 662.647
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 670.786,
+        "End": 671.19
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 677.109,
+        "End": 677.534
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 737.325,
+        "End": 737.702
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 745.764,
+        "End": 746.511
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 758.26,
+        "End": 763.815
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 767.712,
+        "End": 768.693
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 811.802,
+        "End": 812.719
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 815.918,
+        "End": 816.651
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 824.255,
+        "End": 825.581
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 853.154,
+        "End": 853.604
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 857.503,
+        "End": 858.163
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 869.808,
+        "End": 870.586
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 872.271,
+        "End": 872.836
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 874.818,
+        "End": 875.623
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 887.777,
+        "End": 888.395
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 901.255,
+        "End": 902.306
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 919.69,
+        "End": 927.663
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 941.579,
+        "End": 941.961
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 941.961,
+        "End": 942.811
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 971.576,
+        "End": 972.271
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 989.188,
+        "End": 993.793
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 995.183,
+        "End": 995.789
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 999.164,
+        "End": 999.745
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1004.78,
+        "End": 1005.269
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1007.376,
+        "End": 1008.039
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1011.62,
+        "End": 1012.66
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1022.934,
+        "End": 1027.068
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1043.228,
+        "End": 1044.2582
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1044.2582,
+        "End": 1044.9922
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1044.9922,
+        "End": 1045.062
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1046.499,
+        "End": 1046.93
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1054.017,
+        "End": 1055.905
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1055.905,
+        "End": 1056.112
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1068.685,
+        "End": 1069.061
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1110.936,
+        "End": 1111.739
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1119.625,
+        "End": 1120.041
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1121.497,
+        "End": 1121.879
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1128.223,
+        "End": 1128.656
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1129.062,
+        "End": 1129.427
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1132.498,
+        "End": 1133.111
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1162.157,
+        "End": 1163.381
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1165.127,
+        "End": 1165.663
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1166.02,
+        "End": 1166.506
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1166.506,
+        "End": 1167.731
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1175.631,
+        "End": 1176.162
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1189.227,
+        "End": 1189.805
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1194.928,
+        "End": 1195.684
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1202.232,
+        "End": 1202.594
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1209.564,
+        "End": 1210.113
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1212.473,
+        "End": 1212.966
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1217.836,
+        "End": 1218.328
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1242.206,
+        "End": 1246.845
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1247.242,
+        "End": 1247.935
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1248.812,
+        "End": 1254.117
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1255.109,
+        "End": 1257.141
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1268.042,
+        "End": 1268.505
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1272.423,
+        "End": 1273.425
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1273.425,
+        "End": 1274.099
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1274.119,
+        "End": 1283.159
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1283.159,
+        "End": 1284.295
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1284.835,
+        "End": 1285.74
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1305.636,
+        "End": 1307.068
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1307.679,
+        "End": 1308.436
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1316.284,
+        "End": 1321.034
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1322.957,
+        "End": 1323.434
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1329.754,
+        "End": 1330.399
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1336.145,
+        "End": 1336.71
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1382.98,
+        "End": 1383.425
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1404.46,
+        "End": 1405.06
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1407.421,
+        "End": 1409.865
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1411.519,
+        "End": 1414.237
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1420.721,
+        "End": 1421.209
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1424.491,
+        "End": 1431.616
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1432.159,
+        "End": 1436.644
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1437.528,
+        "End": 1446.975
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1446.975,
+        "End": 1448.078
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1448.098,
+        "End": 1449.841
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1449.841,
+        "End": 1451.123
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1471.244,
+        "End": 1471.744
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1491.114,
+        "End": 1491.969
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1498.863,
+        "End": 1499.83
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1511.622,
+        "End": 1512.021
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1518.291,
+        "End": 1518.929
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1526.361,
+        "End": 1527.146
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1527.879,
+        "End": 1528.252
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1528.252,
+        "End": 1529.076
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1536.916,
+        "End": 1537.486
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1541.488,
+        "End": 1542.019
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1545.744,
+        "End": 1546.578
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1568.886,
+        "End": 1569.711
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1573.398,
+        "End": 1575.189
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1584.203,
+        "End": 1584.697
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1617.962,
+        "End": 1618.65
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1631.8,
+        "End": 1632.674
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1641.92,
+        "End": 1642.405
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1664.658,
+        "End": 1668.791
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1668.791,
+        "End": 1677.063
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1677.063,
+        "End": 1677.655
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1677.655,
+        "End": 1678.285
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1678.285,
+        "End": 1679.032
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1679.05,
+        "End": 1685.435
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1696.691,
+        "End": 1697.12
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1708.941,
+        "End": 1709.093
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1709.093,
+        "End": 1709.401
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1709.401,
+        "End": 1710.358
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1710.358,
+        "End": 1711.103
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1715.014,
+        "End": 1716.129
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1727.911,
+        "End": 1728.447
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1739.45,
+        "End": 1739.787
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1757.768,
+        "End": 1763.944
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1763.944,
+        "End": 1764.601
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1764.615,
+        "End": 1767.311
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1768.282,
+        "End": 1769.428
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1778.737,
+        "End": 1783.19
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1784.229,
+        "End": 1784.651
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1811.405,
+        "End": 1811.957
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1823.699,
+        "End": 1824.056
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1835.047,
+        "End": 1835.929
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1837.781,
+        "End": 1838.444
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1838.74,
+        "End": 1839.586
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1848.052,
+        "End": 1848.48
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1851.158,
+        "End": 1852.325
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1857.519,
+        "End": 1862.822
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1880.525,
+        "End": 1881.738
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1882.825,
+        "End": 1883.968
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1887.939,
+        "End": 1888.496
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1901.222,
+        "End": 1901.689
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1906.168,
+        "End": 1906.633
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1908.58,
+        "End": 1908.842
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1921.278,
+        "End": 1921.826
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1922.326,
+        "End": 1923.116
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1924.294,
+        "End": 1924.947
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1927.334,
+        "End": 1928.855
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1931.004,
+        "End": 1936.355
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1936.893,
+        "End": 1943.82
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1944.352,
+        "End": 1951.922
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1952.136,
+        "End": 1959.787
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1959.787,
+        "End": 1963.682
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1967.872,
+        "End": 1968.432
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1988.226,
+        "End": 1989.106
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1996.907,
+        "End": 1997.66
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 1998.464,
+        "End": 1999.092
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2025.164,
+        "End": 2025.612
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2037.982,
+        "End": 2039
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2042.563,
+        "End": 2042.935
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2062.786,
+        "End": 2063.386
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2068.084,
+        "End": 2069.162
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2073.765,
+        "End": 2074.334
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2097.719,
+        "End": 2098.424
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2099.149,
+        "End": 2099.702
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2108.51,
+        "End": 2108.974
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2110.483,
+        "End": 2110.956
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2119.482,
+        "End": 2119.888
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2130.697,
+        "End": 2131.62
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2131.774,
+        "End": 2140.374
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2140.374,
+        "End": 2141.047
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2141.062,
+        "End": 2142.277
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2142.293,
+        "End": 2143.37
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2143.41,
+        "End": 2145.645
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2146.359,
+        "End": 2155.055
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2155.055,
+        "End": 2155.657
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2156.374,
+        "End": 2159.04
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2159.04,
+        "End": 2159.673
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2159.673,
+        "End": 2160.692
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2161.057,
+        "End": 2162.078
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2179.943,
+        "End": 2180.548
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2187.959,
+        "End": 2188.405
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2204.032,
+        "End": 2204.942
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2205.688,
+        "End": 2206.161
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2211.06,
+        "End": 2211.66
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2240.252,
+        "End": 2241.332
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2303.232,
+        "End": 2303.806
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2319.48,
+        "End": 2322.18
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2322.86,
+        "End": 2323.96
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2376.201,
+        "End": 2377.521
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2378.284,
+        "End": 2378.742
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2404.374,
+        "End": 2404.863
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2415.416,
+        "End": 2416.037
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Interviewer HD06",
+        "Start": 2416.193,
+        "End": 2416.949
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Redaction",
+        "Start": 4.0066,
+        "End": 4.4944
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Redaction",
+        "Start": 1044.1484,
+        "End": 1044.855
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 8.305,
+        "End": 9.362
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 9.897,
+        "End": 10.242
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 11.251,
+        "End": 12.422
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 12.627,
+        "End": 13.58
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 13.619,
+        "End": 14.335
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 14.345,
+        "End": 15.311
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 20.668,
+        "End": 21.932
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 22.403,
+        "End": 24.053
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 31.379,
+        "End": 31.808
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 32.596,
+        "End": 35.864
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 37.084,
+        "End": 37.392
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 38.169,
+        "End": 38.917
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 39.653,
+        "End": 40.182
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 44.881,
+        "End": 45.429
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 46.899,
+        "End": 47.378
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 50.223,
+        "End": 50.775
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 53.43,
+        "End": 56.603
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 57.432,
+        "End": 64.095
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 64.812,
+        "End": 67.715
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 69.964,
+        "End": 70.578
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 72.054,
+        "End": 72.924
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 72.933,
+        "End": 78.431
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 79.384,
+        "End": 80.448
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 83.852,
+        "End": 90.261
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 91.012,
+        "End": 91.554
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 97.315,
+        "End": 106.899
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 106.948,
+        "End": 107.782
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 107.782,
+        "End": 110.284
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 110.703,
+        "End": 114.555
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 115.097,
+        "End": 122.849
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 123.441,
+        "End": 128.272
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 128.272,
+        "End": 129.174
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 129.211,
+        "End": 130.506
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 130.556,
+        "End": 131.249
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 131.249,
+        "End": 133.804
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 134.467,
+        "End": 142.157
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 142.166,
+        "End": 148.036
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 148.047,
+        "End": 153.781
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 154.369,
+        "End": 156.723
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 156.723,
+        "End": 157.505
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 157.531,
+        "End": 166.032
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 166.484,
+        "End": 168.792
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 173.489,
+        "End": 174.463
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 174.478,
+        "End": 175.146
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 175.149,
+        "End": 181.263
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 181.943,
+        "End": 182.613
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 183.287,
+        "End": 183.932
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 183.94,
+        "End": 185.133
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 185.159,
+        "End": 185.841
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 189.286,
+        "End": 190.929
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 190.941,
+        "End": 191.522
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 191.546,
+        "End": 194.788
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 195.46,
+        "End": 197.297
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 201.786,
+        "End": 203.144
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 204.312,
+        "End": 206.643
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 206.644,
+        "End": 211.865
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 218.586,
+        "End": 219.948
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 220.423,
+        "End": 220.862
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 226.05,
+        "End": 228.385
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 228.669,
+        "End": 234.319
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 234.319,
+        "End": 238.376
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 238.376,
+        "End": 244.247
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 244.251,
+        "End": 252.478
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 252.494,
+        "End": 257.152
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 257.193,
+        "End": 263.095
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 263.918,
+        "End": 266.765
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 266.811,
+        "End": 268.821
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 269.956,
+        "End": 275.499
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 275.499,
+        "End": 276.044
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 276.066,
+        "End": 278.886
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 279.829,
+        "End": 285.412
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 286.19,
+        "End": 287.336
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 288.252,
+        "End": 288.697
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 288.719,
+        "End": 289.516
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 294.916,
+        "End": 295.672
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 296.314,
+        "End": 305.869
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 305.879,
+        "End": 311.017
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 311.164,
+        "End": 311.785
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 311.798,
+        "End": 319.726
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 319.747,
+        "End": 323.089
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 323.097,
+        "End": 331.169
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 331.853,
+        "End": 333.773
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 334.509,
+        "End": 341.578
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 341.578,
+        "End": 343.354
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 343.367,
+        "End": 347.074
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 347.744,
+        "End": 357.183
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 357.205,
+        "End": 361.696
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 362.396,
+        "End": 364.752
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 364.752,
+        "End": 374.593
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 380.894,
+        "End": 381.363
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 381.376,
+        "End": 382.295
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 382.295,
+        "End": 382.923
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 382.923,
+        "End": 391.884
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 391.884,
+        "End": 392.7
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 392.7,
+        "End": 394.044
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 394.044,
+        "End": 402.98
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 402.982,
+        "End": 403.884
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 403.899,
+        "End": 404.618
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 405.058,
+        "End": 409.388
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 409.388,
+        "End": 409.757
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 409.757,
+        "End": 410.851
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 411.261,
+        "End": 413.141
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 413.145,
+        "End": 413.604
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 413.628,
+        "End": 422.39
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 422.962,
+        "End": 429.062
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 429.062,
+        "End": 429.653
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 429.653,
+        "End": 429.978
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 429.978,
+        "End": 430.397
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 430.88,
+        "End": 439.441
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 440.872,
+        "End": 448.682
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 448.899,
+        "End": 451.874
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 452.522,
+        "End": 460.316
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 460.316,
+        "End": 467.703
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 468.002,
+        "End": 471.156
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 483.346,
+        "End": 484.057
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 488.657,
+        "End": 490.212
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 491.218,
+        "End": 492.103
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 493.049,
+        "End": 494.079
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 495.611,
+        "End": 504.53
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 505.705,
+        "End": 513.576
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 513.581,
+        "End": 514.28
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 514.282,
+        "End": 521.177
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 521.246,
+        "End": 526.318
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 527.219,
+        "End": 529.073
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 529.085,
+        "End": 529.538
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 529.54,
+        "End": 534.467
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 534.467,
+        "End": 542.553
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 542.553,
+        "End": 544.645
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 544.645,
+        "End": 545.564
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 545.583,
+        "End": 554.162
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 554.162,
+        "End": 562.551
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 562.551,
+        "End": 563.423
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 563.765,
+        "End": 567.782
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 567.782,
+        "End": 574.577
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 575.104,
+        "End": 576.842
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 576.852,
+        "End": 578.476
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 578.484,
+        "End": 579.175
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 579.182,
+        "End": 581.297
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 581.705,
+        "End": 586.469
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 586.469,
+        "End": 591.739
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 591.756,
+        "End": 596.06
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 596.06,
+        "End": 604.01
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 604.642,
+        "End": 610.904
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 613.646,
+        "End": 618.052
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 618.052,
+        "End": 625.647
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 625.84,
+        "End": 627.476
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 627.479,
+        "End": 627.752
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 628.719,
+        "End": 629.76
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 635.292,
+        "End": 635.685
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 636.66,
+        "End": 638.56
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 638.619,
+        "End": 639.193
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 639.193,
+        "End": 641.386
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 641.386,
+        "End": 644.545
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 644.552,
+        "End": 645.425
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 645.425,
+        "End": 647.653
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 647.653,
+        "End": 651.614
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 654.718,
+        "End": 660.317
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 660.317,
+        "End": 660.921
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 660.965,
+        "End": 661.933
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 662.676,
+        "End": 663.812
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 664.79,
+        "End": 670.786
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 671.219,
+        "End": 677.109
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 677.555,
+        "End": 680.94
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 681.398,
+        "End": 689.089
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 689.089,
+        "End": 695.678
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 695.678,
+        "End": 700.471
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 700.592,
+        "End": 706.638
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 706.638,
+        "End": 715.25
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 715.783,
+        "End": 718.94
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 719.028,
+        "End": 726.19
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 726.209,
+        "End": 729.891
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 729.891,
+        "End": 737.324
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 737.734,
+        "End": 745.764
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 746.511,
+        "End": 753.553
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 753.577,
+        "End": 758.221
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 765.627,
+        "End": 767.712
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 768.693,
+        "End": 769.593
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 769.603,
+        "End": 779.582
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 779.583,
+        "End": 783.35
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 783.352,
+        "End": 792.193
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 792.209,
+        "End": 795.554
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 795.554,
+        "End": 805.383
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 805.446,
+        "End": 811.176
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 812.719,
+        "End": 815.918
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 816.809,
+        "End": 824.251
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 824.251,
+        "End": 825.587
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 825.625,
+        "End": 831.358
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 831.376,
+        "End": 841.047
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 841.063,
+        "End": 849.705
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 849.705,
+        "End": 853.154
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 853.624,
+        "End": 857.503
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 858.188,
+        "End": 859.918
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 860.256,
+        "End": 869.799
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 869.799,
+        "End": 870.558
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 870.558,
+        "End": 872.271
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 872.873,
+        "End": 874.633
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 875.66,
+        "End": 878.589
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 879.436,
+        "End": 885.614
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 885.72,
+        "End": 886.444
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 887.776,
+        "End": 888.374
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 888.374,
+        "End": 896.384
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 896.384,
+        "End": 901.173
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 902.313,
+        "End": 905.778
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 906.226,
+        "End": 911.853
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 911.853,
+        "End": 917.723
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 918.43,
+        "End": 919.385
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 927.679,
+        "End": 929.772
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 929.772,
+        "End": 938.711
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 938.721,
+        "End": 941.579
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 941.579,
+        "End": 941.961
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 942.806,
+        "End": 950.668
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 950.668,
+        "End": 956.433
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 956.436,
+        "End": 964.103
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 964.105,
+        "End": 971.576
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 972.709,
+        "End": 979.472
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 980.32,
+        "End": 989.19
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 989.19,
+        "End": 993.793
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 993.804,
+        "End": 995.183
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 995.183,
+        "End": 995.789
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 995.802,
+        "End": 999.17
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 999.756,
+        "End": 1004.789
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1004.789,
+        "End": 1005.254
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1005.266,
+        "End": 1007.365
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1007.376,
+        "End": 1008.039
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1008.052,
+        "End": 1011.608
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1011.62,
+        "End": 1012.65
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1012.65,
+        "End": 1016.157
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1016.157,
+        "End": 1022.922
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1022.922,
+        "End": 1027.068
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1027.073,
+        "End": 1036.677
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1036.677,
+        "End": 1043.228
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1043.228,
+        "End": 1044.217
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1044.217,
+        "End": 1044.9441
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1044.9441,
+        "End": 1045.062
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1045.066,
+        "End": 1046.499
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1046.93,
+        "End": 1053.998
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1055.905,
+        "End": 1056.112
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1056.112,
+        "End": 1063.154
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1063.995,
+        "End": 1068.68
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1069.071,
+        "End": 1077.686
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1077.686,
+        "End": 1081.82
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1081.822,
+        "End": 1090.004
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1090.412,
+        "End": 1099.088
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1099.107,
+        "End": 1107.501
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1107.577,
+        "End": 1110.802
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1111.844,
+        "End": 1119.625
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1119.625,
+        "End": 1120.041
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1120.041,
+        "End": 1121.498
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1121.498,
+        "End": 1121.879
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1121.886,
+        "End": 1128.223
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1128.223,
+        "End": 1128.656
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1128.656,
+        "End": 1129.063
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1129.431,
+        "End": 1132.469
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1133.113,
+        "End": 1140.345
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1140.345,
+        "End": 1150.51
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1151.352,
+        "End": 1153.428
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1153.797,
+        "End": 1162.168
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1163.74,
+        "End": 1165.092
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1166.02,
+        "End": 1166.506
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1168.189,
+        "End": 1175.504
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1176.67,
+        "End": 1179.787
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1180.158,
+        "End": 1189.213
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1189.823,
+        "End": 1194.921
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1194.921,
+        "End": 1195.684
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1195.703,
+        "End": 1202.232
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1202.594,
+        "End": 1209.564
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1210.113,
+        "End": 1212.473
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1212.966,
+        "End": 1217.836
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1217.836,
+        "End": 1218.328
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1218.344,
+        "End": 1224.506
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1225.322,
+        "End": 1232.655
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1232.655,
+        "End": 1242.206
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1246.854,
+        "End": 1247.242
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1247.954,
+        "End": 1248.696
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1254.137,
+        "End": 1255.022
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1255.109,
+        "End": 1257.141
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1257.194,
+        "End": 1266.129
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1267.099,
+        "End": 1268.004
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1268.042,
+        "End": 1268.505
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1268.505,
+        "End": 1272.154
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1273.425,
+        "End": 1274.099
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1283.159,
+        "End": 1284.295
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1284.295,
+        "End": 1284.816
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1285.743,
+        "End": 1291.638
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1291.643,
+        "End": 1300.123
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1300.261,
+        "End": 1305.626
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1305.636,
+        "End": 1307.067
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1307.067,
+        "End": 1307.681
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1307.681,
+        "End": 1308.436
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1308.447,
+        "End": 1316.276
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1316.276,
+        "End": 1321.034
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1321.06,
+        "End": 1322.941
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1323.441,
+        "End": 1329.754
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1331.641,
+        "End": 1336.145
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1336.742,
+        "End": 1339.438
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1339.438,
+        "End": 1349.466
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1349.722,
+        "End": 1357.924
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1357.924,
+        "End": 1365.487
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1365.487,
+        "End": 1375.401
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1375.441,
+        "End": 1382.981
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1383.423,
+        "End": 1390.56
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1390.56,
+        "End": 1399.12
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1399.12,
+        "End": 1404.463
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1404.463,
+        "End": 1405.051
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1405.051,
+        "End": 1407.411
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1407.421,
+        "End": 1409.862
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1409.862,
+        "End": 1411.526
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1411.526,
+        "End": 1414.235
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1414.235,
+        "End": 1420.715
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1420.715,
+        "End": 1421.21
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1421.21,
+        "End": 1424.441
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1431.616,
+        "End": 1432.145
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1446.963,
+        "End": 1448.078
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1449.838,
+        "End": 1451.123
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1451.125,
+        "End": 1461.08
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1461.51,
+        "End": 1471.225
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1471.736,
+        "End": 1480.717
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1481.201,
+        "End": 1491.114
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1491.114,
+        "End": 1491.969
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1492.044,
+        "End": 1498.863
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1498.863,
+        "End": 1499.83
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1499.846,
+        "End": 1501.195
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1501.195,
+        "End": 1511.611
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1512.032,
+        "End": 1518.297
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1518.935,
+        "End": 1526.378
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1527.157,
+        "End": 1527.866
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1527.879,
+        "End": 1528.252
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1529.067,
+        "End": 1536.922
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1537.493,
+        "End": 1541.468
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1542.181,
+        "End": 1545.7
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1546.604,
+        "End": 1551.46
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1551.858,
+        "End": 1561.687
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1561.687,
+        "End": 1568.886
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1569.705,
+        "End": 1573.388
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1573.398,
+        "End": 1575.189
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1575.198,
+        "End": 1584.221
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1584.761,
+        "End": 1586.921
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1586.921,
+        "End": 1595.393
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1595.393,
+        "End": 1604.255
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1605.035,
+        "End": 1610.267
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1610.267,
+        "End": 1617.934
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1618.674,
+        "End": 1622.28
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1622.752,
+        "End": 1631.796
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1632.691,
+        "End": 1641.938
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1642.446,
+        "End": 1649.429
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1649.528,
+        "End": 1656.259
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1656.259,
+        "End": 1664.671
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1677.063,
+        "End": 1677.655
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1678.285,
+        "End": 1679.032
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1685.441,
+        "End": 1690.143
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1690.143,
+        "End": 1696.681
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1696.691,
+        "End": 1697.12
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1697.149,
+        "End": 1706.049
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1706.049,
+        "End": 1708.952
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1709.093,
+        "End": 1709.401
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1710.358,
+        "End": 1711.103
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1711.103,
+        "End": 1715.014
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1715.014,
+        "End": 1716.129
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1716.129,
+        "End": 1719.465
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1719.465,
+        "End": 1727.911
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1727.911,
+        "End": 1728.447
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1728.447,
+        "End": 1733.408
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1733.408,
+        "End": 1739.449
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1739.882,
+        "End": 1747.893
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1747.893,
+        "End": 1757.761
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1763.944,
+        "End": 1764.601
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1767.311,
+        "End": 1768.291
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1769.434,
+        "End": 1778.737
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1778.737,
+        "End": 1783.19
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1783.19,
+        "End": 1784.229
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1784.689,
+        "End": 1790.344
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1790.35,
+        "End": 1797.367
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1797.854,
+        "End": 1802.892
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1802.892,
+        "End": 1811.371
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1811.405,
+        "End": 1811.949
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1811.949,
+        "End": 1818.003
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1818.047,
+        "End": 1823.699
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1824.041,
+        "End": 1826.55
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1826.55,
+        "End": 1835.02
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1835.047,
+        "End": 1835.929
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1835.934,
+        "End": 1837.75
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1837.781,
+        "End": 1838.423
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1839.584,
+        "End": 1848.054
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1848.481,
+        "End": 1851.156
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1852.357,
+        "End": 1857.517
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1862.9,
+        "End": 1867.17
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1868.038,
+        "End": 1868.891
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1869.893,
+        "End": 1874.921
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1875.05,
+        "End": 1880.525
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1880.525,
+        "End": 1881.738
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1881.739,
+        "End": 1882.825
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1882.825,
+        "End": 1883.968
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1883.968,
+        "End": 1887.939
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1887.939,
+        "End": 1888.496
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1888.539,
+        "End": 1897.107
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1897.115,
+        "End": 1901.23
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1901.695,
+        "End": 1906.171
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1906.644,
+        "End": 1908.58
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1908.843,
+        "End": 1911.99
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1914.348,
+        "End": 1921.267
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1921.278,
+        "End": 1921.826
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1923.279,
+        "End": 1924.294
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1924.294,
+        "End": 1924.947
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1924.947,
+        "End": 1927.304
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1930.226,
+        "End": 1930.941
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1964.685,
+        "End": 1967.87
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1968.509,
+        "End": 1974.614
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1974.614,
+        "End": 1980.295
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1980.295,
+        "End": 1988.229
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1989.146,
+        "End": 1996.908
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1996.908,
+        "End": 1997.66
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1997.662,
+        "End": 1998.464
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1998.464,
+        "End": 1999.092
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 1999.092,
+        "End": 2006.603
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2007.177,
+        "End": 2010.619
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2010.619,
+        "End": 2019.7
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2019.7,
+        "End": 2025.133
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2025.61,
+        "End": 2032.522
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2032.522,
+        "End": 2037.982
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2039.017,
+        "End": 2042.564
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2042.936,
+        "End": 2048.029
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2048.029,
+        "End": 2055.748
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2056.463,
+        "End": 2062.778
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2063.429,
+        "End": 2068.073
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2068.084,
+        "End": 2069.162
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2069.179,
+        "End": 2073.765
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2073.765,
+        "End": 2074.334
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2074.344,
+        "End": 2078.62
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2078.62,
+        "End": 2088.823
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2088.823,
+        "End": 2097.689
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2097.719,
+        "End": 2098.424
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2098.428,
+        "End": 2099.149
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2099.149,
+        "End": 2099.698
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2099.698,
+        "End": 2108.509
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2109.134,
+        "End": 2110.487
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2110.487,
+        "End": 2110.956
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2110.968,
+        "End": 2119.48
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2119.482,
+        "End": 2119.882
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2119.882,
+        "End": 2122.123
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2122.123,
+        "End": 2130.697
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2130.697,
+        "End": 2131.62
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2140.37,
+        "End": 2141.047
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2142.293,
+        "End": 2143.37
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2145.657,
+        "End": 2146.327
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2155.056,
+        "End": 2155.657
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2155.657,
+        "End": 2156.361
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2159.04,
+        "End": 2159.673
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2160.716,
+        "End": 2161.057
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2161.057,
+        "End": 2162.078
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2162.106,
+        "End": 2172.508
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2172.508,
+        "End": 2179.917
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2180.571,
+        "End": 2187.959
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2188.593,
+        "End": 2194.542
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2194.542,
+        "End": 2203.188
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2204.032,
+        "End": 2204.942
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2204.942,
+        "End": 2205.688
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2205.688,
+        "End": 2206.161
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2206.188,
+        "End": 2211.06
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2211.06,
+        "End": 2211.66
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2211.718,
+        "End": 2218.387
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2219.175,
+        "End": 2225.887
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2225.887,
+        "End": 2233.685
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2234.11,
+        "End": 2240.278
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2240.278,
+        "End": 2241.332
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2241.393,
+        "End": 2247.014
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2247.014,
+        "End": 2255.968
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2255.968,
+        "End": 2265.439
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2265.439,
+        "End": 2272.279
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2272.279,
+        "End": 2279.799
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2279.799,
+        "End": 2285.499
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2285.719,
+        "End": 2294.679
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2294.679,
+        "End": 2303.163
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2304.02,
+        "End": 2310.719
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2310.719,
+        "End": 2319.46
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2319.48,
+        "End": 2322.18
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2322.18,
+        "End": 2322.86
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2322.86,
+        "End": 2323.96
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2324.012,
+        "End": 2329.079
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2329.079,
+        "End": 2334.599
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2334.599,
+        "End": 2342.579
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2342.579,
+        "End": 2348.849
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2348.849,
+        "End": 2358.444
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2359.055,
+        "End": 2366.119
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2366.119,
+        "End": 2376.195
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2376.201,
+        "End": 2377.521
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2377.541,
+        "End": 2378.282
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2378.741,
+        "End": 2386.461
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2386.668,
+        "End": 2390.577
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2390.577,
+        "End": 2399.455
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2399.455,
+        "End": 2404.374
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2404.86,
+        "End": 2411.718
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2411.718,
+        "End": 2414.993
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "HD06",
+        "Start": 2416.193,
+        "End": 2416.949
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Comment",
+        "Start": 13.619,
+        "End": 14.335
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Comment",
+        "Start": 493.532,
+        "End": 494.078
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Comment",
+        "Start": 1021.393,
+        "End": 1026.295
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Comment",
+        "Start": 1241.42,
+        "End": 1242.226
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Comment",
+        "Start": 1572.361,
+        "End": 1573.369
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Comment",
+        "Start": 1831.875,
+        "End": 1835.051
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Comment",
+        "Start": 2069.202,
+        "End": 2073.764
+      },
+      {
+        "File": "HD06-1_GoodOnlyRedactTG.TextGrid",
+        "Tier": "Transcriber",
+        "Start": 0,
+        "End": 2417.148
+      }
+    ]
+  },
+  "elements": {
+    "stepHeads": [
+      {
+        "id": "tierHead",
+        "class": "good",
+        "displayed": true
+      },
+      {
+        "id": "dictHead",
+        "class": "good",
+        "displayed": true
+      },
+      {
+        "id": "overlapsHead",
+        "class": "good",
+        "displayed": true
+      }
+    ],
+    "stepSubheads": [
+      {
+        "id": "fileCheckSubhead",
+        "displayed": false
+      },
+      {
+        "id": "tierSubhead",
+        "displayed": false
+      },
+      {
+        "id": "dictSubhead",
+        "displayed": false
+      },
+      {
+        "id": "overlapsSubhead",
+        "displayed": false
+      },
+      {
+        "id": "downloadSubhead",
+        "displayed": true
+      }
+    ],
+    "stepDetails": [
+      {
+        "id": "fileList",
+        "hasContent": true,
+        "content": "<ul id=\"fileList\" class=\"details\">\n<li class=\"\">HD06-1_GoodOnlyRedactTG.TextGrid<\/li>\n<\/ul>\n"
+      },
+      {
+        "id": "tierDetails",
+        "hasContent": false,
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "dictDetails",
+        "hasContent": false,
+        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "overlapsDetails",
+        "hasContent": false,
+        "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      }
+    ],
+    "lastDetailID": [
+      "fileList"
+    ],
+    "fileList": [
+      "HD06-1_GoodOnlyRedactTG.TextGrid"
+    ]
+  },
+  "eaflist": {
+
+  }
+}
+

@@ -5,6 +5,12 @@
   "export": {
     "fileDF": [
       {
+        "name": "HD06-1_ActuallyAnEaf.TextGrid",
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "FileExt": "TextGrid"
+      },
+      {
         "name": "HD06-1_ActuallyATextGrid.eaf",
         "SpkrCode": "HD06",
         "Neighborhood": "HD",
@@ -23,6 +29,12 @@
         "FileExt": "eaf"
       },
       {
+        "name": "HD06-1_NoIssuesTG.TextGrid",
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "FileExt": "TextGrid"
+      },
+      {
         "name": "MultipleIssues_HD06-1.eafF",
         "FileExt": "eafF"
       },
@@ -32,6 +44,13 @@
       }
     ],
     "validationDF": [
+      {
+        "name": "HD06-1_ActuallyAnEaf.TextGrid",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileReadValid": false,
+        "Valid": false
+      },
       {
         "name": "HD06-1_ActuallyATextGrid.eaf",
         "FileExtValid": true,
@@ -43,7 +62,7 @@
         "name": "HD06-1_BadFileExt.eaff",
         "FileExtValid": false,
         "SpkrCodeValid": true,
-        "FileReadValid": true,
+        "FileReadValid": false,
         "Valid": false
       },
       {
@@ -54,10 +73,17 @@
         "Valid": true
       },
       {
+        "name": "HD06-1_NoIssuesTG.TextGrid",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
+        "FileReadValid": true,
+        "Valid": true
+      },
+      {
         "name": "MultipleIssues_HD06-1.eafF",
         "FileExtValid": false,
         "SpkrCodeValid": false,
-        "FileReadValid": true,
+        "FileReadValid": false,
         "Valid": false
       },
       {
@@ -113,7 +139,7 @@
       {
         "id": "fileList",
         "hasContent": true,
-        "content": "<ul id=\"fileList\" class=\"details\">\n<li class=\"bad\">HD06-1_ActuallyATextGrid.eaf<\/li>\n  <li class=\"bad\">HD06-1_BadFileExt.eaff<\/li>\n  <li class=\"\">HD06-1_NoIssues.eaf<\/li>\n  <li class=\"bad\">MultipleIssues_HD06-1.eafF<\/li>\n  <li class=\"bad\">SpeakerCodeNonInitial_HD06-1.eaf<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"fileList\" class=\"details\">\n<li class=\"bad\">HD06-1_ActuallyAnEaf.TextGrid<\/li>\n  <li class=\"bad\">HD06-1_ActuallyATextGrid.eaf<\/li>\n  <li class=\"bad\">HD06-1_BadFileExt.eaff<\/li>\n  <li class=\"\">HD06-1_NoIssues.eaf<\/li>\n  <li class=\"\">HD06-1_NoIssuesTG.TextGrid<\/li>\n  <li class=\"bad\">MultipleIssues_HD06-1.eafF<\/li>\n  <li class=\"bad\">SpeakerCodeNonInitial_HD06-1.eaf<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
@@ -135,9 +161,11 @@
       "fileList"
     ],
     "fileList": [
+      "HD06-1_ActuallyAnEaf.TextGrid",
       "HD06-1_ActuallyATextGrid.eaf",
       "HD06-1_BadFileExt.eaff",
       "HD06-1_NoIssues.eaf",
+      "HD06-1_NoIssuesTG.TextGrid",
       "MultipleIssues_HD06-1.eafF",
       "SpeakerCodeNonInitial_HD06-1.eaf"
     ]

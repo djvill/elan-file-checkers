@@ -16,7 +16,7 @@
         "name": "HD06-1_BadFileExt.eaff",
         "FileExtValid": false,
         "SpkrCodeValid": true,
-        "FileReadValid": true,
+        "FileReadValid": false,
         "Valid": false
       }
     ]

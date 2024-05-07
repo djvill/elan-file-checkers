@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ANNOTATION_DOCUMENT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" AUTHOR="James Lawler" DATE="" FORMAT="3.0" VERSION="3.0" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
+  <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds"/>
+  <TIME_ORDER>
+    <TIME_SLOT TIME_SLOT_ID="ts1" TIME_VALUE="1050"/>
+    <TIME_SLOT TIME_SLOT_ID="ts2" TIME_VALUE="10180"/>
+    <TIME_SLOT TIME_SLOT_ID="ts3" TIME_VALUE="10180"/>
+    <TIME_SLOT TIME_SLOT_ID="ts4" TIME_VALUE="10180"/>
+    <TIME_SLOT TIME_SLOT_ID="ts5" TIME_VALUE="10866"/>
+    <TIME_SLOT TIME_SLOT_ID="ts6" TIME_VALUE="10866"/>
+    <TIME_SLOT TIME_SLOT_ID="ts7" TIME_VALUE="10866"/>
+    <TIME_SLOT TIME_SLOT_ID="ts8" TIME_VALUE="11340"/>
+    <TIME_SLOT TIME_SLOT_ID="ts9" TIME_VALUE="11340"/>
+    <TIME_SLOT TIME_SLOT_ID="ts10" TIME_VALUE="18020"/>
+    <TIME_SLOT TIME_SLOT_ID="ts11" TIME_VALUE="18235"/>
+    <TIME_SLOT TIME_SLOT_ID="ts12" TIME_VALUE="20994"/>
+    <TIME_SLOT TIME_SLOT_ID="ts13" TIME_VALUE="20994"/>
+    <TIME_SLOT TIME_SLOT_ID="ts14" TIME_VALUE="28521"/>
+    <TIME_SLOT TIME_SLOT_ID="ts15" TIME_VALUE="28521"/>
+    <TIME_SLOT TIME_SLOT_ID="ts16" TIME_VALUE="36786"/>
+    <TIME_SLOT TIME_SLOT_ID="ts17" TIME_VALUE="36786"/>
+    <TIME_SLOT TIME_SLOT_ID="ts18" TIME_VALUE="44884"/>
+  </TIME_ORDER>
+  <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Trista Pennington" PARTICIPANT="Trista Pennington">
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1" TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts2">
+        <ANNOTATION_VALUE>okay uh so this time I'll actually . uh read - the part of . Denise and then you read Ron</ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a2" TIME_SLOT_REF1="ts3" TIME_SLOT_REF2="ts5">
+        <ANNOTATION_VALUE>okay ?</ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a3" TIME_SLOT_REF1="ts8" TIME_SLOT_REF2="ts10">
+        <ANNOTATION_VALUE>um what's that foul odor coming out of the filing cabinet ? is Ron or something hiding a bag of fish in there ? </ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a4" TIME_SLOT_REF1="ts11" TIME_SLOT_REF2="ts12">
+        <ANNOTATION_VALUE>Ron did you go fishing over the weekend ?</ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a5" TIME_SLOT_REF1="ts16" TIME_SLOT_REF2="ts18">
+        <ANNOTATION_VALUE>get it out of here I can't stand the smell next thing you know people will be calling the police wanting to know where the body is cheese like that should be illegal  </ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+  </TIER>
+  <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="HD01" PARTICIPANT="HD01">
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a6" TIME_SLOT_REF1="ts4" TIME_SLOT_REF2="ts6">
+        <ANNOTATION_VALUE>okay</ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a7" TIME_SLOT_REF1="ts7" TIME_SLOT_REF2="ts9">
+        <ANNOTATION_VALUE>mmm hmm</ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a8" TIME_SLOT_REF1="ts13" TIME_SLOT_REF2="ts14">
+        <ANNOTATION_VALUE>that's my lunch Dawn and I stopped down in the Strip on the way in and bought some of that great goat cheese they're selling at Penn-Mac</ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+    <ANNOTATION>
+      <ALIGNABLE_ANNOTATION ANNOTATION_ID="a9" TIME_SLOT_REF1="ts15" TIME_SLOT_REF2="ts17">
+        <ANNOTATION_VALUE>it's really ripe . I thought of putting it in the fridge but I didn't . it's good if it's not too cold go on you try it</ANNOTATION_VALUE>
+      </ALIGNABLE_ANNOTATION>
+    </ANNOTATION>
+  </TIER>
+  <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Comment" PARTICIPANT="Comment"/>
+  <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Redaction" PARTICIPANT="Redaction"/>
+  <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Noise" PARTICIPANT="Noise"/>
+  <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="default-lt" TIME_ALIGNABLE="true"/>
+  <CONSTRAINT DESCRIPTION="Time subdivision of parent annotation's time interval, no time gaps allowed within this interval" STEREOTYPE="Time_Subdivision"/>
+  <CONSTRAINT DESCRIPTION="Symbolic subdivision of a parent annotation. Annotations refering to the same parent are ordered" STEREOTYPE="Symbolic_Subdivision"/>
+  <CONSTRAINT DESCRIPTION="1-1 association with a parent annotation" STEREOTYPE="Symbolic_Association"/>
+  <CONSTRAINT DESCRIPTION="Time alignable annotations within the parent annotation's time interval, gaps are allowed" STEREOTYPE="Included_In"/>
+</ANNOTATION_DOCUMENT>

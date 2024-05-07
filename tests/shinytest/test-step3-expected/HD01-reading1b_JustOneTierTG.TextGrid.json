@@ -1,0 +1,184 @@
+{
+  "success": [
+    true
+  ],
+  "export": {
+    "fileDF": [
+      {
+        "name": "HD01-reading1b_JustOneTierTG.TextGrid",
+        "SpkrCode": "HD01",
+        "Neighborhood": "HD",
+        "FileExt": "TextGrid"
+      }
+    ],
+    "tierDF": {
+      "HD01-reading1b_JustOneTierTG.TextGrid": [
+        {
+          "TIER_ID": "Trista Pennington",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Trista Pennington"
+        },
+        {
+          "TIER_ID": "HD01",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "HD01"
+        },
+        {
+          "TIER_ID": "Transcriber",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Transcriber"
+        },
+        {
+          "TIER_ID": "Comment",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Comment"
+        },
+        {
+          "TIER_ID": "Redaction",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Redaction"
+        },
+        {
+          "TIER_ID": "Noise",
+          "LINGUISTIC_TYPE_REF": "default-lt",
+          "PARTICIPANT": "Noise"
+        }
+      ]
+    },
+    "turnsDF": [
+      {
+        "File": "HD01-reading1b_JustOneTierTG.TextGrid",
+        "Tier": "Trista Pennington",
+        "Start": 1.05,
+        "End": 10.18
+      },
+      {
+        "File": "HD01-reading1b_JustOneTierTG.TextGrid",
+        "Tier": "Trista Pennington",
+        "Start": 10.18,
+        "End": 10.866
+      },
+      {
+        "File": "HD01-reading1b_JustOneTierTG.TextGrid",
+        "Tier": "Trista Pennington",
+        "Start": 11.34,
+        "End": 18.02
+      },
+      {
+        "File": "HD01-reading1b_JustOneTierTG.TextGrid",
+        "Tier": "Trista Pennington",
+        "Start": 18.235,
+        "End": 20.994
+      },
+      {
+        "File": "HD01-reading1b_JustOneTierTG.TextGrid",
+        "Tier": "Trista Pennington",
+        "Start": 36.786,
+        "End": 44.884
+      },
+      {
+        "File": "HD01-reading1b_JustOneTierTG.TextGrid",
+        "Tier": "HD01",
+        "Start": 10.18,
+        "End": 10.86
+      },
+      {
+        "File": "HD01-reading1b_JustOneTierTG.TextGrid",
+        "Tier": "HD01",
+        "Start": 10.866,
+        "End": 11.34
+      },
+      {
+        "File": "HD01-reading1b_JustOneTierTG.TextGrid",
+        "Tier": "HD01",
+        "Start": 20.994,
+        "End": 28.521
+      },
+      {
+        "File": "HD01-reading1b_JustOneTierTG.TextGrid",
+        "Tier": "HD01",
+        "Start": 28.521,
+        "End": 36.786
+      },
+      {
+        "File": "HD01-reading1b_JustOneTierTG.TextGrid",
+        "Tier": "Transcriber",
+        "Start": 0,
+        "End": 300
+      }
+    ]
+  },
+  "elements": {
+    "stepHeads": [
+      {
+        "id": "tierHead",
+        "class": "good",
+        "displayed": true
+      },
+      {
+        "id": "dictHead",
+        "class": "good",
+        "displayed": true
+      },
+      {
+        "id": "overlapsHead",
+        "class": "good",
+        "displayed": true
+      }
+    ],
+    "stepSubheads": [
+      {
+        "id": "fileCheckSubhead",
+        "displayed": false
+      },
+      {
+        "id": "tierSubhead",
+        "displayed": false
+      },
+      {
+        "id": "dictSubhead",
+        "displayed": false
+      },
+      {
+        "id": "overlapsSubhead",
+        "displayed": false
+      },
+      {
+        "id": "downloadSubhead",
+        "displayed": true
+      }
+    ],
+    "stepDetails": [
+      {
+        "id": "fileList",
+        "hasContent": true,
+        "content": "<ul id=\"fileList\" class=\"details\">\n<li class=\"\">HD01-reading1b_JustOneTierTG.TextGrid<\/li>\n<\/ul>\n"
+      },
+      {
+        "id": "tierDetails",
+        "hasContent": false,
+        "content": "<ul id=\"tierDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "dictDetails",
+        "hasContent": false,
+        "content": "<ul id=\"dictDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      },
+      {
+        "id": "overlapsDetails",
+        "hasContent": false,
+        "content": "<ul id=\"overlapsDetails\" class=\"details\" style=\"display: none;\"><\/ul>\n"
+      }
+    ],
+    "lastDetailID": [
+      "fileList"
+    ],
+    "fileList": [
+      "HD01-reading1b_JustOneTierTG.TextGrid"
+    ]
+  },
+  "eaflist": {
+
+  }
+}
+

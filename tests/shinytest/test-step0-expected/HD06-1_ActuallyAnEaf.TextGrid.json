@@ -5,15 +5,17 @@
   "export": {
     "fileDF": [
       {
-        "name": "MultipleIssues_HD06-1.eafF",
-        "FileExt": "eafF"
+        "name": "HD06-1_ActuallyAnEaf.TextGrid",
+        "SpkrCode": "HD06",
+        "Neighborhood": "HD",
+        "FileExt": "TextGrid"
       }
     ],
     "validationDF": [
       {
-        "name": "MultipleIssues_HD06-1.eafF",
-        "FileExtValid": false,
-        "SpkrCodeValid": false,
+        "name": "HD06-1_ActuallyAnEaf.TextGrid",
+        "FileExtValid": true,
+        "SpkrCodeValid": true,
         "FileReadValid": false,
         "Valid": false
       }
@@ -63,7 +65,7 @@
       {
         "id": "fileList",
         "hasContent": true,
-        "content": "<ul id=\"fileList\" class=\"details\">\n<li class=\"bad\">MultipleIssues_HD06-1.eafF<\/li>\n<\/ul>\n"
+        "content": "<ul id=\"fileList\" class=\"details\">\n<li class=\"bad\">HD06-1_ActuallyAnEaf.TextGrid<\/li>\n<\/ul>\n"
       },
       {
         "id": "tierDetails",
@@ -85,7 +87,7 @@
       "fileList"
     ],
     "fileList": [
-      "MultipleIssues_HD06-1.eafF"
+      "HD06-1_ActuallyAnEaf.TextGrid"
     ]
   }
 }
