@@ -50,11 +50,9 @@ check_for_praat <- function(praatDir=".") {
   if (os=="Windows") {
     pathExe <- "Praat.exe"
     pathZip <- "praat.+\\.zip"
-    extractZip <- unzip
   } else if (os=="Linux") {
     pathExe <- "praat_barren"
     pathZip <- "praat.+barren\\.tar\\.gz"
-    extractZip <- untar
   } else {
     stop("Operating system ", os, " not supported")
   }
@@ -75,9 +73,26 @@ check_for_praat <- function(praatDir=".") {
       warning("Found ", numPraatZip, " Praat zipfolders in praatDir ", praatDir,
               "\n  Using ", basename(praatZip))
     }
+    
+    ##Function to deal with interface inconsistencies between unzip() & untar()
+    ##Unzips/untars x into dir, and invisibly returns extracted paths
+    ##N.B. Doesn't (1) check that paths are valid or (2) handle other OSs, since
+    ##  the larger script does both
+    extractZip <- function(x, dir, os=Sys.info()[["sysname"]]) {
+      if (os=="Windows") {
+        path <- unzip(x, exdir=dir)
+      }
+      if (os=="Linux") {
+        path <- file.path(dir, untar(x, list=TRUE))
+        untar(x, exdir=dir)
+      }
+      invisible(path)
+    }
+    
     ##Unzip to praatDir
     message("Extracting Praat from ", praatZip)
-    praatExe <- extractZip(praatZip, exdir=praatDir)
+    ##Returning filepaths only works for unzip()
+    praatExe <- extractZip(praatZip, praatDir) 
     ##Ensure praatZip is a valid Praat zipfolder
     if (length(praatExe) != 1 || basename(praatExe) != pathExe) {
       stop(praatZip, " is not a valid Praat zipfolder ", 
@@ -99,9 +114,9 @@ check_for_praat <- function(praatDir=".") {
 
 ##Given a path to a Praat TextGrid, read as an R dataframe (using Praat's
 ##  built-in "Down to Table..." command)
-read_textgrid <- function(x, outcsv=tempfile(fileext=".csv"), praatDir=".",
-                          praatScript="tg-to-csv.praat") {
-  library(dplyr)
+read_textgrid <- function(x, praatDir=".", praatScript="tg-to-csv.praat", 
+                          tmpcsv=tempfile(fileext=".csv")) {
+  library(tibble)
   library(fs)
   
   ##Check args
@@ -118,17 +133,16 @@ read_textgrid <- function(x, outcsv=tempfile(fileext=".csv"), praatDir=".",
   }
   
   ##Run Praat script and check that it created an output
-  system2(praatExe, paste0("--run ", praatScript, " ", 
-                           '"', path_rel(x, praatDir), '" ',
-                           '"', path_rel(outcsv, praatDir), '"'), 
+  system2(praatExe, c("--run", praatScript, 
+                      path_rel(x, praatDir), path_rel(tmpcsv, praatDir)), 
           stderr=FALSE)
-  if (!file.exists(outcsv)) {
+  if (!file.exists(tmpcsv)) {
     stop(x, " is not a valid TextGrid")
   }
   
   ##Read csv, clean up tempfile, and return
-  out <- read.csv(outcsv)
-  file.remove(outcsv)
+  out <- read.csv(tmpcsv)
+  file.remove(tmpcsv)
   as_tibble(out)
 }
 

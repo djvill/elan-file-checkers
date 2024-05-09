@@ -5,8 +5,10 @@ Elan File Checkers.Rproj
 unisynDict.txt
 **test*-current/
 rsconnect/
-Praat.exe
 *.dcf
+Praat.exe
+praat_barren
+
 
 #### R ####
 
