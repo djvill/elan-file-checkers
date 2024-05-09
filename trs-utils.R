@@ -52,8 +52,8 @@ check_for_praat <- function(praatDir=".") {
     pathZip <- "praat.+\\.zip"
     extractZip <- unzip
   } else if (os=="Linux") {
-    pathExe <- "praat_nogui"
-    pathZip <- "praat.+nogui\\.tar\\.gz"
+    pathExe <- "praat_barren"
+    pathZip <- "praat.+barren\\.tar\\.gz"
     extractZip <- untar
   } else {
     stop("Operating system ", os, " not supported")
@@ -76,6 +76,7 @@ check_for_praat <- function(praatDir=".") {
               "\n  Using ", basename(praatZip))
     }
     ##Unzip to praatDir
+    message("Extracting Praat from ", praatZip)
     praatExe <- extractZip(praatZip, exdir=praatDir)
     ##Ensure praatZip is a valid Praat zipfolder
     if (length(praatExe) != 1 || basename(praatExe) != pathExe) {
@@ -83,6 +84,15 @@ check_for_praat <- function(praatDir=".") {
            "(it should contain only ", pathExe, ")")
     }
   }
+  
+  ##Ensure Praat is runnable
+  versFile <- tempfile(fileext=".txt")
+  system2(praatExe, c("--run", "misc/praat-version.praat", versFile))
+  if (!file.exists(versFile)) {
+    stop("Praat executable ", praatExe, " failed to run")
+  }
+  message("Running Praat version ", readLines(versFile))
+  file.remove(versFile)
   
   praatExe
 }
@@ -119,7 +129,7 @@ read_textgrid <- function(x, outcsv=tempfile(fileext=".csv"), praatDir=".",
   ##Read csv, clean up tempfile, and return
   out <- read.csv(outcsv)
   file.remove(outcsv)
-  out
+  as_tibble(out)
 }
 
 
