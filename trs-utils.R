@@ -10,9 +10,11 @@
 ##In the app, x is input$files$name
 parse_filenames <- function(x, 
                             spkrCodeRE="^(CB|FH|HD|LV)\\d+(and\\d+)?",
-                            neighborhoodRE="^(CB|FH|HD|LV)",
-                            readHandlers=list(eaf = xml2::read_xml,
-                                              textgrid = read_textgrid)) {
+                            neighborhoodRE="^(CB|FH|HD|LV)") {
+  library(tibble)
+  library(stringr)
+  library(tools)
+  
   ##Check args
   if (!is.character(x)) {
     stop("x must be a character vector")
@@ -21,21 +23,14 @@ parse_filenames <- function(x,
     warning("Found non-basename(s) in x. Using basename(x) instead")
     x <- basename(x)
   }
-  
-  library(dplyr)
-  library(stringr)
-  library(tools)
-  library(purrr)
+  stopifnot(is.character(spkrCodeRE) && length(spkrCodeRE)==1)
+  stopifnot(is.character(neighborhoodRE) && length(neighborhoodRE)==1)
   
   ##Collect file info
-  out <- tibble(name = x,
+  tibble(name = x,
          SpkrCode = str_extract(name, spkrCodeRE),
          Neighborhood = str_extract(SpkrCode, neighborhoodRE),
          FileExt = file_ext(name))
-  if (!is.null(readHandlers)) {
-    out <- out %>% 
-      mutate(ReadHandler = map(tolower(FileExt), ~ readHandlers[[.x]]))
-  }
 }
 
 ##Check that Praat exists in praatDir, either as Praat.exe or a zipfolder
@@ -140,10 +135,23 @@ read_textgrid <- function(x, praatDir=".", praatScript="tg-to-csv.praat",
     stop(x, " is not a valid TextGrid")
   }
   
-  ##Read csv, clean up tempfile, and return
-  out <- read.csv(tmpcsv)
+  ##Read csv, add class, and clean up tempfile
+  out <- read.csv(tmpcsv) %>% 
+    as_tibble() %>% 
+    add_class("trs_textgrid")
   file.remove(tmpcsv)
-  as_tibble(out)
+  
+  out
+}
+
+##Given a path to an Elan transcription, read as an XML file
+read_eaf <- function(x) {
+  library(xml2)
+  stopifnot(file.exists(x))
+  out <- read_xml(x) %>% 
+    add_class("trs_eaf")
+  
+  out
 }
 
 

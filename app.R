@@ -14,12 +14,12 @@ source("trs-utils.R")
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "2.0.0"
+vers <- "2.0.1"
 
 ## File structures ============================================================
 
 ##Named list of functions to handle each file extension to be read
-readHandlers <- list(eaf = xml2::read_xml,
+readHandlers <- list(eaf = read_eaf,
                      ##read_textgrid() defined in trs-utils.R, plus args
                      textgrid = partial(read_textgrid, 
                                         praatDir="misc", 
@@ -595,25 +595,19 @@ server <- function(input, output) {
     ##Parse filenames
     fileDF <- parse_filenames(input$files$name, 
                               spkrCodeRE=spkrCodeRegex, 
-                              neighborhoodRE=neighborhoodRegex,
-                              readHandlers=readHandlers) %>% 
+                              neighborhoodRE=neighborhoodRegex) %>% 
       left_join(input$files, "name")
     
     ##Try to use read handlers to read each file; if unsuccessful, return the 
     ##  error
-    fileDF <- fileDF %>% 
+    fileDF <- fileDF %>%
+      ##Add read handlers
+      mutate(ReadHandler = map(tolower(FileExt), ~ readHandlers[[.x]])) %>%
       ##Get safely() list of results and errors
       mutate(file = map2(ReadHandler, map(datapath, as.list), 
                          safely(do.call)) %>% 
                ##Turn into a list of results *or* errors
-               map_if(~ !is.null(.x$result), "result", .else="error")) %>% 
-      ##Add class attributes to pass down to as.trs_transcription() if read 
-      ##  successfully
-      mutate(fileClass = if_else(map_lgl(file, ~ !inherits(.x, "error")),
-                                 paste0("trs_", tolower(FileExt)),
-                                 NA_character_),
-             file = map2(file, fileClass, add_class)) %>% 
-      select(-fileClass)
+               map_if(~ !is.null(.x$result), "result", .else="error"))
     
     fileDF
   })

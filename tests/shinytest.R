@@ -5,6 +5,6 @@ if (thisDir != "tests") {
 
 library(shinytest)
 ##All steps
-testApp("../", testnames=dir("shinytest/", "test.+R$"))
+testApp("../", testnames=dir("shinytest/", "^test-step.+R$"))
 ##Single step
 # testApp("../", testnames=dir("shinytest/", "test-step1.R$"))
