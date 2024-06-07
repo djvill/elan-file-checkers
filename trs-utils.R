@@ -96,8 +96,16 @@ check_for_praat <- function(praatDir=".") {
   }
   
   ##Ensure Praat is runnable
+  versScript <- tempfile(fileext=".praat")
+  c('form: "Write Praat version to file"',
+    '  sentence: "outPath", ""',
+    'endform',
+    '',
+    'writeFileLine: outPath$, praatVersion$') %>% 
+    writeLines(versScript)
+  on.exit(file.remove(versScript))
   versFile <- tempfile(fileext=".txt")
-  system2(praatExe, c("--run", "misc/praat-version.praat", versFile))
+  system2(praatExe, c("--run", versScript, versFile))
   if (!file.exists(versFile)) {
     stop("Praat executable ", praatExe, " failed to run")
   }
@@ -109,7 +117,7 @@ check_for_praat <- function(praatDir=".") {
 
 ##Given a path to a Praat TextGrid, read as an R dataframe (using Praat's
 ##  built-in "Down to Table..." command)
-read_textgrid <- function(x, praatDir=".", praatScript="tg-to-csv.praat", 
+read_textgrid <- function(x, praatDir=".", customScript=NULL, 
                           tmpcsv=tempfile(fileext=".csv")) {
   library(tibble)
   library(fs)
@@ -117,20 +125,44 @@ read_textgrid <- function(x, praatDir=".", praatScript="tg-to-csv.praat",
   ##Check args
   praatExe <- check_for_praat(praatDir)
   stopifnot(file.exists(x))
-  ##If praatScript doesn't exist, try with path relative to praatDir
-  if (!file.exists(praatScript)) {
-    newScript <- file.path(praatDir, praatScript)
-    if (!file.exists(newScript)) {
-      stop("praatScript file ", praatScript, " does not exist")
-    } else {
-      praatScript <- newScript
+  
+  ##Get script
+  ##If customScript is NULL, supply default script
+  if (is.null(customScript)) {
+    praatScript <- tempfile(fileext=".praat")
+    c('form: "Convert to csv"',
+      '  sentence: "inPath", ""',
+      '  sentence: "outPath", ""',
+      'endform',
+      '',
+      'tg = Read from file: inPath$',
+      'table = Down to Table: 0, 6, 1, 1',
+      'if outPath$ = "" ',
+      '  basename$ = replace_regex$(inPath$, ".+/", "", 0)',
+      '  outPath$ = replace_regex$(basename$, "\\.[Tt]ext[Gg]rid", ".csv", 1)',
+      'endif',
+      'Save as comma-separated file: outPath$') |>
+      writeLines(praatScript)
+    on.exit(file.remove(praatScript))
+  }
+  
+  ##If customScript doesn't exist, try with path relative to praatDir
+  if (!is.null(customScript) && !file.exists(customScript)) {
+    praatScript <- file.path(praatDir, customScript)
+    if (!file.exists(praatScript)) {
+      stop("customScript file ", customScript, " does not exist")
     }
   }
   
+  ##If customScript already existed, use it as-is
+  if (!exists("praatScript")) {
+    praatScript <- customScript
+  }
+  
   ##Run Praat script and check that it created an output
-  system2(praatExe, c("--run", praatScript, 
-                      path_rel(x, praatDir), path_rel(tmpcsv, praatDir)), 
-          stderr=FALSE)
+  inPath <- path_rel(x, dirname(praatScript))
+  outPath <- path_rel(tmpcsv, dirname(praatScript))
+  system2(praatExe, c("--run", praatScript, inPath, outPath), stderr=FALSE)
   if (!file.exists(tmpcsv)) {
     stop(x, " is not a valid TextGrid")
   }

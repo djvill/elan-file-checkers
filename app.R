@@ -14,7 +14,7 @@ source("trs-utils.R")
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "2.0.1"
+vers <- "2.0.2"
 
 ## File structures ============================================================
 
@@ -23,7 +23,7 @@ readHandlers <- list(eaf = read_eaf,
                      ##read_textgrid() defined in trs-utils.R, plus args
                      textgrid = partial(read_textgrid, 
                                         praatDir="misc", 
-                                        praatScript="misc/tg-to-csv.praat"))
+                                        customScript="misc/tg-to-csv.praat"))
 ##Regex for extracting SpkrCode column from filenames
 spkrCodeRegex <- "^(CB|FH|HD|LV)\\d+(and\\d+)?"
 ##Regex for extracting Neighborhood column from SpkrCode
