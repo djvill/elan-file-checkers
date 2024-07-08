@@ -130,7 +130,9 @@ read_textgrid <- function(x, praatDir=".", customScript=NULL,
   ##If customScript is NULL, supply default script
   if (is.null(customScript)) {
     praatScript <- tempfile(fileext=".praat")
-    c('form: "Convert to csv"',
+    c('Text writing settings: "UTF-8"',
+      '',
+      'form: "Convert to csv"',
       '  sentence: "inPath", ""',
       '  sentence: "outPath", ""',
       'endform',
