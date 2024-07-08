@@ -121,6 +121,7 @@ read_textgrid <- function(x, praatDir=".", customScript=NULL,
                           tmpcsv=tempfile(fileext=".csv"), clean=TRUE) {
   library(tibble)
   library(fs)
+  library(readr)
   
   ##Check args
   praatExe <- check_for_praat(praatDir)
@@ -130,15 +131,14 @@ read_textgrid <- function(x, praatDir=".", customScript=NULL,
   ##If customScript is NULL, supply default script
   if (is.null(customScript)) {
     praatScript <- tempfile(fileext=".praat")
-    c('Text writing settings: "UTF-8"',
-      '',
-      'form: "Convert to csv"',
+    c('form: "Convert to csv"',
       '  sentence: "inPath", ""',
       '  sentence: "outPath", ""',
       'endform',
       '',
       'tg = Read from file: inPath$',
       'table = Down to Table: 0, 6, 1, 1',
+      'Formula (column range): "text", "text", "replace$(self$, """""""", ""\\"""""", 0)"',
       'if outPath$ = "" ',
       '  basename$ = replace_regex$(inPath$, ".+/", "", 0)',
       '  outPath$ = replace_regex$(basename$, "\\.[Tt]ext[Gg]rid", ".csv", 1)',
@@ -170,7 +170,9 @@ read_textgrid <- function(x, praatDir=".", customScript=NULL,
   }
   
   ##Read csv, add class, and clean up tempfile
-  out <- read.csv(tmpcsv, quote="") %>% 
+  enco <- guess_encoding(tmpcsv)$encoding[1]
+  out <- read_delim(tmpcsv, delim=",", escape_backslash=TRUE, 
+                    locale=locale(encoding=enco)) %>% 
     as_tibble() %>% 
     add_class("trs_textgrid")
   if (clean) {
