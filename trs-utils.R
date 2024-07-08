@@ -118,7 +118,7 @@ check_for_praat <- function(praatDir=".") {
 ##Given a path to a Praat TextGrid, read as an R dataframe (using Praat's
 ##  built-in "Down to Table..." command)
 read_textgrid <- function(x, praatDir=".", customScript=NULL, 
-                          tmpcsv=tempfile(fileext=".csv")) {
+                          tmpcsv=tempfile(fileext=".csv"), clean=TRUE) {
   library(tibble)
   library(fs)
   
@@ -168,10 +168,12 @@ read_textgrid <- function(x, praatDir=".", customScript=NULL,
   }
   
   ##Read csv, add class, and clean up tempfile
-  out <- read.csv(tmpcsv) %>% 
+  out <- read.csv(tmpcsv, quote="") %>% 
     as_tibble() %>% 
     add_class("trs_textgrid")
-  file.remove(tmpcsv)
+  if (clean) {
+    file.remove(tmpcsv)
+  }
   
   out
 }
