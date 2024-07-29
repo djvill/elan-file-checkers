@@ -15,7 +15,7 @@ source("trs-utils.R")
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "2.0.3"
+vers <- "2.0.4"
 
 ## File structures ============================================================
 
@@ -69,7 +69,7 @@ caseSens <- FALSE
 noOverlapCheckTiers <- c("Comment","Noise","Transcriber")
 ##Maximum cross-tier misalignment (in ms) to 'snap together'. Set lower to be
 ##  more conservative about what counts as an intended cross-tier alignment
-overlapThresh <- 500
+overlapThresh <- 250
 ##Overlap-fixing method: old or new
 fixMethod <- "old"
 ##Check for 0-width post-fixing annotations (can cause issues)
