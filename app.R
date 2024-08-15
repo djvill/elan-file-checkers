@@ -15,7 +15,7 @@ source("trs-utils.R")
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "2.0.4"
+vers <- "2.0.5"
 
 ## File structures ============================================================
 
@@ -69,7 +69,7 @@ caseSens <- FALSE
 noOverlapCheckTiers <- c("Comment","Noise","Transcriber")
 ##Maximum cross-tier misalignment (in ms) to 'snap together'. Set lower to be
 ##  more conservative about what counts as an intended cross-tier alignment
-overlapThresh <- 250
+overlapThresh <- 0.25
 ##Overlap-fixing method: old or new
 fixMethod <- "old"
 ##Check for 0-width post-fixing annotations (can cause issues)
@@ -516,9 +516,8 @@ overlapsIssuesOneFile <- function(x, nm,
   x
 }
 
-##Format millisecond times as HH:MM:SS.SSS
+##Format second times as HH:MM:SS.SSS
 formatTimes <- function(time, type=c("S","HMS")[2]) {
-  time <- time / 1000
   if (type=="S") {
     round(time, 3)
   } else if (type=="HMS") {
@@ -949,29 +948,10 @@ server <- function(input, output) {
     if (exitEarly) {
       outdata <- list()
     } else {
-      ##Convert Praat to Elan, if needed
-      anyTG <- 
-        trsListFixed %>% 
-        map_lgl(~ inherits(.x, "trs_from_textgrid")) %>% 
-        any()
-      if (anyTG) {
-        trsListFixed <- trsListFixed %>%
-          map_if(~ inherits(.x, "trs_from_textgrid"),
-                 ~ .x %>% 
-                   ##Convert Praat seconds to Elan milliseconds
-                   convert_times(from="s", to="ms") %>% 
-                   ##Change Transcriber tier text to AUTHOR attribute
-                   add_attributes(list(AUTHOR = .x %>% 
-                                         pluck("Transcriber", "Text") %>% 
-                                         unique())) %>% 
-                   remove_tiers("Transcriber")
-          )
-        
-        ##Change file extensions to .eaf
-        names(trsListFixed) <- names(trsListFixed) %>% 
-          file_path_sans_ext() %>% 
-          paste0(".eaf")
-      }
+      ##Ensure all file extensions are .eaf
+      names(trsListFixed) <- names(trsListFixed) %>% 
+        file_path_sans_ext() %>% 
+        paste0(".eaf")
       
       ##Convert to trs_eaf
       outdata <- map(trsListFixed, ~ as.trs_eaf(.x, minElan=minElan))

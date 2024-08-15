@@ -172,7 +172,7 @@ read_textgrid <- function(x, praatDir=".", customScript=NULL,
   ##Read csv, add class, and clean up tempfile
   enco <- guess_encoding(tmpcsv)$encoding[1]
   out <- read_delim(tmpcsv, delim=",", escape_backslash=TRUE, 
-                    locale=locale(encoding=enco)) %>% 
+                    locale=locale(encoding=enco), show_col_types=FALSE) %>% 
     as_tibble() %>% 
     add_class("trs_textgrid")
   if (clean) {
@@ -217,7 +217,7 @@ as.trs_transcription.trs_textgrid <- function(x, tierAttributes=FALSE, ...) {
     nest(data = -TIER_ID) %>% 
     pull(data, TIER_ID) %>% 
     ##Remove blank turns
-    map(~ filter(.x, !grepl("^\\s*$", Text)))
+    map(~ filter(.x, !is.na(Text)))
   
   ##Optionally add tier attributes to mirror trs_eaf objects
   if (tierAttributes) {
@@ -275,6 +275,10 @@ as.trs_transcription.trs_eaf <- function(x, annotation_metadata=FALSE, ...) {
     times <- times %>% 
       map(~ select(.x, Start, End, Text))
   }
+  ##Convert milliseconds to seconds
+  times <- times %>% 
+    map(~ .x %>% 
+          mutate(across(c(Start, End), ~ .x / 1000)))
   
   ##Put data & metadata together
   out <- times
@@ -455,9 +459,17 @@ as.trs_eaf.trs_transcription <- function(x, mediaFile=NULL,
   minXML <- tryCatch(readLines(minElan),
                      error = \(e) stop("Minimal Elan file ", minElan, " not found"))
   
+  # ##Convert Praat seconds to Elan milliseconds, if needed
+  # if (inherits(x, "trs_from_textgrid")) {
+  #   trs <- trs %>% 
+  #     convert_times(from="s", to="ms")
+  # }
+  
   ##Reshape trs
   trs <- 
-    x %>%
+    x %>% 
+    ##Convert to times milliseconds
+    convert_times(from="s", to="ms") %>% 
     map(~ .x %>% 
           ##Remove old ANNOTATION_ID and TIME_SLOT_REF columns, if they exist
           select(-any_of(c("ANNOTATION_ID", "TIME_SLOT_REF1", "TIME_SLOT_REF2"))) %>% 
@@ -570,6 +582,14 @@ as.trs_eaf.trs_transcription <- function(x, mediaFile=NULL,
   ##Get xml attributes, leaving off R & trs attributes
   xAttr <- attributes(x) %>% 
     discard_at(c("names", "class", "overlaps", "overlapsNice"))
+  ##Restore AUTHOR attribute from TextGrid Transcriber tier, if applicable
+  if (inherits(x, "trs_from_textgrid")) {
+    xAttr <- c(xAttr, 
+               AUTHOR = x %>% 
+                 pluck("Transcriber", "Text") %>% 
+                 unique())
+  }
+  
   ##Get minimal XML attributes, restoring xsi: prefix to
   ##  noNamespaceSchemaLocation
   minAttr <- xml_attrs(outXML)
@@ -818,7 +838,9 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
   
   ##If any tier is missing ANNOTATION_ID, add them
   if (!every(x, ~ "ANNOTATION_ID" %in% colnames(.x))) {
-    warning("Adding missing ANNOTATION_IDs")
+    if (inherits(x, "trs_from_eaf")) {
+      warning("Adding missing ANNOTATION_IDs")
+    }
     x <- add_annotation_ids(x, "warn")
   }
   
