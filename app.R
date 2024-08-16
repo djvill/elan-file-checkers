@@ -727,7 +727,7 @@ server <- function(input, output) {
       ##Extra-informative error message
       fileNameTips <- character(0L)
       if (any(!validationDF$SpkrCodeValid)) {
-        fileNameTips <- c(fileNameTips, "begin with a speaker code")
+        fileNameTips <- c(fileNameTips, "begin with a speaker ID (e.g., CB01)")
       }
       if (any(!validationDF$FileExtValid)) {
         fileNameTips <- c(fileNameTips, "end with .eaf or .TextGrid")
