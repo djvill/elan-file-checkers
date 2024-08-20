@@ -581,7 +581,7 @@ as.trs_eaf.trs_transcription <- function(x, mediaFile=NULL,
   ##  attributes in minimal XML but not x
   ##Get xml attributes, leaving off R & trs attributes
   xAttr <- attributes(x) %>% 
-    discard_at(c("names", "class", "overlaps", "overlapsNice"))
+    discard_at(c("names", "class", "overlapsInit", "overlaps", "overlapsNice"))
   ##Restore AUTHOR attribute from TextGrid Transcriber tier, if applicable
   if (inherits(x, "trs_from_textgrid")) {
     xAttr <- c(xAttr, 
@@ -890,8 +890,11 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
   }
   
   #### MAIN EXECUTION ####
+  ##Find initial overlaps
+  overlapsInit <- findOverlapsOneFile(overlapTiers, tierPriority, overlapThresh)
+  
   ##Initialize looping variables
-  overlapsCurr <- findOverlapsOneFile(overlapTiers, tierPriority, overlapThresh)
+  overlapsCurr <- overlapsInit
   overlapsOld <- NULL
   iters <- 0
   overlapsMsg(overlapsCurr, iters, msgCols)
@@ -971,6 +974,7 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
   }
   
   ##Add overlaps as an attribute
+  attr(x, "overlapsInit") <- overlapsInit
   attr(x, "overlaps") <- overlapsCurr
   
   x
@@ -1006,8 +1010,9 @@ add_class <- function(x, newClass) {
 }
 
 ##Low-level utility for adding new attribute(s) to x, facilitating cleaner code
-##  in functional-programming settings (e.g., purrr:::map*()) or in pipe chains
-add_attributes <- function(x, newAttr) {
+##  in functional-programming settings (e.g., purrr::map*()) or in pipe chains
+add_attributes <- function(x, newAttr, 
+                           overwrite=c("error","warn","warn-overwrite","silent")) {
   ##Check args
   if (is.atomic(newAttr)) {
     newAttr <- as.list(newAttr)
@@ -1016,6 +1021,7 @@ add_attributes <- function(x, newAttr) {
   if (any(duplicated(newAttrNames))) {
     stop("Duplicate names in newAttr")
   }
+  overwrite <- match.arg(overwrite)
   
   ##Get current
   curr <- attributes(x)
@@ -1023,16 +1029,28 @@ add_attributes <- function(x, newAttr) {
   
   ##Handle cases where x already has 1+ newAttr
   overlap <- intersect(currNames, newAttrNames)
-  if (identical(overlap, newAttrNames)) {
-    stop("x already has attribute(s) ", paste(newAttrNames, collapse=" "))
-  }
   if (length(overlap) > 0) {
-    newAttr <- newAttr[!(newAttrNames %in% overlap)]
-    warning("x already has attribute(s) ", paste(overlap, collapse=" "), "\n",
-            "  Only adding attribute(s) ", paste(names(newAttr), collapse=" "))
+    if (overwrite=="error") {
+      ##Error out if any overlap
+      stop("x already has attribute(s) ", paste(overlap, collapse=" "))
+      
+    } else if (overwrite=="warn") {
+      ##Warn and only add new attributes (error out if all newAttr already exist)
+      newAttr <- newAttr[!(newAttrNames %in% overlap)]
+      if (length(newAttr)==0) {
+        stop("x already has attribute(s) ", paste(overlap, collapse=" "), "\n",
+             "  No new attributes would be added ")
+      }
+      warning("x already has attribute(s) ", paste(overlap, collapse=" "), "\n",
+              "  Only adding attribute(s) ", paste(names(newAttr), collapse=" "))
+      
+    } else if (overwrite=="warn-overwrite") {
+      ##Warn but overwrite attributes anyway
+      warning("Overwriting existing attribute(s) ", paste(overlap, collapse=" "))
+    }
   }
   
-  ##Add new attributes and return
+  ##Add/overwrite attributes and return
   attributes(x) <- c(curr, newAttr)
   x
 }

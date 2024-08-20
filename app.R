@@ -15,7 +15,7 @@ source("trs-utils.R")
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "2.0.5"
+vers <- "2.1.0"
 
 ## File structures ============================================================
 
@@ -67,8 +67,8 @@ caseSens <- FALSE
 
 ##Tiers to exclude from overlap checking/fixing
 noOverlapCheckTiers <- c("Comment","Noise","Transcriber")
-##Maximum cross-tier misalignment (in ms) to 'snap together'. Set lower to be
-##  more conservative about what counts as an intended cross-tier alignment
+##Maximum cross-tier misalignment (in seconds) to 'snap together'. Set lower to 
+##  be more conservative about what counts as an intended cross-tier alignment
 overlapThresh <- 0.25
 ##Overlap-fixing method: old or new
 fixMethod <- "old"
@@ -941,6 +941,15 @@ server <- function(input, output) {
         exitEarly <- TRUE
         message("Step 3: Fail")
       }
+      
+      ##Log which files changed (even if no overlaps remaining)
+      overlapsFixed <- map2_lgl(trsList, trsListFixed, 
+                                ~ all.equal(.x, .y, check.attributes=FALSE) %>% 
+                                  is.character())
+      if (any(overlapsFixed)) {
+        message("Fixed overlaps in ", sum(overlapsFixed), " file(s): ",
+                str_flatten(names(overlapsFixed)[overlapsFixed], ", "))
+      }
     }
     
     # Download elements -----------------------------------------------------
@@ -952,6 +961,15 @@ server <- function(input, output) {
       names(trsListFixed) <- names(trsListFixed) %>% 
         file_path_sans_ext() %>% 
         paste0(".eaf")
+      
+      ##Update DATE attribute for files with fixed overlaps
+      currTime <-
+        Sys.time() %>% 
+        format("%Y-%m-%dT%H:%M:%S%z") %>% 
+        str_replace("(\\d\\d)$", ":\\1")
+      trsListFixed <- trsListFixed %>% 
+        map_at(names(overlapsFixed)[overlapsFixed],
+               ~ add_attributes(.x, list(DATE = currTime), overwrite="silent"))
       
       ##Convert to trs_eaf
       outdata <- map(trsListFixed, ~ as.trs_eaf(.x, minElan=minElan))
