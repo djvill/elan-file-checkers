@@ -15,7 +15,7 @@ source("trs-utils.R")
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "2.1.0"
+vers <- "2.1.1"
 
 ## File structures ============================================================
 
@@ -234,7 +234,7 @@ tierIssuesOneFile <- function(x, nm,
   ##Interviewers can be named either actual name or Interviewer [SpkrCode]
   interviewerTier <- c(
     case_when(
-      fileInfo$Neighborhood=="HD" ~ "Trista Pennington", 
+      fileInfo$Neighborhood=="HD" ~ "Interviewer HD", 
       fileInfo$SpkrCode %in% c("CB02", "CB18") ~ "Jennifer Andrus",
       TRUE ~ "Barbara Johnstone"),
     paste("Interviewer", fileInfo$SpkrCode))

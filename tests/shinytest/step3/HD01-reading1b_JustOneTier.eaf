@@ -57,7 +57,7 @@
         </ANNOTATION>
     </TIER>
     <TIER ANNOTATOR="James Lawler" LINGUISTIC_TYPE_REF="default-lt"
-        PARTICIPANT="Trista Pennington" TIER_ID="Trista Pennington">
+        PARTICIPANT="Interviewer HD" TIER_ID="Interviewer HD">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a5"
                 TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts2">

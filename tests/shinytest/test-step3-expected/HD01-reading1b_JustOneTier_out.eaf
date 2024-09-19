@@ -21,7 +21,7 @@
     <TIME_SLOT TIME_SLOT_ID="ts17" TIME_VALUE="36786"/>
     <TIME_SLOT TIME_SLOT_ID="ts18" TIME_VALUE="44884"/>
   </TIME_ORDER>
-  <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Trista Pennington" PARTICIPANT="Trista Pennington">
+  <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Interviewer HD" PARTICIPANT="Interviewer HD">
     <ANNOTATION>
       <ALIGNABLE_ANNOTATION ANNOTATION_ID="a5" TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts3">
         <ANNOTATION_VALUE>okay uh so this time I'll actually . uh read - the part of . Denise and then you read Ron</ANNOTATION_VALUE>
