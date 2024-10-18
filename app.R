@@ -15,7 +15,7 @@ source("trs-utils.R")
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "2.1.1"
+vers <- "2.1.2"
 
 ## File structures ============================================================
 
@@ -39,7 +39,7 @@ nonSpkrTiers <- c("Comment","Noise","Redaction")
 addlReqTiers <- list(eaf = character(0L),
                      textgrid = "Transcriber")
 ##Tiers that should never be present
-prohibTiers <- c("Recheck",
+prohibTiers <- c("Recheck", "Corrections",
                  "Text",                                                 ##From CLOx
                  paste0("SPEAKER_0", 0:9),                               ##From AI segmentation
                  paste0("PAR", 0:9), paste0("wor@", paste0("PAR", 0:9)), ##From Batchalign
@@ -419,7 +419,7 @@ dictIssuesOneFile <- function(x, noDictCheckTiers=NULL, dict=NULL,
     filter(
       ##Words with valid bracket pronounce codes (hesitations, sui generis 
       ##  words)
-      !str_detect(Word, paste0("^[[:alpha:]']+~?\\[", pronChars, "+\\]$")),
+      !str_detect(Word, paste0("^[[:alpha:]'-]+~?\\[", pronChars, "+\\]$")),
       ##Standalone valid punctuation
       !str_detect(Word, "^[.?-]$"),
       !str_detect(Word, "^--$"),
