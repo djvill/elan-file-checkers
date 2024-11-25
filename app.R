@@ -2,12 +2,14 @@ message("****APLS TRANSCRIPTION CHECKER****\n")
 
 library(shiny)
 library(xml2)
+library(readtextgrid)
 library(stringr)
 library(purrr)
 library(tidyr)
 library(dplyr)
 library(fs)
 library(readr)
+library(zip)
 
 source("trs-utils.R")
 
@@ -15,16 +17,13 @@ source("trs-utils.R")
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "2.1.2"
+vers <- "2.2.0"
 
 ## File structures ============================================================
 
 ##Named list of functions to handle each file extension to be read
 readHandlers <- list(eaf = read_eaf,
-                     ##read_textgrid() defined in trs-utils.R, plus args
-                     textgrid = partial(read_textgrid, 
-                                        praatDir="misc", 
-                                        customScript="misc/tg-to-csv.praat"))
+                     textgrid = \(...) add_class(read_textgrid(...), "trs_textgrid"))
 ##Regex for extracting SpkrCode column from filenames
 spkrCodeRegex <- "^(CB|FH|HD|LV)\\d+(and\\d+)?"
 ##Regex for extracting Neighborhood column from SpkrCode
@@ -954,9 +953,7 @@ server <- function(input, output) {
     
     # Download elements -----------------------------------------------------
     ##List of transcriptions to download
-    if (exitEarly) {
-      outdata <- list()
-    } else {
+    if (!exitEarly || overrideExit$overlaps) {
       ##Ensure all file extensions are .eaf
       names(trsListFixed) <- names(trsListFixed) %>% 
         file_path_sans_ext() %>% 
@@ -973,6 +970,8 @@ server <- function(input, output) {
       
       ##Convert to trs_eaf
       outdata <- map(trsListFixed, ~ as.trs_eaf(.x, minElan=minElan))
+    } else {
+      outdata <- list()
     }
     ##Content
     downloadHead <- h1("The file(s) passed all checks. Great job!",
@@ -987,16 +986,16 @@ server <- function(input, output) {
                        id="reuploadHead") %>% 
       undisplay()
     ##Style reupload heading
-    if (exitEarly) {
-      reuploadHead <- display(reuploadHead)
-      downloadHead <- undisplay(downloadHead)
-      downloadSubhead <- undisplay(downloadSubhead)
-      downloadBtn <- undisplay(downloadBtn)
-    } else {
+    if (!exitEarly || overrideExit$overlaps) {
       reuploadHead <- undisplay(reuploadHead)
       downloadHead <- display(downloadHead)
       downloadSubhead <- display(downloadSubhead)
       downloadBtn <- display(downloadBtn)
+    } else {
+      reuploadHead <- display(reuploadHead)
+      downloadHead <- undisplay(downloadHead)
+      downloadSubhead <- undisplay(downloadSubhead)
+      downloadBtn <- undisplay(downloadBtn)
     }
     
     ##PAGE FUNCTIONALITY:

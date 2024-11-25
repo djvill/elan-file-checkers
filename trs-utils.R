@@ -115,73 +115,6 @@ check_for_praat <- function(praatDir=".") {
   praatExe
 }
 
-##Given a path to a Praat TextGrid, read as an R dataframe (using Praat's
-##  built-in "Down to Table..." command)
-read_textgrid <- function(x, praatDir=".", customScript=NULL, 
-                          tmpcsv=tempfile(fileext=".csv"), clean=TRUE) {
-  library(tibble)
-  library(fs)
-  library(readr)
-  
-  ##Check args
-  praatExe <- check_for_praat(praatDir)
-  stopifnot(file.exists(x))
-  
-  ##Get script
-  ##If customScript is NULL, supply default script
-  if (is.null(customScript)) {
-    praatScript <- tempfile(fileext=".praat")
-    c('form: "Convert to csv"',
-      '  sentence: "inPath", ""',
-      '  sentence: "outPath", ""',
-      'endform',
-      '',
-      'tg = Read from file: inPath$',
-      'table = Down to Table: 0, 6, 1, 1',
-      'Formula (column range): "text", "text", "replace$(self$, """""""", ""\\"""""", 0)"',
-      'if outPath$ = "" ',
-      '  basename$ = replace_regex$(inPath$, ".+/", "", 0)',
-      '  outPath$ = replace_regex$(basename$, "\\.[Tt]ext[Gg]rid", ".csv", 1)',
-      'endif',
-      'Save as comma-separated file: outPath$') |>
-      writeLines(praatScript)
-    on.exit(file.remove(praatScript))
-  }
-  
-  ##If customScript doesn't exist, try with path relative to praatDir
-  if (!is.null(customScript) && !file.exists(customScript)) {
-    praatScript <- file.path(praatDir, customScript)
-    if (!file.exists(praatScript)) {
-      stop("customScript file ", customScript, " does not exist")
-    }
-  }
-  
-  ##If customScript already existed, use it as-is
-  if (!exists("praatScript")) {
-    praatScript <- customScript
-  }
-  
-  ##Run Praat script and check that it created an output
-  inPath <- path_rel(x, dirname(praatScript))
-  outPath <- path_rel(tmpcsv, dirname(praatScript))
-  system2(praatExe, c("--run", praatScript, inPath, outPath), stderr=FALSE)
-  if (!file.exists(tmpcsv)) {
-    stop(x, " is not a valid TextGrid")
-  }
-  
-  ##Read csv, add class, and clean up tempfile
-  enco <- guess_encoding(tmpcsv)$encoding[1]
-  out <- read_delim(tmpcsv, delim=",", escape_backslash=TRUE, 
-                    locale=locale(encoding=enco), show_col_types=FALSE) %>% 
-    as_tibble() %>% 
-    add_class("trs_textgrid")
-  if (clean) {
-    file.remove(tmpcsv)
-  }
-  
-  out
-}
-
 ##Given a path to an Elan transcription, read as an XML file
 read_eaf <- function(x) {
   library(xml2)
@@ -212,12 +145,14 @@ as.trs_transcription.trs_textgrid <- function(x, tierAttributes=FALSE, ...) {
   out <- 
     x %>%
     ##Rename and reorder columns
-    select(TIER_ID = tier, Start = tmin, End = tmax, Text = text) %>% 
+    select(TIER_ID = tier_name, Start = xmin, End = xmax, Text = text) %>% 
     ##As list of dataframes
     nest(data = -TIER_ID) %>% 
     pull(data, TIER_ID) %>% 
     ##Remove blank turns
-    map(~ filter(.x, !is.na(Text)))
+    map(~ .x %>% 
+          mutate(across(Text, str_trim)) %>% 
+          filter(Text != ""))
   
   ##Optionally add tier attributes to mirror trs_eaf objects
   if (tierAttributes) {
