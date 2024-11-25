@@ -720,7 +720,6 @@ findOverlapsOneFile <- function(x, tierPriority, overlapThresh=NULL) {
 handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE, 
                                   noOverlapCheckTiers=NULL, overlapThresh=NULL, 
                                   fixMethod=c("old","new"), 
-                                  checkZeroWidth=c("error","warn","silent"),
                                   maxIters=NULL, reachMaxIters=c("error","warn","silent")[2]) {
   library(purrr)
   library(dplyr)
@@ -739,7 +738,6 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
   ##Additional args only come into play if fixing overlaps
   if (fixOverlaps) {
     fixMethod <- match.arg(fixMethod)
-    checkZeroWidth <- match.arg(checkZeroWidth)
     stopifnot(is.numeric(maxIters) && maxIters > 0)
     reachMaxIters <- match.arg(reachMaxIters)
   }
@@ -884,6 +882,21 @@ handleOverlapsOneFile <- function(x, nm, fixOverlaps=TRUE,
           ##Just get first row for each TIER_ID + ANNOTATION_ID (in case the 
           ##  boundary overlaps multiple tiers), for the sake of rows_update()
           slice(1, .by=c("TIER_ID","ANNOTATION_ID"))
+        
+        ##Get proposed updated timeslots
+        overlapTiersUpdatedDF <- 
+          overlapTiersDF %>%
+          rows_update(newStarts, c("TIER_ID", "ANNOTATION_ID")) %>%
+          rows_update(newEnds, c("TIER_ID", "ANNOTATION_ID"))
+        
+        ##If any updates would yield zero-width annotations, cancel those updates
+        zeroWidth <-
+          overlapTiersUpdatedDF %>% 
+          filter(Start==End)
+        newStarts <- newStarts %>% 
+          anti_join(zeroWidth, "ANNOTATION_ID")
+        newEnds <- newEnds %>% 
+          anti_join(zeroWidth, "ANNOTATION_ID")
         
         ##Update timeslots
         overlapTiersDF <- overlapTiersDF %>%

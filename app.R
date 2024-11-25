@@ -17,7 +17,7 @@ source("trs-utils.R")
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "2.2.0"
+vers <- "2.3.0"
 
 ## File structures ============================================================
 
@@ -71,12 +71,6 @@ noOverlapCheckTiers <- c("Comment","Noise","Transcriber")
 overlapThresh <- 0.25
 ##Overlap-fixing method: old or new
 fixMethod <- "old"
-##Check for 0-width post-fixing annotations (can cause issues)
-##  "error" = throw error if any annotations have been set to 0-width
-##  "warn" = throw warning
-##  "silent" = silently drop 0-width annotations
-##  NULL = don't check
-checkZeroWidth <- "silent"
 ##Maximum number of overlap-fixing iterations to attempt before exiting (must be
 ##  positive number)
 maxIters <- 10
@@ -85,7 +79,7 @@ maxIters <- 10
 reachMaxIters <- "warn"
 ##Time display type: "S" (seconds, useful for Praat TextGrids), or "HMS" (useful
 ##  for ELAN)
-timeDisp <- "HMS"
+timeDisp <- "S"
 
 ## File output ================================================================
 
@@ -462,7 +456,6 @@ dictIssuesOneFile <- function(x, noDictCheckTiers=NULL, dict=NULL,
 overlapsIssuesOneFile <- function(x, nm, 
                                   noOverlapCheckTiers=NULL, overlapThresh=NULL, 
                                   fixMethod=c("old","new"), 
-                                  checkZeroWidth=c("error","warn","silent"),
                                   maxIters=NULL, reachMaxIters=c("error","warn","silent")[2],
                                   timeDisp=c("HMS","S")) {
   library(purrr)
@@ -479,14 +472,13 @@ overlapsIssuesOneFile <- function(x, nm,
   stopifnot(is.character(noOverlapCheckTiers))
   stopifnot(is.numeric(overlapThresh) && overlapThresh >= 0)
   fixMethod <- match.arg(fixMethod)
-  checkZeroWidth <- match.arg(checkZeroWidth)
   stopifnot(is.numeric(maxIters) && maxIters > 0)
   reachMaxIters <- match.arg(reachMaxIters)
   timeDisp <- match.arg(timeDisp)
   
   ##Fix overlaps and/or get remaining overlaps
   x <- handleOverlapsOneFile(x, nm, TRUE, noOverlapCheckTiers, overlapThresh, 
-                             fixMethod, checkZeroWidth, maxIters, reachMaxIters)
+                             fixMethod, maxIters, reachMaxIters)
   overlaps <- attr(x, "overlaps")
   
   ##If no remaining overlaps, make overlapsNice a 0-row dataframe & exit early
@@ -893,8 +885,8 @@ server <- function(input, output) {
       trsListFixed <- trsList %>% 
         imap(overlapsIssuesOneFile, noOverlapCheckTiers=noOverlapCheckTiers, 
              overlapThresh=overlapThresh, fixMethod=fixMethod, 
-             checkZeroWidth=checkZeroWidth, maxIters=maxIters, 
-             reachMaxIters=reachMaxIters, timeDisp=timeDisp)
+             maxIters=maxIters, reachMaxIters=reachMaxIters, 
+             timeDisp=timeDisp)
       ##Get list of remaining overlaps
       overlapsIss <-
         trsListFixed %>% 
