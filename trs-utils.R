@@ -411,7 +411,9 @@ as.trs_eaf.trs_transcription <- function(x, mediaFile=NULL,
           ##Ensure integer, non-NA TIME_VALUEs
           mutate(across(c(Start, End), round)) %>%
           filter(if_all(c(Start, End), ~ !is.na(.x)))
-    )
+    ) %>% 
+    ##Remove TextGrid Transcriber tier (later, will be added as AUTHOR attribute)
+    discard_at("Transcriber")
   
   ##Get time slots
   timeSlots <-
