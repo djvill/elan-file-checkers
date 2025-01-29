@@ -33,93 +33,11 @@ parse_filenames <- function(x,
          FileExt = file_ext(name))
 }
 
-##Check that Praat exists in praatDir, either as Praat.exe or a zipfolder
-##  praat...zip, and return its path (including ./ prefix, suitable for use in
-##  shell scripts to run it as an executable)
-check_for_praat <- function(praatDir=".") {
-  ##Check arg
-  stopifnot(is.character(praatDir) && dir.exists(praatDir))
-  
-  ##Ensure existence of executable and/or zipped archive
-  os <- Sys.info()[["sysname"]]
-  if (os=="Windows") {
-    pathExe <- "Praat.exe"
-    pathZip <- "praat.+\\.zip"
-  } else if (os=="Linux") {
-    pathExe <- "praat_barren"
-    pathZip <- "praat.+barren\\.tar\\.gz"
-  } else {
-    stop("Operating system ", os, " not supported")
-  }
-  praatExe <- file.path(praatDir, pathExe)
-  praatZip <- dir(praatDir, pathZip, full.names=TRUE, ignore.case=TRUE)
-  if (!file.exists(praatExe) && length(praatZip) == 0) {
-    stop("No Praat executable or zipfolder found in praatDir ", praatDir)
-  }
-  
-  ##Unzip if necessary
-  if (!file.exists(praatExe)) {
-    ##If more than one zipfile found, try to get the latest one
-    ##This is imperfect because (e.g.) praat649.zip will incorrectly be sorted
-    ##  after praat6410.zip
-    numPraatZip <- length(praatZip)
-    if (numPraatZip > 1) {
-      praatZip <- sort(praatZip, decreasing=TRUE)[1]
-      warning("Found ", numPraatZip, " Praat zipfolders in praatDir ", praatDir,
-              "\n  Using ", basename(praatZip))
-    }
-    
-    ##Function to deal with interface inconsistencies between unzip() & untar()
-    ##Unzips/untars x into dir, and invisibly returns extracted paths
-    ##N.B. Doesn't (1) check that paths are valid or (2) handle other OSs, since
-    ##  the larger script does both
-    extractZip <- function(x, dir, os=Sys.info()[["sysname"]]) {
-      if (os=="Windows") {
-        path <- unzip(x, exdir=dir)
-      }
-      if (os=="Linux") {
-        path <- file.path(dir, untar(x, list=TRUE))
-        untar(x, exdir=dir)
-      }
-      invisible(path)
-    }
-    
-    ##Unzip to praatDir
-    message("Extracting Praat from ", praatZip)
-    ##Returning filepaths only works for unzip()
-    praatExe <- extractZip(praatZip, praatDir) 
-    ##Ensure praatZip is a valid Praat zipfolder
-    if (length(praatExe) != 1 || basename(praatExe) != pathExe) {
-      stop(praatZip, " is not a valid Praat zipfolder ", 
-           "(it should contain only ", pathExe, ")")
-    }
-  }
-  
-  ##Ensure Praat is runnable
-  versScript <- tempfile(fileext=".praat")
-  c('form: "Write Praat version to file"',
-    '  sentence: "outPath", ""',
-    'endform',
-    '',
-    'writeFileLine: outPath$, praatVersion$') %>% 
-    writeLines(versScript)
-  on.exit(file.remove(versScript))
-  versFile <- tempfile(fileext=".txt")
-  system2(praatExe, c("--run", versScript, versFile))
-  if (!file.exists(versFile)) {
-    stop("Praat executable ", praatExe, " failed to run")
-  }
-  message("Running Praat version ", readLines(versFile))
-  file.remove(versFile)
-  
-  praatExe
-}
-
 ##Given a path to an Elan transcription, read as an XML file
 read_eaf <- function(x) {
   library(xml2)
   stopifnot(file.exists(x))
-  out <- read_xml(x) %>% 
+  out <- read_xml(x) |> 
     add_class("trs_eaf")
   
   out
