@@ -2,6 +2,11 @@ message("****APLS TRANSCRIPTION CHECKER****\n")
 
 library(shiny)
 library(xml2)
+if (packageVersion("readtextgrid") != "0.1.2.9000") {
+  cat("Installing readtextgrid from GitHub")
+  library(remotes)
+  install_github("https://github.com/tjmahr/readtextgrid", "0d6a91b")
+}
 library(readtextgrid)
 library(stringr)
 library(purrr)
@@ -17,7 +22,7 @@ source("trs-utils.R")
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "2.3.0"
+vers <- "2.3.1"
 
 ## File structures ============================================================
 
