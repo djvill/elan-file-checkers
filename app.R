@@ -22,7 +22,7 @@ source("trs-utils.R")
 # Parameters ------------------------------------------------------------------
 
 ##Version
-vers <- "2.3.1"
+vers <- "2.3.2"
 
 ## File structures ============================================================
 
@@ -394,6 +394,7 @@ dictIssuesOneFile <- function(x, noDictCheckTiers=NULL, dict=NULL,
   ##Get all lines in non-ignored tiers
   lineDF <- 
     x %>% 
+	discard_at(startsWith(names(.), "Redaction_")) %>% ##Patch: ignore all tiers starting with Redaction_ (which exist for resolving issues with redactions in overlaps)
     discard_at(noDictCheckTiers) %>% 
     map("Text") %>% 
     tibble(Tier = names(.), Line = .)
