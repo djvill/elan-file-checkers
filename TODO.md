@@ -13,6 +13,8 @@
 
 ## Basic functionality
 
+- Flag things like `hi{mid-word laugh}`
+
 - Convert "smart quotes" to straight quotes
   - Add a text preprocessing subtask, probably at the start of Step 2
 
